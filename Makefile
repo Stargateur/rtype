@@ -5,7 +5,7 @@
 ## Login   <bury_a@epitech.eu>
 ## 
 ## Started on  Mon Nov 16 02:02:01 2015 Anthony Bury
-## Last update Mon Nov 16 02:16:26 2015 Anthony Bury
+## Last update Mon Nov 16 02:23:10 2015 Anthony Bury
 ##
 
 include			source.mk
@@ -37,7 +37,7 @@ all:			$(NAME_SERVER) \
 
 $(OBJ_SERVER):		CXXFLAGS += -Iinclude/server
 
-$(OBJ_CLIENT):		CXXFLAGS += -Iinclude/client
+$(OBJ_CLIENT):		CXXFLAGS += -Iinclude/client -lsfml-graphics -lsfml-window -lsfml-system
 
 $(NAME_SERVER):		$(OBJ_SERVER)
 			$(CXX) -o $@ $^

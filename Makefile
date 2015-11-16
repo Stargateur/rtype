@@ -5,7 +5,7 @@
 ## Login   <bury_a@epitech.eu>
 ## 
 ## Started on  Mon Nov 16 02:02:01 2015 Anthony Bury
-## Last update Mon Nov 16 02:13:27 2015 Anthony Bury
+## Last update Mon Nov 16 02:16:26 2015 Anthony Bury
 ##
 
 include			source.mk
@@ -46,10 +46,12 @@ $(NAME_CLIENT):		$(OBJ_CLIENT)
 			$(CXX) -o $@ $^
 
 clean:
-			@rm -vf $(OBJ)
+			@rm -vf $(OBJ_SERVER)
+			@rm -vf $(OBJ_CLIENT)
 
 fclean:			clean
-			@rm -vf $(NAME)
+			@rm -vf $(NAME_SERVER)
+			@rm -vf $(NAME_CLIENT)
 
 re:			fclean all
 

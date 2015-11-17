@@ -5,7 +5,7 @@
 // Login   <anthony.bury@epitech.eu>
 // 
 // Started on  Tue Nov 17 12:26:13 2015 Anthony Bury
-// Last update Tue Nov 17 13:03:03 2015 Anthony Bury
+// Last update Tue Nov 17 16:11:06 2015 Anthony Bury
 //
 
 #ifndef		GRAPH_HPP_
@@ -16,6 +16,7 @@
 class Graph : public IGraph
 {
   sf::VideoMode video;
+  sf::Event event;
 
 public:
   Graph(void);
@@ -23,6 +24,8 @@ public:
 
 public:
   bool init(void);
+  void loop(void);
+  void checkEvents(void);
 };
 
 #endif		/* !GRAPH_HPP_ */

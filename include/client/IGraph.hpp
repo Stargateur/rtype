@@ -5,7 +5,7 @@
 // Login   <anthony.bury@epitech.eu>
 // 
 // Started on  Tue Nov 17 12:24:01 2015 Anthony Bury
-// Last update Tue Nov 17 13:18:56 2015 Anthony Bury
+// Last update Tue Nov 17 16:09:06 2015 Anthony Bury
 //
 
 #ifndef		IGRAPH_HPP_
@@ -21,6 +21,7 @@ public:
 
 public:
   virtual bool init(void) = 0;
+  virtual void loop(void) = 0;
 };
 
 #endif		/* !IGRAPH_HPP_ */

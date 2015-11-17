@@ -5,7 +5,7 @@
 ## Login   <bury_a@epitech.eu>
 ## 
 ## Started on  Mon Nov 16 02:02:18 2015 Anthony Bury
-## Last update Tue Nov 17 12:27:52 2015 Anthony Bury
+## Last update Tue Nov 17 16:11:47 2015 Anthony Bury
 ##
 
 DIR		=		src/
@@ -17,6 +17,5 @@ DIR_CLIENT	=		$(DIR)client/
 SRC_SERVER	+=		$(DIR_SERVER)main.cpp
 
 SRC_CLIENT	+=		$(DIR_CLIENT)main.cpp
-SRC_CLIENT	+=		$(DIR_CLIENT)Game.cpp
 SRC_CLIENT	+=		$(DIR_CLIENT)IGraph.cpp
 SRC_CLIENT	+=		$(DIR_CLIENT)Graph.cpp

@@ -5,7 +5,7 @@
 ## Login   <bury_a@epitech.eu>
 ## 
 ## Started on  Mon Nov 16 02:02:01 2015 Anthony Bury
-## Last update Mon Nov 16 02:23:10 2015 Anthony Bury
+## Last update Tue Nov 17 12:46:18 2015 Anthony Bury
 ##
 
 include			source.mk
@@ -37,13 +37,13 @@ all:			$(NAME_SERVER) \
 
 $(OBJ_SERVER):		CXXFLAGS += -Iinclude/server
 
-$(OBJ_CLIENT):		CXXFLAGS += -Iinclude/client -lsfml-graphics -lsfml-window -lsfml-system
+$(OBJ_CLIENT):		CXXFLAGS += -Iinclude/client
 
 $(NAME_SERVER):		$(OBJ_SERVER)
 			$(CXX) -o $@ $^
 
 $(NAME_CLIENT):		$(OBJ_CLIENT)
-			$(CXX) -o $@ $^
+			$(CXX) -o $@ $^ -lsfml-graphics -lsfml-window -lsfml-system
 
 clean:
 			@rm -vf $(OBJ_SERVER)
@@ -53,6 +53,7 @@ fclean:			clean
 			@rm -vf $(NAME_SERVER)
 			@rm -vf $(NAME_CLIENT)
 
-re:			fclean all
+re:			fclean
+			$(MAKE) -C . all
 
 .PHONY:			clean fclean re

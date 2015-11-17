@@ -5,7 +5,7 @@
 ## Login   <bury_a@epitech.eu>
 ## 
 ## Started on  Mon Nov 16 02:02:01 2015 Anthony Bury
-## Last update Tue Nov 17 12:46:18 2015 Anthony Bury
+## Last update Tue Nov 17 16:47:31 2015 Anthony Bury
 ##
 
 include			source.mk
@@ -43,7 +43,7 @@ $(NAME_SERVER):		$(OBJ_SERVER)
 			$(CXX) -o $@ $^
 
 $(NAME_CLIENT):		$(OBJ_CLIENT)
-			$(CXX) -o $@ $^ -lsfml-graphics -lsfml-window -lsfml-system
+			$(CXX) -o $@ $^ -lsfml-graphics -lsfml-window -lsfml-system -lsfml-network
 
 clean:
 			@rm -vf $(OBJ_SERVER)

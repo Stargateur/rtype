@@ -5,21 +5,21 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 04:46:57 2015 Antoine Plaskowski
-// Last update Fri Nov 20 05:30:33 2015 Antoine Plaskowski
+// Last update Fri Nov 20 05:57:52 2015 Antoine Plaskowski
 //
 
 #ifndef		ASOCKET_HPP_
 # define	ASOCKET_HPP_
 
 # include	"ISocket.hpp"
-# inclide	"ITime.hpp"
+# include	"ITime.hpp"
 # include	"sys/select.h"
 
 class	ASocket : public ISocket
 {
 public:
   virtual	~ASocket(void);
-  void	select(ITime *timeout = nullptr);
+  static void	select(ITime const *timeout = nullptr);
   bool	can_read(void) const;
   bool	can_write(void) const;
   bool	want_read(void) const;
@@ -28,9 +28,9 @@ public:
 protected:
   int const	m_fd;
 private:
-  fd_set	m_readfds;
-  fd_set	m_writefds;
-  int	m_nfds;
+  static fd_set	m_readfds;
+  static fd_set	m_writefds;
+  static int	m_nfds;
 };
 
 #endif		/* !ASOCKET_HPP_ */

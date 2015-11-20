@@ -5,7 +5,7 @@
 ## Login   <bury_a@epitech.eu>
 ## 
 ## Started on  Mon Nov 16 02:02:18 2015 Anthony Bury
-## Last update Fri Nov 20 06:06:59 2015 Antoine Plaskowski
+## Last update Fri Nov 20 07:00:46 2015 Antoine Plaskowski
 ##
 
 DIR		=		source/
@@ -25,6 +25,8 @@ SRC_SERVER	+=		$(DIR_ISOCKET)ISocket.cpp
 SRC_SERVER	+=		$(DIR_ISOCKET)ASocket.cpp
 SRC_SERVER	+=		$(DIR_ISOCKET)IStandard.cpp
 SRC_SERVER	+=		$(DIR_ISOCKET)Standard.cpp
+SRC_SERVER	+=		$(DIR_ISOCKET)ITCP_client.cpp
+SRC_SERVER	+=		$(DIR_ISOCKET)TCP_client.cpp
 
 SRC_CLIENT	+=		$(DIR_CLIENT)main.cpp
 SRC_CLIENT	+=		$(DIR_CLIENT)IGraph.cpp

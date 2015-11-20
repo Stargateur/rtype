@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 05:13:59 2015 Antoine Plaskowski
-// Last update Fri Nov 20 06:16:04 2015 Antoine Plaskowski
+// Last update Fri Nov 20 07:24:55 2015 Antoine Plaskowski
 //
 
 #ifndef		ITCP_SERVER_HPP_
@@ -16,8 +16,10 @@
 
 class	ITCP_server : public ASocket
 {
+public:
+  ITCP_server(int fd);
   virtual ~ITCP_server(void);
-  virtual ITCP_client	accept(void) const = 0;
+  virtual ITCP_client	&accept(void) const = 0;
 };
 
 #endif		/* !ITCP_SERVER_HPP_ */

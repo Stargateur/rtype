@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 04:45:20 2015 Antoine Plaskowski
-// Last update Fri Nov 20 04:55:57 2015 Antoine Plaskowski
+// Last update Fri Nov 20 07:31:22 2015 Antoine Plaskowski
 //
 
 #ifndef		ISOCKET_HPP_
@@ -18,7 +18,7 @@ public:
   virtual bool	can_read(void) const = 0;
   virtual bool	can_write(void) const = 0;
   virtual bool	want_read(void) const = 0;
-  virtual bool	wand_write(void) const = 0;
+  virtual bool	want_write(void) const = 0;
 };
 
 #endif		/* !ISOCKET_HPP_ */

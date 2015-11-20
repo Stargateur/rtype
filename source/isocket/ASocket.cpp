@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 05:43:34 2015 Antoine Plaskowski
-// Last update Fri Nov 20 06:12:20 2015 Antoine Plaskowski
+// Last update Fri Nov 20 07:50:23 2015 Antoine Plaskowski
 //
 
 #include	<algorithm>
@@ -52,6 +52,11 @@ bool	ASocket::want_write(void) const
   FD_SET(m_fd, &m_writefds);
   m_nfds = std::max<int>(m_nfds, m_fd);
   return (false);
+}
+
+int	ASocket::get_fd(void) const
+{
+  return (m_fd);
 }
 
 void	ASocket::select(ITime const *timeout)

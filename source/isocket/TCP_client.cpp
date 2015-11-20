@@ -5,11 +5,13 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 06:49:55 2015 Antoine Plaskowski
-// Last update Fri Nov 20 07:11:35 2015 Antoine Plaskowski
+// Last update Fri Nov 20 07:49:51 2015 Antoine Plaskowski
 //
 
 #include	<unistd.h>
 #include	<iostream>
+#include	<cstring>
+#include	<arpa/inet.h>
 #include	"TCP_client.hpp"
 
 TCP_client::TCP_client(std::string const &host, std::string const &port) :
@@ -18,9 +20,51 @@ TCP_client::TCP_client(std::string const &host, std::string const &port) :
 {
 }
 
+TCP_client::TCP_client(ITCP_server const &server) :
+  ITCP_client(accept(server, m_host))
+{
+}
+
 TCP_client::~TCP_client(void)
 {
   close(m_fd);
+}
+
+int	TCP_client::accept(ITCP_server const &server, std::string &host)
+{
+  union
+  {
+    struct sockaddr	base;
+    struct sockaddr_in	ipv4;
+    struct sockaddr_in6	ipv6;
+  }	sockaddr;
+  socklen_t	len = sizeof(sockaddr);
+  std::memset(&sockaddr.base, 0, len);
+  int	fd = ::accept(server.get_fd(), &sockaddr.base, &len);
+  if (fd == -1)
+    {
+      perror("accept()");
+      throw std::exception();
+    }
+
+  switch (sockaddr.base.sa_family)
+    {
+    case AF_INET:
+      char      ipv4[INET_ADDRSTRLEN];
+      if (inet_ntop(AF_INET, &sockaddr.ipv4.sin_addr, ipv4, sizeof(ipv4)) == NULL)
+	perror("inet_ntop()");
+      else
+	host = ipv4;
+      return (fd);
+    case AF_INET6:
+      char      ipv6[INET6_ADDRSTRLEN];
+      if (inet_ntop(AF_INET6, &sockaddr.ipv6.sin6_addr, ipv6, sizeof(ipv6)) == NULL)
+	perror("inet_ntop()");
+      else
+	host = ipv6;
+      return (fd);
+    }
+  return (fd);
 }
 
 int	TCP_client::aux_connect(struct addrinfo const *rp)

@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 05:36:07 2015 Antoine Plaskowski
-// Last update Fri Nov 20 05:38:06 2015 Antoine Plaskowski
+// Last update Fri Nov 20 06:27:52 2015 Antoine Plaskowski
 //
 
 #ifndef		STANDARD_HPP_
@@ -19,6 +19,8 @@ public:
   Standard(IStandard::io io);
   uintmax_t	read(uint8_t &data, uintmax_t size) const;
   uintmax_t	write(uint8_t const &data, uintmax_t size) const;
+private:
+  int	io_to_fd(IStandard::io io);
 };
 
 #endif		/* !STANDARD_HPP_ */

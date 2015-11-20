@@ -5,7 +5,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Wed Oct 21 20:44:16 2015 Bertrand-Rapello Baptiste
-// Last update Fri Nov  6 09:34:44 2015 Antoine Plaskowski
+// Last update Fri Nov 20 06:40:00 2015 Antoine Plaskowski
 //
 
 #ifndef ITIME_HPP_
@@ -36,12 +36,12 @@ extern "C"
 {
 # define	NAME_FCT_NEW_ITIME	"new_itime"
 #ifdef __linux__
-  ITime	&new_itime(void);
+  ITime	*new_itime(void);
 #else
-  __declspec(dllexport) ITime	&new_itime(void);
+  __declspec(dllexport) ITime	*new_itime(void);
 #endif
-  typedef	ITime &(*fct_new_itime)(void);
-  typedef	ITime &(&ref_new_itime)(void);
+  typedef	ITime *(*fct_new_itime)(void);
+  typedef	ITime *(&ref_new_itime)(void);
 }
 
 #endif 

@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 05:18:04 2015 Antoine Plaskowski
-// Last update Fri Nov 20 05:20:42 2015 Antoine Plaskowski
+// Last update Fri Nov 20 06:15:49 2015 Antoine Plaskowski
 //
 
 #ifndef		ITCP_CLIENT_HPP_
@@ -17,9 +17,10 @@
 class	ITCP_client : public APacket
 {
 public:
-  virtual uintmax_t	recv(uint8_t &data, uintmax_t size) const;
-  virtual uintmax_t	send(uint8_t const &data, uintmax_t size) const;
-  virtual std::string const	&get_host(void) const;
+  virtual ~ITCP_client(void);
+  virtual uintmax_t	recv(uint8_t &data, uintmax_t size) const = 0;
+  virtual uintmax_t	send(uint8_t const &data, uintmax_t size) const = 0;
+  virtual std::string const	&get_host(void) const = 0;
 };
 
 #endif		/* !ITCP_CLIENT_HPP_ */

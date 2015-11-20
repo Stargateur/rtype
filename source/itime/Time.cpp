@@ -5,7 +5,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Wed Oct 21 21:04:15 2015 Bertrand-Rapello Baptiste
-// Last update Mon Oct 26 06:46:13 2015 Antoine Plaskowski
+// Last update Fri Nov 20 06:39:21 2015 Antoine Plaskowski
 //
 
 #include	<stdio.h>
@@ -54,7 +54,7 @@ ITime	&Time::clone(void) const
   return (*new Time(get_second(), get_nano()));
 }
 
-ITime	&new_itime(void)
+ITime	*new_itime(void)
 {
-  return (*new Time());
+  return (new Time());
 }

@@ -5,7 +5,7 @@
 ## Login   <plasko_a@epitech.eu>
 ## 
 ## Started on  Fri Nov 20 04:13:39 2015 Antoine Plaskowski
-## Last update Fri Nov 20 05:41:08 2015 Antoine Plaskowski
+## Last update Fri Nov 20 06:43:41 2015 Antoine Plaskowski
 ##
 
 CLIENT		=	rtype_client
@@ -42,7 +42,7 @@ CXXFLAGS	+=	-ansi -pedantic -std=c++11
 CXXFLAGS	+=	$(INCLUDE)
 
 ifeq ($(CXX), clang++)
-CXXFLAGS	+=	-Weverything
+CXXFLAGS	+=	-Weverything -Wno-c++98-compat -Wno-padded
 endif
 
 ifneq ($(DEBUG), no)

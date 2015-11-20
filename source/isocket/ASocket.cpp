@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 05:43:34 2015 Antoine Plaskowski
-// Last update Fri Nov 20 05:59:01 2015 Antoine Plaskowski
+// Last update Fri Nov 20 06:12:20 2015 Antoine Plaskowski
 //
 
 #include	<algorithm>
@@ -15,6 +15,10 @@
 fd_set	ASocket::m_readfds = {};
 fd_set	ASocket::m_writefds = {};
 int	ASocket::m_nfds = -1;
+
+ASocket::ASocket(int fd) : m_fd(fd)
+{
+}
 
 ASocket::~ASocket(void)
 {

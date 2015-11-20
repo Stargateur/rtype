@@ -1,3 +1,7 @@
 *.o
 *~
-*#
+\#*#
+rtype_client
+rtype_server
+*.dpd
+*.autosave

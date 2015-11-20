@@ -1,59 +1,109 @@
 ##
-## Makefile for make in /home/bury_a/rendu/rtype
+## Makefile for Makefile in /home/plasko_a/projet/cplusplus/rtype
 ## 
-## Made by Anthony Bury
-## Login   <bury_a@epitech.eu>
+## Made by Antoine Plaskowski
+## Login   <plasko_a@epitech.eu>
 ## 
-## Started on  Mon Nov 16 02:02:01 2015 Anthony Bury
-## Last update Tue Nov 17 16:47:31 2015 Anthony Bury
+## Started on  Fri Nov 20 04:13:39 2015 Antoine Plaskowski
+## Last update Fri Nov 20 04:19:58 2015 Antoine Plaskowski
 ##
 
-include			source.mk
+CLIENT		=	rtype_client
 
-OBJ_SERVER	=	$(SRC_SERVER:.cpp=.o)
+SERVER		=	rtype_server
 
-OBJ_CLIENT	=	$(SRC_CLIENT:.cpp=.o)
+PATH_TIME	=	lib/time/
 
-NAME_SERVER	?=	rtype_server
+PATH_SOCKET	=	lib/socket/
 
-NAME_CLIENT	?=	rtype_client
+PATH_PROTOCOLV1	=	lib/protocolv1/
+
+PATH_DATABASE	=	lib/database/
 
 CXX		?=	g++
 
-CXXFLAGS	=	-Iinclude/
+RM		=	rm
+
+MAKE		=	make
+
+DEBUG		?=	no
+
+LEVEL		?=	3
+
+COLOR		?=	no
+
+LIB		=	-l dl $(shell pkg-config --libs sfml-graphics sfml-window sfml-system sfml-network)
+
+INCLUDE		=	-I include -I include/server -I include/client -I include/lib
+INCLUDE		+=	$(shell pkg-config --cflags sfml-graphics sfml-window sfml-system sfml-network)
+
+CXXFLAGS	+=	-Wall -Wextra -O$(LEVEL)
+CXXFLAGS	+=	-ansi -pedantic -std=c++11
+CXXFLAGS	+=	$(INCLUDE)
 
 ifeq ($(CXX), clang++)
-CXXFLAGS	+=	-Weverything -Wno-padded
-else
-CXXFLAGS	+=	-W -Wall -Wextra
+CXXFLAGS	+=	-Weverything
 endif
 
-ifeq ($(DEBUG), yes)
+ifneq ($(DEBUG), no)
 CXXFLAGS	+=	-g
 endif
 
-all:			$(NAME_SERVER) \
-			$(NAME_CLIENT)
+ifneq ($(COLOR), no)
+CXXFLAGS	+=	-fdiagnostics-color
+endif
 
-$(OBJ_SERVER):		CXXFLAGS += -Iinclude/server
+LDFLAGS		=	$(LIB)
 
-$(OBJ_CLIENT):		CXXFLAGS += -Iinclude/client
+ifeq ($(DEBUG), no)
+LDFLAGS		+=	-s
+endif
 
-$(NAME_SERVER):		$(OBJ_SERVER)
-			$(CXX) -o $@ $^
+include			source.mk
 
-$(NAME_CLIENT):		$(OBJ_CLIENT)
-			$(CXX) -o $@ $^ -lsfml-graphics -lsfml-window -lsfml-system -lsfml-network
+DPD_SERVER	=	$(SRC_SERVER:.cpp=.dpd)
 
-clean:
-			@rm -vf $(OBJ_SERVER)
-			@rm -vf $(OBJ_CLIENT)
+OBJ_SERVER	=	$(SRC_SERVER:.cpp=.o)
 
-fclean:			clean
-			@rm -vf $(NAME_SERVER)
-			@rm -vf $(NAME_CLIENT)
+DPD_CLIENT	=	$(SRC_CLIENT:.cpp=.dpd)
 
-re:			fclean
-			$(MAKE) -C . all
+OBJ_CLIENT	=	$(SRC_CLIENT:.cpp=.o)
 
-.PHONY:			clean fclean re
+all		:	$(SERVER) $(CLIENT)
+
+$(SERVER)	:	$(OBJ_SERVER)
+			$(CXX) $(OBJ_SERVER) -o $(SERVER) $(LDFLAGS)
+
+$(CLIENT)	:	$(OBJ_CLIENT)
+			$(CXX) $(OBJ_CLIENT) -o $(CLIENT) $(LDFLAGS)
+
+clean		:
+			$(RM) -f $(OBJ_SERVER)
+			$(RM) -f $(DPD_SERVER)
+			$(RM) -f $(OBJ_CLIENT)
+			$(RM) -f $(DPD_CLIENT)
+
+fclean		:	clean
+			$(RM) -f $(SERVER)
+			$(RM) -f $(CLIENT)
+
+re		:	fclean
+			$(MAKE) -C .
+
+%.dpd		:	%.c
+			$(CC) -MM $(<) -o $(@) $(CFLAGS) -MT $(<:.c=.o)
+
+%.o		:	%.c
+			$(CC) -c $(<) -o $(@) $(CFLAGS)
+
+%.dpd		:	%.cpp
+			$(CXX) -MM $(<) -o $(@) $(CXXFLAGS) -MT $(<:.cpp=.o)
+
+%.o		:	%.cpp
+			$(CXX) -c $(<) -o $(@) $(CXXFLAGS)
+
+.PHONY		:	all clean fclean re %.dpd %.o
+
+.SUFFIXES	:	.o.c .dpd.c .o.cpp .dpd.cpp
+
+include			$(DPD_SERVER) $(DPD_CLIENT)

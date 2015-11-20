@@ -5,14 +5,10 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 06:46:37 2015 Antoine Plaskowski
-// Last update Fri Nov 20 06:47:56 2015 Antoine Plaskowski
+// Last update Fri Nov 20 15:17:27 2015 Antoine Plaskowski
 //
 
 #include	"ITCP_client.hpp"
-
-ITCP_client::ITCP_client(int fd) : ASocket(fd)
-{
-}
 
 ITCP_client::~ITCP_client(void)
 {

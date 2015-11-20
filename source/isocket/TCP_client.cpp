@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 06:49:55 2015 Antoine Plaskowski
-// Last update Fri Nov 20 07:49:51 2015 Antoine Plaskowski
+// Last update Fri Nov 20 15:28:12 2015 Antoine Plaskowski
 //
 
 #include	<unistd.h>
@@ -15,13 +15,13 @@
 #include	"TCP_client.hpp"
 
 TCP_client::TCP_client(std::string const &host, std::string const &port) :
-  ITCP_client(connect(host, port)),
+  ASocket(connect(host, port)),
   m_host(host)
 {
 }
 
 TCP_client::TCP_client(ITCP_server const &server) :
-  ITCP_client(accept(server, m_host))
+  ASocket(accept(server, m_host))
 {
 }
 

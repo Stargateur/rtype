@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 05:36:07 2015 Antoine Plaskowski
-// Last update Fri Nov 20 06:27:52 2015 Antoine Plaskowski
+// Last update Fri Nov 20 16:00:57 2015 Antoine Plaskowski
 //
 
 #ifndef		STANDARD_HPP_
@@ -13,7 +13,7 @@
 
 # include	"IStandard.hpp"
 
-class	Standard : public IStandard
+class	Standard : public ASocket, public IStandard
 {
 public:
   Standard(IStandard::io io);

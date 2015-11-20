@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 05:18:04 2015 Antoine Plaskowski
-// Last update Fri Nov 20 07:49:33 2015 Antoine Plaskowski
+// Last update Fri Nov 20 15:28:01 2015 Antoine Plaskowski
 //
 
 #ifndef		TCP_CLIENT_HPP_
@@ -18,7 +18,7 @@
 # include	"ITCP_client.hpp"
 # include	"ITCP_server.hpp"
 
-class	TCP_client : public ITCP_client
+class	TCP_client : public ASocket, public ITCP_client
 {
 public:
   TCP_client(std::string const &host, std::string const &port);

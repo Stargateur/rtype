@@ -5,14 +5,14 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 06:01:34 2015 Antoine Plaskowski
-// Last update Fri Nov 20 06:48:10 2015 Antoine Plaskowski
+// Last update Fri Nov 20 15:51:01 2015 Antoine Plaskowski
 //
 
 #include	<unistd.h>
 #include	<exception>
 #include	"Standard.hpp"
 
-Standard::Standard(IStandard::io io) : IStandard(io_to_fd(io))
+Standard::Standard(IStandard::io io) : ASocket(io_to_fd(io))
 {
 }
 

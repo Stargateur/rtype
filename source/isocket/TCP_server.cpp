@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 07:15:53 2015 Antoine Plaskowski
-// Last update Fri Nov 20 07:31:02 2015 Antoine Plaskowski
+// Last update Fri Nov 20 15:40:14 2015 Antoine Plaskowski
 //
 
 #include	<iostream>
@@ -13,7 +13,7 @@
 #include	"TCP_server.hpp"
 #include	"TCP_client.hpp"
 
-TCP_server::TCP_server(std::string const &port) : ITCP_server(bind(port))
+TCP_server::TCP_server(std::string const &port) : ASocket(bind(port))
 {
 }
 

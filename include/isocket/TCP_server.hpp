@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 05:16:07 2015 Antoine Plaskowski
-// Last update Fri Nov 20 07:24:31 2015 Antoine Plaskowski
+// Last update Fri Nov 20 15:39:15 2015 Antoine Plaskowski
 //
 
 #ifndef		TCP_SERVER_HPP_
@@ -16,7 +16,7 @@
 # include	<netdb.h>
 # include	"ITCP_server.hpp"
 
-class TCP_server : public ITCP_server
+class TCP_server : public ASocket, public ITCP_server
 {
 public:
   TCP_server(std::string const &port);

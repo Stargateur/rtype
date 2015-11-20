@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 04:46:57 2015 Antoine Plaskowski
-// Last update Fri Nov 20 06:11:52 2015 Antoine Plaskowski
+// Last update Fri Nov 20 15:27:32 2015 Antoine Plaskowski
 //
 
 #ifndef		ASOCKET_HPP_
@@ -15,7 +15,7 @@
 # include	"ITime.hpp"
 # include	"sys/select.h"
 
-class	ASocket : public ISocket
+class	ASocket : virtual public ISocket
 {
 public:
   ASocket(int fd);

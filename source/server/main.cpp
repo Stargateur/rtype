@@ -5,7 +5,7 @@
 // Login   <anthony.bury@epitech.eu>
 // 
 // Started on  Mon Nov 16 02:08:18 2015 Anthony Bury
-// Last update Mon Nov 23 12:53:15 2015 Anthony Bury
+// Last update Mon Nov 23 13:46:51 2015 Anthony Bury
 //
 
 #include <iostream>
@@ -22,7 +22,7 @@ int main(int ac, char **av)
     }
   try
     {
-      server = new StartUp(av[0]);
+      server = new StartUp(av[1]);
     }
   catch (const std::exception &error)
     {

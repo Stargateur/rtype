@@ -6,9 +6,10 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:15:49 2015 Alaric Degand
-// Last update Sun Dec  6 04:05:35 2015 Alaric Degand
+// Last update Sun Dec  6 04:40:50 2015 Alaric Degand
 //
 
+#include	<iostream>
 #include	"Server.hpp"
 #include	"ASocket.hpp"
 
@@ -22,5 +23,8 @@ void		Server::run(void)
   m_itcp_server.want_read();
   ASocket::select();
   if (m_itcp_server.can_read())
-    m_clients.push_back(new Client(m_itcp_server.accept()));
+    {
+      m_clients.push_back(new Client(m_itcp_server.accept()));
+      std::cout << "Glenn y meurt" << std::endl;
+    }
 }

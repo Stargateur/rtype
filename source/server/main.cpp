@@ -5,29 +5,18 @@
 // Login   <anthony.bury@epitech.eu>
 // 
 // Started on  Mon Nov 16 02:08:18 2015 Anthony Bury
-// Last update Mon Nov 23 13:46:51 2015 Anthony Bury
+// Last update Sun Dec  6 04:39:32 2015 Alaric Degand
 //
 
 #include <iostream>
-#include "StartUp.hpp"
+#include "Server.hpp"
 
 int main(int ac, char **av)
 {
-  StartUp *server;
-  if (ac == 1)
+  Server	yololasuite("4242");
+  while (4242)
     {
-      std::cerr << "Missing argument" << std::endl;
-      std::cerr << "Usage : " << av[0] << " PORT" << std::endl;
-      return (1);
+      yololasuite.run();
     }
-  try
-    {
-      server = new StartUp(av[1]);
-    }
-  catch (const std::exception &error)
-    {
-      return (1);
-    }
-  server->loop();
   return (0);
 }

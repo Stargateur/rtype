@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 04:07:41 2015 Antoine Plaskowski
-// Last update Sun Dec  6 04:14:25 2015 Antoine Plaskowski
+// Last update Sun Dec  6 05:36:02 2015 Antoine Plaskowski
 //
 
 #include	<iostream>
@@ -15,6 +15,10 @@ TCP_packet_send::TCP_packet_send(void) :
   m_send(0),
   m_send_data(0),
   m_is_send(false)
+{
+}
+
+TCP_packet_send::~TCP_packet_send(void)
 {
 }
 

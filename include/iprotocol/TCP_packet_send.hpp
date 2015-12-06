@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 04:02:59 2015 Antoine Plaskowski
-// Last update Sun Dec  6 04:13:38 2015 Antoine Plaskowski
+// Last update Sun Dec  6 05:35:48 2015 Antoine Plaskowski
 //
 
 #ifndef		TCP_PACKET_SEND_HPP_
@@ -18,6 +18,7 @@ class	TCP_packet_send : public ATCP_packet
 {
 public:
   TCP_packet_send(void);
+  ~TCP_packet_send(void);
   template<typename T>
   bool	put_int(T const value)
   {

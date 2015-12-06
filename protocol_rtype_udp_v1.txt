@@ -119,7 +119,7 @@ Table of Contents
 
 4.  Protocol packets definition
 
-4.18 entités
+4.18 sprite
 
     +--------+-------+
     | Name   | Value |
@@ -131,16 +131,37 @@ Table of Contents
     +---------+-----------+----------------------------+
     | Name    | Data type | Description                |
     +---------+-----------+----------------------------+
-    | entité | entité[] | entité |
+    | sprite | sprite[] | sprite |
     +---------+-----------+----------------------------+
 
     +---------+-----------+----------------------------+
     | Name    | Data type | Description                |
     +---------+-----------+----------------------------+
-    | id | uint8_t | id entité |
-    | x | uint8_t | id entité |
-    | y | uint8_t | id entité |
-    | rotation | uint8_t | id entité |
+    | id | uint8_t | id sprite |
+    | x | uint8_t | id sprite |
+    | y | uint8_t | id sprite |
+    | rotation | uint8_t | id sprite |
+    +---------+-----------+----------------------------+
+
+4.18 sounds
+
+    +--------+-------+
+    | Name   | Value |
+    +--------+-------+
+    | Opcode | ?     |
+    | size   | ?     |
+    +--------+-------+
+
+    +---------+-----------+----------------------------+
+    | Name    | Data type | Description                |
+    +---------+-----------+----------------------------+
+    | sound | sound[] | sound |
+    +---------+-----------+----------------------------+
+
+    +---------+-----------+----------------------------+
+    | Name    | Data type | Description                |
+    +---------+-----------+----------------------------+
+    | id | uint8_t | id sound |
     +---------+-----------+----------------------------+
 
 4.19 input

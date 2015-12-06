@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 06:49:55 2015 Antoine Plaskowski
-// Last update Sun Dec  6 05:23:01 2015 Antoine Plaskowski
+// Last update Sun Dec  6 05:24:53 2015 Antoine Plaskowski
 //
 
 #include	<unistd.h>
@@ -21,7 +21,7 @@ TCP_client::TCP_client(std::string const &host, std::string const &port) :
 {
 }
 
-TCP_client::TCP_client(std::pair<int const, std::string const> const &fd_ip) :
+TCP_client::TCP_client(std::pair<int const, std::string const> &fd_ip) :
   ASocket(fd_ip.first),
   m_host(fd_ip.second)
 {

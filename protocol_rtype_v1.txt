@@ -137,7 +137,6 @@ Table of Contents
     | Name  | type    | Description         |
     +-------+---------+---------------------+
     | error  | uint8_t | Error code          |
-    | opcode | uint8_t | coresponding packet |
     +-------+---------+---------------------+
 
     * error : It's the error code

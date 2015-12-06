@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 04:00:47 2015 Antoine Plaskowski
-// Last update Sun Dec  6 04:12:53 2015 Antoine Plaskowski
+// Last update Sun Dec  6 05:34:52 2015 Antoine Plaskowski
 //
 
 #ifndef		TCP_PACKET_RECV_HPP_
@@ -19,6 +19,7 @@ class	TCP_packet_recv : public ATCP_packet
 {
 public:
   TCP_packet_recv(void);
+  ~TCP_packet_recv(void);
   template<typename T>
   bool	get_int(T &value)
   {

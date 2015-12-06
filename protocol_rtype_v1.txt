@@ -227,7 +227,7 @@ Table of Contents
 
       Table 19: Pong packet header structure
 
-4.10  List Game
+4.10  List Games
 
     +--------+-------+
     | Name   | Value |
@@ -274,6 +274,21 @@ Table of Contents
     | size   | ?     |
     +--------+-------+
 
+4.12 join game
+
+    +--------+-------+
+    | Name   | Value |
+    +--------+-------+
+    | Opcode | ?     |
+    | size   | ?     |
+    +--------+-------+
+
+    +---------+-----------+----------------------------+
+    | Name    | Data type | Description                |
+    +---------+-----------+----------------------------+
+    | owner | string | owner |
+    +---------+-----------+----------------------------+
+
 4.13 message
 
     +--------+-------+
@@ -290,7 +305,7 @@ Table of Contents
     | message | string | message to send to other player in the game |
     +---------+-----------+----------------------------+
 
-4.13 list mode
+4.13 list modes
 
     +--------+-------+
     | Name   | Value |
@@ -344,7 +359,7 @@ Table of Contents
     | name | string | name |
     +---------+-----------+----------------------------+
 
-4.16 list param
+4.16 list params
 
     +--------+-------+
     | Name   | Value |
@@ -353,7 +368,7 @@ Table of Contents
     | size   | ?     |
     +--------+-------+
 
-4.16 param
+4.16 params
 
     +--------+-------+
     | Name   | Value |
@@ -384,22 +399,7 @@ Table of Contents
     | value | string   | value |
     +---------+-----------+----------------------------+
 
-4.17 join game
-
-    +--------+-------+
-    | Name   | Value |
-    +--------+-------+
-    | Opcode | ?     |
-    | size   | ?     |
-    +--------+-------+
-
-    +---------+-----------+----------------------------+
-    | Name    | Data type | Description                |
-    +---------+-----------+----------------------------+
-    | owner | string | owner |
-    +---------+-----------+----------------------------+
-
-4.18 list sprite
+4.18 list sprites
 
     +--------+-------+
     | Name   | Value |
@@ -421,7 +421,7 @@ Table of Contents
     | id | uint8_t | id sprite |
     +---------+-----------+----------------------------+
 
-4.19 sprite
+4.19 sprites
 
     +--------+-------+
     | Name   | Value |
@@ -437,7 +437,7 @@ Table of Contents
     | data | uint8_t[] | data of sprite |
     +---------+-----------+----------------------------+
 
-4.18 list sound
+4.18 list sounds
 
     +--------+-------+
     | Name   | Value |
@@ -459,7 +459,7 @@ Table of Contents
     | id | uint8_t | id sound |
     +---------+-----------+----------------------------+
 
-4.19 sound
+4.19 sounds
 
     +--------+-------+
     | Name   | Value |
@@ -475,7 +475,7 @@ Table of Contents
     | data | uint8_t[] | data of sound |
     +---------+-----------+----------------------------+
 
-4.20 etat
+4.20 ready
 
     +--------+-------+
     | Name   | Value |
@@ -487,7 +487,7 @@ Table of Contents
     +---------+-----------+----------------------------+
     | Name    | Data type | Description                |
     +---------+-----------+----------------------------+
-    | etat | uint8_t | 0 pas pret 1 pret |
+    | ready | uint8_t | 0 pas pret 1 pret |
     +---------+-----------+----------------------------+
 
 4.21 start
@@ -505,7 +505,7 @@ Table of Contents
     | timer | uint8_t | seconde avant lancement game |
     +---------+-----------+----------------------------+
 
-4.22 end game
+4.22 end
 
     +--------+-------+
     | Name   | Value |
@@ -517,11 +517,11 @@ Table of Contents
     +---------+-----------+----------------------------+
     | Name    | Data type | Description                |
     +---------+-----------+----------------------------+
-    | score | uint8_t | score |
+    | score | uint64_t | score |
     | winner | uint8_t | 0 is looser 1 is winner |
     +---------+-----------+----------------------------+
 
-4.23 leave quit
+4.23 leave
 
     +--------+-------+
     | Name   | Value |

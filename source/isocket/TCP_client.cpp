@@ -5,12 +5,13 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 06:49:55 2015 Antoine Plaskowski
-// Last update Fri Nov 20 15:28:12 2015 Antoine Plaskowski
+// Last update Sun Dec  6 05:23:01 2015 Antoine Plaskowski
 //
 
 #include	<unistd.h>
 #include	<iostream>
 #include	<cstring>
+#include	<utility>
 #include	<arpa/inet.h>
 #include	"TCP_client.hpp"
 
@@ -20,8 +21,15 @@ TCP_client::TCP_client(std::string const &host, std::string const &port) :
 {
 }
 
+TCP_client::TCP_client(std::pair<int const, std::string const> const &fd_ip) :
+  ASocket(fd_ip.first),
+  m_host(fd_ip.second)
+{
+  delete &fd_ip;
+}
+
 TCP_client::TCP_client(ITCP_server const &server) :
-  ASocket(accept(server, m_host))
+  TCP_client(accept(server))
 {
 }
 
@@ -30,7 +38,7 @@ TCP_client::~TCP_client(void)
   close(m_fd);
 }
 
-int	TCP_client::accept(ITCP_server const &server, std::string &host)
+std::pair<int const, std::string const>	&TCP_client::accept(ITCP_server const &server)
 {
   union
   {
@@ -40,7 +48,7 @@ int	TCP_client::accept(ITCP_server const &server, std::string &host)
   }	sockaddr;
   socklen_t	len = sizeof(sockaddr);
   std::memset(&sockaddr.base, 0, len);
-  int	fd = ::accept(server.get_fd(), &sockaddr.base, &len);
+  int fd = ::accept(server.get_fd(), &sockaddr.base, &len);
   if (fd == -1)
     {
       perror("accept()");
@@ -54,17 +62,17 @@ int	TCP_client::accept(ITCP_server const &server, std::string &host)
       if (inet_ntop(AF_INET, &sockaddr.ipv4.sin_addr, ipv4, sizeof(ipv4)) == NULL)
 	perror("inet_ntop()");
       else
-	host = ipv4;
-      return (fd);
+	return (*new std::pair<int const, std::string const>(fd, ipv4));
+      break;
     case AF_INET6:
       char      ipv6[INET6_ADDRSTRLEN];
       if (inet_ntop(AF_INET6, &sockaddr.ipv6.sin6_addr, ipv6, sizeof(ipv6)) == NULL)
 	perror("inet_ntop()");
       else
-	host = ipv6;
-      return (fd);
+	return (*new std::pair<int const, std::string const>(fd, ipv6));
+      break;
     }
-  return (fd);
+  return (*new std::pair<int const, std::string const>(fd, ""));
 }
 
 int	TCP_client::aux_connect(struct addrinfo const *rp)

@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 05:18:04 2015 Antoine Plaskowski
-// Last update Fri Nov 20 15:28:01 2015 Antoine Plaskowski
+// Last update Sun Dec  6 05:23:23 2015 Antoine Plaskowski
 //
 
 #ifndef		TCP_CLIENT_HPP_
@@ -28,9 +28,10 @@ public:
   uintmax_t	send(uint8_t const &data, uintmax_t size) const;
   std::string const	&get_host(void) const;
 private:
+  TCP_client(std::pair<int const, std::string const> const &fd_ip);
   static int	aux_connect(struct addrinfo const *rp);
   static int	connect(std::string const &host, std::string const &port);
-  static int	accept(ITCP_server const &server, std::string &host);
+  static std::pair<int const, std::string const>	&accept(ITCP_server const &server);
 private:
   std::string	m_host;
 };

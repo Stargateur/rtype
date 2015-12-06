@@ -5,7 +5,7 @@
 ## Login   <plasko_a@epitech.eu>
 ## 
 ## Started on  Fri Nov 20 04:13:39 2015 Antoine Plaskowski
-## Last update Sun Dec  6 03:43:41 2015 Antoine Plaskowski
+## Last update Sun Dec  6 04:50:36 2015 Antoine Plaskowski
 ##
 
 CLIENT		=	rtype_client
@@ -61,6 +61,10 @@ endif
 
 include			source.mk
 
+DPD		=	$(SRC:.cpp=.dpd)
+
+OBJ		=	$(SRC:.cpp=.o)
+
 DPD_SERVER	=	$(SRC_SERVER:.cpp=.dpd)
 
 OBJ_SERVER	=	$(SRC_SERVER:.cpp=.o)
@@ -71,13 +75,15 @@ OBJ_CLIENT	=	$(SRC_CLIENT:.cpp=.o)
 
 all		:	$(SERVER) $(CLIENT)
 
-$(SERVER)	:	$(OBJ_SERVER)
-			$(CXX) $(OBJ_SERVER) -o $(SERVER) $(LDFLAGS)
+$(SERVER)	:	$(OBJ) $(OBJ_SERVER)
+			$(CXX) $(OBJ) $(OBJ_SERVER) -o $(SERVER) $(LDFLAGS)
 
-$(CLIENT)	:	$(OBJ_CLIENT)
-			$(CXX) $(OBJ_CLIENT) -o $(CLIENT) $(LDFLAGS)
+$(CLIENT)	:	$(OBJ) $(OBJ_CLIENT)
+			$(CXX) $(OBJ) $(OBJ_CLIENT) -o $(CLIENT) $(LDFLAGS)
 
 clean		:
+			$(RM) -f $(OBJ)
+			$(RM) -f $(DPD)
 			$(RM) -f $(OBJ_SERVER)
 			$(RM) -f $(DPD_SERVER)
 			$(RM) -f $(OBJ_CLIENT)
@@ -106,4 +112,4 @@ re		:	fclean
 
 .SUFFIXES	:	.o.c .dpd.c .o.cpp .dpd.cpp
 
-include			$(DPD_SERVER) $(DPD_CLIENT)
+include			$(DPD) $(DPD_SERVER) $(DPD_CLIENT)

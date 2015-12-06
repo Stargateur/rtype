@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:53:39 2015 Alaric Degand
-// Last update Sun Dec  6 04:07:26 2015 Alaric Degand
+// Last update Sun Dec  6 04:22:04 2015 Antoine Plaskowski
 //
 
 #ifndef		CLIENT_HPP_
@@ -19,6 +19,6 @@ private:
   ITCP_client const	&m_itcp_client;
 public:
   Client(ITCP_client &);
-}
+};
 
 #endif		/* !CLIENT_HPP_ */

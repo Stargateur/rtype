@@ -259,7 +259,6 @@ Table of Contents
     +---------+-----------+----------------------------+
     | name | string   | name |
     | nombre de joueur | uint8_t   | nombre joueur |
-    | max nombre joueur | uint8_t | max |
     | proprio | string   | name of owner |
     | mode | string   | game mode |
     +---------+-----------+----------------------------+

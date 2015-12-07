@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 05:18:04 2015 Antoine Plaskowski
-// Last update Sun Dec  6 05:25:07 2015 Antoine Plaskowski
+// Last update Mon Dec  7 15:51:01 2015 Antoine Plaskowski
 //
 
 #ifndef		TCP_CLIENT_HPP_
@@ -33,7 +33,7 @@ private:
   static int	connect(std::string const &host, std::string const &port);
   static std::pair<int const, std::string const>	&accept(ITCP_server const &server);
 private:
-  std::string	m_host;
+  std::string const	m_host;
 };
 
 #endif		/* !TCP_CLIENT_HPP_ */

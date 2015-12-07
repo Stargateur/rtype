@@ -8,20 +8,20 @@
 // Last update Tue Nov 17 16:09:06 2015 Anthony Bury
 //
 
-#ifndef		IGRAPH_HPP_
-# define	IGRAPH_HPP_
+#ifndef		IVIEW_HPP_
+# define	IVIEW_HPP_
 
 # include	<SFML/Graphics.hpp>
 # include	<SFML/Window.hpp>
 
-class IGraph : public sf::RenderWindow
+class IView : public sf::RenderWindow
 {
 public:
-  virtual ~IGraph(void);
+  virtual ~IView(void);
 
 public:
   virtual bool init(void) = 0;
   virtual void loop(void) = 0;
 };
 
-#endif		/* !IGRAPH_HPP_ */
+#endif		/* !IVIEW_HPP_ */

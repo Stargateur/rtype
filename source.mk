@@ -5,7 +5,7 @@
 ## Login   <bury_a@epitech.eu>
 ## 
 ## Started on  Mon Nov 16 02:02:18 2015 Anthony Bury
-## Last update Sun Dec  6 04:48:53 2015 Antoine Plaskowski
+## Last update Mon Dec  7 15:41:41 2015 tacite_d
 ##
 
 DIR		=		source/
@@ -44,5 +44,5 @@ SRC_SERVER	+=		$(DIR_ITIME)ITime.cpp
 SRC_SERVER	+=		$(DIR_ITIME)Time.cpp
 
 SRC_CLIENT	+=		$(DIR_CLIENT)main.cpp
-SRC_CLIENT	+=		$(DIR_CLIENT)IGraph.cpp
-SRC_CLIENT	+=		$(DIR_CLIENT)Graph.cpp
+SRC_CLIENT	+=		$(DIR_CLIENT)IView.cpp
+SRC_CLIENT	+=		$(DIR_CLIENT)View.cpp

@@ -8,19 +8,19 @@
 // Last update Tue Nov 17 16:11:06 2015 Anthony Bury
 //
 
-#ifndef		GRAPH_HPP_
-# define	GRAPH_HPP_
+#ifndef		VIEW_HPP_
+# define	VIEW_HPP_
 
-# include	"IGraph.hpp"
+# include	"IView.hpp"
 
-class Graph : public IGraph
+class View : public IView
 {
   sf::VideoMode video;
   sf::Event event;
 
 public:
-  Graph(void);
-  ~Graph(void);
+  View(void);
+  ~View(void);
 
 public:
   bool init(void);

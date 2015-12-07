@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 07:53:57 2015 Antoine Plaskowski
-// Last update Mon Dec  7 17:10:39 2015 Antoine Plaskowski
+// Last update Mon Dec  7 18:03:49 2015 Antoine Plaskowski
 //
 
 #include	<unistd.h>
@@ -13,6 +13,7 @@
 #include	<cstring>
 #include	<arpa/inet.h>
 #include	"UDP_server.hpp"
+#include	"UDP_client.hpp"
 
 UDP_server::UDP_server(std::string const &port) :
   ASocket(socket(port)),
@@ -65,41 +66,17 @@ int	UDP_server::socket(std::string const &port)
   return (fd);
 }
 
-uintmax_t	UDP_server::recvfrom(uint8_t &data, uintmax_t &size, IUDP_client &client) const
+uintmax_t	UDP_server::recvfrom(uint8_t &data, uintmax_t &size, IUDP_client &&client) const
 {
-  union
-  {
-    struct sockaddr     base;
-    struct sockaddr_in  ipv4;
-    struct sockaddr_in6 ipv6;
-  }     sockaddr;
-  socklen_t     len = sizeof(sockaddr);
+  UDP_client::u_sockaddr	sockaddr;
+  socklen_t	len(sizeof(sockaddr));
   std::memset(&sockaddr.base, 0, len);
-  ssize_t   ret = ::recvfrom(m_fd, &data, size, 0, &sockaddr.base, &len);
+  ssize_t   ret(::recvfrom(m_fd, &data, size, 0, &sockaddr.base, &len));
   if (ret == -1)
     {
       perror("recvfrom()");
       throw std::exception();
     }
-  //essayé getnameinfo café ?
-  switch (sockaddr.base.sa_family)
-    {
-    case AF_INET:
-      char      ipv4[INET_ADDRSTRLEN];
-      if (inet_ntop(AF_INET, &sockaddr.ipv4.sin_addr, ipv4, sizeof(ipv4)) == NULL)
-	perror("inet_ntop()");
-      else
-	{
-	}
-      return (static_cast<size_t>(ret));
-    case AF_INET6:
-      char      ipv6[INET6_ADDRSTRLEN];
-      if (inet_ntop(AF_INET6, &sockaddr.ipv6.sin6_addr, ipv6, sizeof(ipv6)) == NULL)
-	perror("inet_ntop()");
-      else
-	{
-	}
-      return (static_cast<size_t>(ret));
-    }
+  client = *new UDP_client(sockaddr, len);
   return (static_cast<size_t>(ret));
 }

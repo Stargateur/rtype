@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 04:58:06 2015 Antoine Plaskowski
-// Last update Mon Dec  7 17:27:06 2015 Antoine Plaskowski
+// Last update Mon Dec  7 18:52:50 2015 Antoine Plaskowski
 //
 
 #ifndef		UDP_CLIENT_HPP_
@@ -17,7 +17,7 @@
 
 class	UDP_client : public IUDP_client
 {
-private:
+public:
   union	u_sockaddr
   {
     struct sockaddr	base;
@@ -25,10 +25,14 @@ private:
     struct sockaddr_in6	ipv6;
   };
 public:
-  UDP_client(u_sockaddr sockaddr, socklen_t len);
-  UDP_client(std::string const &host);
+  UDP_client(u_sockaddr const &sockaddr, socklen_t len);
+  // UDP_client(std::string const &host, std::string const &port);
   std::string const	&get_host(void) const;
   uintmax_t	sendto(uint8_t const &data, uintmax_t size, IUDP_server const &server) const;
+private:
+  UDP_client(std::string const &host, u_sockaddr const &sockaddr, socklen_t len);
+  // UDP_client(std::string const &host, std::pair<u_sockaddr, socklen_t> const &addr_len);
+  static std::string const	&get_host_with_addr(u_sockaddr const &sockaddr, socklen_t len);
 public:
   std::string const	m_host;
   u_sockaddr const	m_sockaddr;

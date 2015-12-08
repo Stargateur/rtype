@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 04:07:41 2015 Antoine Plaskowski
-// Last update Sun Dec  6 05:36:02 2015 Antoine Plaskowski
+// Last update Tue Dec  8 16:27:08 2015 Antoine Plaskowski
 //
 
 #include	<iostream>
@@ -41,10 +41,10 @@ bool	TCP_packet_send::put_string(std::string const &string)
 {
   if (string.size() > UINT8_MAX)
     return (true);
-  if (put_int<uint8_t>(string.size()))
+  if (put_int<uint8_t>(static_cast<uint8_t>(string.size())))
     return (true);
   for (uintmax_t i = 0; i < string.size(); i++)
-    if (put_int<uint8_t>(string[i]) == true)
+    if (put_int<uint8_t>(static_cast<uint8_t>(string[i])) == true)
       return (true);
   return (false);
 }

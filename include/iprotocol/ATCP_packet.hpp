@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:57:06 2015 Antoine Plaskowski
-// Last update Sun Dec  6 03:59:46 2015 Antoine Plaskowski
+// Last update Tue Dec  8 16:23:49 2015 Antoine Plaskowski
 //
 
 #ifndef		ATCP_PACKET_HPP_
@@ -19,17 +19,17 @@ class	ATCP_packet
 public:
   enum  Opcode : uint8_t
   {
-    RESULT = 0,
-    MAC_ADDRESS = 1,
-    VERSION = 2,
-    CONNECT = 3,
-    DISCONNECT = 4,
-    SERVERCMD = 5,
-    CLIENTLOG = 6,
-    PING = 7,
-    PONG = 8,
-    KEYBOARD = 9,
-    MOUSE = 10
+    Result = 0,
+    Mac_address = 1,
+    Version = 2,
+    Connect = 3,
+    Disconnect = 4,
+    Servercmd = 5,
+    Clientlog = 6,
+    Ping = 7,
+    Pong = 8,
+    Keyboard = 9,
+    Mouse = 10
   };
   virtual ~ATCP_packet(void);
   Opcode	get_opcode(void) const;
@@ -51,7 +51,7 @@ protected:
     uint8_t	m_buffer[sizeof(s_packet)];
   };
 #pragma	pack()
-  static const	uintmax_t	m_size_header = sizeof(Opcode) + sizeof(uint8_t) + sizeof(uint16_t);
+  static const	uintmax_t	m_size_header = sizeof(m_packet) - sizeof(m_packet.data);
 };
 
 

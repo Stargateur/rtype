@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 04:05:19 2015 Antoine Plaskowski
-// Last update Sun Dec  6 05:35:25 2015 Antoine Plaskowski
+// Last update Tue Dec  8 16:27:48 2015 Antoine Plaskowski
 //
 
 #include	<iostream>
@@ -54,7 +54,7 @@ bool	TCP_packet_recv::get_string(std::string &string)
       uint8_t   c;
       if (get_int<uint8_t>(c) == true)
 	return (true);
-      string.push_back(c);
+      string.push_back(static_cast<char>(c));
     }
   return (false);
 }

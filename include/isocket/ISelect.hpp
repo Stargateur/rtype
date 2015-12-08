@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Tue Dec  8 13:56:31 2015 Antoine Plaskowski
-// Last update Tue Dec  8 15:42:47 2015 Antoine Plaskowski
+// Last update Tue Dec  8 15:49:21 2015 Antoine Plaskowski
 //
 
 #ifndef		ISELECT_HPP_
@@ -19,8 +19,9 @@ class	ISelect
 public:
   virtual ~ISelect(void);
   virtual void	select(ITime const *timeout = nullptr) = 0;
-  virtual bool	can_read(ISocket const &socket) = 0;
-  virtual bool	can_write(ISocket const &socket) = 0;
+  virtual void	reset(void) = 0;
+  virtual bool	can_read(ISocket const &socket) const = 0;
+  virtual bool	can_write(ISocket const &socket) const = 0;
   virtual void	want_read(ISocket const &socket) = 0;
   virtual void	want_write(ISocket const &socket) = 0;
 };

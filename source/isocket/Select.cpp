@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Tue Dec  8 14:01:13 2015 Antoine Plaskowski
-// Last update Tue Dec  8 15:47:33 2015 Antoine Plaskowski
+// Last update Tue Dec  8 15:50:57 2015 Antoine Plaskowski
 //
 
 #include	<algorithm>
@@ -20,22 +20,25 @@ Select::Select(void) :
 {
 }
 
-bool    Select::can_read(ISocket const &socket)
+void	Select::reset(void)
 {
-  if (socket.get_fd() >= FD_SETSIZE)
-    throw Select_exception(strerror(EDOM));
-  bool  ret = FD_ISSET(socket.get_fd(), &m_readfds);
-  FD_CLR(socket.get_fd(), &m_readfds);
-  return (ret);
+  FD_ZERO(&m_readfds);
+  FD_ZERO(&m_writefds);
+  m_nfds = -1;
 }
 
-bool    Select::can_write(ISocket const &socket)
+bool    Select::can_read(ISocket const &socket) const
 {
   if (socket.get_fd() >= FD_SETSIZE)
     throw Select_exception(strerror(EDOM));
-  bool  ret = FD_ISSET(socket.get_fd(), &m_writefds);
-  FD_CLR(socket.get_fd(), &m_writefds);
-  return (ret);
+  return (FD_ISSET(socket.get_fd(), &m_readfds));
+}
+
+bool    Select::can_write(ISocket const &socket) const
+{
+  if (socket.get_fd() >= FD_SETSIZE)
+    throw Select_exception(strerror(EDOM));
+  return (FD_ISSET(socket.get_fd(), &m_writefds));
 }
 
 void    Select::want_read(ISocket const &socket)
@@ -65,7 +68,6 @@ void    Select::select(ITime const *timeout)
       struct timespec   time = {timeout->get_second(), timeout->get_nano()};
       ret = pselect(m_nfds + 1, &m_readfds, &m_writefds, NULL, &time, NULL);
     }
-  m_nfds = -1;
   if (ret == -1)
     throw Select_exception(strerror(errno));
 }

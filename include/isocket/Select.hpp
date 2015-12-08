@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Tue Dec  8 13:56:31 2015 Antoine Plaskowski
-// Last update Tue Dec  8 15:44:08 2015 Antoine Plaskowski
+// Last update Tue Dec  8 15:48:55 2015 Antoine Plaskowski
 //
 
 #ifndef		SELECT_HPP_
@@ -19,8 +19,9 @@ class	Select : public ISelect
 public:
   Select(void);
   void	select(ITime const *timeout = nullptr);
-  bool	can_read(ISocket const &socket);
-  bool	can_write(ISocket const &socket);
+  void	reset(void);
+  bool	can_read(ISocket const &socket) const;
+  bool	can_write(ISocket const &socket) const;
   void	want_read(ISocket const &socket);
   void	want_write(ISocket const &socket);
 private:

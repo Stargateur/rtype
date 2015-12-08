@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 04:02:59 2015 Antoine Plaskowski
-// Last update Sun Dec  6 05:35:48 2015 Antoine Plaskowski
+// Last update Tue Dec  8 16:31:58 2015 Antoine Plaskowski
 //
 
 #ifndef		TCP_PACKET_SEND_HPP_
@@ -34,7 +34,6 @@ public:
   bool	send(ITCP_client const &socket);
   bool	is_send(void) const;
   void	set_opcode(Opcode opcode);
-  void	set_id(uint8_t id);
   void	set_size(void);
   void	reset(void);
 private:

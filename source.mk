@@ -5,7 +5,7 @@
 ## Login   <bury_a@epitech.eu>
 ## 
 ## Started on  Mon Nov 16 02:02:18 2015 Anthony Bury
-## Last update Tue Dec  8 14:12:14 2015 Antoine Plaskowski
+## Last update Tue Dec  8 17:01:48 2015 Antoine Plaskowski
 ##
 
 DIR		=		source/
@@ -35,6 +35,7 @@ SRC		+=		$(DIR_ISOCKET)UDP_server.cpp
 SRC		+=		$(DIR_ISOCKET)IUDP_client.cpp
 SRC		+=		$(DIR_ISOCKET)UDP_client.cpp
 SRC		+=		$(DIR_IPROTOCOL)ITCP_protocol.cpp
+SRC		+=		$(DIR_IPROTOCOL)TCP_protocol.cpp
 SRC		+=		$(DIR_IPROTOCOL)ATCP_packet.cpp
 SRC		+=		$(DIR_IPROTOCOL)TCP_packet_recv.cpp
 SRC		+=		$(DIR_IPROTOCOL)TCP_packet_send.cpp

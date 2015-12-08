@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 04:07:41 2015 Antoine Plaskowski
-// Last update Tue Dec  8 16:27:08 2015 Antoine Plaskowski
+// Last update Tue Dec  8 16:31:29 2015 Antoine Plaskowski
 //
 
 #include	<iostream>
@@ -57,11 +57,6 @@ bool	TCP_packet_send::is_send(void) const
 void	TCP_packet_send::set_opcode(Opcode opcode)
 {
   m_packet.opcode = opcode;
-}
-
-void	TCP_packet_send::set_id(uint8_t id)
-{
-  m_packet.id = id;
 }
 
 void	TCP_packet_send::set_size(void)

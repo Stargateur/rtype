@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 05:16:07 2015 Antoine Plaskowski
-// Last update Fri Nov 20 15:39:15 2015 Antoine Plaskowski
+// Last update Tue Dec  8 15:29:57 2015 Antoine Plaskowski
 //
 
 #ifndef		TCP_SERVER_HPP_
@@ -25,6 +25,15 @@ public:
 private:
   static int	aux_bind(struct addrinfo const *rp);
   static int	bind(std::string const &port);
+};
+
+class	TCP_server_exception : public ITCP_server_exception
+{
+public:
+  TCP_server_exception(char const *what);
+  char const	*what(void) const noexcept;
+private:
+  char const	*m_what;
 };
 
 #endif		/* !TCP_SERVER_HPP_ */

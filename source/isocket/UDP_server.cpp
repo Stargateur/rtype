@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 07:53:57 2015 Antoine Plaskowski
-// Last update Tue Dec  8 02:57:07 2015 Antoine Plaskowski
+// Last update Tue Dec  8 15:38:03 2015 Antoine Plaskowski
 //
 
 #include	<unistd.h>
@@ -31,16 +31,12 @@ int	UDP_server::aux_socket(struct addrinfo const *rp)
   int   fd;
 
   if (rp == NULL)
-    throw std::exception();
+    throw UDP_server_exception(strerror(errno));
   if ((fd = ::socket(rp->ai_family, rp->ai_socktype, rp->ai_protocol)) == -1)
-    {
-      perror("socket()");
-      return (aux_socket(rp->ai_next));
-    }
+    return (aux_socket(rp->ai_next));
   if (::bind(fd, rp->ai_addr, rp->ai_addrlen) == -1)
     {
       close(fd);
-      perror("socket()");
       return (aux_socket(rp->ai_next));
     }
   return (fd);
@@ -62,10 +58,7 @@ int	UDP_server::socket(std::string const &port)
   struct addrinfo	*result;
   int   status = ::getaddrinfo(NULL, port.c_str(), &hints, &result);
   if (status != 0)
-    {
-      std::cerr << "getaddrinfo: " << gai_strerror(status) <<  std::endl;
-      throw std::exception();
-    }
+    throw UDP_server_exception(gai_strerror(status));
 
   int	fd = aux_socket(result);
   ::freeaddrinfo(result);
@@ -78,10 +71,7 @@ uintmax_t	UDP_server::recvfrom(uint8_t &data, uintmax_t size, IUDP_server::u_soc
   std::memset(&sockaddr.base, 0, len);
   ssize_t   ret(::recvfrom(m_fd, &data, size, 0, &sockaddr.base, &len));
   if (ret == -1)
-    {
-      perror("recvfrom()");
-      throw std::exception();
-    }
+    throw UDP_server_exception(strerror(errno));
   return (static_cast<size_t>(ret));
 }
 
@@ -89,9 +79,16 @@ uintmax_t	UDP_server::sendto(uint8_t const &data, uintmax_t size, IUDP_server::u
 {
   ssize_t   ret(::sendto(m_fd, &data, size, 0, &sockaddr.base, len));
   if (ret == -1)
-    {
-      perror("recvfrom()");
-      throw std::exception();
-    }
+    throw UDP_server_exception(strerror(errno));
   return (static_cast<size_t>(ret));
+}
+
+UDP_server_exception::UDP_server_exception(char const *what) :
+  m_what(what)
+{
+}
+
+char const	*UDP_server_exception::what(void) const noexcept
+{
+  return (m_what);
 }

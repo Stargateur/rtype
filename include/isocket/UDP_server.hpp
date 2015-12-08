@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 05:11:04 2015 Antoine Plaskowski
-// Last update Tue Dec  8 03:05:04 2015 Antoine Plaskowski
+// Last update Tue Dec  8 15:36:11 2015 Antoine Plaskowski
 //
 
 #ifndef		UDP_SERVER_HPP_
@@ -28,6 +28,15 @@ private:
   static int	socket(std::string const &port);
 private:
   std::string const	m_port;
+};
+
+class	UDP_server_exception : public IUDP_server_exception
+{
+public:
+  UDP_server_exception(char const *what);
+  char const	*what(void) const noexcept;
+private:
+  char const	*m_what;
 };
 
 #endif		/* !UDP_SERVER_HPP_ */

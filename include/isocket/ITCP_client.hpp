@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 05:18:04 2015 Antoine Plaskowski
-// Last update Tue Dec  8 14:55:05 2015 Antoine Plaskowski
+// Last update Tue Dec  8 15:22:38 2015 Antoine Plaskowski
 //
 
 #ifndef		ITCP_CLIENT_HPP_
@@ -26,6 +26,7 @@ public:
 
 class	ITCP_client_exception : public ISocket_exception
 {
+public:
   virtual ~ITCP_client_exception(void);
 };
 

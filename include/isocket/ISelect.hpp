@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Tue Dec  8 13:56:31 2015 Antoine Plaskowski
-// Last update Tue Dec  8 14:22:00 2015 Antoine Plaskowski
+// Last update Tue Dec  8 15:42:47 2015 Antoine Plaskowski
 //
 
 #ifndef		ISELECT_HPP_
@@ -23,6 +23,12 @@ public:
   virtual bool	can_write(ISocket const &socket) = 0;
   virtual void	want_read(ISocket const &socket) = 0;
   virtual void	want_write(ISocket const &socket) = 0;
+};
+
+class	ISelect_exception : public std::exception
+{
+public:
+  virtual ~ISelect_exception(void);
 };
 
 #endif		/* !ISELECT_HPP_ */

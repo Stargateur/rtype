@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 05:34:15 2015 Antoine Plaskowski
-// Last update Tue Dec  8 15:02:06 2015 Antoine Plaskowski
+// Last update Tue Dec  8 15:38:26 2015 Antoine Plaskowski
 //
 
 #ifndef		ISTANDARD_HPP_
@@ -31,6 +31,7 @@ public:
 
 class	IStandard_exception : public ISocket_exception
 {
+public:
   virtual ~IStandard_exception(void);
 };
 

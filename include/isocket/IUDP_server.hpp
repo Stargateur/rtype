@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 05:00:20 2015 Antoine Plaskowski
-// Last update Tue Dec  8 14:58:46 2015 Antoine Plaskowski
+// Last update Tue Dec  8 15:35:32 2015 Antoine Plaskowski
 //
 
 #ifndef		IUDP_SERVER_HPP_
@@ -36,6 +36,7 @@ public:
 
 class	IUDP_server_exception : public ISocket_exception
 {
+public:
   virtual ~IUDP_server_exception(void);
 };
 

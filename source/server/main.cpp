@@ -5,7 +5,7 @@
 // Login   <anthony.bury@epitech.eu>
 // 
 // Started on  Mon Nov 16 02:08:18 2015 Anthony Bury
-// Last update Tue Dec  8 03:12:20 2015 Antoine Plaskowski
+// Last update Tue Dec  8 14:28:31 2015 Antoine Plaskowski
 //
 
 #include <unistd.h>
@@ -15,16 +15,18 @@
 #include "IUDP_server.hpp"
 #include "UDP_server.hpp"
 #include "UDP_client.hpp"
+#include "Select.hpp"
 
 int main(int ac, char **av)
 {
   UDP_server	server("4242");
+  ISelect	&iselect(*new Select);
 
   while (42)
     {
-      server.want_read();
-      ASocket::select();
-      if (server.can_read())
+      iselect.want_read(server);
+      iselect.select();
+      if (iselect.can_read(server))
 	{
 	  uint8_t	toto[4242];
 

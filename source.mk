@@ -5,7 +5,7 @@
 ## Login   <bury_a@epitech.eu>
 ## 
 ## Started on  Mon Nov 16 02:02:18 2015 Anthony Bury
-## Last update Mon Dec  7 17:03:35 2015 Antoine Plaskowski
+## Last update Tue Dec  8 14:12:14 2015 Antoine Plaskowski
 ##
 
 DIR		=		source/
@@ -20,6 +20,8 @@ DIR_ISOCKET	=		$(DIR)isocket/
 
 DIR_IPROTOCOL	=		$(DIR)iprotocol/
 
+SRC		+=		$(DIR_ISOCKET)ISelect.cpp
+SRC		+=		$(DIR_ISOCKET)Select.cpp
 SRC		+=		$(DIR_ISOCKET)ISocket.cpp
 SRC		+=		$(DIR_ISOCKET)ASocket.cpp
 SRC		+=		$(DIR_ISOCKET)IStandard.cpp

@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 05:00:20 2015 Antoine Plaskowski
-// Last update Tue Dec  8 03:06:21 2015 Antoine Plaskowski
+// Last update Tue Dec  8 14:58:46 2015 Antoine Plaskowski
 //
 
 #ifndef		IUDP_SERVER_HPP_
@@ -32,6 +32,11 @@ public:
   virtual	~IUDP_server(void);
   virtual uintmax_t	recvfrom(uint8_t &data, uintmax_t size, u_sockaddr &sockaddr, socklen_t &len) const = 0;
   virtual uintmax_t	sendto(uint8_t const &data, uintmax_t size, u_sockaddr const &sockaddr, socklen_t const len) const = 0;
+};
+
+class	IUDP_server_exception : public ISocket_exception
+{
+  virtual ~IUDP_server_exception(void);
 };
 
 #endif		/* !IUDP_SERVER_HPP_ */

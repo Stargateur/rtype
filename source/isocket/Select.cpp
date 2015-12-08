@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Tue Dec  8 14:01:13 2015 Antoine Plaskowski
-// Last update Tue Dec  8 14:24:37 2015 Antoine Plaskowski
+// Last update Tue Dec  8 14:38:53 2015 Antoine Plaskowski
 //
 
 #include	<algorithm>
@@ -20,6 +20,8 @@ Select::Select(void) :
 
 bool    Select::can_read(ISocket const &socket)
 {
+  if (socket.get_fd() >= FD_SETSIZE)
+    throw std::exception();
   bool  ret = FD_ISSET(socket.get_fd(), &m_readfds);
   FD_CLR(socket.get_fd(), &m_readfds);
   return (ret);
@@ -27,6 +29,8 @@ bool    Select::can_read(ISocket const &socket)
 
 bool    Select::can_write(ISocket const &socket)
 {
+  if (socket.get_fd() >= FD_SETSIZE)
+    throw std::exception();
   bool  ret = FD_ISSET(socket.get_fd(), &m_writefds);
   FD_CLR(socket.get_fd(), &m_writefds);
   return (ret);
@@ -34,12 +38,16 @@ bool    Select::can_write(ISocket const &socket)
 
 void    Select::want_read(ISocket const &socket)
 {
+  if (socket.get_fd() >= FD_SETSIZE)
+    throw std::exception();
   FD_SET(socket.get_fd(), &m_readfds);
   m_nfds = std::max<int>(m_nfds, socket.get_fd());
 }
 
 void    Select::want_write(ISocket const &socket)
 {
+  if (socket.get_fd() >= FD_SETSIZE)
+    throw std::exception();
   FD_SET(socket.get_fd(), &m_writefds);
   m_nfds = std::max<int>(m_nfds, socket.get_fd());
 }

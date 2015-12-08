@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 04:52:54 2015 Antoine Plaskowski
-// Last update Tue Dec  8 02:58:38 2015 Antoine Plaskowski
+// Last update Tue Dec  8 14:57:33 2015 Antoine Plaskowski
 //
 
 #ifndef		IUDP_CLIENT_HPP_
@@ -23,10 +23,15 @@ class	IUDP_client;
 class	IUDP_client : virtual public ISocket
 {
 public:
-  virtual	~IUDP_client(void);
+  virtual ~IUDP_client(void);
   virtual std::string const	&get_host(void) const = 0;
   virtual uintmax_t	send(uint8_t const &data, uintmax_t size) const = 0;
   virtual uintmax_t	recv(uint8_t &data, uintmax_t size) const = 0;
+};
+
+class	IUDP_client_exception : public ISocket_exception
+{
+  virtual ~IUDP_client_exception(void);
 };
 
 #endif		/* !IUDP_CLIENT_HPP_ */

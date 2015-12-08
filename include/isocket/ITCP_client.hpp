@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 05:18:04 2015 Antoine Plaskowski
-// Last update Fri Nov 20 15:26:34 2015 Antoine Plaskowski
+// Last update Tue Dec  8 14:55:05 2015 Antoine Plaskowski
 //
 
 #ifndef		ITCP_CLIENT_HPP_
@@ -22,6 +22,11 @@ public:
   virtual uintmax_t	recv(uint8_t &data, uintmax_t size) const = 0;
   virtual uintmax_t	send(uint8_t const &data, uintmax_t size) const = 0;
   virtual std::string const	&get_host(void) const = 0;
+};
+
+class	ITCP_client_exception : public ISocket_exception
+{
+  virtual ~ITCP_client_exception(void);
 };
 
 #endif		/* !ITCP_CLIENT_HPP_ */

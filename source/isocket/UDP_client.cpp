@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 12:09:50 2015 Antoine Plaskowski
-// Last update Tue Dec  8 15:19:38 2015 Antoine Plaskowski
+// Last update Tue Dec  8 16:07:48 2015 Antoine Plaskowski
 //
 
 #include	<sys/socket.h>
@@ -16,14 +16,8 @@
 #include	"UDP_client.hpp"
 
 UDP_client::UDP_client(std::string const &host, std::string const &port) :
-  ASocket(connect(host, port)),
-  m_host(host)
+  ASocket(connect(host, port))
 {
-}
-
-std::string const	&UDP_client::get_host(void) const
-{
-  return (m_host);
 }
 
 uintmax_t	UDP_client::send(uint8_t const &data, uintmax_t size) const

@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:40:34 2015 Antoine Plaskowski
-// Last update Tue Dec  8 17:42:23 2015 Antoine Plaskowski
+// Last update Tue Dec  8 19:26:11 2015 Antoine Plaskowski
 //
 
 #include	"TCP_protocol.hpp"
@@ -19,8 +19,23 @@ TCP_protocol::~TCP_protocol(void)
 {
 }
 
+void	TCP_protocol::send(ITCP_client const &socket)
+{
+
+}
+
+void	TCP_protocol::recv(ITCP_client const &socket)
+{
+  //  m_last_recv.now();
+  //  m_wait_pong = false;
+  if (m_recv.recv(socket) == false)
+    return;
+  
+}
+
 void	TCP_protocol::result(ITCP_protocol::Error error)
 {
+  
 }
 
 void	TCP_protocol::connect(std::string const &login, std::string const &password, uint8_t version)

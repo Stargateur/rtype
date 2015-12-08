@@ -5,16 +5,15 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 04:05:19 2015 Antoine Plaskowski
-// Last update Tue Dec  8 16:27:48 2015 Antoine Plaskowski
+// Last update Tue Dec  8 18:17:59 2015 Antoine Plaskowski
 //
 
 #include	<iostream>
 #include	"TCP_packet_recv.hpp"
 
 TCP_packet_recv::TCP_packet_recv(void) :
-  m_recv(0),
-  m_recv_data(0),
-  m_is_recv(false)
+  ATCP_packet(),
+  m_recv(0)
 {
 }
 
@@ -38,35 +37,25 @@ bool	TCP_packet_recv::recv(ITCP_client const &socket)
     return (false);
   if (m_recv < m_size_header + get_size())
     return (false);
-  m_is_recv = true;
+  set_size(0);
   return (m_recv != m_size_header + get_size());
 }
 
-bool	TCP_packet_recv::get_string(std::string &string)
+void	TCP_packet_recv::get_string(std::string &string)
 {
   uint8_t       size;
 
   string.erase();
-  if (get_int<uint8_t>(size) == true)
-    return (true);
+  get_int<uint8_t>(size);
   for (uintmax_t i = 0; i < size; i++)
     {
       uint8_t   c;
-      if (get_int<uint8_t>(c) == true)
-	return (true);
+      get_int<uint8_t>(c);
       string.push_back(static_cast<char>(c));
     }
-  return (false);
-}
-
-bool	TCP_packet_recv::is_recv(void) const
-{
-  return (m_is_recv);
 }
 
 void	TCP_packet_recv::reset(void)
 {
   m_recv = 0;
-  m_recv_data = 0;
-  m_is_recv = false;
 }

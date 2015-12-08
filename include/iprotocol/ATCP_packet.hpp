@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:57:06 2015 Antoine Plaskowski
-// Last update Tue Dec  8 16:53:25 2015 Antoine Plaskowski
+// Last update Tue Dec  8 18:16:46 2015 Antoine Plaskowski
 //
 
 #ifndef		ATCP_PACKET_HPP_
@@ -48,10 +48,13 @@ public:
     End,
     Leave
   };
+  ATCP_packet(void);
   virtual ~ATCP_packet(void);
   Opcode	get_opcode(void) const;
-  uint16_t	get_size(void) const;
   uint8_t	operator[](uint16_t idx) const;
+protected:
+  void	set_size(uint16_t size);
+  uint16_t	get_size(void) const;
 protected:
 #pragma	pack(1)
     struct	s_packet
@@ -66,6 +69,7 @@ protected:
     uint8_t	m_buffer[sizeof(s_packet)];
   };
 #pragma	pack()
+public:
   static const	uintmax_t	m_size_header = sizeof(m_packet) - sizeof(m_packet.data);
 };
 

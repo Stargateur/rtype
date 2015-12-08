@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:35:29 2015 Antoine Plaskowski
-// Last update Tue Dec  8 17:41:54 2015 Antoine Plaskowski
+// Last update Tue Dec  8 18:39:23 2015 Antoine Plaskowski
 //
 
 #ifndef		TCP_PROTOCOL_HPP_
@@ -13,6 +13,7 @@
 
 # include	<cstdint>
 # include	<string>
+# include	<queue>
 # include	"ITCP_protocol.hpp"
 
 class	TCP_protocol : public ITCP_protocol
@@ -20,6 +21,8 @@ class	TCP_protocol : public ITCP_protocol
 public:
   TCP_protocol(ITCP_protocol::callback const &callback);
   ~TCP_protocol(void);
+  void	send(ITCP_client const &socket);
+  void	recv(ITCP_client const &socket);
   void	result(ITCP_protocol::Error error);
   void	connect(std::string const &login, std::string const &password, uint8_t version);
   void	disconnect(void);
@@ -51,6 +54,8 @@ public:
   void	set_callback(ITCP_protocol::callback const &callback);
 private:
   ITCP_protocol::callback	m_callback;
+  TCP_packet_recv	m_recv;
+  std::queue<TCP_packet_send *>	m_send;
 };
 
 #endif		/* !TCP_PROTOCOL_HPP_ */

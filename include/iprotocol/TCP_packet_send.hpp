@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 04:02:59 2015 Antoine Plaskowski
-// Last update Tue Dec  8 16:31:58 2015 Antoine Plaskowski
+// Last update Tue Dec  8 18:08:01 2015 Antoine Plaskowski
 //
 
 #ifndef		TCP_PACKET_SEND_HPP_
@@ -20,26 +20,17 @@ public:
   TCP_packet_send(void);
   ~TCP_packet_send(void);
   template<typename T>
-  bool	put_int(T const value)
+  void	put_int(T const value)
   {
     for (uintmax_t i = 0; i < sizeof(T); i++)
-      {
-	m_packet.data[m_send_data] = (value >> (i * std::numeric_limits<uint8_t>::digits));
-	if (m_send_data++ == UINT16_MAX)
-	  return (true);
-      }
-    return (false);
+      m_packet.data[m_packet.size++] = (value >> (i * std::numeric_limits<uint8_t>::digits));
   }
-  bool	put_string(std::string const &string);
+  void	put_string(std::string const &string);
   bool	send(ITCP_client const &socket);
-  bool	is_send(void) const;
-  void	set_opcode(Opcode opcode);
-  void	set_size(void);
   void	reset(void);
+  void	set_opcode(Opcode opcode);
 private:
   uintmax_t	m_send;
-  uint16_t	m_send_data;
-  bool	m_is_send;
 };
 
 #endif		/* !TCP_PACKET_SEND_HPP_ */

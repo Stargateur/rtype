@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:35:29 2015 Antoine Plaskowski
-// Last update Tue Dec  8 17:24:21 2015 Antoine Plaskowski
+// Last update Tue Dec  8 18:36:09 2015 Antoine Plaskowski
 //
 
 #ifndef		ITCP_PROTOCOL_HPP_
@@ -14,6 +14,9 @@
 # include	<cstdint>
 # include	<string>
 # include	"ITime.hpp"
+# include	"ITCP_client.hpp"
+# include	"TCP_packet_recv.hpp"
+# include	"TCP_packet_send.hpp"
 
 class	ITCP_protocol
 {
@@ -58,6 +61,8 @@ public:
   
 public:
   virtual ~ITCP_protocol(void);
+  virtual void	send(ITCP_client const &socket) = 0;
+  virtual void	recv(ITCP_client const &socket) = 0;
   virtual void	result(Error error) = 0;
   virtual void	connect(std::string const &login, std::string const &password, uint8_t version) = 0;
   virtual void	disconnect(void) = 0;

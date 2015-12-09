@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:40:34 2015 Antoine Plaskowski
-// Last update Wed Dec  9 23:35:33 2015 Antoine Plaskowski
+// Last update Wed Dec  9 23:55:53 2015 Antoine Plaskowski
 //
 
 #include	<algorithm>
@@ -79,7 +79,7 @@ void	TCP_protocol::recv(ITCP_client const &socket)
     case ATCP_packet::List_meta_games:
       recv_list_meta_games();
       return;
-    case ATCP_packet::Games:
+    case ATCP_packet::Meta_games:
       recv_meta_games();
       return;
     case ATCP_packet::Create_game:
@@ -94,7 +94,7 @@ void	TCP_protocol::recv(ITCP_client const &socket)
     case ATCP_packet::List_meta_modes:
       //recv_list_modes();
       return;
-    case ATCP_packet::Modes:
+    case ATCP_packet::Meta_modes:
       //recv_meta_modes();
       return;
     case ATCP_packet::Change_mode:
@@ -103,7 +103,7 @@ void	TCP_protocol::recv(ITCP_client const &socket)
     case ATCP_packet::List_meta_params:
       recv_list_meta_params();
       return;
-    case ATCP_packet::Params:
+    case ATCP_packet::Meta_params:
       recv_meta_params();
       return;
     case ATCP_packet::Change_param:
@@ -159,9 +159,9 @@ void	TCP_protocol::send_result(ITCP_protocol::Error error)
 void	TCP_protocol::send_connect(std::string const &login, std::string const &password)
 {
   TCP_packet_send	&to_send = get_to_send();
+  to_send.put<uint8_t>(1);
   to_send.put(login);
   to_send.put(password);
-  to_send.put<uint8_t>(1);
   set_to_send(to_send, ATCP_packet::Connect);
 }
 
@@ -194,17 +194,21 @@ void	TCP_protocol::send_meta_games(std::list<ITCP_protocol::Game *> const &games
   TCP_packet_send	&to_send = get_to_send();
 
   to_send.put<uint8_t>(games.size());
-  for (auto n : games)
+  for (auto game : games)
     {
-      //      to_send.put(
+      to_send.put(game->name);
+      to_send.put(game->owner);
+      to_send.put(game->number_player);
+      to_send.put(game->number_player_max);
     }
+  set_to_send(to_send, ATCP_packet::Meta_games);
 }
 
 void	TCP_protocol::send_create_game(ITCP_protocol::Game const &game)
 {
  TCP_packet_send	&to_send = get_to_send();
  
- set_to_send(to_send, ATCP_packet::Create_game);
+ test(ATCP_packet::Create_game, game.name, game.owner, game.number_player, game.number_player_max);
 }
 
 void	TCP_protocol::send_join_game(ITCP_protocol::Game const &game)
@@ -219,7 +223,7 @@ void	TCP_protocol::send_message(std::string const &login, std::string const &mes
  TCP_packet_send	&to_send = get_to_send();
  to_send.put(login);
  to_send.put(message);
- set_to_send(to_send, ATCP_packet::Join_game);
+ set_to_send(to_send, ATCP_packet::Message);
 }
 
 // void	TCP_protocol::send_list_meta_modes(void)

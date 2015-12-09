@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:57:06 2015 Antoine Plaskowski
-// Last update Wed Dec  9 23:34:50 2015 Antoine Plaskowski
+// Last update Wed Dec  9 23:52:30 2015 Antoine Plaskowski
 //
 
 #ifndef		ATCP_PACKET_HPP_
@@ -25,15 +25,15 @@ public:
     Ping,
     Pong,
     List_meta_games,
-    Games,
+    Meta_games,
     Create_game,
     Join_game,
     Message,
     List_meta_modes,
-    Modes,
+    Meta_modes,
     Change_mode,
     List_meta_params,
-    Params,
+    Meta_params,
     Change_param,
     List_meta_sprites,
     Meta_sprites,

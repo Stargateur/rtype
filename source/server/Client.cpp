@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:56:02 2015 Alaric Degand
-// Last update Wed Dec  9 18:13:39 2015 Antoine Plaskowski
+// Last update Wed Dec  9 23:29:47 2015 Antoine Plaskowski
 //
 
 #include	"Client.hpp"
@@ -43,7 +43,7 @@ void	Client::pong(ITCP_protocol &itcp_protocol)
 {
 }
 
-void	Client::list_games(ITCP_protocol &itcp_protocol)
+void	Client::list_meta_games(ITCP_protocol &itcp_protocol)
 {
 }
 
@@ -51,11 +51,11 @@ void	Client::meta_games(ITCP_protocol &itcp_protocol, std::list<ITCP_protocol::G
 {
 }
 
-void	Client::create_game(ITCP_protocol &itcp_protocol)
+void	Client::create_game(ITCP_protocol &itcp_protocol, ITCP_protocol::Game const &game)
 {
 }
 
-void	Client::join_game(ITCP_protocol &itcp_protocol, std::string const &game)
+void	Client::join_game(ITCP_protocol &itcp_protocol, ITCP_protocol::Game const &game)
 {
 }
 
@@ -63,23 +63,25 @@ void	Client::message(ITCP_protocol &itcp_protocol, std::string const &login, std
 {
 }
 
-void	Client::list_modes(ITCP_protocol &itcp_protocol)
+// void	Client::list_modes(ITCP_protocol &itcp_protocol)
+// {
+// }
+
+// void	Client::meta_modes(ITCP_protocol &itcp_protocol, std::list<Mode *> const &modes)
+
+// void	Client::change_mode(ITCP_protocol &itcp_protocol, std::string const &mode)
+// {
+// }
+
+void	Client::list_meta_params(ITCP_protocol &itcp_protocol)
 {
 }
 
-//  void	Client::meta_modes(ITCP_protocol &itcp_protocol, std::list<Mode *> const &modes)
-
-void	Client::change_mode(ITCP_protocol &itcp_protocol, std::string const &mode)
+void	Client::meta_params(ITCP_protocol &itcp_protocol, std::list<ITCP_protocol::Param *> const &params)
 {
 }
 
-void	Client::list_params(ITCP_protocol &itcp_protocol)
-{
-}
-
-//  void	Client::meta_params(ITCP_protocol &itcp_protocol, std::list<ITCP_protocol::Param *> const&params)
-
-void	Client::change_param(ITCP_protocol &itcp_protocol, std::string const &param, std::string const &value)
+void	Client::change_param(ITCP_protocol &itcp_protocol, ITCP_protocol::Param const &param)
 {
 }
 

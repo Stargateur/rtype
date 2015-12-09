@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:35:29 2015 Antoine Plaskowski
-// Last update Wed Dec  9 18:02:01 2015 Antoine Plaskowski
+// Last update Wed Dec  9 23:31:02 2015 Antoine Plaskowski
 //
 
 #ifndef		TCP_PROTOCOL_HPP_
@@ -36,17 +36,17 @@ public:
   void	send_disconnect(void);
   void	send_ping(void);
   void	send_pong(void);
-  void	send_list_games(void);
+  void	send_list_meta_games(void);
   void	send_meta_games(std::list<ITCP_protocol::Game *> const &games);
-  void	send_create_game(void);
-  void	send_join_game(std::string const &game);
+  void	send_create_game(ITCP_protocol::Game const &game);
+  void	send_join_game(ITCP_protocol::Game const &game);
   void	send_message(std::string const &login, std::string const &message);
-  void	send_list_modes(void);
+  //  void	send_list_modes(void);
   //  void	send_meta_modes(std::list<Mode *> const &modes);
-  void	send_change_mode(std::string const &mode);
-  void	send_list_params(void);
-  //  void	send_meta_params(std::list<Param *> const&params);
-  void	send_change_param(std::string const &param, std::string const &value);
+  //  void	send_change_mode(std::string const &mode);
+  void	send_list_meta_params(void);
+  void	send_meta_params(std::list<ITCP_protocol::Param *> const &params);
+  void	send_change_param(ITCP_protocol::Param const &param);
   void	send_list_meta_sprites(void);
   void	send_meta_sprites(std::list<ITCP_protocol::Sprite *> const &sprites);
   void	send_take_sprite(Sprite const &sprite);
@@ -83,16 +83,16 @@ private:
   void	recv_disconnect(void);
   void	recv_ping(void);
   void	recv_pong(void);
-  void	recv_list_games(void);
+  void	recv_list_meta_games(void);
   void	recv_meta_games(void);
   void	recv_create_game(void);
   void	recv_join_game(void);
   void	recv_message(void);
-  void	recv_list_modes(void);
+  //  void	recv_list_modes(void);
   //  void	recv_meta_modes(void);
-  void	recv_change_mode(void);
-  void	recv_list_params(void);
-  //  void	recv_meta_params(void);
+  //  void	recv_change_mode(void);
+  void	recv_list_meta_params(void);
+  void	recv_meta_params(void);
   void	recv_change_param(void);
   void	recv_list_meta_sprites(void);
   void	recv_meta_sprites(void);

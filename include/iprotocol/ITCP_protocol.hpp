@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:35:29 2015 Antoine Plaskowski
-// Last update Wed Dec  9 18:09:19 2015 Antoine Plaskowski
+// Last update Wed Dec  9 23:33:15 2015 Antoine Plaskowski
 //
 
 #ifndef		ITCP_PROTOCOL_HPP_
@@ -46,6 +46,12 @@ public:
     uint8_t	m_number_player;
     uint8_t	m_number_player_max;
   };
+  class	Param
+  {
+  private:
+    std::string	m_name;
+    std::string	m_value;
+  };
   class	Callback
   {
   public:
@@ -55,17 +61,17 @@ public:
     virtual void	disconnect(ITCP_protocol &itcp_protocol) = 0;
     virtual void	ping(ITCP_protocol &itcp_protocol) = 0;
     virtual void	pong(ITCP_protocol &itcp_protocol) = 0;
-    virtual void	list_games(ITCP_protocol &itcp_protocol) = 0;
+    virtual void	list_meta_games(ITCP_protocol &itcp_protocol) = 0;
     virtual void	meta_games(ITCP_protocol &itcp_protocol, std::list<Game *> const &games) = 0;
-    virtual void	create_game(ITCP_protocol &itcp_protocol) = 0;
-    virtual void	join_game(ITCP_protocol &itcp_protocol, std::string const &game) = 0;
+    virtual void	create_game(ITCP_protocol &itcp_protocol, Game const &game) = 0;
+    virtual void	join_game(ITCP_protocol &itcp_protocol, Game const &game) = 0;
     virtual void	message(ITCP_protocol &itcp_protocol, std::string const &login, std::string const &message) = 0;
-    virtual void	list_modes(ITCP_protocol &itcp_protocol) = 0;
+    //    virtual void	list_modes(ITCP_protocol &itcp_protocol) = 0;
     //    virtual void	meta_modes(ITCP_protocol &itcp_protocol, std::list<Mode *> const &modes) = 0;
-    virtual void	change_mode(ITCP_protocol &itcp_protocol, std::string const &mode) = 0;
-    virtual void	list_params(ITCP_protocol &itcp_protocol) = 0;
-    //    virtual void	meta_params(ITCP_protocol &itcp_protocol, std::list<Param *> const&params) = 0;
-    virtual void	change_param(ITCP_protocol &itcp_protocol, std::string const &param, std::string const &value) = 0;
+    //    virtual void	change_mode(ITCP_protocol &itcp_protocol, std::string const &mode) = 0;
+    virtual void	list_meta_params(ITCP_protocol &itcp_protocol) = 0;
+    virtual void	meta_params(ITCP_protocol &itcp_protocol, std::list<Param *> const &params) = 0;
+    virtual void	change_param(ITCP_protocol &itcp_protocol, Param const &param) = 0;
     virtual void	list_meta_sprites(ITCP_protocol &itcp_protocol) = 0;
     virtual void	meta_sprites(ITCP_protocol &itcp_protocol, std::list<Sprite *> const &sprites) = 0;
     virtual void	take_sprite(ITCP_protocol &itcp_protocol, Sprite const &sprite) = 0;
@@ -95,17 +101,17 @@ public:
   virtual void	send_disconnect(void) = 0;
   virtual void	send_ping(void) = 0;
   virtual void	send_pong(void) = 0;
-  virtual void	send_list_games(void) = 0;
+  virtual void	send_list_meta_games(void) = 0;
   virtual void	send_meta_games(std::list<Game *> const &games) = 0;
-  virtual void	send_create_game(void) = 0;
-  virtual void	send_join_game(std::string const &game) = 0;
+  virtual void	send_create_game(Game const &game) = 0;
+  virtual void	send_join_game(Game const &game) = 0;
   virtual void	send_message(std::string const &login, std::string const &message) = 0;
-  virtual void	send_list_modes(void) = 0;
+  // virtual void	send_list_modes(void) = 0;
   // virtual void	send_meta_modes(std::list<Mode *> const &modes) = 0;
-  virtual void	send_change_mode(std::string const &mode) = 0;
-  virtual void	send_list_params(void) = 0;
-  // virtual void	send_meta_params(std::list<Param *> const&params);
-  virtual void	send_change_param(std::string const &param, std::string const &value) = 0;
+  // virtual void	send_change_mode(std::string const &mode) = 0;
+  virtual void	send_list_meta_params(void) = 0;
+  virtual void	send_meta_params(std::list<Param *> const &params) = 0;
+  virtual void	send_change_param(Param const &param) = 0;
   virtual void	send_list_meta_sprites(void) = 0;
   virtual void	send_meta_sprites(std::list<Sprite *> const &sprites) = 0;
   virtual void	send_take_sprite(Sprite const &sprite) = 0;

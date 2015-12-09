@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:53:39 2015 Alaric Degand
-// Last update Wed Dec  9 18:10:46 2015 Antoine Plaskowski
+// Last update Wed Dec  9 23:30:06 2015 Antoine Plaskowski
 //
 
 #ifndef		CLIENT_HPP_
@@ -27,17 +27,17 @@ public:
   void	disconnect(ITCP_protocol &itcp_protocol);
   void	ping(ITCP_protocol &itcp_protocol);
   void	pong(ITCP_protocol &itcp_protocol);
-  void	list_games(ITCP_protocol &itcp_protocol);
+  void	list_meta_games(ITCP_protocol &itcp_protocol);
   void	meta_games(ITCP_protocol &itcp_protocol, std::list<ITCP_protocol::Game *> const &games);
-  void	create_game(ITCP_protocol &itcp_protocol);
-  void	join_game(ITCP_protocol &itcp_protocol, std::string const &game);
+  void	create_game(ITCP_protocol &itcp_protocol, ITCP_protocol::Game const &game);
+  void	join_game(ITCP_protocol &itcp_protocol, ITCP_protocol::Game const &game);
   void	message(ITCP_protocol &itcp_protocol, std::string const &login, std::string const &message);
-  void	list_modes(ITCP_protocol &itcp_protocol);
+  //  void	list_modes(ITCP_protocol &itcp_protocol);
   //  void	meta_modes(ITCP_protocol &itcp_protocol, std::list<Mode *> const &modes);
-  void	change_mode(ITCP_protocol &itcp_protocol, std::string const &mode);
-  void	list_params(ITCP_protocol &itcp_protocol);
-  //  void	meta_params(ITCP_protocol &itcp_protocol, std::list<Param *> const&params);
-  void	change_param(ITCP_protocol &itcp_protocol, std::string const &param, std::string const &value);
+  //  void	change_mode(ITCP_protocol &itcp_protocol, std::string const &mode);
+  void	list_meta_params(ITCP_protocol &itcp_protocol);
+  void	meta_params(ITCP_protocol &itcp_protocol, std::list<ITCP_protocol::Param *> const&params);
+  void	change_param(ITCP_protocol &itcp_protocol, ITCP_protocol::Param const &param);
   void	list_meta_sprites(ITCP_protocol &itcp_protocol);
   void	meta_sprites(ITCP_protocol &itcp_protocol, std::list<ITCP_protocol::Sprite *> const &sprites);
   void	take_sprite(ITCP_protocol &itcp_protocol, ITCP_protocol::Sprite const &sprite);

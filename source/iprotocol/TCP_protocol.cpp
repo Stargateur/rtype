@@ -5,9 +5,10 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:40:34 2015 Antoine Plaskowski
-// Last update Wed Dec  9 18:05:33 2015 Antoine Plaskowski
+// Last update Wed Dec  9 23:35:33 2015 Antoine Plaskowski
 //
 
+#include	<algorithm>
 #include	"TCP_protocol.hpp"
 
 TCP_protocol::TCP_protocol(ITCP_protocol::Callback &callback) :
@@ -75,8 +76,8 @@ void	TCP_protocol::recv(ITCP_client const &socket)
     case ATCP_packet::Pong:
       recv_pong();
       return;
-    case ATCP_packet::List_games:
-      recv_list_games();
+    case ATCP_packet::List_meta_games:
+      recv_list_meta_games();
       return;
     case ATCP_packet::Games:
       recv_meta_games();
@@ -90,20 +91,20 @@ void	TCP_protocol::recv(ITCP_client const &socket)
     case ATCP_packet::Message:
       recv_message();
       return;
-    case ATCP_packet::List_modes:
-      recv_list_modes();
+    case ATCP_packet::List_meta_modes:
+      //recv_list_modes();
       return;
     case ATCP_packet::Modes:
-      //      recv_meta_modes();
+      //recv_meta_modes();
       return;
     case ATCP_packet::Change_mode:
-      recv_change_mode();
+      //recv_change_mode();
       return;
-    case ATCP_packet::List_params:
-      recv_list_params();
+    case ATCP_packet::List_meta_params:
+      recv_list_meta_params();
       return;
     case ATCP_packet::Params:
-      //      recv_meta_params();
+      recv_meta_params();
       return;
     case ATCP_packet::Change_param:
       recv_change_param();
@@ -182,26 +183,34 @@ void	TCP_protocol::send_pong(void)
   set_to_send(to_send, ATCP_packet::Pong);
 }
 
-void	TCP_protocol::send_list_games(void)
+void	TCP_protocol::send_list_meta_games(void)
 {
  TCP_packet_send	&to_send = get_to_send();
- set_to_send(to_send, ATCP_packet::List_games);
+ set_to_send(to_send, ATCP_packet::List_meta_games);
 }
 
 void	TCP_protocol::send_meta_games(std::list<ITCP_protocol::Game *> const &games)
 {
+  TCP_packet_send	&to_send = get_to_send();
+
+  to_send.put<uint8_t>(games.size());
+  for (auto n : games)
+    {
+      //      to_send.put(
+    }
 }
 
-void	TCP_protocol::send_create_game(void)
+void	TCP_protocol::send_create_game(ITCP_protocol::Game const &game)
 {
  TCP_packet_send	&to_send = get_to_send();
+ 
  set_to_send(to_send, ATCP_packet::Create_game);
 }
 
-void	TCP_protocol::send_join_game(std::string const &game)
+void	TCP_protocol::send_join_game(ITCP_protocol::Game const &game)
 {
    TCP_packet_send	&to_send = get_to_send();
-   to_send.put(game);
+   //   to_send.put(game);
    set_to_send(to_send, ATCP_packet::Join_game);
 }
 
@@ -213,32 +222,36 @@ void	TCP_protocol::send_message(std::string const &login, std::string const &mes
  set_to_send(to_send, ATCP_packet::Join_game);
 }
 
-void	TCP_protocol::send_list_modes(void)
+// void	TCP_protocol::send_list_meta_modes(void)
+// {
+//   TCP_packet_send	&to_send = get_to_send();
+//   set_to_send(to_send, ATCP_packet::List_modes);
+// }
+
+// void	TCP_protocol::send_meta_modes(std::list<Mode *> const &modes)
+
+// void	TCP_protocol::send_change_mode(std::string const &mode)
+// {
+//   TCP_packet_send	&to_send = get_to_send();
+//   to_send.put(mode);
+//   set_to_send(to_send, ATCP_packet::Change_mode);
+// }
+
+void	TCP_protocol::send_list_meta_params(void)
 {
   TCP_packet_send	&to_send = get_to_send();
-  set_to_send(to_send, ATCP_packet::List_modes);
+  set_to_send(to_send, ATCP_packet::List_meta_params);
 }
 
-//void	TCP_protocol::send_meta_modes(std::list<Mode *> const &modes)
-void	TCP_protocol::send_change_mode(std::string const &mode)
+void	TCP_protocol::send_meta_params(std::list<ITCP_protocol::Param *> const &params)
 {
-  TCP_packet_send	&to_send = get_to_send();
-  to_send.put(mode);
-  set_to_send(to_send, ATCP_packet::Change_mode);
+  
 }
 
-void	TCP_protocol::send_list_params(void)
-{
-  TCP_packet_send	&to_send = get_to_send();
-  set_to_send(to_send, ATCP_packet::List_params);
-}
-
-//void	TCP_protocol::send_meta_params(std::list<Param *> const&params)
-void	TCP_protocol::send_change_param(std::string const &param, std::string const &value)
+void	TCP_protocol::send_change_param(ITCP_protocol::Param const &param)
 {
  TCP_packet_send	&to_send = get_to_send();
- to_send.put(param);
- to_send.put(value);
+
  set_to_send(to_send, ATCP_packet::Change_param);
 }
 
@@ -348,10 +361,10 @@ void	TCP_protocol::recv_pong(void)
   m_callback.pong(*this);
 }
 
-void	TCP_protocol::recv_list_games(void)
+void	TCP_protocol::recv_list_meta_games(void)
 {
   m_to_recv.reset();
-  m_callback.list_games(*this);
+  m_callback.list_meta_games(*this);
 }
 
 void	TCP_protocol::recv_meta_games(void)
@@ -361,15 +374,13 @@ void	TCP_protocol::recv_meta_games(void)
 void	TCP_protocol::recv_create_game(void)
 {
   m_to_recv.reset();
-  m_callback.create_game(*this);
+  //  m_callback.create_game(*this);
 }
 
 void	TCP_protocol::recv_join_game(void)
 {
-  std::string	game;
-  m_to_recv.get(game);
   m_to_recv.reset();
-  m_callback.join_game(*this, game);
+  //  m_callback.join_game(*this, game);
 }
 
 void	TCP_protocol::recv_message(void)
@@ -382,36 +393,36 @@ void	TCP_protocol::recv_message(void)
   m_callback.message(*this, login, message);
 }
 
-void	TCP_protocol::recv_list_modes(void)
+// void	TCP_protocol::recv_list_modes(void)
+// {
+//   m_to_recv.reset();
+//   m_callback.list_modes(*this);
+// }
+
+// void	TCP_protocol::recv_meta_modes(void)
+
+// void	TCP_protocol::recv_change_mode(void)
+// {
+//   std::string	mode;
+//   m_to_recv.get(mode);
+//   m_to_recv.reset();
+//   m_callback.change_mode(*this, mode);
+// }
+
+void	TCP_protocol::recv_list_meta_params(void)
 {
   m_to_recv.reset();
-  m_callback.list_modes(*this);
+  m_callback.list_meta_params(*this);
 }
 
-//  void	TCP_protocol::    recv_meta_modes(void)
-void	TCP_protocol::recv_change_mode(void)
+void	TCP_protocol::recv_meta_params(void)
 {
-  std::string	mode;
-  m_to_recv.get(mode);
-  m_to_recv.reset();
-  m_callback.change_mode(*this, mode);
 }
 
-void	TCP_protocol::recv_list_params(void)
-{
-  m_to_recv.reset();
-  m_callback.list_params(*this);
-}
-
-//  void	TCP_protocol::recv_meta_params(void)
 void	TCP_protocol::recv_change_param(void)
 {
-  std::string	param;
-  std::string	value;
-  m_to_recv.get(param);
-  m_to_recv.get(value);
   m_to_recv.reset();
-  m_callback.change_param(*this, param, value);
+  //  m_callback.change_param(*this, param, value);
 }
 
 void	TCP_protocol::recv_list_meta_sprites(void)

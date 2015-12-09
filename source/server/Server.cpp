@@ -6,7 +6,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:15:49 2015 Alaric Degand
-// Last update Tue Dec  8 14:26:42 2015 Antoine Plaskowski
+// Last update Wed Dec  9 16:01:50 2015 Antoine Plaskowski
 //
 
 #include	<iostream>
@@ -25,7 +25,7 @@ void		Server::run(void)
   m_iselect.select();
   if (m_iselect.can_read(m_itcp_server))
     {
-      m_clients.push_back(new Client(m_itcp_server.accept()));
+      m_clients.push_back(new Client(*this, m_itcp_server.accept()));
       std::cout << "Glenn y meurt" << std::endl;
     }
 }

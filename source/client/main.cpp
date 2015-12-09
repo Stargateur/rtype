@@ -5,7 +5,7 @@
 // Login   <anthony.bury@epitech.eu>
 // 
 // Started on  Mon Nov 16 02:08:18 2015 Anthony Bury
-// Last update Wed Dec  9 14:47:41 2015 Kevin Costa
+// Last update Wed Dec  9 16:22:05 2015 Antoine Plaskowski
 //
 
 #include <unistd.h>
@@ -15,7 +15,7 @@
 #include "UDP_client.hpp"
 #include "UDP_server.hpp"
 
-int main(void)
+int	main(void)
 {
   Core billy;
 

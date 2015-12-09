@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 04:05:19 2015 Antoine Plaskowski
-// Last update Tue Dec  8 18:17:59 2015 Antoine Plaskowski
+// Last update Wed Dec  9 00:13:22 2015 Antoine Plaskowski
 //
 
 #include	<iostream>
@@ -41,16 +41,16 @@ bool	TCP_packet_recv::recv(ITCP_client const &socket)
   return (m_recv != m_size_header + get_size());
 }
 
-void	TCP_packet_recv::get_string(std::string &string)
+void	TCP_packet_recv::get(std::string &string)
 {
   uint8_t       size;
 
-  string.erase();
-  get_int<uint8_t>(size);
+  string.clear();
+  get<uint8_t>(size);
   for (uintmax_t i = 0; i < size; i++)
     {
       uint8_t   c;
-      get_int<uint8_t>(c);
+      get<uint8_t>(c);
       string.push_back(static_cast<char>(c));
     }
 }

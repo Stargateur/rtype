@@ -1,33 +1,33 @@
 //
-// View.cpp for View in /home/bury_a/rendu/rtype
+// Core.cpp for Core in /home/bury_a/rendu/rtype
 // 
 // Made by Anthony Bury
 // Login   <anthony.bury@epitech.eu>
 // 
 // Started on  Tue Nov 17 12:26:59 2015 Anthony Bury
-// Last update Wed Dec  9 14:26:10 2015 Kevin Costa
+// Last update Wed Dec  9 14:46:25 2015 Kevin Costa
 //
 
-#include "View.hpp"
+#include "Core.hpp"
 #include <string>
 #include <iostream>
 
-View::View(void) :
+Core::Core(void) :
   video(800, 600)
 {
 }
 
-View::~View(void)
+Core::~Core(void)
 {
 }
 
-bool View::init(void)
+bool Core::init(void)
 {
   this->create(this->video, "R-Type", sf::Style::Titlebar | sf::Style::Close);
   return (true);
 }
 
-void View::checkEvents(void)
+void Core::checkEvents(void)
 {
   if (this->event.type == sf::Event::Closed)
     this->close();
@@ -36,7 +36,7 @@ void View::checkEvents(void)
       this->close();
 }
 
-void View::loop(void)
+void Core::loop(void)
 {
   sf::Font font;
 

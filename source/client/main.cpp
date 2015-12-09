@@ -5,19 +5,19 @@
 // Login   <anthony.bury@epitech.eu>
 // 
 // Started on  Mon Nov 16 02:08:18 2015 Anthony Bury
-// Last update Wed Dec  9 14:29:06 2015 Kevin Costa
+// Last update Wed Dec  9 14:47:41 2015 Kevin Costa
 //
 
 #include <unistd.h>
 #include <cstring>
-#include "View.hpp"
+#include "Core.hpp"
 #include "TCP_client.hpp"
 #include "UDP_client.hpp"
 #include "UDP_server.hpp"
 
 int main(void)
 {
-  View billy;
+  Core billy;
 
   billy.init();
   billy.loop();

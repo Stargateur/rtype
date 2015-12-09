@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:40:34 2015 Antoine Plaskowski
-// Last update Wed Dec  9 16:19:01 2015 Antoine Plaskowski
+// Last update Wed Dec  9 18:05:33 2015 Antoine Plaskowski
 //
 
 #include	"TCP_protocol.hpp"
@@ -79,7 +79,7 @@ void	TCP_protocol::recv(ITCP_client const &socket)
       recv_list_games();
       return;
     case ATCP_packet::Games:
-      //      recv_games();
+      recv_meta_games();
       return;
     case ATCP_packet::Create_game:
       recv_create_game();
@@ -94,7 +94,7 @@ void	TCP_protocol::recv(ITCP_client const &socket)
       recv_list_modes();
       return;
     case ATCP_packet::Modes:
-      //      recv_modes();
+      //      recv_meta_modes();
       return;
     case ATCP_packet::Change_mode:
       recv_change_mode();
@@ -103,7 +103,7 @@ void	TCP_protocol::recv(ITCP_client const &socket)
       recv_list_params();
       return;
     case ATCP_packet::Params:
-      //      recv_params();
+      //      recv_meta_params();
       return;
     case ATCP_packet::Change_param:
       recv_change_param();
@@ -112,25 +112,25 @@ void	TCP_protocol::recv(ITCP_client const &socket)
       recv_list_meta_sprites();
       return;
     case ATCP_packet::Meta_sprites:
-      //      recv_meta_sprites();
+      recv_meta_sprites();
       return;
     case ATCP_packet::Take_sprite:
-      //      recv_take_sprite();
+      recv_take_sprite();
       return;
     case ATCP_packet::Give_sprite:
-      //      recv_give_sprite();
+      recv_give_sprite();
       return;
     case ATCP_packet::List_meta_sounds:
       recv_list_meta_sounds();
       return;
     case ATCP_packet::Meta_sounds:
-      //      recv_meta_sounds();
+      recv_meta_sounds();
       return;
     case ATCP_packet::Take_sound:
-      //      recv_take_sound();
+      recv_take_sound();
       return;
     case ATCP_packet::Give_sound:
-      //      recv_give_sound();
+      recv_give_sound();
       return;
     case ATCP_packet::Ready:
       recv_ready();
@@ -187,7 +187,11 @@ void	TCP_protocol::send_list_games(void)
  TCP_packet_send	&to_send = get_to_send();
  set_to_send(to_send, ATCP_packet::List_games);
 }
-//void	TCP_protocol::send_games(std::list<Game *> const &games)
+
+void	TCP_protocol::send_meta_games(std::list<ITCP_protocol::Game *> const &games)
+{
+}
+
 void	TCP_protocol::send_create_game(void)
 {
  TCP_packet_send	&to_send = get_to_send();
@@ -215,7 +219,7 @@ void	TCP_protocol::send_list_modes(void)
   set_to_send(to_send, ATCP_packet::List_modes);
 }
 
-//void	TCP_protocol::send_modes(std::list<Mode *> const &modes)
+//void	TCP_protocol::send_meta_modes(std::list<Mode *> const &modes)
 void	TCP_protocol::send_change_mode(std::string const &mode)
 {
   TCP_packet_send	&to_send = get_to_send();
@@ -229,7 +233,7 @@ void	TCP_protocol::send_list_params(void)
   set_to_send(to_send, ATCP_packet::List_params);
 }
 
-//void	TCP_protocol::send_params(std::list<Param *> const&params)
+//void	TCP_protocol::send_meta_params(std::list<Param *> const&params)
 void	TCP_protocol::send_change_param(std::string const &param, std::string const &value)
 {
  TCP_packet_send	&to_send = get_to_send();
@@ -244,18 +248,36 @@ void	TCP_protocol::send_list_meta_sprites(void)
   set_to_send(to_send, ATCP_packet::List_meta_sounds);
 }
 
-//void	TCP_protocol::send_meta_sprites(std::list<Sprite *> const &sprites)
-//void	TCP_protocol::send_take_sprite(Sprite const &sprite)
-//void	TCP_protocol::send_give_sprite(Sprite const &sprite)
+void	TCP_protocol::send_meta_sprites(std::list<ITCP_protocol::Sprite *> const &sprites)
+{
+}
+
+void	TCP_protocol::send_take_sprite(ITCP_protocol::Sprite const &sprite)
+{
+}
+
+void	TCP_protocol::send_give_sprite(ITCP_protocol::Sprite const &sprite)
+{
+}
+
 void	TCP_protocol::send_list_meta_sounds(void)
 {
   TCP_packet_send	&to_send = get_to_send();
   set_to_send(to_send, ATCP_packet::Create_game);
 }
 
-//void	TCP_protocol::send_meta_sounds(std::list<Sound *> const &sounds)
-//void	TCP_protocol::send_take_sound(Sound const &sound)
-//void	TCP_protocol::send_give_sound(Sound const &sound)
+void	TCP_protocol::send_meta_sounds(std::list<ITCP_protocol::Sound *> const &sounds)
+{
+}
+
+void	TCP_protocol::send_take_sound(ITCP_protocol::Sound const &sound)
+{
+}
+
+void	TCP_protocol::send_give_sound(ITCP_protocol::Sound const &sound)
+{
+}
+
 void	TCP_protocol::send_ready(bool ready)
 {
   TCP_packet_send	&to_send = get_to_send();
@@ -332,7 +354,10 @@ void	TCP_protocol::recv_list_games(void)
   m_callback.list_games(*this);
 }
 
-//  void	TCP_protocol::    recv_games(void)
+void	TCP_protocol::recv_meta_games(void)
+{
+}
+
 void	TCP_protocol::recv_create_game(void)
 {
   m_to_recv.reset();
@@ -363,7 +388,7 @@ void	TCP_protocol::recv_list_modes(void)
   m_callback.list_modes(*this);
 }
 
-//  void	TCP_protocol::    recv_modes(void)
+//  void	TCP_protocol::    recv_meta_modes(void)
 void	TCP_protocol::recv_change_mode(void)
 {
   std::string	mode;
@@ -378,7 +403,7 @@ void	TCP_protocol::recv_list_params(void)
   m_callback.list_params(*this);
 }
 
-//  void	TCP_protocol::    recv_params(void)
+//  void	TCP_protocol::recv_meta_params(void)
 void	TCP_protocol::recv_change_param(void)
 {
   std::string	param;
@@ -395,18 +420,35 @@ void	TCP_protocol::recv_list_meta_sprites(void)
   m_callback.list_meta_sprites(*this);
 }
 
-//  void	TCP_protocol::    recv_meta_sprites(void)
-//  void	TCP_protocol::    recv_take_sprite(void)
-//  void	TCP_protocol::    recv_give_sprite(void)
+void	TCP_protocol::recv_meta_sprites(void)
+{
+}
+
+void	TCP_protocol::recv_take_sprite(void)
+{
+}
+
+void	TCP_protocol::recv_give_sprite(void)
+{
+}
 void	TCP_protocol::recv_list_meta_sounds(void)
 {
   m_to_recv.reset();
   m_callback.list_meta_sounds(*this);
 }
 
-//  void	TCP_protocol::    recv_meta_sounds(void)
-//  void	TCP_protocol::    recv_take_sound(void)
-//  void	TCP_protocol::    recv_give_sound(void)
+void	TCP_protocol::recv_meta_sounds(void)
+{
+}
+
+void	TCP_protocol::recv_take_sound(void)
+{
+}
+
+void	TCP_protocol::recv_give_sound(void)
+{
+}
+
 void	TCP_protocol::recv_ready(void)
 {
   bool	ready;

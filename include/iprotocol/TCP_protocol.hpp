@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:35:29 2015 Antoine Plaskowski
-// Last update Wed Dec  9 14:28:38 2015 Antoine Plaskowski
+// Last update Wed Dec  9 18:02:01 2015 Antoine Plaskowski
 //
 
 #ifndef		TCP_PROTOCOL_HPP_
@@ -37,24 +37,24 @@ public:
   void	send_ping(void);
   void	send_pong(void);
   void	send_list_games(void);
-  //  void	send_games(std::list<Game *> const &games);
+  void	send_meta_games(std::list<ITCP_protocol::Game *> const &games);
   void	send_create_game(void);
   void	send_join_game(std::string const &game);
   void	send_message(std::string const &login, std::string const &message);
   void	send_list_modes(void);
-  //  void	send_modes(std::list<Mode *> const &modes);
+  //  void	send_meta_modes(std::list<Mode *> const &modes);
   void	send_change_mode(std::string const &mode);
   void	send_list_params(void);
-  //  void	send_params(std::list<Param *> const&params);
+  //  void	send_meta_params(std::list<Param *> const&params);
   void	send_change_param(std::string const &param, std::string const &value);
   void	send_list_meta_sprites(void);
-  //  void	send_meta_sprites(std::list<Sprite *> const &sprites);
-  //  void	send_take_sprite(Sprite const &sprite);
-  //  void	send_give_sprite(Sprite const &sprite);
+  void	send_meta_sprites(std::list<ITCP_protocol::Sprite *> const &sprites);
+  void	send_take_sprite(Sprite const &sprite);
+  void	send_give_sprite(Sprite const &sprite);
   void	send_list_meta_sounds(void);
-  //  void	send_meta_sounds(std::list<Sound *> const &sounds);
-  //  void	send_take_sound(Sound const &sound);
-  //  void	send_give_sound(Sound const &sound);
+  void	send_meta_sounds(std::list<ITCP_protocol::Sound *> const &sounds);
+  void	send_take_sound(ITCP_protocol::Sound const &sound);
+  void	send_give_sound(ITCP_protocol::Sound const &sound);
   void	send_ready(bool ready);
   void	send_start(uint8_t second, uint16_t port);
   void	send_end(uint64_t score, bool winner);
@@ -84,24 +84,24 @@ private:
   void	recv_ping(void);
   void	recv_pong(void);
   void	recv_list_games(void);
-  //  void	recv_games(void);
+  void	recv_meta_games(void);
   void	recv_create_game(void);
   void	recv_join_game(void);
   void	recv_message(void);
   void	recv_list_modes(void);
-  //  void	recv_modes(void);
+  //  void	recv_meta_modes(void);
   void	recv_change_mode(void);
   void	recv_list_params(void);
-  //  void	recv_params(void);
+  //  void	recv_meta_params(void);
   void	recv_change_param(void);
   void	recv_list_meta_sprites(void);
-  //  void	recv_meta_sprites(void);
-  //  void	recv_take_sprite(void);
-  //  void	recv_give_sprite(void);
+  void	recv_meta_sprites(void);
+  void	recv_take_sprite(void);
+  void	recv_give_sprite(void);
   void	recv_list_meta_sounds(void);
-  //  void	recv_meta_sounds(void);
-  //  void	recv_take_sound(void);
-  //  void	recv_give_sound(void);
+  void	recv_meta_sounds(void);
+  void	recv_take_sound(void);
+  void	recv_give_sound(void);
   void	recv_ready(void);
   void	recv_start(void);
   void	recv_end(void);

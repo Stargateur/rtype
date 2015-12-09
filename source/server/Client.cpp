@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:56:02 2015 Alaric Degand
-// Last update Wed Dec  9 16:21:01 2015 Antoine Plaskowski
+// Last update Wed Dec  9 18:13:39 2015 Antoine Plaskowski
 //
 
 #include	"Client.hpp"
@@ -47,7 +47,9 @@ void	Client::list_games(ITCP_protocol &itcp_protocol)
 {
 }
 
-//  void	Client::meta_games(ITCP_protocol &itcp_protocol, std::list<Game *> const &games)
+void	Client::meta_games(ITCP_protocol &itcp_protocol, std::list<ITCP_protocol::Game *> const &games)
+{
+}
 
 void	Client::create_game(ITCP_protocol &itcp_protocol)
 {
@@ -65,7 +67,7 @@ void	Client::list_modes(ITCP_protocol &itcp_protocol)
 {
 }
 
-//  void	Client::modes(ITCP_protocol &itcp_protocol, std::list<Mode *> const &modes)
+//  void	Client::meta_modes(ITCP_protocol &itcp_protocol, std::list<Mode *> const &modes)
 
 void	Client::change_mode(ITCP_protocol &itcp_protocol, std::string const &mode)
 {
@@ -75,7 +77,7 @@ void	Client::list_params(ITCP_protocol &itcp_protocol)
 {
 }
 
-//  void	Client::params(ITCP_protocol &itcp_protocol, std::list<Param *> const&params)
+//  void	Client::meta_params(ITCP_protocol &itcp_protocol, std::list<ITCP_protocol::Param *> const&params)
 
 void	Client::change_param(ITCP_protocol &itcp_protocol, std::string const &param, std::string const &value)
 {
@@ -85,21 +87,33 @@ void	Client::list_meta_sprites(ITCP_protocol &itcp_protocol)
 {
 }
 
-//  void	Client::meta_sprites(ITCP_protocol &itcp_protocol, std::list<Sprite *> const &sprites)
+void	Client::meta_sprites(ITCP_protocol &itcp_protocol, std::list<ITCP_protocol::Sprite *> const &sprites)
+{
+}
 
-//  void	Client::take_sprite(ITCP_protocol &itcp_protocol, Sprite const &sprite)
+void	Client::take_sprite(ITCP_protocol &itcp_protocol, ITCP_protocol::Sprite const &sprite)
+{
+}
 
-//  void	Client::give_sprite(ITCP_protocol &itcp_protocol, Sprite const &sprite)
+void	Client::give_sprite(ITCP_protocol &itcp_protocol, ITCP_protocol::Sprite const &sprite)
+{
+}
 
 void	Client::list_meta_sounds(ITCP_protocol &itcp_protocol)
 {
 }
 
-//  void	Client::meta_sounds(ITCP_protocol &itcp_protocol, std::list<Sound *> const &sounds)
+void	Client::meta_sounds(ITCP_protocol &itcp_protocol, std::list<ITCP_protocol::Sound *> const &sounds)
+{
+}
 
-//  void	Client::take_sound(ITCP_protocol &itcp_protocol, Sound const &sound)
+void	Client::take_sound(ITCP_protocol &itcp_protocol, ITCP_protocol::Sound const &sound)
+{
+}
 
-//  void	Client::give_sound(ITCP_protocol &itcp_protocol, Sound const &sound)
+void	Client::give_sound(ITCP_protocol &itcp_protocol, ITCP_protocol::Sound const &sound)
+{
+}
 
 void	Client::ready(ITCP_protocol &itcp_protocol, bool ready)
 {

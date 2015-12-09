@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:43:00 2015 Kevin Costa
-// Last update Wed Dec  9 14:44:13 2015 Kevin Costa
+// Last update Wed Dec  9 16:25:04 2015 Kevin Costa
 //
 
 #ifndef		CORE_HPP_
@@ -15,6 +15,7 @@
 
 class Core : public ICore
 {
+  sf::RenderWindow *window;
   sf::VideoMode video;
   sf::Event event;
 

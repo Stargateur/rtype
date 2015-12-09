@@ -5,16 +5,16 @@
 // Login   <anthony.bury@epitech.eu>
 // 
 // Started on  Mon Nov 16 02:08:18 2015 Anthony Bury
-// Last update Tue Dec  8 03:10:03 2015 Antoine Plaskowski
+// Last update Wed Dec  9 14:47:10 2015 Antoine Plaskowski
 //
 
-#include <unistd.h>
-#include <cstring>
-#include "TCP_client.hpp"
-#include "UDP_client.hpp"
-#include "UDP_server.hpp"
+#include	<unistd.h>
+#include	<cstring>
+#include	"TCP_client.hpp"
+#include	"UDP_client.hpp"
+#include	"UDP_server.hpp"
 
-int main(void)
+int	main(void)
 {
   // ITCP_client	&yolo = *new TCP_client("localhost", "4242");
   // while (42);

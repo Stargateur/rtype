@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:05:56 2015 Alaric Degand
-// Last update Tue Dec  8 14:25:52 2015 Antoine Plaskowski
+// Last update Wed Dec  9 15:58:47 2015 Antoine Plaskowski
 //
 
 #ifndef		SERVER_HPP_
@@ -13,6 +13,9 @@
 
 #include	<list>
 #include	<string>
+
+class		Server;
+
 #include	"Client.hpp"
 #include	"TCP_server.hpp"
 //#include	"Game.hpp"

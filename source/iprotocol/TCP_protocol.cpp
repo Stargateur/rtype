@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:40:34 2015 Antoine Plaskowski
-// Last update Wed Dec  9 14:28:46 2015 Antoine Plaskowski
+// Last update Wed Dec  9 16:19:01 2015 Antoine Plaskowski
 //
 
 #include	"TCP_protocol.hpp"
@@ -290,7 +290,7 @@ void	TCP_protocol::recv_result(void)
   ITCP_protocol::Error	error;
   m_to_recv.get(error);
   m_to_recv.reset();
-  m_callback.result(error);
+  m_callback.result(*this, error);
 }
 
 void	TCP_protocol::recv_connect(void)
@@ -305,38 +305,38 @@ void	TCP_protocol::recv_connect(void)
   m_to_recv.reset();
   if (version != 1) // chiant !
     throw std::exception();
-  m_callback.connect(login, password);
+  m_callback.connect(*this, login, password);
 }
 
 void	TCP_protocol::recv_disconnect(void)
 {
   m_to_recv.reset();
-  m_callback.disconnect();
+  m_callback.disconnect(*this);
 }
 
 void	TCP_protocol::recv_ping(void)
 {
   m_to_recv.reset();
-  m_callback.ping();
+  m_callback.ping(*this);
 }
 
 void	TCP_protocol::recv_pong(void)
 {
   m_to_recv.reset();
-  m_callback.pong();
+  m_callback.pong(*this);
 }
 
 void	TCP_protocol::recv_list_games(void)
 {
   m_to_recv.reset();
-  m_callback.list_games();
+  m_callback.list_games(*this);
 }
 
 //  void	TCP_protocol::    recv_games(void)
 void	TCP_protocol::recv_create_game(void)
 {
   m_to_recv.reset();
-  m_callback.create_game();
+  m_callback.create_game(*this);
 }
 
 void	TCP_protocol::recv_join_game(void)
@@ -344,7 +344,7 @@ void	TCP_protocol::recv_join_game(void)
   std::string	game;
   m_to_recv.get(game);
   m_to_recv.reset();
-  m_callback.join_game(game);
+  m_callback.join_game(*this, game);
 }
 
 void	TCP_protocol::recv_message(void)
@@ -354,13 +354,13 @@ void	TCP_protocol::recv_message(void)
   m_to_recv.get(login);
   m_to_recv.get(message);
   m_to_recv.reset();
-  m_callback.message(login, message);
+  m_callback.message(*this, login, message);
 }
 
 void	TCP_protocol::recv_list_modes(void)
 {
   m_to_recv.reset();
-  m_callback.list_modes();
+  m_callback.list_modes(*this);
 }
 
 //  void	TCP_protocol::    recv_modes(void)
@@ -369,13 +369,13 @@ void	TCP_protocol::recv_change_mode(void)
   std::string	mode;
   m_to_recv.get(mode);
   m_to_recv.reset();
-  m_callback.change_mode(mode);
+  m_callback.change_mode(*this, mode);
 }
 
 void	TCP_protocol::recv_list_params(void)
 {
   m_to_recv.reset();
-  m_callback.list_params();
+  m_callback.list_params(*this);
 }
 
 //  void	TCP_protocol::    recv_params(void)
@@ -386,13 +386,13 @@ void	TCP_protocol::recv_change_param(void)
   m_to_recv.get(param);
   m_to_recv.get(value);
   m_to_recv.reset();
-  m_callback.change_param(param, value);
+  m_callback.change_param(*this, param, value);
 }
 
 void	TCP_protocol::recv_list_meta_sprites(void)
 {
   m_to_recv.reset();
-  m_callback.list_meta_sprites();
+  m_callback.list_meta_sprites(*this);
 }
 
 //  void	TCP_protocol::    recv_meta_sprites(void)
@@ -401,7 +401,7 @@ void	TCP_protocol::recv_list_meta_sprites(void)
 void	TCP_protocol::recv_list_meta_sounds(void)
 {
   m_to_recv.reset();
-  m_callback.list_meta_sounds();
+  m_callback.list_meta_sounds(*this);
 }
 
 //  void	TCP_protocol::    recv_meta_sounds(void)
@@ -412,7 +412,7 @@ void	TCP_protocol::recv_ready(void)
   bool	ready;
   m_to_recv.get(ready);
   m_to_recv.reset();
-  m_callback.ready(ready);
+  m_callback.ready(*this, ready);
 }
 
 void	TCP_protocol::recv_start(void)
@@ -422,7 +422,7 @@ void	TCP_protocol::recv_start(void)
   m_to_recv.get(second);
   m_to_recv.get(port);
   m_to_recv.reset();
-  m_callback.start(second, port);
+  m_callback.start(*this, second, port);
 }
 
 void	TCP_protocol::recv_end(void)
@@ -432,11 +432,11 @@ void	TCP_protocol::recv_end(void)
   m_to_recv.get(score);
   m_to_recv.get(winner);
   m_to_recv.reset();
-  m_callback.end(score, winner);
+  m_callback.end(*this, score, winner);
 }
 
 void	TCP_protocol::recv_leave(void)
 {
   m_to_recv.reset();
-  m_callback.leave();
+  m_callback.leave(*this);
 }

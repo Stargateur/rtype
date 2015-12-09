@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:35:29 2015 Antoine Plaskowski
-// Last update Wed Dec  9 02:59:07 2015 Antoine Plaskowski
+// Last update Wed Dec  9 14:28:38 2015 Antoine Plaskowski
 //
 
 #ifndef		TCP_PROTOCOL_HPP_
@@ -20,8 +20,13 @@
 class	TCP_protocol : public ITCP_protocol
 {
 public:
-  TCP_protocol(ITCP_protocol::callback const &callback);
+  TCP_protocol(ITCP_protocol::Callback &callback);
   ~TCP_protocol(void);
+private:
+  TCP_packet_send	&get_to_send(void);
+  void	set_to_send(TCP_packet_send &to_send, ATCP_packet::Opcode opcode);
+  void	set_callback(ITCP_protocol::Callback &callback);
+public:
   bool	want_send(void) const;
   bool	want_recv(void) const;
   void	send(ITCP_client const &socket);
@@ -54,7 +59,6 @@ public:
   void	send_start(uint8_t second, uint16_t port);
   void	send_end(uint64_t score, bool winner);
   void	send_leave(void);
-  //  void	set_callback(ITCP_protocol::callback &callback);
   template<typename... Ts>
   void	test(ATCP_packet::Opcode opcode, Ts... args)
   {
@@ -103,10 +107,7 @@ private:
   void	recv_end(void);
   void	recv_leave(void);
 private:
-  TCP_packet_send	&get_to_send(void);
-  void	set_to_send(TCP_packet_send &to_send, ATCP_packet::Opcode opcode);
-private:
-  ITCP_protocol::callback	m_callback;
+  ITCP_protocol::Callback	&m_callback;
   TCP_packet_recv	m_to_recv;
   std::array<TCP_packet_send, UINT8_MAX + 1>	m_to_send;
   uint8_t	m_idx_to_send;

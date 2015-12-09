@@ -5,18 +5,35 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:40:34 2015 Antoine Plaskowski
-// Last update Wed Dec  9 02:58:52 2015 Antoine Plaskowski
+// Last update Wed Dec  9 14:28:46 2015 Antoine Plaskowski
 //
 
 #include	"TCP_protocol.hpp"
 
-TCP_protocol::TCP_protocol(ITCP_protocol::callback const &callback) :
+TCP_protocol::TCP_protocol(ITCP_protocol::Callback &callback) :
   m_callback(callback)
 {
 }
 
 TCP_protocol::~TCP_protocol(void)
 {
+}
+
+void	TCP_protocol::set_callback(ITCP_protocol::Callback &callback)
+{
+  m_callback = callback;
+}
+
+TCP_packet_send	&TCP_protocol::get_to_send(void)
+{
+  return (m_to_send[m_idx_to_stock]);
+}
+
+void	TCP_protocol::set_to_send(TCP_packet_send &to_send, ATCP_packet::Opcode opcode)
+{
+  to_send.set_opcode(opcode);
+  if (m_idx_to_stock++ == m_idx_to_send)
+    m_idx_to_send++;
 }
 
 bool	TCP_protocol::want_send(void) const
@@ -266,20 +283,6 @@ void	TCP_protocol::send_end(uint64_t score, bool winner)
 void	TCP_protocol::send_leave(void)
 {
   test(ATCP_packet::Leave);
-}
-
-//void	TCP_protocol::set_callback(ITCP_protocol::callback &callback)
-
-TCP_packet_send	&TCP_protocol::get_to_send(void)
-{
-  return (m_to_send[m_idx_to_stock]);
-}
-
-void	TCP_protocol::set_to_send(TCP_packet_send &to_send, ATCP_packet::Opcode opcode)
-{
-  to_send.set_opcode(opcode);
-  if (m_idx_to_stock++ == m_idx_to_send)
-    m_idx_to_send++;
 }
 
 void	TCP_protocol::recv_result(void)

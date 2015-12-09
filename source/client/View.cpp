@@ -5,10 +5,12 @@
 // Login   <anthony.bury@epitech.eu>
 // 
 // Started on  Tue Nov 17 12:26:59 2015 Anthony Bury
-// Last update Tue Nov 17 17:53:05 2015 Anthony Bury
+// Last update Wed Dec  9 14:26:10 2015 Kevin Costa
 //
 
 #include "View.hpp"
+#include <string>
+#include <iostream>
 
 View::View(void) :
   video(800, 600)
@@ -17,7 +19,6 @@ View::View(void) :
 
 View::~View(void)
 {
-
 }
 
 bool View::init(void)

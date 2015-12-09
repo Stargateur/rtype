@@ -1,11 +1,11 @@
 //
-// Graph.hpp for Graph in /home/bury_a/rendu/rtype
+// View.hpp for View in /home/costa_b/rendu/rtype/include/client
 // 
-// Made by Anthony Bury
-// Login   <anthony.bury@epitech.eu>
+// Made by Kevin Costa
+// Login   <costa_b@epitech.net>
 // 
-// Started on  Tue Nov 17 12:26:13 2015 Anthony Bury
-// Last update Tue Nov 17 16:11:06 2015 Anthony Bury
+// Started on  Wed Dec  9 14:33:09 2015 Kevin Costa
+// Last update Wed Dec  9 14:33:23 2015 Kevin Costa
 //
 
 #ifndef		VIEW_HPP_
@@ -28,4 +28,4 @@ public:
   void checkEvents(void);
 };
 
-#endif		/* !GRAPH_HPP_ */
+#endif		/* !View_HPP_ */

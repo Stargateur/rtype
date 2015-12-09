@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:43:00 2015 Kevin Costa
-// Last update Wed Dec  9 16:25:04 2015 Kevin Costa
+// Last update Wed Dec  9 16:57:19 2015 Kevin Costa
 //
 
 #ifndef		CORE_HPP_
@@ -27,6 +27,7 @@ public:
   bool init(void);
   void loop(void);
   void checkEvents(void);
+  sf::RenderWindow *getWindow();
 };
 
 #endif		/* !CORE_HPP_ */

@@ -5,7 +5,7 @@
 // Login   <anthony.bury@epitech.eu>
 // 
 // Started on  Tue Nov 17 12:26:59 2015 Anthony Bury
-// Last update Wed Dec  9 16:42:18 2015 Kevin Costa
+// Last update Wed Dec  9 16:56:31 2015 Kevin Costa
 //
 
 #include "Core.hpp"
@@ -59,3 +59,7 @@ void Core::loop(void)
     }
 }
 
+sf::RenderWindow *Core::getWindow()
+{
+  return (this->window);
+}

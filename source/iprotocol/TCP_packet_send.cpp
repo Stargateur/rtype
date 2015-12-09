@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 04:07:41 2015 Antoine Plaskowski
-// Last update Wed Dec  9 00:21:06 2015 Antoine Plaskowski
+// Last update Wed Dec  9 02:08:21 2015 Antoine Plaskowski
 //
 
 #include	<iostream>
@@ -37,9 +37,9 @@ bool	TCP_packet_send::send(ITCP_client const &socket)
 
 void	TCP_packet_send::put(std::string const &string)
 {
-  put<uint8_t>(static_cast<uint8_t>(string.size()));
+  put(static_cast<uint8_t>(string.size()));
   for (uintmax_t i = 0; i < string.size() && i < UINT8_MAX; i++)
-    put<uint8_t>(static_cast<uint8_t>(string[i]));
+    put(static_cast<uint8_t>(string[i]));
 }
 
 void	TCP_packet_send::set_opcode(Opcode opcode)

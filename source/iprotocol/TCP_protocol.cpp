@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:40:34 2015 Antoine Plaskowski
-// Last update Wed Dec  9 01:01:24 2015 Antoine Plaskowski
+// Last update Wed Dec  9 02:58:52 2015 Antoine Plaskowski
 //
 
 #include	"TCP_protocol.hpp"
@@ -44,65 +44,91 @@ void	TCP_protocol::recv(ITCP_client const &socket)
   switch (m_to_recv.get_opcode())
     {
     case ATCP_packet::Result:
-      break;
+      recv_result();
+      return;
     case ATCP_packet::Connect:
-      break;
+      recv_connect();
+      return;
     case ATCP_packet::Disconnect:
-      break;
+      recv_disconnect();
+      return;
     case ATCP_packet::Ping:
-      break;
+      recv_ping();
+      return;
     case ATCP_packet::Pong:
-      break;
+      recv_pong();
+      return;
     case ATCP_packet::List_games:
-      break;
+      recv_list_games();
+      return;
     case ATCP_packet::Games:
-      break;
+      //      recv_games();
+      return;
     case ATCP_packet::Create_game:
-      break;
+      recv_create_game();
+      return;
     case ATCP_packet::Join_game:
-      break;
+      recv_join_game();
+      return;
     case ATCP_packet::Message:
-      break;
+      recv_message();
+      return;
     case ATCP_packet::List_modes:
-      break;
+      recv_list_modes();
+      return;
     case ATCP_packet::Modes:
-      break;
+      //      recv_modes();
+      return;
     case ATCP_packet::Change_mode:
-      break;
+      recv_change_mode();
+      return;
     case ATCP_packet::List_params:
-      break;
+      recv_list_params();
+      return;
     case ATCP_packet::Params:
-      break;
+      //      recv_params();
+      return;
     case ATCP_packet::Change_param:
-      break;
+      recv_change_param();
+      return;
     case ATCP_packet::List_meta_sprites:
-      break;
+      recv_list_meta_sprites();
+      return;
     case ATCP_packet::Meta_sprites:
-      break;
+      //      recv_meta_sprites();
+      return;
     case ATCP_packet::Take_sprite:
-      break;
+      //      recv_take_sprite();
+      return;
     case ATCP_packet::Give_sprite:
-      break;
+      //      recv_give_sprite();
+      return;
     case ATCP_packet::List_meta_sounds:
-      break;
+      recv_list_meta_sounds();
+      return;
     case ATCP_packet::Meta_sounds:
-      break;
+      //      recv_meta_sounds();
+      return;
     case ATCP_packet::Take_sound:
-      break;
+      //      recv_take_sound();
+      return;
     case ATCP_packet::Give_sound:
-      break;
+      //      recv_give_sound();
+      return;
     case ATCP_packet::Ready:
-      break;
+      recv_ready();
+      return;
     case ATCP_packet::Start:
-      break;
+      recv_start();
+      return;
     case ATCP_packet::End:
-      break;
+      recv_end();
+      return;
     case ATCP_packet::Leave:
-      break;
-    default:
-      throw std::exception();
+      recv_leave();
+      return;
     }
-  m_to_recv.reset();
+  throw std::exception();
 }
 
 void	TCP_protocol::send_result(ITCP_protocol::Error error)
@@ -112,12 +138,12 @@ void	TCP_protocol::send_result(ITCP_protocol::Error error)
   set_to_send(to_send, ATCP_packet::Result);
 }
 
-void	TCP_protocol::send_connect(std::string const &login, std::string const &password, uint8_t version)
+void	TCP_protocol::send_connect(std::string const &login, std::string const &password)
 {
   TCP_packet_send	&to_send = get_to_send();
   to_send.put(login);
   to_send.put(password);
-  to_send.put(version);
+  to_send.put<uint8_t>(1);
   set_to_send(to_send, ATCP_packet::Connect);
 }
 
@@ -220,10 +246,10 @@ void	TCP_protocol::send_ready(bool ready)
   set_to_send(to_send, ATCP_packet::Create_game);
 }
 
-void	TCP_protocol::send_start(ITime const &time, uint16_t port)
+void	TCP_protocol::send_start(uint8_t second, uint16_t port)
 {
   TCP_packet_send	&to_send = get_to_send();
-  to_send.put(time.get_second());
+  to_send.put(second);
   to_send.put(port);
   set_to_send(to_send, ATCP_packet::Create_game);
 }
@@ -254,4 +280,160 @@ void	TCP_protocol::set_to_send(TCP_packet_send &to_send, ATCP_packet::Opcode opc
   to_send.set_opcode(opcode);
   if (m_idx_to_stock++ == m_idx_to_send)
     m_idx_to_send++;
+}
+
+void	TCP_protocol::recv_result(void)
+{
+  ITCP_protocol::Error	error;
+  m_to_recv.get(error);
+  m_to_recv.reset();
+  m_callback.result(error);
+}
+
+void	TCP_protocol::recv_connect(void)
+{
+  std::string	login;
+  std::string	password;
+  uint8_t	version;
+
+  m_to_recv.get(login);
+  m_to_recv.get(password);
+  m_to_recv.get(version);
+  m_to_recv.reset();
+  if (version != 1) // chiant !
+    throw std::exception();
+  m_callback.connect(login, password);
+}
+
+void	TCP_protocol::recv_disconnect(void)
+{
+  m_to_recv.reset();
+  m_callback.disconnect();
+}
+
+void	TCP_protocol::recv_ping(void)
+{
+  m_to_recv.reset();
+  m_callback.ping();
+}
+
+void	TCP_protocol::recv_pong(void)
+{
+  m_to_recv.reset();
+  m_callback.pong();
+}
+
+void	TCP_protocol::recv_list_games(void)
+{
+  m_to_recv.reset();
+  m_callback.list_games();
+}
+
+//  void	TCP_protocol::    recv_games(void)
+void	TCP_protocol::recv_create_game(void)
+{
+  m_to_recv.reset();
+  m_callback.create_game();
+}
+
+void	TCP_protocol::recv_join_game(void)
+{
+  std::string	game;
+  m_to_recv.get(game);
+  m_to_recv.reset();
+  m_callback.join_game(game);
+}
+
+void	TCP_protocol::recv_message(void)
+{
+  std::string	login;
+  std::string	message;
+  m_to_recv.get(login);
+  m_to_recv.get(message);
+  m_to_recv.reset();
+  m_callback.message(login, message);
+}
+
+void	TCP_protocol::recv_list_modes(void)
+{
+  m_to_recv.reset();
+  m_callback.list_modes();
+}
+
+//  void	TCP_protocol::    recv_modes(void)
+void	TCP_protocol::recv_change_mode(void)
+{
+  std::string	mode;
+  m_to_recv.get(mode);
+  m_to_recv.reset();
+  m_callback.change_mode(mode);
+}
+
+void	TCP_protocol::recv_list_params(void)
+{
+  m_to_recv.reset();
+  m_callback.list_params();
+}
+
+//  void	TCP_protocol::    recv_params(void)
+void	TCP_protocol::recv_change_param(void)
+{
+  std::string	param;
+  std::string	value;
+  m_to_recv.get(param);
+  m_to_recv.get(value);
+  m_to_recv.reset();
+  m_callback.change_param(param, value);
+}
+
+void	TCP_protocol::recv_list_meta_sprites(void)
+{
+  m_to_recv.reset();
+  m_callback.list_meta_sprites();
+}
+
+//  void	TCP_protocol::    recv_meta_sprites(void)
+//  void	TCP_protocol::    recv_take_sprite(void)
+//  void	TCP_protocol::    recv_give_sprite(void)
+void	TCP_protocol::recv_list_meta_sounds(void)
+{
+  m_to_recv.reset();
+  m_callback.list_meta_sounds();
+}
+
+//  void	TCP_protocol::    recv_meta_sounds(void)
+//  void	TCP_protocol::    recv_take_sound(void)
+//  void	TCP_protocol::    recv_give_sound(void)
+void	TCP_protocol::recv_ready(void)
+{
+  bool	ready;
+  m_to_recv.get(ready);
+  m_to_recv.reset();
+  m_callback.ready(ready);
+}
+
+void	TCP_protocol::recv_start(void)
+{
+  uint8_t	second;
+  uint16_t	port;
+  m_to_recv.get(second);
+  m_to_recv.get(port);
+  m_to_recv.reset();
+  m_callback.start(second, port);
+}
+
+void	TCP_protocol::recv_end(void)
+{
+  uint64_t	score;
+  bool	winner;
+  m_to_recv.get(score);
+  m_to_recv.get(winner);
+  m_to_recv.reset();
+  m_callback.end(score, winner);
+}
+
+void	TCP_protocol::recv_leave(void)
+{
+  m_to_recv.reset();
+  m_callback.leave();
 }

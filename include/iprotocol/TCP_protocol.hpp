@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:35:29 2015 Antoine Plaskowski
-// Last update Wed Dec  9 01:01:37 2015 Antoine Plaskowski
+// Last update Wed Dec  9 02:59:07 2015 Antoine Plaskowski
 //
 
 #ifndef		TCP_PROTOCOL_HPP_
@@ -27,7 +27,7 @@ public:
   void	send(ITCP_client const &socket);
   void	recv(ITCP_client const &socket);
   void	send_result(ITCP_protocol::Error error);
-  void	send_connect(std::string const &login, std::string const &password, uint8_t version);
+  void	send_connect(std::string const &login, std::string const &password);
   void	send_disconnect(void);
   void	send_ping(void);
   void	send_pong(void);
@@ -51,7 +51,7 @@ public:
   //  void	send_take_sound(Sound const &sound);
   //  void	send_give_sound(Sound const &sound);
   void	send_ready(bool ready);
-  void	send_start(ITime const &time, uint16_t port);
+  void	send_start(uint8_t second, uint16_t port);
   void	send_end(uint64_t score, bool winner);
   void	send_leave(void);
   //  void	set_callback(ITCP_protocol::callback &callback);
@@ -73,6 +73,35 @@ public:
     to_send.put(first);
     test(opcode, first, args...);
   }
+private:
+  void	recv_result(void);
+  void	recv_connect(void);
+  void	recv_disconnect(void);
+  void	recv_ping(void);
+  void	recv_pong(void);
+  void	recv_list_games(void);
+  //  void	recv_games(void);
+  void	recv_create_game(void);
+  void	recv_join_game(void);
+  void	recv_message(void);
+  void	recv_list_modes(void);
+  //  void	recv_modes(void);
+  void	recv_change_mode(void);
+  void	recv_list_params(void);
+  //  void	recv_params(void);
+  void	recv_change_param(void);
+  void	recv_list_meta_sprites(void);
+  //  void	recv_meta_sprites(void);
+  //  void	recv_take_sprite(void);
+  //  void	recv_give_sprite(void);
+  void	recv_list_meta_sounds(void);
+  //  void	recv_meta_sounds(void);
+  //  void	recv_take_sound(void);
+  //  void	recv_give_sound(void);
+  void	recv_ready(void);
+  void	recv_start(void);
+  void	recv_end(void);
+  void	recv_leave(void);
 private:
   TCP_packet_send	&get_to_send(void);
   void	set_to_send(TCP_packet_send &to_send, ATCP_packet::Opcode opcode);

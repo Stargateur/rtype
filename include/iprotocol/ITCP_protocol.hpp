@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:35:29 2015 Antoine Plaskowski
-// Last update Wed Dec  9 00:57:14 2015 Antoine Plaskowski
+// Last update Wed Dec  9 02:57:30 2015 Antoine Plaskowski
 //
 
 #ifndef		ITCP_PROTOCOL_HPP_
@@ -24,11 +24,11 @@ public:
   struct	callback
   {
     void	(&result)(bool ready);
-    void	(&connect)(std::string const &login, std::string const &password, uint8_t version);
+    void	(&connect)(std::string const &login, std::string const &password);
     void	(&disconnect)(void);
     void	(&ping)(void);
     void	(&pong)(void);
-    void	(&list_meta_games)(void);
+    void	(&list_games)(void);
     //  void	(&meta_games)(std::list<Game *> const &games);
     void	(&create_game)(void);
     void	(&join_game)(std::string const &game);
@@ -48,11 +48,10 @@ public:
     //  void	(&take_sound)(Sound const &sound);
     //  void	(&give_sound)(Sound const &sound);
     void	(&ready)(bool ready);
-    void	(&start)(ITime const &time, uint16_t port);
+    void	(&start)(uint8_t second, uint16_t port);
     void	(&end)(uint64_t score, bool winner);
     void	(&leave)(void);
   };
-public:
   enum  Error : uint8_t
   {
     VERSION,
@@ -66,7 +65,7 @@ public:
   virtual void	send(ITCP_client const &socket) = 0;
   virtual void	recv(ITCP_client const &socket) = 0;
   virtual void	send_result(Error error) = 0;
-  virtual void	send_connect(std::string const &login, std::string const &password, uint8_t version) = 0;
+  virtual void	send_connect(std::string const &login, std::string const &password) = 0;
   virtual void	send_disconnect(void) = 0;
   virtual void	send_ping(void) = 0;
   virtual void	send_pong(void) = 0;
@@ -90,7 +89,7 @@ public:
   //  virtual void	send_take_sound(Sound const &sound) = 0;
   //  virtual void	send_give_sound(Sound const &sound) = 0;
   virtual void	send_ready(bool ready) = 0;
-  virtual void	send_start(ITime const &time, uint16_t port) = 0;
+  virtual void	send_start(uint8_t second, uint16_t port) = 0;
   virtual void	send_end(uint64_t score, bool winner) = 0;
   virtual void	send_leave(void) = 0;
 };

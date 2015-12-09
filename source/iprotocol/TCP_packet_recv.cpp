@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 04:05:19 2015 Antoine Plaskowski
-// Last update Wed Dec  9 00:13:22 2015 Antoine Plaskowski
+// Last update Wed Dec  9 02:07:54 2015 Antoine Plaskowski
 //
 
 #include	<iostream>
@@ -45,12 +45,11 @@ void	TCP_packet_recv::get(std::string &string)
 {
   uint8_t       size;
 
-  string.clear();
-  get<uint8_t>(size);
+  get(size);
   for (uintmax_t i = 0; i < size; i++)
     {
       uint8_t   c;
-      get<uint8_t>(c);
+      get(c);
       string.push_back(static_cast<char>(c));
     }
 }

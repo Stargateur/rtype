@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 04:00:47 2015 Antoine Plaskowski
-// Last update Wed Dec  9 00:12:54 2015 Antoine Plaskowski
+// Last update Wed Dec  9 01:54:37 2015 Antoine Plaskowski
 //
 
 #ifndef		TCP_PACKET_RECV_HPP_
@@ -23,11 +23,13 @@ public:
   template<typename T>
   void	get(T &value)
   {
-    value = 0;
+    uint8_t	*data(reinterpret_cast<uint8_t *>(&value));
+
     for (uintmax_t i = 0; i < sizeof(T); i++)
-      value |= (m_packet.data[m_packet.size++] << (i * std::numeric_limits<uint8_t>::digits));
+      data[i] = m_packet.data[m_packet.size++];
   }
   void	get(std::string &string);
+  //  void	get(ITCP_protocol::Error &error);
   bool	recv(ITCP_client const &socket);
   void	reset(void);
 private:

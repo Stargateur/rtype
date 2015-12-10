@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 05:43:34 2015 Antoine Plaskowski
-// Last update Thu Dec 10 02:38:24 2015 Antoine Plaskowski
+// Last update Thu Dec 10 16:25:03 2015 Antoine Plaskowski
 //
 
 #include	<algorithm>
@@ -38,7 +38,9 @@ ASocket_exception::ASocket_exception(void) noexcept
 {
 }
 
-ASocket_exception::ASocket_exception(ASocket_exception const &) noexcept
+ASocket_exception::ASocket_exception(ASocket_exception const &asocket_exception) noexcept :
+ISocket_exception(),
+  m_what(asocket_exception.m_what)
 {
 }
 
@@ -46,8 +48,9 @@ ASocket_exception::~ASocket_exception(void) noexcept
 {
 }
 
-ASocket_exception &ASocket_exception::operator=(ASocket_exception const &) noexcept
+ASocket_exception &ASocket_exception::operator=(ASocket_exception const &asocket_exception) noexcept
 {
+  m_what = asocket_exception.m_what;
   return (*this);
 }
 

@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:40:34 2015 Antoine Plaskowski
-// Last update Thu Dec 10 14:31:39 2015 Antoine Plaskowski
+// Last update Thu Dec 10 14:38:35 2015 Antoine Plaskowski
 //
 
 #include	<algorithm>
@@ -49,6 +49,8 @@ bool	TCP_protocol::want_recv(void) const
 
 void	TCP_protocol::send(ITCP_client const &socket)
 {
+  if (m_idx_to_send == m_idx_to_stock)
+    return;
   TCP_packet_send	&to_send = m_to_send[m_idx_to_send];
 
   if (to_send.send(socket) == true)

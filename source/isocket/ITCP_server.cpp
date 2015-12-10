@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 07:15:58 2015 Antoine Plaskowski
-// Last update Thu Dec 10 02:27:20 2015 Antoine Plaskowski
+// Last update Thu Dec 10 16:27:50 2015 Antoine Plaskowski
 //
 
 #include	"ITCP_server.hpp"
@@ -22,7 +22,8 @@ ITCP_server_exception::ITCP_server_exception(void) noexcept
 {
 }
 
-ITCP_server_exception::ITCP_server_exception(ITCP_server_exception const &) noexcept
+ITCP_server_exception::ITCP_server_exception(ITCP_server_exception const &) noexcept :
+ISocket_exception()
 {
 }
 

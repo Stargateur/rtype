@@ -1,4 +1,3 @@
-
 //
 // Server.cpp for Server in /home/degand_a/Projects/rtype/source/server
 // 
@@ -6,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:15:49 2015 Alaric Degand
-// Last update Wed Dec  9 16:01:50 2015 Antoine Plaskowski
+// Last update Thu Dec 10 15:54:07 2015 Antoine Plaskowski
 //
 
 #include	<iostream>

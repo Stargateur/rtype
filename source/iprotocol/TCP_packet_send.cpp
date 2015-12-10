@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 04:07:41 2015 Antoine Plaskowski
-// Last update Thu Dec 10 01:56:29 2015 Antoine Plaskowski
+// Last update Thu Dec 10 03:47:24 2015 Antoine Plaskowski
 //
 
 #include	<iostream>
@@ -32,6 +32,8 @@ bool	TCP_packet_send::send(ITCP_client const &socket)
   m_send += ret;
   if (m_send < m_size_header + get_size())
     return (false);
+  m_send = 0;
+  set_size(0);
   return (true);
 }
 
@@ -45,10 +47,4 @@ void	TCP_packet_send::put(std::string const &string)
 void	TCP_packet_send::set_opcode(Opcode opcode)
 {
   m_packet.opcode = opcode;
-}
-
-void	TCP_packet_send::reset(void)
-{
-  m_send = 0;
-  set_size(0);
 }

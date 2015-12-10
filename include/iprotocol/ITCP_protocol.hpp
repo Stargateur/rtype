@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:35:29 2015 Antoine Plaskowski
-// Last update Thu Dec 10 01:48:04 2015 Antoine Plaskowski
+// Last update Thu Dec 10 03:21:09 2015 Antoine Plaskowski
 //
 
 #ifndef		ITCP_PROTOCOL_HPP_
@@ -24,30 +24,30 @@ class	ITCP_protocol
 public:
   struct	Game
   {
-    std::string	const &name;
-    std::string	const &owner;
+    std::string	&name;
+    std::string	&owner;
     uint8_t	number_player;
     uint8_t	number_player_max;
   };
   struct	Param
   {
-    std::string	const &name;
-    std::string	const &value;
+    std::string	&name;
+    std::string	&value;
   };
   struct	Sprite
   {
-    std::string const	&name;
-    std::string const	&checksome;
+    std::string &name;
+    std::string &checksome;
     uint8_t	id;
-    uint8_t const	&data;
+    uint8_t	&data;
     uint32_t	size : 24;
   };
   struct	Sound
   {
-    std::string const	&name;
-    std::string const	&checksome;
+    std::string	&name;
+    std::string	&checksome;
     uint8_t	id;
-    uint8_t const	&data;
+    uint8_t	&data;
     uint32_t	size : 24;
   };
   class	Callback

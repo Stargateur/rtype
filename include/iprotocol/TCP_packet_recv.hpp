@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 04:00:47 2015 Antoine Plaskowski
-// Last update Wed Dec  9 01:54:37 2015 Antoine Plaskowski
+// Last update Thu Dec 10 03:46:46 2015 Antoine Plaskowski
 //
 
 #ifndef		TCP_PACKET_RECV_HPP_
@@ -31,7 +31,6 @@ public:
   void	get(std::string &string);
   //  void	get(ITCP_protocol::Error &error);
   bool	recv(ITCP_client const &socket);
-  void	reset(void);
 private:
   uintmax_t	m_recv;
 };

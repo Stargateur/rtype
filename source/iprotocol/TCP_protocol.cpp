@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:40:34 2015 Antoine Plaskowski
-// Last update Thu Dec 10 01:55:14 2015 Antoine Plaskowski
+// Last update Thu Dec 10 03:49:50 2015 Antoine Plaskowski
 //
 
 #include	<algorithm>
@@ -156,6 +156,13 @@ void	TCP_protocol::send_result(ITCP_protocol::Error error)
   set_to_send(to_send, ATCP_packet::Result);
 }
 
+void	TCP_protocol::recv_result(void)
+{
+  ITCP_protocol::Error	error;
+  m_to_recv.get(error);
+  m_callback.result(*this, error);
+}
+
 void	TCP_protocol::send_connect(std::string const &login, std::string const &password)
 {
   TCP_packet_send	&to_send = get_to_send();
@@ -165,10 +172,29 @@ void	TCP_protocol::send_connect(std::string const &login, std::string const &pas
   set_to_send(to_send, ATCP_packet::Connect);
 }
 
+void	TCP_protocol::recv_connect(void)
+{
+  std::string	login;
+  std::string	password;
+  uint8_t	version;
+
+  m_to_recv.get(version);
+  m_to_recv.get(login);
+  m_to_recv.get(password);
+  if (version != 1) // chiant !
+    throw std::exception();
+  m_callback.connect(*this, login, password);
+}
+
 void	TCP_protocol::send_disconnect(void)
 {
   TCP_packet_send	&to_send = get_to_send();
   set_to_send(to_send, ATCP_packet::Disconnect);
+}
+
+void	TCP_protocol::recv_disconnect(void)
+{
+  m_callback.disconnect(*this);
 }
 
 void	TCP_protocol::send_ping(void)
@@ -177,16 +203,31 @@ void	TCP_protocol::send_ping(void)
   set_to_send(to_send, ATCP_packet::Ping);
 }
 
+void	TCP_protocol::recv_ping(void)
+{
+  m_callback.ping(*this);
+}
+
 void	TCP_protocol::send_pong(void)
 {
   TCP_packet_send	&to_send = get_to_send();
   set_to_send(to_send, ATCP_packet::Pong);
 }
 
+void	TCP_protocol::recv_pong(void)
+{
+  m_callback.pong(*this);
+}
+
 void	TCP_protocol::send_list_meta_games(void)
 {
  TCP_packet_send	&to_send = get_to_send();
  set_to_send(to_send, ATCP_packet::List_meta_games);
+}
+
+void	TCP_protocol::recv_list_meta_games(void)
+{
+  m_callback.list_meta_games(*this);
 }
 
 void	TCP_protocol::send_meta_games(std::list<ITCP_protocol::Game *> const &games)
@@ -204,6 +245,31 @@ void	TCP_protocol::send_meta_games(std::list<ITCP_protocol::Game *> const &games
   set_to_send(to_send, ATCP_packet::Meta_games);
 }
 
+void	TCP_protocol::recv_meta_games(void)
+{
+  std::list<ITCP_protocol::Game *>	games;
+  uint8_t	size;
+
+  m_to_recv.get(size);
+  for (uintmax_t i = 0; i < size; i++)
+    {
+      ITCP_protocol::Game &game = *new ITCP_protocol::Game({*new std::string(), *new std::string, 0, 0});
+      
+      m_to_recv.get(game.name);
+      m_to_recv.get(game.owner);
+      m_to_recv.get(game.number_player);
+      m_to_recv.get(game.number_player_max);
+      games.push_back(&game);
+    }
+  m_callback.meta_games(*this, games);
+  for (auto game : games)
+    {
+      delete &game->name;
+      delete &game->owner;
+      delete game;
+    }
+}
+
 void	TCP_protocol::send_create_game(ITCP_protocol::Game const &game)
 {
   TCP_packet_send	&to_send = get_to_send();
@@ -212,6 +278,17 @@ void	TCP_protocol::send_create_game(ITCP_protocol::Game const &game)
   to_send.put(game.owner);
   to_send.put(game.number_player_max);
   set_to_send(to_send, ATCP_packet::Create_game);
+}
+
+void	TCP_protocol::recv_create_game(void)
+{
+  ITCP_protocol::Game game({*new std::string(), *new std::string, 0, 0});
+  m_to_recv.get(game.name);
+  m_to_recv.get(game.owner);
+  m_to_recv.get(game.number_player_max);
+  m_callback.create_game(*this, game);
+  delete &game.name;
+  delete &game.owner;
 }
 
 void	TCP_protocol::send_join_game(ITCP_protocol::Game const &game)
@@ -223,6 +300,16 @@ void	TCP_protocol::send_join_game(ITCP_protocol::Game const &game)
   set_to_send(to_send, ATCP_packet::Join_game);
 }
 
+void	TCP_protocol::recv_join_game(void)
+{
+  ITCP_protocol::Game game({*new std::string(), *new std::string, 0, 0});
+  m_to_recv.get(game.name);
+  m_to_recv.get(game.owner);
+  m_callback.join_game(*this, game);
+  delete &game.name;
+  delete &game.owner;
+}
+
 void	TCP_protocol::send_message(std::string const &login, std::string const &message)
 {
  TCP_packet_send	&to_send = get_to_send();
@@ -230,6 +317,20 @@ void	TCP_protocol::send_message(std::string const &login, std::string const &mes
  to_send.put(message);
  set_to_send(to_send, ATCP_packet::Message);
 }
+
+void	TCP_protocol::recv_message(void)
+{
+  std::string	login;
+  std::string	message;
+  m_to_recv.get(login);
+  m_to_recv.get(message);
+  m_callback.message(*this, login, message);
+}
+
+// void	TCP_protocol::recv_list_modes(void)
+// {
+//   m_callback.list_modes(*this);
+// }
 
 // void	TCP_protocol::send_list_meta_modes(void)
 // {
@@ -239,6 +340,8 @@ void	TCP_protocol::send_message(std::string const &login, std::string const &mes
 
 // void	TCP_protocol::send_meta_modes(std::list<Mode *> const &modes)
 
+// void	TCP_protocol::recv_meta_modes(void)
+
 // void	TCP_protocol::send_change_mode(std::string const &mode)
 // {
 //   TCP_packet_send	&to_send = get_to_send();
@@ -246,10 +349,22 @@ void	TCP_protocol::send_message(std::string const &login, std::string const &mes
 //   set_to_send(to_send, ATCP_packet::Change_mode);
 // }
 
+// void	TCP_protocol::recv_change_mode(void)
+// {
+//   std::string	mode;
+//   m_to_recv.get(mode);
+//   m_callback.change_mode(*this, mode);
+// }
+
 void	TCP_protocol::send_list_meta_params(void)
 {
   TCP_packet_send	&to_send = get_to_send();
   set_to_send(to_send, ATCP_packet::List_meta_params);
+}
+
+void	TCP_protocol::recv_list_meta_params(void)
+{
+  m_callback.list_meta_params(*this);
 }
 
 void	TCP_protocol::send_meta_params(std::list<ITCP_protocol::Param *> const &params)
@@ -264,6 +379,10 @@ void	TCP_protocol::send_meta_params(std::list<ITCP_protocol::Param *> const &par
   set_to_send(to_send, ATCP_packet::Meta_params);  
 }
 
+void	TCP_protocol::recv_meta_params(void)
+{
+}
+
 void	TCP_protocol::send_change_param(ITCP_protocol::Param const &param)
 {
   TCP_packet_send	&to_send = get_to_send();
@@ -272,10 +391,20 @@ void	TCP_protocol::send_change_param(ITCP_protocol::Param const &param)
   set_to_send(to_send, ATCP_packet::Change_param);
 }
 
+void	TCP_protocol::recv_change_param(void)
+{
+  //  m_callback.change_param(*this, param, value);
+}
+
 void	TCP_protocol::send_list_meta_sprites(void)
 {
   TCP_packet_send	&to_send = get_to_send();
   set_to_send(to_send, ATCP_packet::List_meta_sounds);
+}
+
+void	TCP_protocol::recv_list_meta_sprites(void)
+{
+  m_callback.list_meta_sprites(*this);
 }
 
 void	TCP_protocol::send_meta_sprites(std::list<ITCP_protocol::Sprite *> const &sprites)
@@ -292,12 +421,20 @@ void	TCP_protocol::send_meta_sprites(std::list<ITCP_protocol::Sprite *> const &s
   set_to_send(to_send, ATCP_packet::Meta_sprites);
 }
 
+void	TCP_protocol::recv_meta_sprites(void)
+{
+}
+
 void	TCP_protocol::send_take_sprite(ITCP_protocol::Sprite const &sprite)
 {
   TCP_packet_send	&to_send = get_to_send();
   to_send.put(sprite.name);
   to_send.put(sprite.id);
   set_to_send(to_send, ATCP_packet::Take_sprite);
+}
+
+void	TCP_protocol::recv_take_sprite(void)
+{
 }
 
 void	TCP_protocol::send_give_sprite(ITCP_protocol::Sprite const &sprite)
@@ -311,10 +448,19 @@ void	TCP_protocol::send_give_sprite(ITCP_protocol::Sprite const &sprite)
   set_to_send(to_send, ATCP_packet::Give_sprite);
 }
 
+void	TCP_protocol::recv_give_sprite(void)
+{
+}
+
 void	TCP_protocol::send_list_meta_sounds(void)
 {
   TCP_packet_send	&to_send = get_to_send();
   set_to_send(to_send, ATCP_packet::List_meta_sounds);
+}
+
+void	TCP_protocol::recv_list_meta_sounds(void)
+{
+  m_callback.list_meta_sounds(*this);
 }
 
 void	TCP_protocol::send_meta_sounds(std::list<ITCP_protocol::Sound *> const &sounds)
@@ -331,12 +477,20 @@ void	TCP_protocol::send_meta_sounds(std::list<ITCP_protocol::Sound *> const &sou
   set_to_send(to_send, ATCP_packet::Meta_sounds);
 }
 
+void	TCP_protocol::recv_meta_sounds(void)
+{
+}
+
 void	TCP_protocol::send_take_sound(ITCP_protocol::Sound const &sound)
 {
   TCP_packet_send	&to_send = get_to_send();
   to_send.put(sound.name);
   to_send.put(sound.id);
   set_to_send(to_send, ATCP_packet::Take_sound);
+}
+
+void	TCP_protocol::recv_take_sound(void)
+{
 }
 
 void	TCP_protocol::send_give_sound(ITCP_protocol::Sound const &sound)
@@ -350,11 +504,22 @@ void	TCP_protocol::send_give_sound(ITCP_protocol::Sound const &sound)
   set_to_send(to_send, ATCP_packet::Give_sound);
 }
 
+void	TCP_protocol::recv_give_sound(void)
+{
+}
+
 void	TCP_protocol::send_ready(bool ready)
 {
   TCP_packet_send	&to_send = get_to_send();
   to_send.put(ready);
   set_to_send(to_send, ATCP_packet::Ready);
+}
+
+void	TCP_protocol::recv_ready(void)
+{
+  bool	ready;
+  m_to_recv.get(ready);
+  m_callback.ready(*this, ready);
 }
 
 void	TCP_protocol::send_start(uint8_t second, uint16_t port)
@@ -363,6 +528,15 @@ void	TCP_protocol::send_start(uint8_t second, uint16_t port)
   to_send.put(second);
   to_send.put(port);
   set_to_send(to_send, ATCP_packet::Start);
+}
+
+void	TCP_protocol::recv_start(void)
+{
+  uint8_t	second;
+  uint16_t	port;
+  m_to_recv.get(second);
+  m_to_recv.get(port);
+  m_callback.start(*this, second, port);
 }
 
 void	TCP_protocol::send_end(uint64_t score, bool winner)
@@ -374,182 +548,21 @@ void	TCP_protocol::send_end(uint64_t score, bool winner)
   test(ATCP_packet::End, score, winner);
 }
 
-void	TCP_protocol::send_leave(void)
-{
-  test(ATCP_packet::Leave);
-}
-
-void	TCP_protocol::recv_result(void)
-{
-  ITCP_protocol::Error	error;
-  m_to_recv.get(error);
-  m_to_recv.reset();
-  m_callback.result(*this, error);
-}
-
-void	TCP_protocol::recv_connect(void)
-{
-  std::string	login;
-  std::string	password;
-  uint8_t	version;
-
-  m_to_recv.get(version);
-  m_to_recv.get(login);
-  m_to_recv.get(password);
-  m_to_recv.reset();
-  if (version != 1) // chiant !
-    throw std::exception();
-  m_callback.connect(*this, login, password);
-}
-
-void	TCP_protocol::recv_disconnect(void)
-{
-  m_to_recv.reset();
-  m_callback.disconnect(*this);
-}
-
-void	TCP_protocol::recv_ping(void)
-{
-  m_to_recv.reset();
-  m_callback.ping(*this);
-}
-
-void	TCP_protocol::recv_pong(void)
-{
-  m_to_recv.reset();
-  m_callback.pong(*this);
-}
-
-void	TCP_protocol::recv_list_meta_games(void)
-{
-  m_to_recv.reset();
-  m_callback.list_meta_games(*this);
-}
-
-void	TCP_protocol::recv_meta_games(void)
-{
-  std::list<ITCP_protocol::Game *>	games;
-}
-
-void	TCP_protocol::recv_create_game(void)
-{
-  m_to_recv.reset();
-  //  m_callback.create_game(*this);
-}
-
-void	TCP_protocol::recv_join_game(void)
-{
-  m_to_recv.reset();
-  //  m_callback.join_game(*this, game);
-}
-
-void	TCP_protocol::recv_message(void)
-{
-  std::string	login;
-  std::string	message;
-  m_to_recv.get(login);
-  m_to_recv.get(message);
-  m_to_recv.reset();
-  m_callback.message(*this, login, message);
-}
-
-// void	TCP_protocol::recv_list_modes(void)
-// {
-//   m_to_recv.reset();
-//   m_callback.list_modes(*this);
-// }
-
-// void	TCP_protocol::recv_meta_modes(void)
-
-// void	TCP_protocol::recv_change_mode(void)
-// {
-//   std::string	mode;
-//   m_to_recv.get(mode);
-//   m_to_recv.reset();
-//   m_callback.change_mode(*this, mode);
-// }
-
-void	TCP_protocol::recv_list_meta_params(void)
-{
-  m_to_recv.reset();
-  m_callback.list_meta_params(*this);
-}
-
-void	TCP_protocol::recv_meta_params(void)
-{
-}
-
-void	TCP_protocol::recv_change_param(void)
-{
-  m_to_recv.reset();
-  //  m_callback.change_param(*this, param, value);
-}
-
-void	TCP_protocol::recv_list_meta_sprites(void)
-{
-  m_to_recv.reset();
-  m_callback.list_meta_sprites(*this);
-}
-
-void	TCP_protocol::recv_meta_sprites(void)
-{
-}
-
-void	TCP_protocol::recv_take_sprite(void)
-{
-}
-
-void	TCP_protocol::recv_give_sprite(void)
-{
-}
-void	TCP_protocol::recv_list_meta_sounds(void)
-{
-  m_to_recv.reset();
-  m_callback.list_meta_sounds(*this);
-}
-
-void	TCP_protocol::recv_meta_sounds(void)
-{
-}
-
-void	TCP_protocol::recv_take_sound(void)
-{
-}
-
-void	TCP_protocol::recv_give_sound(void)
-{
-}
-
-void	TCP_protocol::recv_ready(void)
-{
-  bool	ready;
-  m_to_recv.get(ready);
-  m_to_recv.reset();
-  m_callback.ready(*this, ready);
-}
-
-void	TCP_protocol::recv_start(void)
-{
-  uint8_t	second;
-  uint16_t	port;
-  m_to_recv.get(second);
-  m_to_recv.get(port);
-  m_to_recv.reset();
-  m_callback.start(*this, second, port);
-}
-
 void	TCP_protocol::recv_end(void)
 {
   uint64_t	score;
   bool	winner;
   m_to_recv.get(score);
   m_to_recv.get(winner);
-  m_to_recv.reset();
   m_callback.end(*this, score, winner);
+}
+
+void	TCP_protocol::send_leave(void)
+{
+  test(ATCP_packet::Leave);
 }
 
 void	TCP_protocol::recv_leave(void)
 {
-  m_to_recv.reset();
   m_callback.leave(*this);
 }

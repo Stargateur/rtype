@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:57:06 2015 Antoine Plaskowski
-// Last update Thu Dec 10 02:39:50 2015 Antoine Plaskowski
+// Last update Thu Dec 10 04:18:25 2015 Antoine Plaskowski
 //
 
 #ifndef		ATCP_PACKET_HPP_
@@ -60,7 +60,7 @@ protected:
     struct	s_packet
     {
       Opcode	opcode;
-      uint32_t	size : 24;
+      uint16_t	size;
       uint8_t	data[UINT16_MAX];
     };
   union

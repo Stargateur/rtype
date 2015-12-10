@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:40:34 2015 Antoine Plaskowski
-// Last update Thu Dec 10 03:49:50 2015 Antoine Plaskowski
+// Last update Thu Dec 10 14:31:39 2015 Antoine Plaskowski
 //
 
 #include	<algorithm>
@@ -381,6 +381,25 @@ void	TCP_protocol::send_meta_params(std::list<ITCP_protocol::Param *> const &par
 
 void	TCP_protocol::recv_meta_params(void)
 {
+  std::list<ITCP_protocol::Param *>	params;
+  uint8_t	size;
+
+  m_to_recv.get(size);
+  for (uintmax_t i = 0; i < size; i++)
+    {
+      ITCP_protocol::Param &param = *new ITCP_protocol::Param({*new std::string(), *new std::string});
+
+      m_to_recv.get(param.name);
+      m_to_recv.get(param.value);
+      params.push_back(&param);
+    }
+  m_callback.meta_params(*this, params);
+  for (auto param : params)
+    {
+      delete &param->name;
+      delete &param->value;
+      delete param;
+    }
 }
 
 void	TCP_protocol::send_change_param(ITCP_protocol::Param const &param)
@@ -393,7 +412,12 @@ void	TCP_protocol::send_change_param(ITCP_protocol::Param const &param)
 
 void	TCP_protocol::recv_change_param(void)
 {
-  //  m_callback.change_param(*this, param, value);
+  ITCP_protocol::Param	param({*new std::string, *new std::string});
+  m_to_recv.get(param.name);
+  m_to_recv.get(param.value);
+  m_callback.change_param(*this, param);
+  delete &param.name;
+  delete &param.value;
 }
 
 void	TCP_protocol::send_list_meta_sprites(void)
@@ -414,8 +438,8 @@ void	TCP_protocol::send_meta_sprites(std::list<ITCP_protocol::Sprite *> const &s
   for (auto sprite : sprites)
     {
       to_send.put(sprite->name);
-      to_send.put(sprite->id);
       to_send.put(sprite->checksome);
+      to_send.put(sprite->id);
       to_send.put(sprite->size);
     }
   set_to_send(to_send, ATCP_packet::Meta_sprites);
@@ -423,6 +447,27 @@ void	TCP_protocol::send_meta_sprites(std::list<ITCP_protocol::Sprite *> const &s
 
 void	TCP_protocol::recv_meta_sprites(void)
 {
+  std::list<ITCP_protocol::Sprite *>	sprites;
+  uint8_t	size;
+
+  m_to_recv.get(size);
+  for (uintmax_t i = 0; i < size; i++)
+    {
+      ITCP_protocol::Sprite &sprite = *new ITCP_protocol::Sprite({*new std::string(), *new std::string, 0, nullptr, 0});
+
+      m_to_recv.get(sprite.name);
+      m_to_recv.get(sprite.checksome);
+      m_to_recv.get(sprite.id);
+      m_to_recv.get(sprite.size);
+      sprites.push_back(&sprite);
+    }
+  m_callback.meta_sprites(*this, sprites);
+  for (auto sprite : sprites)
+    {
+      delete &sprite->name;
+      delete &sprite->checksome;
+      delete sprite;
+    }
 }
 
 void	TCP_protocol::send_take_sprite(ITCP_protocol::Sprite const &sprite)
@@ -435,6 +480,12 @@ void	TCP_protocol::send_take_sprite(ITCP_protocol::Sprite const &sprite)
 
 void	TCP_protocol::recv_take_sprite(void)
 {
+  ITCP_protocol::Sprite	sprite({*new std::string, *new std::string, 0, nullptr, 0});
+  m_to_recv.get(sprite.name);
+  m_to_recv.get(sprite.id);
+  m_callback.take_sprite(*this, sprite);
+  delete &sprite.name;
+  delete &sprite.checksome;
 }
 
 void	TCP_protocol::send_give_sprite(ITCP_protocol::Sprite const &sprite)
@@ -444,12 +495,23 @@ void	TCP_protocol::send_give_sprite(ITCP_protocol::Sprite const &sprite)
   to_send.put(sprite.id);
   to_send.put(sprite.size);
   for (uintmax_t i = 0; i < sprite.size; i++)
-    to_send.put((&sprite.data)[i]);
+    to_send.put(sprite.data[i]);
   set_to_send(to_send, ATCP_packet::Give_sprite);
 }
 
 void	TCP_protocol::recv_give_sprite(void)
 {
+  ITCP_protocol::Sprite	sprite({*new std::string, *new std::string, 0, nullptr, 0});
+  m_to_recv.get(sprite.name);
+  m_to_recv.get(sprite.id);
+  m_to_recv.get(sprite.size);
+  sprite.data = new uint8_t[sprite.size];
+  for (uintmax_t i = 0; i < sprite.size; i++)
+    m_to_recv.get(sprite.data[i]);
+  m_callback.give_sprite(*this, sprite);
+  delete &sprite.name;
+  delete &sprite.checksome;
+  delete[] sprite.data;
 }
 
 void	TCP_protocol::send_list_meta_sounds(void)
@@ -479,6 +541,27 @@ void	TCP_protocol::send_meta_sounds(std::list<ITCP_protocol::Sound *> const &sou
 
 void	TCP_protocol::recv_meta_sounds(void)
 {
+  std::list<ITCP_protocol::Sound *>	sounds;
+  uint8_t	size;
+
+  m_to_recv.get(size);
+  for (uintmax_t i = 0; i < size; i++)
+    {
+      ITCP_protocol::Sound &sound = *new ITCP_protocol::Sound({*new std::string(), *new std::string, 0, nullptr, 0});
+
+      m_to_recv.get(sound.name);
+      m_to_recv.get(sound.checksome);
+      m_to_recv.get(sound.id);
+      m_to_recv.get(sound.size);
+      sounds.push_back(&sound);
+    }
+  m_callback.meta_sounds(*this, sounds);
+  for (auto sound : sounds)
+    {
+      delete &sound->name;
+      delete &sound->checksome;
+      delete sound;
+    }
 }
 
 void	TCP_protocol::send_take_sound(ITCP_protocol::Sound const &sound)
@@ -491,6 +574,12 @@ void	TCP_protocol::send_take_sound(ITCP_protocol::Sound const &sound)
 
 void	TCP_protocol::recv_take_sound(void)
 {
+  ITCP_protocol::Sound	sound({*new std::string, *new std::string, 0, nullptr, 0});
+  m_to_recv.get(sound.name);
+  m_to_recv.get(sound.id);
+  m_callback.take_sound(*this, sound);
+  delete &sound.name;
+  delete &sound.checksome;
 }
 
 void	TCP_protocol::send_give_sound(ITCP_protocol::Sound const &sound)
@@ -506,6 +595,17 @@ void	TCP_protocol::send_give_sound(ITCP_protocol::Sound const &sound)
 
 void	TCP_protocol::recv_give_sound(void)
 {
+  ITCP_protocol::Sound	sound({*new std::string, *new std::string, 0, nullptr, 0});
+  m_to_recv.get(sound.name);
+  m_to_recv.get(sound.id);
+  m_to_recv.get(sound.size);
+  sound.data = new uint8_t[sound.size];
+  for (uintmax_t i = 0; i < sound.size; i++)
+    m_to_recv.get(sound.data[i]);
+  m_callback.give_sound(*this, sound);
+  delete &sound.name;
+  delete &sound.checksome;
+  delete[] sound.data;
 }
 
 void	TCP_protocol::send_ready(bool ready)

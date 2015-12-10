@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:35:29 2015 Antoine Plaskowski
-// Last update Thu Dec 10 03:21:09 2015 Antoine Plaskowski
+// Last update Thu Dec 10 04:18:43 2015 Antoine Plaskowski
 //
 
 #ifndef		ITCP_PROTOCOL_HPP_
@@ -39,16 +39,16 @@ public:
     std::string &name;
     std::string &checksome;
     uint8_t	id;
-    uint8_t	&data;
-    uint32_t	size : 24;
+    uint8_t	*data;
+    uint16_t	size;
   };
   struct	Sound
   {
     std::string	&name;
     std::string	&checksome;
     uint8_t	id;
-    uint8_t	&data;
-    uint32_t	size : 24;
+    uint8_t	*data;
+    uint16_t	size;
   };
   class	Callback
   {

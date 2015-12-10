@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 04:52:54 2015 Antoine Plaskowski
-// Last update Tue Dec  8 16:06:35 2015 Antoine Plaskowski
+// Last update Thu Dec 10 02:21:46 2015 Antoine Plaskowski
 //
 
 #ifndef		IUDP_CLIENT_HPP_
@@ -31,7 +31,10 @@ public:
 class	IUDP_client_exception : public ISocket_exception
 {
 public:
-  virtual ~IUDP_client_exception(void);
+  IUDP_client_exception(void) noexcept;
+  IUDP_client_exception(IUDP_client_exception const &) noexcept;
+  virtual ~IUDP_client_exception(void) noexcept;
+  IUDP_client_exception	&operator=(IUDP_client_exception const &) noexcept;
 };
 
 #endif		/* !IUDP_CLIENT_HPP_ */

@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 04:04:29 2015 Antoine Plaskowski
-// Last update Tue Dec  8 18:17:37 2015 Antoine Plaskowski
+// Last update Thu Dec 10 02:39:34 2015 Antoine Plaskowski
 //
 
 #include	"ATCP_packet.hpp"
@@ -29,7 +29,7 @@ void	ATCP_packet::set_size(uint16_t size)
   m_packet.size = size;
 }
 
-uint16_t	ATCP_packet::get_size(void) const
+uintmax_t	ATCP_packet::get_size(void) const
 {
   return (m_packet.size);
 }

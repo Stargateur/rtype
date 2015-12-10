@@ -5,7 +5,7 @@
 ## Login   <plasko_a@epitech.eu>
 ## 
 ## Started on  Fri Nov 20 04:13:39 2015 Antoine Plaskowski
-## Last update Wed Dec  9 17:15:53 2015 Antoine Plaskowski
+## Last update Thu Dec 10 01:38:59 2015 Antoine Plaskowski
 ##
 
 CLIENT		=	rtype_client
@@ -46,7 +46,7 @@ CXXFLAGS	+=	-Weverything -Wno-c++98-compat -Wno-padded
 endif
 
 ifneq ($(DEBUG), no)
-CXXFLAGS	+=	-g
+CXXFLAGS	+=	-g -D DEBUG
 endif
 
 ifneq ($(COLOR), no)

@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:35:29 2015 Antoine Plaskowski
-// Last update Wed Dec  9 23:31:02 2015 Antoine Plaskowski
+// Last update Thu Dec 10 01:55:09 2015 Antoine Plaskowski
 //
 
 #ifndef		TCP_PROTOCOL_HPP_
@@ -25,7 +25,7 @@ public:
 private:
   TCP_packet_send	&get_to_send(void);
   void	set_to_send(TCP_packet_send &to_send, ATCP_packet::Opcode opcode);
-  void	set_callback(ITCP_protocol::Callback &callback);
+  //  void	set_callback(ITCP_protocol::Callback &callback);
 public:
   bool	want_send(void) const;
   bool	want_recv(void) const;

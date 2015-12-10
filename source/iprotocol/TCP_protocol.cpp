@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:40:34 2015 Antoine Plaskowski
-// Last update Wed Dec  9 23:55:53 2015 Antoine Plaskowski
+// Last update Thu Dec 10 01:55:14 2015 Antoine Plaskowski
 //
 
 #include	<algorithm>
@@ -20,10 +20,10 @@ TCP_protocol::~TCP_protocol(void)
 {
 }
 
-void	TCP_protocol::set_callback(ITCP_protocol::Callback &callback)
-{
-  m_callback = callback;
-}
+// void	TCP_protocol::set_callback(ITCP_protocol::Callback &callback)
+// {
+//   m_callback = &callback;
+// }
 
 TCP_packet_send	&TCP_protocol::get_to_send(void)
 {
@@ -193,7 +193,7 @@ void	TCP_protocol::send_meta_games(std::list<ITCP_protocol::Game *> const &games
 {
   TCP_packet_send	&to_send = get_to_send();
 
-  to_send.put<uint8_t>(games.size());
+  to_send.put(static_cast<uint8_t>(games.size()));
   for (auto game : games)
     {
       to_send.put(game->name);
@@ -206,16 +206,21 @@ void	TCP_protocol::send_meta_games(std::list<ITCP_protocol::Game *> const &games
 
 void	TCP_protocol::send_create_game(ITCP_protocol::Game const &game)
 {
- TCP_packet_send	&to_send = get_to_send();
+  TCP_packet_send	&to_send = get_to_send();
  
- test(ATCP_packet::Create_game, game.name, game.owner, game.number_player, game.number_player_max);
+  to_send.put(game.name);
+  to_send.put(game.owner);
+  to_send.put(game.number_player_max);
+  set_to_send(to_send, ATCP_packet::Create_game);
 }
 
 void	TCP_protocol::send_join_game(ITCP_protocol::Game const &game)
 {
-   TCP_packet_send	&to_send = get_to_send();
-   //   to_send.put(game);
-   set_to_send(to_send, ATCP_packet::Join_game);
+  TCP_packet_send	&to_send = get_to_send();
+
+  to_send.put(game.name);
+  to_send.put(game.owner);
+  set_to_send(to_send, ATCP_packet::Join_game);
 }
 
 void	TCP_protocol::send_message(std::string const &login, std::string const &message)
@@ -229,7 +234,7 @@ void	TCP_protocol::send_message(std::string const &login, std::string const &mes
 // void	TCP_protocol::send_list_meta_modes(void)
 // {
 //   TCP_packet_send	&to_send = get_to_send();
-//   set_to_send(to_send, ATCP_packet::List_modes);
+//   set_to_send(to_send, ATCP_packet::List_meta_modes);
 // }
 
 // void	TCP_protocol::send_meta_modes(std::list<Mode *> const &modes)
@@ -249,14 +254,22 @@ void	TCP_protocol::send_list_meta_params(void)
 
 void	TCP_protocol::send_meta_params(std::list<ITCP_protocol::Param *> const &params)
 {
-  
+  TCP_packet_send	&to_send = get_to_send();
+  to_send.put(static_cast<uint8_t>(params.size()));
+  for (auto param : params)
+    {
+      to_send.put(param->name);
+      to_send.put(param->value);
+    }
+  set_to_send(to_send, ATCP_packet::Meta_params);  
 }
 
 void	TCP_protocol::send_change_param(ITCP_protocol::Param const &param)
 {
- TCP_packet_send	&to_send = get_to_send();
-
- set_to_send(to_send, ATCP_packet::Change_param);
+  TCP_packet_send	&to_send = get_to_send();
+  to_send.put(param.name);
+  to_send.put(param.value);
+  set_to_send(to_send, ATCP_packet::Change_param);
 }
 
 void	TCP_protocol::send_list_meta_sprites(void)
@@ -267,39 +280,81 @@ void	TCP_protocol::send_list_meta_sprites(void)
 
 void	TCP_protocol::send_meta_sprites(std::list<ITCP_protocol::Sprite *> const &sprites)
 {
+  TCP_packet_send	&to_send = get_to_send();
+  to_send.put(static_cast<uint8_t>(sprites.size()));
+  for (auto sprite : sprites)
+    {
+      to_send.put(sprite->name);
+      to_send.put(sprite->id);
+      to_send.put(sprite->checksome);
+      to_send.put(sprite->size);
+    }
+  set_to_send(to_send, ATCP_packet::Meta_sprites);
 }
 
 void	TCP_protocol::send_take_sprite(ITCP_protocol::Sprite const &sprite)
 {
+  TCP_packet_send	&to_send = get_to_send();
+  to_send.put(sprite.name);
+  to_send.put(sprite.id);
+  set_to_send(to_send, ATCP_packet::Take_sprite);
 }
 
 void	TCP_protocol::send_give_sprite(ITCP_protocol::Sprite const &sprite)
 {
+  TCP_packet_send	&to_send = get_to_send();
+  to_send.put(sprite.name);
+  to_send.put(sprite.id);
+  to_send.put(sprite.size);
+  for (uintmax_t i = 0; i < sprite.size; i++)
+    to_send.put((&sprite.data)[i]);
+  set_to_send(to_send, ATCP_packet::Give_sprite);
 }
 
 void	TCP_protocol::send_list_meta_sounds(void)
 {
   TCP_packet_send	&to_send = get_to_send();
-  set_to_send(to_send, ATCP_packet::Create_game);
+  set_to_send(to_send, ATCP_packet::List_meta_sounds);
 }
 
 void	TCP_protocol::send_meta_sounds(std::list<ITCP_protocol::Sound *> const &sounds)
 {
+  TCP_packet_send	&to_send = get_to_send();
+  to_send.put(static_cast<uint8_t>(sounds.size()));
+  for (auto sound : sounds)
+    {
+      to_send.put(sound->name);
+      to_send.put(sound->id);
+      to_send.put(sound->checksome);
+      to_send.put(sound->size);      
+    }
+  set_to_send(to_send, ATCP_packet::Meta_sounds);
 }
 
 void	TCP_protocol::send_take_sound(ITCP_protocol::Sound const &sound)
 {
+  TCP_packet_send	&to_send = get_to_send();
+  to_send.put(sound.name);
+  to_send.put(sound.id);
+  set_to_send(to_send, ATCP_packet::Take_sound);
 }
 
 void	TCP_protocol::send_give_sound(ITCP_protocol::Sound const &sound)
 {
+  TCP_packet_send	&to_send = get_to_send();
+  to_send.put(sound.name);
+  to_send.put(sound.id);
+  to_send.put(sound.size);
+  for (uintmax_t i = 0; i < sound.size; i++)
+    to_send.put((&sound.data)[i]);
+  set_to_send(to_send, ATCP_packet::Give_sound);
 }
 
 void	TCP_protocol::send_ready(bool ready)
 {
   TCP_packet_send	&to_send = get_to_send();
   to_send.put(ready);
-  set_to_send(to_send, ATCP_packet::Create_game);
+  set_to_send(to_send, ATCP_packet::Ready);
 }
 
 void	TCP_protocol::send_start(uint8_t second, uint16_t port)
@@ -307,7 +362,7 @@ void	TCP_protocol::send_start(uint8_t second, uint16_t port)
   TCP_packet_send	&to_send = get_to_send();
   to_send.put(second);
   to_send.put(port);
-  set_to_send(to_send, ATCP_packet::Create_game);
+  set_to_send(to_send, ATCP_packet::Start);
 }
 
 void	TCP_protocol::send_end(uint64_t score, bool winner)
@@ -338,9 +393,9 @@ void	TCP_protocol::recv_connect(void)
   std::string	password;
   uint8_t	version;
 
+  m_to_recv.get(version);
   m_to_recv.get(login);
   m_to_recv.get(password);
-  m_to_recv.get(version);
   m_to_recv.reset();
   if (version != 1) // chiant !
     throw std::exception();
@@ -373,6 +428,7 @@ void	TCP_protocol::recv_list_meta_games(void)
 
 void	TCP_protocol::recv_meta_games(void)
 {
+  std::list<ITCP_protocol::Game *>	games;
 }
 
 void	TCP_protocol::recv_create_game(void)

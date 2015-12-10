@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 06:01:14 2015 Antoine Plaskowski
-// Last update Tue Dec  8 15:02:22 2015 Antoine Plaskowski
+// Last update Thu Dec 10 02:30:13 2015 Antoine Plaskowski
 //
 
 #include	"IStandard.hpp"
@@ -14,6 +14,19 @@ IStandard::~IStandard(void)
 {
 }
 
-IStandard_exception::~IStandard_exception(void)
+IStandard_exception::IStandard_exception(void) noexcept
 {
+}
+
+IStandard_exception::IStandard_exception(IStandard_exception const &) noexcept
+{
+}
+
+IStandard_exception::IStandard_exception::~IStandard_exception(void) noexcept
+{
+}
+
+IStandard_exception &IStandard_exception::operator=(IStandard_exception const &) noexcept
+{
+  return (*this);
 }

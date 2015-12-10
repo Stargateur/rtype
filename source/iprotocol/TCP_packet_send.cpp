@@ -5,14 +5,14 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 04:07:41 2015 Antoine Plaskowski
-// Last update Wed Dec  9 02:08:21 2015 Antoine Plaskowski
+// Last update Thu Dec 10 01:56:29 2015 Antoine Plaskowski
 //
 
 #include	<iostream>
 #include	"TCP_packet_send.hpp"
 
 TCP_packet_send::TCP_packet_send(void) :
-  ATCP_packet({}),
+  ATCP_packet(),
   m_send(0)
 {
 }

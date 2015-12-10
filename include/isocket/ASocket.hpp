@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 04:46:57 2015 Antoine Plaskowski
-// Last update Tue Dec  8 16:11:49 2015 Antoine Plaskowski
+// Last update Thu Dec 10 02:34:19 2015 Antoine Plaskowski
 //
 
 #ifndef		ASOCKET_HPP_
@@ -29,7 +29,10 @@ class	ASocket_exception : public ISocket_exception
 {
 public:
   ASocket_exception(char const *what);
-  virtual ~ASocket_exception(void);
+  ASocket_exception(void) noexcept;
+  ASocket_exception(ASocket_exception const &) noexcept;
+  virtual ~ASocket_exception(void) noexcept;
+  ASocket_exception	&operator=(ASocket_exception const &) noexcept;
   virtual char const	*what(void) const noexcept;
 private:
   char const	*m_what;

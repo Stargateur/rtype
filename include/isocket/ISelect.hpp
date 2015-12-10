@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Tue Dec  8 13:56:31 2015 Antoine Plaskowski
-// Last update Tue Dec  8 15:49:21 2015 Antoine Plaskowski
+// Last update Thu Dec 10 02:25:19 2015 Antoine Plaskowski
 //
 
 #ifndef		ISELECT_HPP_
@@ -29,7 +29,10 @@ public:
 class	ISelect_exception : public std::exception
 {
 public:
-  virtual ~ISelect_exception(void);
+  ISelect_exception(void) noexcept;
+  ISelect_exception(ISelect_exception const &) noexcept;
+  virtual ~ISelect_exception(void) noexcept;
+  ISelect_exception	&operator=(ISelect_exception const &) noexcept;
 };
 
 #endif		/* !ISELECT_HPP_ */

@@ -5,7 +5,7 @@
 ## Login   <plasko_a@epitech.eu>
 ## 
 ## Started on  Fri Nov 20 04:13:39 2015 Antoine Plaskowski
-## Last update Thu Dec 10 16:30:04 2015 Antoine Plaskowski
+## Last update Sat Dec 12 19:18:53 2015 Roussel Rodolphe
 ##
 
 CLIENT		=	rtype_client
@@ -32,7 +32,7 @@ LEVEL		?=	3
 
 COLOR		?=	no
 
-LIB		=	-l dl $(shell pkg-config --libs sfml-graphics sfml-window sfml-system sfml-network) -lrt
+LIB		=	-l dl $(shell pkg-config --libs sfml-graphics sfml-window sfml-system sfml-network) -lrt -lpthread
 
 INCLUDE		=	-I include -I include/server -I include/client -I include/itime -I include/isocket -I include/iprotocol
 INCLUDE		+=	$(shell pkg-config --cflags sfml-graphics sfml-window sfml-system sfml-network)

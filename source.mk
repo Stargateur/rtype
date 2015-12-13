@@ -5,7 +5,7 @@
 ## Login   <bury_a@epitech.eu>
 ## 
 ## Started on  Mon Nov 16 02:02:18 2015 Anthony Bury
-## Last update Sat Dec 12 19:18:28 2015 Roussel Rodolphe
+## Last update Sun Dec 13 21:55:42 2015 tacite_d
 ##
 
 DIR		=		source/
@@ -53,4 +53,5 @@ SRC_SERVER	+=		$(DIR_THREADPOOL)ThreadPool.cpp
 SRC_CLIENT	+=		$(DIR_CLIENT)main.cpp
 SRC_CLIENT	+=		$(DIR_CLIENT)ICore.cpp
 SRC_CLIENT	+=		$(DIR_CLIENT)Core.cpp
-SRC_CLIENT	+=		$(DIR_CLIENT)View.cpp
+SRC_CLIENT	+=		$(DIR_CLIENT)RView.cpp
+SRC_CLIENT	+=		$(DIR_CLIENT)RButton.cpp

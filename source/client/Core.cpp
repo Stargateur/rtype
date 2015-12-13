@@ -15,7 +15,6 @@
 Core::Core(void) :
   video(800, 600)
 {
-  this->window = new sf::RenderWindow();
 }
 
 Core::~Core(void)
@@ -24,42 +23,58 @@ Core::~Core(void)
 
 bool Core::init(void)
 {
-  window->create(this->video, "R-Type", sf::Style::Titlebar | sf::Style::Close);
+  this->create(this->video, "R-Type", sf::Style::Titlebar | sf::Style::Close);
   return (true);
 }
 
-void Core::checkEvents(void)
+void Core::checkEvents(RView *view)
 {
-  if (this->event.type == sf::Event::Closed)
-    window->close();
-  if (this->event.type == sf::Event::KeyPressed)
-    if (this->event.key.code == sf::Keyboard::Escape)
-      window->close();
+	sf::Vector2i mouse_pos;
+
+	mouse_pos = sf::Mouse::getPosition(*this);
+	if (this->event.type == sf::Event::Closed)
+		this->close();
+	if (this->event.type == sf::Event::KeyPressed)
+		if (this->event.key.code == sf::Keyboard::Escape)
+			this->close();
+	view->HandleEvent(mouse_pos);
 }
 
 void Core::loop(void)
 {
   sf::Font font;
   sf::Text text;
+  sf::Texture texture;
 
-  font.loadFromFile("font/arial.ttf");
+/*  font.loadFromFile("font/arial.ttf");
   text.setString("hello");
   text.setFont(font);
   text.setCharacterSize(30);
   text.setStyle(sf::Text::Bold);
-  text.setColor(sf::Color::Red);
-  window->clear();
-  while (window->isOpen())
+  text.setColor(sf::Color::Blue);
+  toto.setFillColor(sf::Color::Green);*/
+//  this->clear();
+  while (this->isOpen())
     {
-      window->clear();
-      window->draw(text);
-      window->display();
-      if (window->pollEvent(this->event))
-	this->checkEvents();
+      this->clear();
+      this->drawView();
+      this->display();
+     if (this->pollEvent(this->event))
+		this->checkEvents(this->_currentView);
     }
 }
 
-sf::RenderWindow *Core::getWindow()
+void	Core::addView(RView *view)
 {
-  return (this->window);
+	this->_lstView.push_back(view);
+	if (this->_lstView.size() == 1)
+		this->_currentView = view;
+}
+
+void	Core::drawView()
+{
+	for (size_t index = 0; index != this->_currentView->getLstButton().size(); ++index)
+	{
+		this->draw(*(this->_currentView->getLstButton()[index]));
+	}
 }

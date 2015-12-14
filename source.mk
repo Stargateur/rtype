@@ -5,7 +5,7 @@
 ## Login   <bury_a@epitech.eu>
 ## 
 ## Started on  Mon Nov 16 02:02:18 2015 Anthony Bury
-## Last update Thu Dec 10 16:41:41 2015 Antoine Plaskowski
+## Last update Mon Dec 14 17:51:26 2015 Antoine Plaskowski
 ##
 
 DIR		=		source/
@@ -19,6 +19,8 @@ DIR_ITIME	=		$(DIR)itime/
 DIR_ISOCKET	=		$(DIR)isocket/
 
 DIR_IPROTOCOL	=		$(DIR)iprotocol/
+
+DIR_THREADPOOL	=		$(DIR_SERVER)/threadPool/
 
 SRC		+=		$(DIR_ISOCKET)ISelect.cpp
 SRC		+=		$(DIR_ISOCKET)Select.cpp
@@ -48,8 +50,11 @@ SRC_SERVER	+=		$(DIR_SERVER)main.cpp
 SRC_SERVER	+=		$(DIR_SERVER)Server.cpp
 SRC_SERVER	+=		$(DIR_SERVER)Client.cpp
 SRC_SERVER	+=		$(DIR_SERVER)IEntite.cpp
+SRC_SERVER	+=		$(DIR_THREADPOOL)Task.cpp
+SRC_SERVER	+=		$(DIR_THREADPOOL)ThreadPool.cpp
 
 SRC_CLIENT	+=		$(DIR_CLIENT)main.cpp
 SRC_CLIENT	+=		$(DIR_CLIENT)ICore.cpp
 SRC_CLIENT	+=		$(DIR_CLIENT)Core.cpp
-SRC_CLIENT	+=		$(DIR_CLIENT)View.cpp
+SRC_CLIENT	+=		$(DIR_CLIENT)RView.cpp
+SRC_CLIENT	+=		$(DIR_CLIENT)RButton.cpp

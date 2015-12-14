@@ -12,12 +12,15 @@
 # define	CORE_HPP_
 
 # include	"ICore.hpp"
+# include	"RView.hpp"
 
 class Core : public ICore
 {
-  sf::RenderWindow *window;
-  sf::VideoMode video;
-  sf::Event event;
+ private:
+	std::vector<RView *>	_lstView;
+	RView*				_currentView;
+	sf::VideoMode video;
+	sf::Event event;
 
 public:
   Core(void);
@@ -26,8 +29,9 @@ public:
 public:
   bool init(void);
   void loop(void);
-  void checkEvents(void);
-  sf::RenderWindow *getWindow();
+  void checkEvents(RView *);
+  void addView(RView *);
+  void drawView();
 };
 
 #endif		/* !CORE_HPP_ */

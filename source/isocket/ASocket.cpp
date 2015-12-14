@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 05:43:34 2015 Antoine Plaskowski
-// Last update Thu Dec 10 16:25:03 2015 Antoine Plaskowski
+// Last update Thu Dec 10 16:36:04 2015 Antoine Plaskowski
 //
 
 #include	<algorithm>
@@ -31,10 +31,6 @@ int	ASocket::get_fd(void) const
 
 ASocket_exception::ASocket_exception(char const *what) :
   m_what(what)
-{
-}
-
-ASocket_exception::ASocket_exception(void) noexcept
 {
 }
 

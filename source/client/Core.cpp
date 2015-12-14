@@ -37,7 +37,8 @@ void Core::checkEvents(RView *view)
 	if (this->event.type == sf::Event::KeyPressed)
 		if (this->event.key.code == sf::Keyboard::Escape)
 			this->close();
-	view->HandleEvent(mouse_pos);
+	if (this->event.type == sf::Event::MouseButtonPressed)
+		view->HandleEvent(mouse_pos);
 }
 
 void Core::loop(void)
@@ -54,13 +55,13 @@ void Core::loop(void)
   text.setColor(sf::Color::Blue);
   toto.setFillColor(sf::Color::Green);*/
 //  this->clear();
-  while (this->isOpen())
-    {
-      this->clear();
-      this->drawView();
-      this->display();
-     if (this->pollEvent(this->event))
-		this->checkEvents(this->_currentView);
+	while (this->isOpen())
+	{
+		this->clear();
+		this->drawView();
+		this->display();
+		if (this->pollEvent(this->event))
+			this->checkEvents(this->_currentView);
     }
 }
 

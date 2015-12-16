@@ -19,12 +19,15 @@ class View : public sf::RenderWindow
  private:
 	sf::VideoMode video;
 	sf::Event event;
+	// controller;
+	// model;
 
 public:
   View(void);
   ~View(void);
 
 public:
+	void handleEvent(void /* controller */ /* model */);
   bool init(void);
   void loop(void);
 };

@@ -19,6 +19,19 @@ View::~View(void)
 {
 }
 
+void	View::handleEvent(void /* controller */ /* model */)
+{
+	while (this->pollEvent(this->event))
+	{
+		if (this->event.type == sf::Event::Closed)
+			this->close();
+		if ((this->event.type == sf::Event::KeyPressed) && (this->event.key.code == sf::Keyboard::Escape))
+			this->close();
+		/* envoyer au controller
+			controller->update(this->event, model) */
+	}
+}
+
 bool View::init(void)
 {
   this->create(this->video, "R-Type", sf::Style::Titlebar | sf::Style::Close);

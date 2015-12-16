@@ -5,17 +5,21 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:36:20 2015 Kevin Costa
-// Last update Wed Dec  9 14:36:59 2015 Kevin Costa
+// Last update Wed Dec 16 16:53:50 2015 Kevin Costa
 //
 
 #ifndef		CONTROLLER_HPP_
 # define	CONTROLLER_HPP_
+
+# include	<SFML/Window.hpp>
+# include	"Model.hpp"
 
 class Controller
 {
 public:
   Controller(void);
   ~Controller(void);
+  void update(sf::Event &event, Model &model);
 };
 
 #endif		/* !CONTROLLER_HPP_ */

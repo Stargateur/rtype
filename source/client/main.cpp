@@ -8,16 +8,25 @@
 // Last update Wed Dec  9 16:22:05 2015 Antoine Plaskowski
 //
 
-#include <unistd.h>
+#if				defined _WIN32 || defined _WIN64
+# ifndef		WIN32
+#  define		WIN32
+# endif
+# include <io.h>
+# include <Windows.h>
+#else
+# include <unistd.h>
+#endif
 #include <cstring>
 #include "Core.hpp"
 #include "RView.hpp"
 #include "RButton.hpp"
-#include "TCP_client.hpp"
-#include "UDP_client.hpp"
-#include "UDP_server.hpp"
 
+#ifdef WIN32
+int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
+#else
 int	main(void)
+#endif
 {
 	Core billy;
 	RButton *b1 = new RButton(50, 50, 200, 100, "b1");
@@ -26,27 +35,12 @@ int	main(void)
 	b2->setFillColor(sf::Color::Blue);
   	RButton *b3 = new RButton(50, 400, 200, 100, "b3");
 	b3->setFillColor(sf::Color::Yellow);
-	std::cout << "test" << std::endl;
   	RView *toto = new RView();
-  	std::cout << "test2" << std::endl;
 	toto->addRButton(b1);
 	toto->addRButton(b2);
 	toto->addRButton(b3);
-  	std::cout << "test3" << std::endl;
 
 	billy.init();
 	billy.addView(toto);
-  	std::cout << "test4" << std::endl;
 	billy.loop();
-
-  //  ITCP_client	&yolo = *new TCP_client("localhost", "4242");
-  //while (42);
-  // UDP_client	client("127.0.0.1", "4242");
-
-  // uint8_t	toto[4242];
-  // memcpy(toto, "bonjour", 7);
-  // client.send(toto[0], 7);
-
-  // uintmax_t ret = client.recv(toto[0], 4242);
-  // write(1, toto, ret);
 }

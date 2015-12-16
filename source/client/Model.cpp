@@ -8,7 +8,7 @@
 // Last update Wed Dec  9 14:30:04 2015 Kevin Costa
 //
 
-#include "Model.cpp"
+#include "Model.hpp"
 
 Model::Model()
 {

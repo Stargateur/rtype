@@ -16,7 +16,9 @@
 # include	<iostream>
 # include	<string>
 
-class RButton : public sf::RectangleShape
+# include	"AElement.hpp"
+
+class RButton : public sf::RectangleShape, public AElement
 {
 private:
 	std::string	_name;

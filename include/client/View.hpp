@@ -11,27 +11,22 @@
 #ifndef		CORE_HPP_
 # define	CORE_HPP_
 
-# include	"ICore.hpp"
-# include	"RView.hpp"
+# include	<SFML/Graphics.hpp>
+# include	<SFML/Window.hpp>
 
-class Core : public ICore
+class View : public sf::RenderWindow
 {
  private:
-	std::vector<RView *>	_lstView;
-	RView*				_currentView;
 	sf::VideoMode video;
 	sf::Event event;
 
 public:
-  Core(void);
-  ~Core(void);
+  View(void);
+  ~View(void);
 
 public:
   bool init(void);
   void loop(void);
-  void checkEvents(RView *);
-  void addView(RView *);
-  void drawView();
 };
 
 #endif		/* !CORE_HPP_ */

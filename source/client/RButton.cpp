@@ -10,7 +10,8 @@
 
 #include	"RButton.hpp"
 
-RButton::RButton(float x, float y, float longu, float larg, std::string const& name)
+RButton::RButton(float x, float y, float longu, float larg, std::string const& name) :
+	AElement()
 {
 	this->_name = name;
 	this->setSize(sf::Vector2f(longu, larg));
@@ -27,8 +28,8 @@ void	RButton::eventFct(sf::Vector2i mouse_pos)
 
 	x = mouse_pos.x;
   	y = mouse_pos.y;
-      if(sf::Mouse::isButtonPressed(sf::Mouse::Left))      	
-      {
+    if(sf::Mouse::isButtonPressed(sf::Mouse::Left))      	
+    {
 	  	if(this->getGlobalBounds().contains(x, y))
   			std::cout << "changement de texture : Bouton " << this->_name << " pressé" << std::endl;
   	}

@@ -1,9 +1,17 @@
 #pragma once
+
+typedef enum e_id
+{
+	BUTTON = 1,
+	TEXT = 2,
+	SPRITE = 3
+} ID;
+
 class AElement
 {
 	int m_id;
 public:
-	AElement(void);
+	AElement(int);
 	~AElement(void);
 
 public:

@@ -2,7 +2,8 @@
 
 
 
-AElement::AElement(void)
+AElement::AElement(int id) :
+	m_id(id)
 {
 }
 

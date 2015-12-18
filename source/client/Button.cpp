@@ -1,5 +1,5 @@
 /*
-** RButton.cpp for RButton in /home/tacite_d/TEK3/rtype/source/client
+** Button.cpp for Button in /home/tacite_d/TEK3/rtype/source/client
 ** 
 ** Made by tacite_d
 ** Login   <tacite_d@Akagouan>
@@ -8,21 +8,25 @@
 ** Last update Thu Dec 10 17:35:59 2015 tacite_d
 */
 
-#include	"RButton.hpp"
+#include	"Button.hpp"
 
-RButton::RButton(float x, float y, float longu, float larg, std::string const& name) :
-	AElement()
+Button::Button(float x, float y, float longu, float larg, std::string const& name) :
+	AElement(BUTTON)
 {
 	this->_name = name;
 	this->setSize(sf::Vector2f(longu, larg));
 	this->setPosition(x, y);
 }
 
-RButton::~RButton()
+Button::~Button()
 {
 }
 
-void	RButton::eventFct(sf::Vector2i mouse_pos)
+void Button::update()
+{
+}
+
+void	Button::eventFct(sf::Vector2i mouse_pos)
 {
   	float x, y;
 

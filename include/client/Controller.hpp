@@ -12,6 +12,7 @@
 # define	CONTROLLER_HPP_
 
 # include	<SFML/Window.hpp>
+
 # include	"Model.hpp"
 
 class Controller

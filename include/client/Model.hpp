@@ -11,11 +11,34 @@
 #ifndef		MODEL_HPP_
 # define	MODEL_HPP_
 
+# include	<vector>
+# include	<map>
+
+# include	"Button.hpp"
+# include	"Sprite.hpp"
+
+typedef enum e_state
+{
+	CONNEXION,
+	PRINCIPAL,
+	PARAMS,
+	LIST,
+	GAME
+} State;
+
 class Model
 {
+  std::map<State, std::vector<AElement *>> m_elements;
+  State m_actual;
+
 public:
   Model(void);
   ~Model(void);
+
+public:
+  std::vector<AElement *> getAllElements(void);
+  std::vector<AElement *> getActifElement(void);
+  void setState(State menu);
 };
 
 #endif		/* !MODEL_HPP_ */

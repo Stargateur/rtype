@@ -12,8 +12,40 @@
 
 Model::Model()
 {
+	std::vector<AElement *> tmp;
+
+	this->m_actual = CONNEXION;
+	tmp.push_back(new Button(50, 50, 200, 100, "b1"));
+	tmp.push_back(new Button(400, 50, 200, 100, "b2"));
+	tmp.push_back(new Button(50, 400, 200, 100, "b3"));
+	this->m_elements[CONNEXION] = tmp;
+	tmp.clear();
+	this->m_elements[PRINCIPAL] = tmp;
+	this->m_elements[PARAMS] = tmp;
+	this->m_elements[LIST] = tmp;
+	this->m_elements[GAME] = tmp;
 }
 
 Model::~Model()
 {
+}
+
+std::vector<AElement *> Model::getAllElements(void)
+{
+	return (this->m_elements[this->m_actual]);
+}
+
+std::vector<AElement*> Model::getActifElement(void)
+{
+	std::vector<AElement *> tmp;
+
+	for (size_t i = 0; i < this->m_elements[this->m_actual].size(); i++)
+		if (this->m_elements[this->m_actual][i]->getId() == BUTTON)
+			tmp.push_back(this->m_elements[this->m_actual][i]);
+	return (tmp);
+}
+
+void Model::setState(State menu)
+{
+	this->m_actual = menu;
 }

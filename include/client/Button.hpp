@@ -29,7 +29,7 @@ public:
 	~Button();
 	void		update();
 	void		eventFct(sf::Vector2i);
-
+	void		aff(View &);
 };
 
 #endif /* !Button_HPP_ */

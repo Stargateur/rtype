@@ -30,7 +30,7 @@ Model::~Model()
 {
 }
 
-std::vector<AElement *> Model::getAllElements(void)
+std::vector<AElement *> Model::getElements(void)
 {
 	return (this->m_elements[this->m_actual]);
 }

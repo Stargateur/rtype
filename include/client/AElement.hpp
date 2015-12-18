@@ -1,5 +1,9 @@
 #pragma once
 
+#include "View.hpp"
+
+class View;
+
 typedef enum e_id
 {
 	BUTTON = 1,
@@ -18,5 +22,6 @@ public:
 	void setId(int);
 	int getId(void) const;
 	virtual void update(void) = 0;
+	virtual void aff(View &) = 0;
 };
 

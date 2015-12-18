@@ -10,8 +10,7 @@
 
 #include	"Button.hpp"
 
-Button::Button(float x, float y, float longu, float larg, std::string const& name) :
-	AElement(BUTTON)
+Button::Button(float x, float y, float longu, float larg, std::string const& name) : AElement(BUTTON)
 {
 	this->_name = name;
 	this->setSize(sf::Vector2f(longu, larg));
@@ -38,4 +37,9 @@ void	Button::eventFct(sf::Vector2i mouse_pos)
   			std::cout << "changement de texture : Bouton " << this->_name << " pressé" << std::endl;
   	}
 
+}
+
+void	Button::aff(View &view)
+{
+	view.draw(*this);
 }

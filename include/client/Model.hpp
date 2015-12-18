@@ -36,7 +36,7 @@ public:
   ~Model(void);
 
 public:
-  std::vector<AElement *> getAllElements(void);
+  std::vector<AElement *> getElements(void);
   std::vector<AElement *> getActifElement(void);
   void setState(State menu);
 };

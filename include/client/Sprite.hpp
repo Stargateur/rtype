@@ -9,4 +9,8 @@ class Sprite : public AElement, public sf::Sprite
 public:
 	Sprite();
 	~Sprite();
+
+public:
+	void update();
+	void aff(View &);
 };

@@ -14,8 +14,8 @@
 # include	<vector>
 # include	<map>
 
-# include	"Button.hpp"
 # include	"Sprite.hpp"
+# include "Button.hpp"
 
 typedef enum e_state
 {
@@ -37,7 +37,7 @@ public:
 
 public:
   std::vector<AElement *> getElements(void);
-  std::vector<AElement *> getActifElement(void);
+  std::vector<AElement *> getButtonElements(void);
   void setState(State menu);
 };
 

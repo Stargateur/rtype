@@ -1,8 +1,12 @@
-#pragma once
+#ifndef		AELEMENT_HPP_
+# define	AELEMENT_HPP_
 
-#include "View.hpp"
+# include <SFML/Graphics.hpp>
+# include <SFML/Window.hpp>
+# include <SFML/System.hpp>
 
 class View;
+class Model;
 
 typedef enum e_id
 {
@@ -21,7 +25,8 @@ public:
 public:
 	void setId(int);
 	int getId(void) const;
-	virtual void update(void) = 0;
-	virtual void aff(View &) = 0;
+	virtual void update(const sf::Event &, Model &) = 0;
+	virtual void aff(View *) = 0;
 };
 
+#endif

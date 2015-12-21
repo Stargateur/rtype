@@ -19,17 +19,16 @@ View::~View(void)
 {
 }
 
-void	View::handleEvent(void /* controller */ /* model */)
+void	View::handleEvent(void)
 {
 	while (this->pollEvent(this->event))
-	{
-		if (this->event.type == sf::Event::Closed)
-			this->close();
-		if ((this->event.type == sf::Event::KeyPressed) && (this->event.key.code == sf::Keyboard::Escape))
-			this->close();
-		/* envoyer au controller
-			controller->update(this->event, model) */
-	}
+		{
+			if (this->event.type == sf::Event::Closed)
+				this->close();
+			if ((this->event.type == sf::Event::KeyPressed) && (this->event.key.code == sf::Keyboard::Escape))
+				this->close();
+			this->m_control.update(this->event, this->m_model);
+		}
 }
 
 bool View::init(void)
@@ -38,23 +37,21 @@ bool View::init(void)
   return (true);
 }
 
+void View::aff(void)
+{
+	std::vector<AElement *> tmp = this->m_model.getElements();
+
+	for (size_t i = 0; i < tmp.size(); i++)
+		tmp[i]->aff(this);
+}
+
 void View::loop(void)
 {
-  sf::Font font;
-  sf::Text text;
-  sf::Texture texture;
-
-/*  font.loadFromFile("font/arial.ttf");
-  text.setString("hello");
-  text.setFont(font);
-  text.setCharacterSize(30);
-  text.setStyle(sf::Text::Bold);
-  text.setColor(sf::Color::Blue);
-  toto.setFillColor(sf::Color::Green);*/
-//  this->clear();
 	while (this->isOpen())
-	{
-		this->clear();
-		this->display();
+		{
+			this->clear();
+			this->handleEvent();
+			this->aff();
+			this->display();
     }
 }

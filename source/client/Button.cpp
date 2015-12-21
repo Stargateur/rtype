@@ -8,38 +8,43 @@
 ** Last update Thu Dec 10 17:35:59 2015 tacite_d
 */
 
+#include	"View.hpp"
 #include	"Button.hpp"
 
-Button::Button(float x, float y, float longu, float larg, std::string const& name) : AElement(BUTTON)
+Button::Button(float x, float y, float longu, float larg, std::string const& name, void (Button::*ptr)(Model &)) : AElement(BUTTON)
 {
-	this->_name = name;
+	this->m_name = name;
 	this->setSize(sf::Vector2f(longu, larg));
 	this->setPosition(x, y);
+	this->m_text = NULL;
+	this->m_ptr = ptr;
 }
 
 Button::~Button()
 {
 }
 
-void Button::update()
+void Button::update(const sf::Event &e, Model &m)
 {
+	if (e.type == sf::Event::EventType::TextEntered)
+		this->m_text->update(e, m);
+	else if (this->m_ptr != NULL)
+		(this->*m_ptr)(m);
 }
 
-void	Button::eventFct(sf::Vector2i mouse_pos)
+void	Button::aff(View *view)
 {
-  	float x, y;
-
-	x = mouse_pos.x;
-  	y = mouse_pos.y;
-    if(sf::Mouse::isButtonPressed(sf::Mouse::Left))      	
-    {
-	  	if(this->getGlobalBounds().contains(x, y))
-  			std::cout << "changement de texture : Bouton " << this->_name << " pressé" << std::endl;
-  	}
-
+	view->draw(*this);
+	if (this->m_text != NULL)
+		this->m_text->aff(view);
 }
 
-void	Button::aff(View &view)
+void Button::setText(Text *text)
 {
-	view.draw(*this);
+	this->m_text = text;
+}
+
+Text *Button::getText(void) const
+{
+	return (this->m_text);
 }

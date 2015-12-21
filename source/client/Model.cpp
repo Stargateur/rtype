@@ -35,7 +35,7 @@ std::vector<AElement *> Model::getElements(void)
 	return (this->m_elements[this->m_actual]);
 }
 
-std::vector<AElement*> Model::getActifElement(void)
+std::vector<AElement*> Model::getButtonElements(void)
 {
 	std::vector<AElement *> tmp;
 

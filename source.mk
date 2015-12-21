@@ -54,7 +54,10 @@ SRC_SERVER	+=		$(DIR_THREADPOOL)Task.cpp
 SRC_SERVER	+=		$(DIR_THREADPOOL)ThreadPool.cpp
 
 SRC_CLIENT	+=		$(DIR_CLIENT)main.cpp
-SRC_CLIENT	+=		$(DIR_CLIENT)ICore.cpp
-SRC_CLIENT	+=		$(DIR_CLIENT)Core.cpp
-SRC_CLIENT	+=		$(DIR_CLIENT)RView.cpp
-SRC_CLIENT	+=		$(DIR_CLIENT)RButton.cpp
+SRC_CLIENT	+=		$(DIR_CLIENT)View.cpp
+SRC_CLIENT	+=		$(DIR_CLIENT)Controller.cpp
+SRC_CLIENT	+=		$(DIR_CLIENT)Model.cpp
+SRC_CLIENT	+=		$(DIR_CLIENT)Button.cpp
+SRC_CLIENT	+=		$(DIR_CLIENT)Text.cpp
+SRC_CLIENT	+=		$(DIR_CLIENT)Sprite.cpp
+SRC_CLIENT	+=		$(DIR_CLIENT)AElement.cpp

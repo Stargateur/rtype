@@ -18,9 +18,7 @@
 # include <unistd.h>
 #endif
 #include <cstring>
-#include "Core.hpp"
-#include "RView.hpp"
-#include "Button.hpp"
+#include "View.hpp"
 
 #ifdef WIN32
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
@@ -28,19 +26,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 int	main(void)
 #endif
 {
-	Core billy;
-	Button *b1 = new Button(50, 50, 200, 100, "b1");
-	b1->setFillColor(sf::Color::Green);
-	Button *b2 = new Button(400, 50, 200, 100, "b2");
-	b2->setFillColor(sf::Color::Blue);
-  	Button *b3 = new Button(50, 400, 200, 100, "b3");
-	b3->setFillColor(sf::Color::Yellow);
-  	RView *toto = new RView();
-	toto->addButton(b1);
-	toto->addButton(b2);
-	toto->addButton(b3);
+	View billy;
 
-	billy.init();
-	billy.addView(toto);
+	if (!billy.init())
+		return (1);
 	billy.loop();
 }

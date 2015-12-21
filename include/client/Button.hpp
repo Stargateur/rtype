@@ -8,28 +8,32 @@
 ** Last update Thu Dec 10 17:36:16 2015 tacite_d
 */
 
-#ifndef Button_HPP_
-# define Button_HPP_
+#ifndef		BUTTON_HPP_
+# define	BUTTON_HPP_
 
 # include	<SFML/Graphics.hpp>
 # include	<SFML/Window.hpp>
 # include	<iostream>
 # include	<string>
 
-# include	"AElement.hpp"
+# include	"Text.hpp"
 
-class Button : public sf::RectangleShape, public AElement
+class Button : public AElement, public sf::RectangleShape
 {
 private:
-	std::string	_name;
-	sf::Texture _pressedT;
-	sf::Texture _unpressedT;
+	std::string	m_name;
+	Text *m_text;
+	void (Button::*m_ptr)(Model &);
+
 public:
-	Button(float, float, float, float, std::string const&);
+	Button(float, float, float, float, std::string const&, void (Button::*ptr)(Model &) = NULL);
 	~Button();
-	void		update();
-	void		eventFct(sf::Vector2i);
-	void		aff(View &);
+
+public:
+	void update(const sf::Event &, Model &);
+	void aff(View *);
+	void setText(Text *);
+	Text *getText(void) const;
 };
 
-#endif /* !Button_HPP_ */
+#endif /* !BUTTON_HPP_ */

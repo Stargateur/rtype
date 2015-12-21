@@ -22,22 +22,22 @@ void		Controller::update(sf::Event &event, Model &model)
 {
   std::vector<AElement *> elements;
 
-  elements = model.getElements();
+  elements = model.getButtonElements();
   for (size_t i = 0; i < elements.size(); i++)
-    {
-      switch (event.type)
-	{
-	case sf::Event::Closed:
-	  break;
-	case sf::Event::TextEntered:
-	  break;
-	case sf::Event::KeyPressed:
-	  break;
-	case sf::Event::KeyReleased:
-	  break;
-	case sf::Event::MouseButtonPressed:
-	  break;
-	}
+		{
+			switch (event.type)
+	      {
+			case sf::Event::Closed:
+    	  break;
+    	case sf::Event::TextEntered || sf::Event::MouseButtonPressed:
+				if (elements[i]->getId() == BUTTON)
+					elements[i]->update(event, model);
+    	  break;
+    	case sf::Event::KeyPressed:
+	      break;
+    	case sf::Event::KeyReleased:
+	      break;
+		    }
     }
 }
 

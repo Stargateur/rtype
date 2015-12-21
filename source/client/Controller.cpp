@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:31:05 2015 Kevin Costa
-// Last update Wed Dec 16 17:12:19 2015 Kevin Costa
+// Last update Mon Dec 21 14:35:44 2015 Anthony Bury
 //
 
 #include	"Controller.hpp"
@@ -24,20 +24,22 @@ void		Controller::update(sf::Event &event, Model &model)
 
   elements = model.getButtonElements();
   for (size_t i = 0; i < elements.size(); i++)
-		{
-			switch (event.type)
-	      {
-			case sf::Event::Closed:
+    {
+      switch (event.type)
+	{
+	case sf::Event::Closed:
     	  break;
     	case sf::Event::TextEntered || sf::Event::MouseButtonPressed:
-				if (elements[i]->getId() == BUTTON)
-					elements[i]->update(event, model);
+	  if (elements[i]->getId() == BUTTON)
+	    elements[i]->update(event, model);
     	  break;
     	case sf::Event::KeyPressed:
-	      break;
+	  break;
     	case sf::Event::KeyReleased:
-	      break;
-		    }
+	  break;
+	default:
+	  break;
+	}
     }
 }
 

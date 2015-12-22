@@ -20,20 +20,41 @@
 
 class Button : public AElement, public sf::RectangleShape
 {
+public:
+	typedef void (*ptr)(Model &);
+public:
+	typedef enum e_buttonType
+	{
+		CONNECT,
+		PRINCIP,
+		PARAM,
+		LIST,
+		GAME,
+		UNKNOWN
+	} buttonType;
 private:
-	std::string	m_name;
 	Text *m_text;
-	void (Button::*m_ptr)(Model &);
+	ptr m_ptr;
 
 public:
-	Button(float, float, float, float, std::string const&, void (Button::*ptr)(Model &) = NULL);
+	Button(float, float, float, float, std::string const&, void (*ptrs)(Model &));
 	~Button();
 
 public:
-	void update(const sf::Event &, Model &);
+	void update(const sf::Event &, Model &, sf::Vector2i pos);
 	void aff(View *);
 	void setText(Text *);
 	Text *getText(void) const;
+
+public:
+	static void chargeConnect(Model &);
+	static void chargePrincip(Model &);
+	static void chargeParam(Model &);
+	static void chargeList(Model &);
+	static void chargeGame(Model &);
+	
+private:
+	void createPtr(buttonType);
 };
 
 #endif /* !BUTTON_HPP_ */

@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Tue Dec 22 13:17:09 2015 Alaric Degand
-// Last update Tue Dec 22 13:58:59 2015 Alaric Degand
+// Last update Tue Dec 22 15:16:28 2015 Alaric Degand
 //
 
 #ifndef		PORTGENERATOR_HPP_
@@ -16,7 +16,7 @@
 class		PortGenerator
 {
 private:
-  std::vector<int16_t>	_vPort;
+  int16_t		_AddValue;
   std::vector<bool>    	_TabOfDisp;
 public:
   PortGenerator(int16_t p_start, int16_t p_last);

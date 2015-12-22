@@ -70,7 +70,7 @@ protected:
   };
 #pragma	pack()
 public:
-  static const	uintmax_t	m_size_header = sizeof(m_packet) - sizeof(m_packet.data);
+  static const	uintmax_t	m_size_header = sizeof(struct s_packet) - (sizeof(uint8_t) * UINT16_MAX);
 };
 
 

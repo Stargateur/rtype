@@ -1,7 +1,7 @@
 #include "View.hpp"
 #include "Sprite.hpp"
 
-Sprite::Sprite() : AElement(SPRITE), sf::Sprite()
+Sprite::Sprite() : AElement(SPRITE, "")
 {
 }
 

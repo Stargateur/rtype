@@ -2,8 +2,8 @@
 
 
 
-AElement::AElement(int id) :
-	m_id(id)
+AElement::AElement(int id, const std::string &name) :
+	m_id(id), m_name(name)
 {
 }
 
@@ -20,4 +20,9 @@ void AElement::setId(int id)
 int AElement::getId(void) const
 {
 	return (this->m_id);
+}
+
+const std::string &AElement::getName(void) const
+{
+	return (this->m_name);
 }

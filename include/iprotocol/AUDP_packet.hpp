@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:57:06 2015 Antoine Plaskowski
-// Last update Tue Dec 22 16:42:43 2015 Antoine Plaskowski
+// Last update Tue Dec 22 17:34:10 2015 Antoine Plaskowski
 //
 
 #ifndef		AUDP_PACKET_HPP_
@@ -45,7 +45,7 @@ protected:
   };
 #pragma	pack()
 public:
-  static const	uintmax_t	m_size_header = sizeof(m_packet) - sizeof(m_packet.data);
+  static const	uintmax_t	m_size_header = sizeof(s_packet) - sizeof(uint8_t) * (UINT16_MAX + 1);
 };
 
 

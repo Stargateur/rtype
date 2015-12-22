@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:35:48 2015 Kevin Costa
-// Last update Tue Dec 22 15:31:41 2015 Kevin Costa
+// Last update Tue Dec 22 17:05:38 2015 Kevin Costa
 //
 
 #ifndef		MODEL_HPP_
@@ -47,6 +47,7 @@ public:
   std::vector<AElement *> getElements(void);
   std::vector<AElement *> getButtonElements(void);
   void setState(State menu);
+  State getState(void) const;
 	AElement *getElementByName(const std::string &name);
 };
 

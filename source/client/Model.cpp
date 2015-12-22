@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:29:32 2015 Kevin Costa
-// Last update Tue Dec 22 16:22:20 2015 Kevin Costa
+// Last update Tue Dec 22 17:16:08 2015 Kevin Costa
 //
 
 #include "Model.hpp"
@@ -48,32 +48,31 @@ std::vector<AElement*> Model::getButtonElements(void)
 
 void Model::Game(sf::Keyboard::Key &code)
 {
-  std::vector<AElement *> elements;
-
-  elements = this->getElements();
-  if (code == sf::Keyboard::Escape)
-    std::cout << "return" << std::endl;
-  for (size_t i = 0; i < elements.size(); i++)
+  if (this->m_actual == GAME)
     {
-      if (elements[i]->getId() == SPRITE)
-	{
-	  if (code == sf::Keyboard::Space)
-	    std::cout << "space" << std::endl;
-	  else if (code == sf::Keyboard::Up)
-	    std::cout << "up" << std::endl;
-	  else if (code == sf::Keyboard::Down)
-	    std::cout << "down" << std::endl;
-	  else if (code == sf::Keyboard::Left)
-	    std::cout << "left" << std::endl;
-	  else if (code == sf::Keyboard::Right)
-	    std::cout << "right" << std::endl;
-	}
+      if (code == sf::Keyboard::Escape)
+	std::cout << "return" << std::endl;
+      if (code == sf::Keyboard::Space)
+	std::cout << "space" << std::endl;
+      else if (code == sf::Keyboard::Up)
+	std::cout << "up" << std::endl;
+      else if (code == sf::Keyboard::Down)
+	std::cout << "down" << std::endl;
+      else if (code == sf::Keyboard::Left)
+	std::cout << "left" << std::endl;
+      else if (code == sf::Keyboard::Right)
+	std::cout << "right" << std::endl;
     }
 }
 
 void Model::setState(State menu)
 {
 	this->m_actual = menu;
+}
+
+State Model::getState(void) const
+{
+  return (this->m_actual);
 }
 
 AElement *Model::getElementByName(const std::string &name)

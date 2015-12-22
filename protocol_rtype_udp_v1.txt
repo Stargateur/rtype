@@ -124,7 +124,7 @@ Table of Contents
     +--------+-------+
     | Name   | Value |
     +--------+-------+
-    | Opcode | ?     |
+    | Opcode | 0     |
     | size   | ?     |
     +--------+-------+
 
@@ -148,7 +148,7 @@ Table of Contents
     +--------+-------+
     | Name   | Value |
     +--------+-------+
-    | Opcode | ?     |
+    | Opcode | 1     |
     | size   | ?     |
     +--------+-------+
 
@@ -169,28 +169,17 @@ Table of Contents
     +--------+-------+
     | Name   | Value |
     +--------+-------+
-    | Opcode | ?     |
+    | Opcode | 2     |
     | size   | ?     |
     +--------+-------+
 
     +---------+-----------+----------------------------+
     | Name    | Data type | Description                |
     +---------+-----------+----------------------------+
-    +---------+-----------+----------------------------+
-
-4.22 truc
-
-    +--------+-------+
-    | Name   | Value |
-    +--------+-------+
-    | Opcode | ?     |
-    | size   | ?     |
-    +--------+-------+
-
-    +---------+-----------+----------------------------+
-    | Name    | Data type | Description                |
-    +---------+-----------+----------------------------+
-    | temps | uint8_t | score |
-    | vie | uint8_t | 0 is looser 1 is winner |
-    | score | uint8_t | 0 is looser 1 is winner |
+    | haut | uint8_t | true or false |
+    | bas | uint8_t | true or false |
+    | gauche | uint8_t | true or false |
+    | droite | uint8_t | true or false |
+    | tir | uint8_t | true or false |
+    | bombe | uint8_t | true or false |
     +---------+-----------+----------------------------+

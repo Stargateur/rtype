@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Tue Dec 22 13:19:44 2015 Alaric Degand
-// Last update Tue Dec 22 14:16:13 2015 Alaric Degand
+// Last update Tue Dec 22 14:38:53 2015 Antoine Plaskowski
 //
 
 #include	<algorithm>
@@ -39,5 +39,4 @@ int16_t		PortGenerator::SeekPort(void)
 	}
     }
   throw std::logic_error("No Port available");
-  return (0);
 }

@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Thu Dec 10 16:18:33 2015 Antoine Plaskowski
-// Last update Tue Dec 22 16:09:48 2015 Antoine Plaskowski
+// Last update Tue Dec 22 23:13:47 2015 Antoine Plaskowski
 //
 
 #ifndef		IENTITE_HPP_

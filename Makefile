@@ -5,7 +5,7 @@
 ## Login   <plasko_a@epitech.eu>
 ## 
 ## Started on  Fri Nov 20 04:13:39 2015 Antoine Plaskowski
-## Last update Tue Dec 22 17:12:21 2015 Kevin Costa
+## Last update Wed Dec 23 00:02:58 2015 Antoine Plaskowski
 ##
 
 CLIENT		=	rtype_client
@@ -32,9 +32,11 @@ LEVEL		?=	3
 
 COLOR		?=	no
 
-LIB		=	-l dl $(shell pkg-config --libs sfml-graphics sfml-window sfml-system sfml-network) -lrt -lpthread
+LIB_SERVER	=	-l dl -l rt -l pthread
 
-INCLUDE		=	-I include -I include/server -I include/client -I include/itime -I include/isocket -I include/iprotocol -I include/ithread
+LIB_CLIENT	=	-l dl $(shell pkg-config --libs sfml-graphics sfml-window sfml-system sfml-network) -l rt -l pthread
+
+INCLUDE		=	-I include -I include/itime -I include/isocket -I include/iprotocol -I include/ithread
 INCLUDE		+=	$(shell pkg-config --cflags sfml-graphics sfml-window sfml-system sfml-network)
 
 CXXFLAGS	+=	-Wall -Wextra -O$(LEVEL)
@@ -54,7 +56,7 @@ ifneq ($(COLOR), no)
 CXXFLAGS	+=	-fdiagnostics-color
 endif
 
-LDFLAGS		=	$(LIB)
+LDFLAGS		=
 
 ifeq ($(DEBUG), no)
 LDFLAGS		+=	-s
@@ -76,11 +78,13 @@ OBJ_CLIENT	=	$(SRC_CLIENT:.cpp=.o)
 
 all		:	$(SERVER) $(CLIENT)
 
+$(SERVER)	:	CXXFLAGS += -I include/server
 $(SERVER)	:	$(OBJ) $(OBJ_SERVER)
-			$(CXX) $(OBJ) $(OBJ_SERVER) -o $(SERVER) $(LDFLAGS)
+			$(CXX) $(OBJ) $(OBJ_SERVER) -o $(SERVER) $(LDFLAGS) $(LIB_SERVER)
 
+$(CLIENT)	:	CXXFLAGS += -I include/client
 $(CLIENT)	:	$(OBJ) $(OBJ_CLIENT)
-			$(CXX) $(OBJ) $(OBJ_CLIENT) -o $(CLIENT) $(LDFLAGS)
+			$(CXX) $(OBJ) $(OBJ_CLIENT) -o $(CLIENT) $(LDFLAGS) $(LIB_CLIENT)
 
 clean		:
 			$(RM) -f $(OBJ)
@@ -102,6 +106,9 @@ re		:	fclean
 
 %.o		:	%.c
 			$(CC) -c $(<) -o $(@) $(CFLAGS)
+
+$(DPD_SERVER)	:	CXXFLAGS += -I include/server
+$(DPD_CLIENT)	:	CXXFLAGS += -I include/client
 
 %.dpd		:	%.cpp
 			$(CXX) -MM $(<) -o $(@) $(CXXFLAGS) -MT $(<:.cpp=.o)

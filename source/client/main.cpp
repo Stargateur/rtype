@@ -17,6 +17,7 @@
 #else
 # include <unistd.h>
 #endif
+
 #include <cstring>
 #include "View.hpp"
 

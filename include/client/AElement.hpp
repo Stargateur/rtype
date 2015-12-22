@@ -18,13 +18,16 @@ typedef enum e_id
 class AElement
 {
 	int m_id;
+	std::string m_name;
+
 public:
-	AElement(int);
+	AElement(int, const std::string &);
 	~AElement(void);
 
 public:
 	void setId(int);
 	int getId(void) const;
+	const std::string &getName(void) const;
 	virtual void update(const sf::Event &, Model &) = 0;
 	virtual void aff(View *) = 0;
 };

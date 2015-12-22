@@ -21,7 +21,6 @@
 class Button : public AElement, public sf::RectangleShape
 {
 private:
-	std::string	m_name;
 	Text *m_text;
 	void (Button::*m_ptr)(Model &);
 

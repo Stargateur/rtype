@@ -11,6 +11,14 @@
 #ifndef		MODEL_HPP_
 # define	MODEL_HPP_
 
+# ifdef		_WIN32
+#  include "ThreadWindows.hpp"
+#  include "MutexWindows.hpp"
+# else
+#  include "ThreadUnix.hpp"
+#  include "MutexUnix.hpp"
+# endif
+
 # include	<vector>
 # include	<map>
 
@@ -39,6 +47,7 @@ public:
   std::vector<AElement *> getElements(void);
   std::vector<AElement *> getButtonElements(void);
   void setState(State menu);
+	AElement *getElementByName(const std::string &name);
 };
 
 #endif		/* !MODEL_HPP_ */

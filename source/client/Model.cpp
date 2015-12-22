@@ -75,3 +75,10 @@ void Model::setState(State menu)
 {
 	this->m_actual = menu;
 }
+
+AElement *Model::getElementByName(const std::string &name)
+{
+	for (size_t i = 0; i < this->m_elements[this->m_actual].size(); i++)
+		if (this->m_elements[this->m_actual][i]->getName() == name)
+			return (this->m_elements[this->m_actual][i]);
+}

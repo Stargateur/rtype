@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:31:05 2015 Kevin Costa
-// Last update Mon Dec 21 14:35:44 2015 Anthony Bury
+// Last update Tue Dec 22 16:24:07 2015 Kevin Costa
 //
 
 #include	"Controller.hpp"
@@ -34,6 +34,7 @@ void		Controller::update(sf::Event &event, Model &model)
 	    elements[i]->update(event, model);
     	  break;
     	case sf::Event::KeyPressed:
+	    model.Game(event.key.code);
 	  break;
     	case sf::Event::KeyReleased:
 	  break;

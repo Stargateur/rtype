@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:35:48 2015 Kevin Costa
-// Last update Wed Dec  9 15:31:46 2015 Kevin Costa
+// Last update Tue Dec 22 15:31:41 2015 Kevin Costa
 //
 
 #ifndef		MODEL_HPP_
@@ -34,7 +34,7 @@ class Model
 public:
   Model(void);
   ~Model(void);
-
+  void  Game(sf::Keyboard::Key &code);
 public:
   std::vector<AElement *> getElements(void);
   std::vector<AElement *> getButtonElements(void);

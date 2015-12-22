@@ -138,9 +138,9 @@ Table of Contents
     | Name    | Data type | Description                |
     +---------+-----------+----------------------------+
     | id | uint8_t | id sprite |
-    | x | uint8_t | id sprite |
-    | y | uint8_t | id sprite |
-    | rotation | uint8_t | id sprite |
+    | x | int64_t | id sprite |
+    | y | int64_t | id sprite |
+    | rotation | double | id sprite |
     +---------+-----------+----------------------------+
 
 4.18 sounds

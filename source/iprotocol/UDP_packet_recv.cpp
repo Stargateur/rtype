@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 04:05:19 2015 Antoine Plaskowski
-// Last update Tue Dec 22 17:29:33 2015 Antoine Plaskowski
+// Last update Tue Dec 22 19:39:26 2015 Antoine Plaskowski
 //
 
 #include	<iostream>
@@ -48,7 +48,7 @@ void	UDP_packet_recv::recvfrom(IUDP_server const &socket, IUDP_server::u_sockadd
   
 void	UDP_packet_recv::get(std::string &string)
 {
-  uint8_t       size;
+  uint8_t	size;
 
   get(size);
   for (uintmax_t i = 0; i < size; i++)

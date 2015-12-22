@@ -6,8 +6,8 @@
 class Sprite : public AElement, public sf::Sprite
 {
 public:
-	Sprite();
-	~Sprite();
+  Sprite(int pos_x, int pos_y);
+  ~Sprite();
 
 public:
 	void update(const sf::Event &, Model &);

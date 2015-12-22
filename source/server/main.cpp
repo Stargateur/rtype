@@ -5,7 +5,7 @@
 // Login   <anthony.bury@epitech.eu>
 // 
 // Started on  Mon Nov 16 02:08:18 2015 Anthony Bury
-// Last update Tue Dec  8 14:28:31 2015 Antoine Plaskowski
+// Last update Tue Dec 22 11:49:46 2015 Alaric Degand
 //
 
 #include <unistd.h>
@@ -16,10 +16,14 @@
 #include "UDP_server.hpp"
 #include "UDP_client.hpp"
 #include "Select.hpp"
+#include "BasicGame.hpp"
 
 int main(int ac, char **av)
 {
-  UDP_server	server("4242");
+  IGame    	*game = new BasicGame();
+
+  game->loop();
+  /*UDP_server	server("4242");
   ISelect	&iselect(*new Select);
 
   while (42)
@@ -37,7 +41,8 @@ int main(int ac, char **av)
 	  memcpy(toto, "bonjour", 7);
 	  server.sendto(toto[0], 7, sockaddr, len);
 	}
-    }
+    }*/
+  
   // Server	yololasuite("4242");
   // while (4242)
   //   {

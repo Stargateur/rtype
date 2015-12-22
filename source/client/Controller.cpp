@@ -18,20 +18,29 @@ Controller::~Controller()
 {
 }
 
-void		Controller::update(sf::Event &event, Model &model)
+void		Controller::update(sf::Event &event, Model &model, sf::Vector2i pos)
 {
   std::vector<AElement *> elements;
 
   elements = model.getButtonElements();
+//  std::cout << elements.size() << std::endl;
   for (size_t i = 0; i < elements.size(); i++)
     {
       switch (event.type)
 	{
-	case sf::Event::Closed:
+		case sf::Event::Closed:
     	  break;
+		case sf::Event::MouseButtonPressed:
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			{
+				if (elements[i]->getId() == BUTTON)
+					elements[i]->update(event, model, pos);
+			}
+
     	case sf::Event::TextEntered || sf::Event::MouseButtonPressed:
-	  if (elements[i]->getId() == BUTTON)
-	    elements[i]->update(event, model);
+//			std::cout << "event catch" << std::endl;
+/*	  if (elements[i]->getId() == BUTTON)
+	    elements[i]->update(event, model);*/
     	  break;
     	case sf::Event::KeyPressed:
 	  break;

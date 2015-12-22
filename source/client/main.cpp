@@ -27,8 +27,8 @@ int	main(void)
 #endif
 {
 	View billy;
-
-	if (!billy.init())
+	std::cout << "bonjour billy" << std::endl;
+ 	if (!billy.init())
 		return (1);
 	billy.loop();
 }

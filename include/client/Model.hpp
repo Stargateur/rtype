@@ -17,19 +17,22 @@
 # include	"Sprite.hpp"
 # include "Button.hpp"
 
-typedef enum e_state
-{
-	CONNEXION,
-	PRINCIPAL,
-	PARAMS,
-	LIST,
-	GAME
-} State;
 
 class Model
 {
-  std::map<State, std::vector<AElement *>> m_elements;
-  State m_actual;
+public:
+	typedef enum e_state
+	{
+		CONNEXION,
+		PRINCIPAL,
+		PARAMS,
+		LIST,
+		GAME
+	} State;
+
+private:
+	std::map<State, std::vector<AElement *>> m_elements;
+	State m_actual;
 
 public:
   Model(void);

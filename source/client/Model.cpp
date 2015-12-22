@@ -15,11 +15,11 @@ Model::Model()
 	std::vector<AElement *> tmp;
 
 	this->m_actual = CONNEXION;
-	tmp.push_back(new Button(50, 50, 200, 100, "b1"));
-	tmp.push_back(new Button(400, 50, 200, 100, "b2"));
-	tmp.push_back(new Button(50, 400, 200, 100, "b3"));
+	tmp.push_back(new Button(50, 50, 200, 100, "b1", Button::chargeConnect));
+	tmp.push_back(new Button(400, 50, 200, 100, "b2", Button::chargeGame));
+	tmp.push_back(new Button(50, 400, 200, 100, "b3", Button::chargeList));
 	this->m_elements[CONNEXION] = tmp;
-	tmp.clear();
+//	tmp.clear();
 	this->m_elements[PRINCIPAL] = tmp;
 	this->m_elements[PARAMS] = tmp;
 	this->m_elements[LIST] = tmp;

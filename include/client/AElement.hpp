@@ -25,7 +25,7 @@ public:
 public:
 	void setId(int);
 	int getId(void) const;
-	virtual void update(const sf::Event &, Model &) = 0;
+	virtual void update(const sf::Event &, Model &, sf::Vector2i) = 0;
 	virtual void aff(View *) = 0;
 };
 

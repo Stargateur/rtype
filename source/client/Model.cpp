@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:29:32 2015 Kevin Costa
-// Last update Tue Dec 22 17:16:08 2015 Kevin Costa
+// Last update Tue Dec 22 17:26:23 2015 Kevin Costa
 //
 
 #include "Model.hpp"
@@ -18,7 +18,7 @@ Model::Model()
 	tmp.push_back(new Button(50, 50, 200, 100, "b1", Button::chargeConnect));
 	tmp.push_back(new Button(400, 50, 200, 100, "b2", Button::chargeGame));
 	tmp.push_back(new Button(50, 400, 200, 100, "b3", Button::chargeList));
-	//tmp.push_back(new Sprite(300, 250));
+	tmp.push_back(new Sprite(300, 250, "./font/vol.png", "billy"));
 	this->m_elements[CONNEXION] = tmp;
 //	tmp.clear();
 	this->m_elements[PRINCIPAL] = tmp;
@@ -70,7 +70,7 @@ void Model::setState(State menu)
 	this->m_actual = menu;
 }
 
-State Model::getState(void) const
+Model::State Model::getState(void) const
 {
   return (this->m_actual);
 }

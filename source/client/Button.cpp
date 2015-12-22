@@ -11,18 +11,9 @@
 #include	"View.hpp"
 #include	"Button.hpp"
 
-/*Button::Button(float x, float y, float longu, float larg, std::string const& name, buttonType type) : AElement(BUTTON)
-{
-	this->m_name = name;
-	this->setSize(sf::Vector2f(longu, larg));
-	this->setPosition(x, y);
-	this->m_text = NULL;
-	createPtr(type);
-}*/
 
-Button::Button(float x, float y, float longu, float larg, std::string const& name, void (*ptrs)(Model &)) : AElement(BUTTON)
+Button::Button(float x, float y, float longu, float larg, std::string const& name, void (*ptrs)(Model &)) : AElement(BUTTON, name)
 {
-	this->m_name = name;
 	this->setSize(sf::Vector2f(longu, larg));
 	this->setPosition(x, y);
 	this->m_text = NULL;

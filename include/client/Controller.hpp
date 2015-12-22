@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:36:20 2015 Kevin Costa
-// Last update Wed Dec 16 16:53:50 2015 Kevin Costa
+// Last update Tue Dec 22 16:24:19 2015 Kevin Costa
 //
 
 #ifndef		CONTROLLER_HPP_

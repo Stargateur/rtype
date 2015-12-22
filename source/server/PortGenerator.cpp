@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Tue Dec 22 13:19:44 2015 Alaric Degand
-// Last update Tue Dec 22 14:16:13 2015 Alaric Degand
+// Last update Tue Dec 22 15:20:26 2015 Alaric Degand
 //
 
 #include	<algorithm>
@@ -19,9 +19,9 @@ PortGenerator::PortGenerator(int16_t p_start, int16_t p_last)
     std::swap(p_start, p_last);
   for (int16_t i = p_start; i < p_last; i++)
     {
-      _vPort.push_back(i);
       _TabOfDisp.push_back(false);
     }
+  _AddValue = p_start;
 }
 
 PortGenerator::~PortGenerator()
@@ -35,9 +35,8 @@ int16_t		PortGenerator::SeekPort(void)
       if (_TabOfDisp[i] == false)
 	{
 	  _TabOfDisp[i] = true;
-	  return (_vPort[i]);
+	  return (i + _AddValue);
 	}
     }
   throw std::logic_error("No Port available");
-  return (0);
 }

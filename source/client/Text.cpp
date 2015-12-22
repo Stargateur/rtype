@@ -1,7 +1,7 @@
 #include "View.hpp"
 #include "Text.hpp"
 
-Text::Text() : AElement(TEXT)
+Text::Text() : AElement(TEXT, "")
 {
 }
 

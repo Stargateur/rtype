@@ -33,7 +33,6 @@ public:
 		UNKNOWN
 	} buttonType;
 private:
-	std::string	m_name;
 	Text *m_text;
 	ptr m_ptr;
 

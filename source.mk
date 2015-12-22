@@ -5,7 +5,7 @@
 ## Login   <bury_a@epitech.eu>
 ## 
 ## Started on  Mon Nov 16 02:02:18 2015 Anthony Bury
-## Last update Tue Dec 22 11:44:53 2015 Alaric Degand
+## Last update Tue Dec 22 13:50:15 2015 Alaric Degand
 ##
 
 DIR		=		source/
@@ -52,6 +52,7 @@ SRC_SERVER	+=		$(DIR_SERVER)Client.cpp
 SRC_SERVER	+=		$(DIR_SERVER)IEntite.cpp
 SRC_SERVER	+=		$(DIR_SERVER)IGame.cpp
 SRC_SERVER	+=		$(DIR_SERVER)BasicGame.cpp
+SRC_SERVER	+=		$(DIR_SERVER)PortGenerator.cpp
 SRC_SERVER	+=		$(DIR_THREADPOOL)Task.cpp
 SRC_SERVER	+=		$(DIR_THREADPOOL)ThreadPool.cpp
 

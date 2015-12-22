@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 04:05:19 2015 Antoine Plaskowski
-// Last update Thu Dec 10 03:46:08 2015 Antoine Plaskowski
+// Last update Tue Dec 22 17:07:05 2015 Antoine Plaskowski
 //
 
 #include	<iostream>
@@ -24,14 +24,14 @@ TCP_packet_recv::~TCP_packet_recv(void)
 bool	TCP_packet_recv::recv(ITCP_client const &socket)
 {
   if (m_recv >= sizeof(m_buffer))
-    return (true);
+    throw std::exception();
   uintmax_t	ret;
   if (m_recv < m_size_header)
     ret = socket.recv(m_buffer[m_recv], m_size_header - m_recv);
   else
     ret = socket.recv(m_buffer[m_recv], m_size_header + get_size() - m_recv);
   if (ret == 0)
-    return (true);
+    throw std::exception();
   m_recv += ret;
   if (m_recv < m_size_header)
     return (false);
@@ -39,7 +39,7 @@ bool	TCP_packet_recv::recv(ITCP_client const &socket)
     return (false);
   set_size(0);
   m_recv = 0;
-  return (m_recv != m_size_header + get_size());
+  return (true);
 }
 
 void	TCP_packet_recv::get(std::string &string)

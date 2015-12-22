@@ -3,9 +3,7 @@
 
 Sprite::Sprite(int pos_x, int pos_y) : AElement(SPRITE), sf::Sprite()
 {
-  sf::Texture text;
-  text.loadFromFile("./font/vol.png");
-
+  this->text.loadFromFile("./font/vol.png");
   this->setTexture(text);
   this->setTextureRect(sf::IntRect(10, 10, 70, 68));
   this->setPosition(pos_x, pos_y);

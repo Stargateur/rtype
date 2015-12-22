@@ -5,6 +5,7 @@
 
 class Sprite : public AElement, public sf::Sprite
 {
+  sf::Texture text;
 public:
   Sprite(int pos_x, int pos_y);
   ~Sprite();

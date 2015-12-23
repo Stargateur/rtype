@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Thu Dec 10 16:18:33 2015 Antoine Plaskowski
-// Last update Wed Dec 23 17:37:55 2015 Antoine Plaskowski
+// Last update Wed Dec 23 17:52:21 2015 Antoine Plaskowski
 //
 
 #ifndef		IENTITE_HPP_
@@ -34,6 +34,7 @@ public:
   virtual uintmax_t	get_team(void) const = 0;
   virtual File const	&get_sound(void) const = 0;
   virtual File const	&get_sprite(void) const = 0;
+  virtual bool		check_colide(std::list<IEntite *> const &ientites) const = 0;
 };
 
 extern "C"

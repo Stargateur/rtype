@@ -5,7 +5,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Wed Oct 21 21:04:15 2015 Bertrand-Rapello Baptiste
-// Last update Wed Dec 23 09:55:39 2015 Alaric Degand
+// Last update Wed Dec 23 10:06:09 2015 Alaric Degand
 //
 
 #include	<stdio.h>
@@ -59,7 +59,7 @@ ITime	*new_itime(void)
   return (new Time());
 }
 
-void	Time::add(Time &first, ITime const &last)
+void	Time::add(Time &first, Time const &last)
 {
   first.m_timespec.tv_sec += last.m_timespec.tv_sec;
   if (first.m_timespec.tv_nsec + last.m_timespec.tv_nsec >= NANO_BY_SEC)
@@ -70,7 +70,7 @@ void	Time::add(Time &first, ITime const &last)
     }
 }
 
-void	Time::sub(Time &first, ITime const &last)
+void	Time::sub(Time &first, Time const &last)
 {
   
   if (first.m_timespec.tv_nsec + first.m_timespec.tv_sec >= last.m_timespec.tv_nsec + last.m_timespec.tv_sec)
@@ -83,7 +83,7 @@ void	Time::sub(Time &first, ITime const &last)
 	  first.m_timespec.tv_sec -= 1;
 	}
     }
-  else
+  /*else
     {
       Time swap = last.clone();
       
@@ -96,5 +96,5 @@ void	Time::sub(Time &first, ITime const &last)
 	}
       first.set_nano(swap.get_nano());
       first.set_second(swap.get_second() * -1);
-    }
+    }*/
 }

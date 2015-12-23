@@ -5,7 +5,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Wed Oct 21 20:57:19 2015 Bertrand-Rapello Baptiste
-// Last update Tue Dec 22 16:43:42 2015 Alaric Degand
+// Last update Wed Dec 23 10:04:06 2015 Alaric Degand
 //
 
 #ifndef TIME_HPP_
@@ -29,7 +29,8 @@ public:
   bool	set_nano(intmax_t nano);
   bool	now(void);
   ITime	&clone(void) const;
-  void	add(ITime &, ITime const &);
+  void	add(Time &, Time const &);
+  void	sub(Time &, Time const &);
 private:
   struct timespec	m_timespec;  
 };

@@ -5,7 +5,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Wed Oct 21 21:04:15 2015 Bertrand-Rapello Baptiste
-// Last update Wed Dec 23 12:04:45 2015 Alaric Degand
+// Last update Wed Dec 23 13:11:24 2015 Antoine Plaskowski
 //
 
 #include	<stdio.h>
@@ -59,42 +59,41 @@ ITime	*new_itime(void)
   return (new Time());
 }
 
-void	Time::add(Time &first, Time const &last)
+void	Time::add(ITime const &itime)
 {
-  first.m_timespec.tv_sec += last.m_timespec.tv_sec;
-  if (first.m_timespec.tv_nsec + last.m_timespec.tv_nsec >= NANO_BY_SEC)
+  m_timespec.tv_sec += itime.get_second();
+  if (m_timespec.tv_nsec + itime.get_nano() >= NANO_BY_SEC)
     {
-      first.m_timespec.tv_nsec += last.m_timespec.tv_nsec;
-      first.m_timespec.tv_nsec -= NANO_BY_SEC;
-      first.m_timespec.tv_sec += 1;
+      m_timespec.tv_nsec += itime.get_nano();
+      m_timespec.tv_nsec -= NANO_BY_SEC;
+      m_timespec.tv_sec += 1;
     }
 }
 
-void	Time::sub(Time &first, Time const &last)
+void	Time::sub(ITime const &itime)
 {
-  
-  if (first.m_timespec.tv_nsec + first.m_timespec.tv_sec >= last.m_timespec.tv_nsec + last.m_timespec.tv_sec)
+  if (m_timespec.tv_nsec + m_timespec.tv_sec >= itime.get_nano() + itime.get_second())
     {
-      first.m_timespec.tv_sec -= last.m_timespec.tv_sec;
-      first.m_timespec.tv_nsec -= last.m_timespec.tv_nsec;
-      if (first.m_timespec.tv_nsec < 0)
+      m_timespec.tv_sec -= itime.get_second();
+      m_timespec.tv_nsec -= itime.get_nano();
+      if (m_timespec.tv_nsec < 0)
 	{
-	  first.m_timespec.tv_nsec = NANO_BY_SEC + first.m_timespec.tv_nsec;
-	  first.m_timespec.tv_sec -= 1;
+	  m_timespec.tv_nsec = NANO_BY_SEC + m_timespec.tv_nsec;
+	  m_timespec.tv_sec -= 1;
 	}
     }
   else
     {
-      Time swap(last.get_second(), last.get_nano());
+      Time swap(itime.get_second(), itime.get_nano());
       
-      swap.m_timespec.tv_sec -= first.m_timespec.tv_sec;
-      swap.m_timespec.tv_nsec -= first.m_timespec.tv_nsec;
+      swap.m_timespec.tv_sec -= m_timespec.tv_sec;
+      swap.m_timespec.tv_nsec -= m_timespec.tv_nsec;
       if (swap.m_timespec.tv_nsec < 0)
 	{
 	  swap.m_timespec.tv_nsec = NANO_BY_SEC + swap.m_timespec.tv_nsec;
 	  swap.m_timespec.tv_sec -= 1;
 	}
-      first.set_nano(swap.get_nano());
-      first.set_second(swap.get_second() * -1);
+      set_nano(swap.get_nano());
+      set_second(swap.get_second() * -1);
     }
 }

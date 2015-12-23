@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Thu Dec 10 16:18:33 2015 Antoine Plaskowski
-// Last update Tue Dec 22 23:13:47 2015 Antoine Plaskowski
+// Last update Wed Dec 23 00:19:29 2015 Antoine Plaskowski
 //
 
 #ifndef		IENTITE_HPP_
@@ -17,6 +17,7 @@ class	IEntite;
 # include	<list>
 # include	"IGame.hpp"
 # include	"ITime.hpp"
+# include	"File.hpp"
 
 class	IEntite
 {
@@ -30,6 +31,8 @@ public:
   virtual void	colide(void) = 0;
   virtual std::tuple<uintmax_t, uintmax_t, uintmax_t, uintmax_t> const	&get_property(void) const = 0;
   virtual uintmax_t	get_team(void) const = 0;
+  virtual File const	&get_sound(void) const = 0;
+  virtual File const	&get_sprite(void) const = 0;
 };
 
 extern "C"

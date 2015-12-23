@@ -1,19 +1,19 @@
 //
-// Sprite.cpp for Sprite in /home/plasko_a/projet/cplusplus/rtype/source
+// File.cpp for File in /home/plasko_a/projet/cplusplus/rtype/source
 // 
 // Made by Antoine Plaskowski
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Tue Dec 22 23:15:40 2015 Antoine Plaskowski
-// Last update Tue Dec 22 23:48:59 2015 Antoine Plaskowski
+// Last update Wed Dec 23 00:11:34 2015 Antoine Plaskowski
 //
 
 #include	<exception>
 #include	<fstream>
 #include	<iostream>
-#include	"Sprite.hpp"
+#include	"File.hpp"
 
-Sprite::Sprite(std::string const &path) :
+File::File(std::string const &path) :
   m_name(path.substr(path.find_last_of("\\/")))
 {
   std::ifstream	file(path, std::ios::in | std::ios::binary | std::ios::ate);
@@ -26,22 +26,22 @@ Sprite::Sprite(std::string const &path) :
   file.read(reinterpret_cast<char *>(m_data), m_size);
 }
 
-Sprite::~Sprite(void)
+File::~File(void)
 {
   delete m_data;
 }
 
-std::string const	&Sprite::get_name(void) const
+std::string const	&File::get_name(void) const
 {
   return (m_name);
 }
 
-uint8_t const	*Sprite::get_data(void) const
+uint8_t const	*File::get_data(void) const
 {
   return (m_data);
 }
 
-uintmax_t	Sprite::get_size(void) const
+uintmax_t	File::get_size(void) const
 {
   return (m_size);
 }

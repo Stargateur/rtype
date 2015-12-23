@@ -1,24 +1,24 @@
 //
-// Sprite.hpp for Sprite in /home/plasko_a/projet/cplusplus/rtype/include
+// File.hpp for File in /home/plasko_a/projet/cplusplus/rtype/include
 // 
 // Made by Antoine Plaskowski
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Tue Dec 22 23:15:52 2015 Antoine Plaskowski
-// Last update Tue Dec 22 23:46:54 2015 Antoine Plaskowski
+// Last update Wed Dec 23 00:11:17 2015 Antoine Plaskowski
 //
 
-#ifndef		SPRITE_HPP_
-# define	SPRITE_HPP_
+#ifndef		FILE_HPP_
+# define	FILE_HPP_
 
 # include	<string>
 # include	<cstdint>
 
-class	Sprite
+class	File
 {
 public:
-  Sprite(std::string const &path);
-  ~Sprite(void);
+  File(std::string const &path);
+  ~File(void);
   std::string const	&get_name(void) const;
   uint8_t const	*get_data(void) const;
   uintmax_t	get_size(void) const;
@@ -28,4 +28,4 @@ private:
   uintmax_t	m_size;
 };
 
-#endif		/* !SPRITE_HPP_ */
+#endif		/* !FILE_HPP_ */

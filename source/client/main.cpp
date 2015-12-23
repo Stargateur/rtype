@@ -32,4 +32,5 @@ int	main(void)
 	if (!billy.init())
 		return (1);
 	billy.loop();
+	return (0);
 }

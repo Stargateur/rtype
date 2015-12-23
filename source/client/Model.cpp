@@ -70,7 +70,7 @@ void Model::setState(State menu)
 	this->m_actual = menu;
 }
 
-State Model::getState(void) const
+Model::State Model::getState(void) const
 {
   return (this->m_actual);
 }

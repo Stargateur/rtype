@@ -5,7 +5,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Wed Oct 21 21:04:15 2015 Bertrand-Rapello Baptiste
-// Last update Wed Dec 23 10:06:09 2015 Alaric Degand
+// Last update Wed Dec 23 10:10:25 2015 Alaric Degand
 //
 
 #include	<stdio.h>
@@ -83,9 +83,9 @@ void	Time::sub(Time &first, Time const &last)
 	  first.m_timespec.tv_sec -= 1;
 	}
     }
-  /*else
+  else
     {
-      Time swap = last.clone();
+      Time swap(last.get_second(), last.get_nano());
       
       swap.m_timespec.tv_sec -= first.m_timespec.tv_sec;
       swap.m_timespec.tv_nsec -= first.m_timespec.tv_nsec;
@@ -96,5 +96,5 @@ void	Time::sub(Time &first, Time const &last)
 	}
       first.set_nano(swap.get_nano());
       first.set_second(swap.get_second() * -1);
-    }*/
+    }
 }

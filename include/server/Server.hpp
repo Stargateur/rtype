@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:05:56 2015 Alaric Degand
-// Last update Wed Dec  9 15:58:47 2015 Antoine Plaskowski
+// Last update Wed Dec 23 17:25:29 2015 Alaric Degand
 //
 
 #ifndef		SERVER_HPP_
@@ -31,6 +31,7 @@ private:
 public:
   Server(std::string const &port);
   void		run(void);
+  bool		check_login(std::string const &login, std::string const &password);
 };
 
 #endif		/* !SERVER_HPP_ */

@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:29:32 2015 Kevin Costa
-// Last update Tue Dec 22 17:26:23 2015 Kevin Costa
+// Last update Wed Dec 23 13:31:11 2015 Kevin Costa
 //
 
 #include "Model.hpp"
@@ -18,7 +18,11 @@ Model::Model()
 	tmp.push_back(new Button(50, 50, 200, 100, "b1", Button::chargeConnect));
 	tmp.push_back(new Button(400, 50, 200, 100, "b2", Button::chargeGame));
 	tmp.push_back(new Button(50, 400, 200, 100, "b3", Button::chargeList));
-	tmp.push_back(new Sprite(300, 250, "./font/vol.png", "billy"));
+	tmp.push_back(new Sprite(300, 50, "./sprites/r-typesheet42.gif", "billette", tmp));
+	tmp.push_back(new Sprite(300, 150, "./sprites/r-typesheet42.gif", "billy", tmp));
+	tmp.push_back(new Sprite(300, 250, "./sprites/r-typesheet42.gif", "bill", tmp));
+	tmp.push_back(new Sprite(300, 350, "./sprites/r-typesheet42.gif", "billou", tmp));
+	tmp.push_back(new Sprite(300, 450, "./sprites/r-typesheet42.gif", "pwet", tmp));
 	this->m_elements[CONNEXION] = tmp;
 //	tmp.clear();
 	this->m_elements[PRINCIPAL] = tmp;

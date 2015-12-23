@@ -5,7 +5,7 @@
 // Login   <anthony.bury@epitech.eu>
 // 
 // Started on  Mon Nov 16 02:08:18 2015 Anthony Bury
-// Last update Wed Dec  9 16:22:05 2015 Antoine Plaskowski
+// Last update Wed Dec 23 13:33:23 2015 Kevin Costa
 //
 
 #if				defined _WIN32 || defined _WIN64
@@ -28,7 +28,6 @@ int	main(void)
 #endif
 {
 	View billy;
-	std::cout << "bonjour billy" << std::endl;
  	if (!billy.init())
 		return (1);
 	billy.loop();

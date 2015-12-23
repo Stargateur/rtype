@@ -1,17 +1,13 @@
 #include "View.hpp"
 #include "Sprite.hpp"
 
-Sprite::Sprite(int pos_x, int pos_y, const std::string &texture, const std::string &name, std::vector<AElement *> tmp) : AElement(SPRITE, name), sf::Sprite()
+Sprite::Sprite(int pos_x, int pos_y, const std::string &texture, const std::string &name, int sprite_x, int sprite_y, int spsize_x, int spsize_y, double size_x, double size_y) : AElement(SPRITE, name), sf::Sprite()
 {
-  for (size_t i = 0; i < tmp.size(); i++)
-    {
-      if (tmp[i]->getId() == SPRITE)
-	this->sprite_y += 17;
-    }
   this->text.loadFromFile(texture);
   this->setTexture(text);
-  this->setTextureRect(sf::IntRect(this->sprite_x, this->sprite_y, 32, 18));
+  this->setTextureRect(sf::IntRect(sprite_x, sprite_y, spsize_x, spsize_y));
   this->setPosition(pos_x, pos_y);
+  this->scale(sf::Vector2f(size_x, size_y));
 }
 
 

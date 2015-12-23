@@ -5,7 +5,7 @@
 ## Login   <bury_a@epitech.eu>
 ## 
 ## Started on  Mon Nov 16 02:02:18 2015 Anthony Bury
-## Last update Tue Dec 22 17:11:33 2015 Kevin Costa
+## Last update Wed Dec 23 00:12:02 2015 Antoine Plaskowski
 ##
 
 DIR		=		source/
@@ -44,6 +44,11 @@ SRC		+=		$(DIR_IPROTOCOL)TCP_protocol.cpp
 SRC		+=		$(DIR_IPROTOCOL)ATCP_packet.cpp
 SRC		+=		$(DIR_IPROTOCOL)TCP_packet_recv.cpp
 SRC		+=		$(DIR_IPROTOCOL)TCP_packet_send.cpp
+SRC		+=		$(DIR_IPROTOCOL)IUDP_protocol.cpp
+SRC		+=		$(DIR_IPROTOCOL)UDP_protocol.cpp
+SRC		+=		$(DIR_IPROTOCOL)AUDP_packet.cpp
+SRC		+=		$(DIR_IPROTOCOL)UDP_packet_recv.cpp
+SRC		+=		$(DIR_IPROTOCOL)UDP_packet_send.cpp
 
 SRC		+=		$(DIR_ITIME)ITime.cpp
 SRC		+=		$(DIR_ITIME)Time.cpp
@@ -60,6 +65,8 @@ SRC_SERVER	+=		$(DIR_SERVER)IEntite.cpp
 SRC_SERVER	+=		$(DIR_SERVER)IGame.cpp
 SRC_SERVER	+=		$(DIR_SERVER)BasicGame.cpp
 SRC_SERVER	+=		$(DIR_SERVER)PortGenerator.cpp
+SRC_SERVER	+=		$(DIR_SERVER)File.cpp
+
 SRC_SERVER	+=		$(DIR_THREADPOOL)Task.cpp
 SRC_SERVER	+=		$(DIR_THREADPOOL)ThreadPool.cpp
 

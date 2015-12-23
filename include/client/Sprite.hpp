@@ -7,11 +7,11 @@ class Sprite : public AElement, public sf::Sprite
 {
   sf::Texture text;
 public:
-  Sprite(int pos_x, int pos_y);
+  Sprite(int pos_x, int pos_y, const std::string &texture, const std::string &name);
   ~Sprite();
 
 public:
-	void update(const sf::Event &, Model &);
+  void update(const sf::Event &, Model &, sf::Vector2i);
 	void aff(View *);
 };
 

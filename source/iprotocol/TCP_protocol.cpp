@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:40:34 2015 Antoine Plaskowski
-// Last update Thu Dec 10 14:38:35 2015 Antoine Plaskowski
+// Last update Tue Dec 22 17:08:01 2015 Antoine Plaskowski
 //
 
 #include	<algorithm>

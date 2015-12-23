@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Thu Dec 10 16:18:33 2015 Antoine Plaskowski
-// Last update Wed Dec 23 00:19:29 2015 Antoine Plaskowski
+// Last update Wed Dec 23 17:37:55 2015 Antoine Plaskowski
 //
 
 #ifndef		IENTITE_HPP_
@@ -22,6 +22,7 @@ class	IEntite;
 class	IEntite
 {
 public:
+  IEntite(void);
   IEntite(IEntite const &ientite);
   virtual ~IEntite(void);
   IEntite	&operator=(IEntite const &ientite);
@@ -39,12 +40,12 @@ extern "C"
 {
 # define	NAME_FCT_NEW_IENTITE	"new_ientite"
 # ifdef	__linux__
-  IEntite	*new_ientite(std::list<IEntite *> const &ientites, uintmax_t x_max, uintmax_t y_max);
+  IEntite	*new_ientite(std::list<IEntite *> const &ientites, uintmax_t team, uintmax_t x_max, uintmax_t y_max);
 # else
-  __declspec(dllexport) IEntite	*new_ientite(std::list<IEntite *> const &ientites, uintmax_t x_max, uintmax_t y_max);
+  __declspec(dllexport) IEntite	*new_ientite(std::list<IEntite *> const &ientites, uintmax_t team, uintmax_t x_max, uintmax_t y_max);
 # endif
-  typedef IEntite	&(*fct_new_ientite)(std::list<IEntite *> const &ientites, uintmax_t x_max, uintmax_t y_max);
-  typedef IEntite	&(&ref_new_ientite)(std::list<IEntite *> const &ientites, uintmax_t x_max, uintmax_t y_max);
+  typedef IEntite	&(*fct_new_ientite)(std::list<IEntite *> const &ientites, uintmax_t team, uintmax_t x_max, uintmax_t y_max);
+  typedef IEntite	&(&ref_new_ientite)(std::list<IEntite *> const &ientites, uintmax_t team, uintmax_t x_max, uintmax_t y_max);
 }
 
 

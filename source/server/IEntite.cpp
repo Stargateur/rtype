@@ -5,10 +5,14 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Thu Dec 10 16:38:58 2015 Antoine Plaskowski
-// Last update Thu Dec 10 16:42:16 2015 Antoine Plaskowski
+// Last update Wed Dec 23 17:38:12 2015 Antoine Plaskowski
 //
 
 #include	"IEntite.hpp"
+
+IEntite::IEntite(void)
+{
+}
 
 IEntite::IEntite(IEntite const &)
 {

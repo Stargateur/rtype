@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Tue Dec 22 10:12:30 2015 Alaric Degand
-// Last update Tue Dec 22 11:48:10 2015 Alaric Degand
+// Last update Wed Dec 23 17:16:46 2015 Antoine Plaskowski
 //
 
 #ifndef		BASICGAME_HPP_
@@ -15,11 +15,12 @@
 
 class		BasicGame: public IGame
 {
-  bool		_GameEnd;
 public:
-  BasicGame();
-  ~BasicGame();
-  virtual void		loop();
+  BasicGame(void);
+  ~BasicGame(void);
+  void	run(void);
+private:
+  
 };
 
 #endif		/* !BASICGAME_HPP_ */

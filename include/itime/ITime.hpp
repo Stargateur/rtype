@@ -5,7 +5,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Wed Oct 21 20:44:16 2015 Bertrand-Rapello Baptiste
-// Last update Fri Nov 20 06:40:00 2015 Antoine Plaskowski
+// Last update Wed Dec 23 13:09:47 2015 Antoine Plaskowski
 //
 
 #ifndef ITIME_HPP_
@@ -22,7 +22,9 @@ public:
   virtual bool	set_nano(intmax_t) = 0;
   virtual bool	now(void) = 0;
   virtual ITime	&clone(void) const = 0;
-  virtual	~ITime(void);
+  virtual void	add(ITime const &itime) = 0;
+  virtual void	sub(ITime const &itime) = 0;
+  virtual ~ITime(void);
 };
 
 class	ITimeException

@@ -5,7 +5,7 @@
 ## Login   <bury_a@epitech.eu>
 ## 
 ## Started on  Mon Nov 16 02:02:18 2015 Anthony Bury
-## Last update Tue Dec 22 13:50:15 2015 Alaric Degand
+## Last update Wed Dec 23 17:24:59 2015 Antoine Plaskowski
 ##
 
 DIR		=		source/
@@ -20,7 +20,11 @@ DIR_ISOCKET	=		$(DIR)isocket/
 
 DIR_IPROTOCOL	=		$(DIR)iprotocol/
 
-DIR_THREADPOOL	=		$(DIR_SERVER)/threadPool/
+DIR_ITHREAD	=		$(DIR)ithread/
+
+DIR_THREADPOOL	=		$(DIR_SERVER)threadPool/
+
+SRC		+=		$(DIR)Option.cpp
 
 SRC		+=		$(DIR_ISOCKET)ISelect.cpp
 SRC		+=		$(DIR_ISOCKET)Select.cpp
@@ -42,17 +46,30 @@ SRC		+=		$(DIR_IPROTOCOL)TCP_protocol.cpp
 SRC		+=		$(DIR_IPROTOCOL)ATCP_packet.cpp
 SRC		+=		$(DIR_IPROTOCOL)TCP_packet_recv.cpp
 SRC		+=		$(DIR_IPROTOCOL)TCP_packet_send.cpp
+SRC		+=		$(DIR_IPROTOCOL)IUDP_protocol.cpp
+SRC		+=		$(DIR_IPROTOCOL)UDP_protocol.cpp
+SRC		+=		$(DIR_IPROTOCOL)AUDP_packet.cpp
+SRC		+=		$(DIR_IPROTOCOL)UDP_packet_recv.cpp
+SRC		+=		$(DIR_IPROTOCOL)UDP_packet_send.cpp
 
 SRC		+=		$(DIR_ITIME)ITime.cpp
 SRC		+=		$(DIR_ITIME)Time.cpp
+
+SRC		+=		$(DIR_ITHREAD)AThread.cpp
+SRC		+=		$(DIR_ITHREAD)ThreadUnix.cpp
+SRC		+=		$(DIR_ITHREAD)AMutex.cpp
+SRC		+=		$(DIR_ITHREAD)MutexUnix.cpp
 
 SRC_SERVER	+=		$(DIR_SERVER)main.cpp
 SRC_SERVER	+=		$(DIR_SERVER)Server.cpp
 SRC_SERVER	+=		$(DIR_SERVER)Client.cpp
 SRC_SERVER	+=		$(DIR_SERVER)IEntite.cpp
 SRC_SERVER	+=		$(DIR_SERVER)IGame.cpp
+SRC_SERVER	+=		$(DIR_SERVER)Player.cpp
 SRC_SERVER	+=		$(DIR_SERVER)BasicGame.cpp
 SRC_SERVER	+=		$(DIR_SERVER)PortGenerator.cpp
+SRC_SERVER	+=		$(DIR_SERVER)File.cpp
+
 SRC_SERVER	+=		$(DIR_THREADPOOL)Task.cpp
 SRC_SERVER	+=		$(DIR_THREADPOOL)ThreadPool.cpp
 

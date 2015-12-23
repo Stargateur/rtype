@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:35:48 2015 Kevin Costa
-// Last update Tue Dec 22 15:31:41 2015 Kevin Costa
+// Last update Tue Dec 22 17:26:42 2015 Kevin Costa
 //
 
 #ifndef		MODEL_HPP_
@@ -25,19 +25,22 @@
 # include	"Sprite.hpp"
 # include "Button.hpp"
 
-typedef enum e_state
-{
-	CONNEXION,
-	PRINCIPAL,
-	PARAMS,
-	LIST,
-	GAME
-} State;
 
 class Model
 {
-  std::map<State, std::vector<AElement *>> m_elements;
-  State m_actual;
+public:
+	typedef enum e_state
+	{
+		CONNEXION,
+		PRINCIPAL,
+		PARAMS,
+		LIST,
+		GAME
+	} State;
+
+private:
+	std::map<State, std::vector<AElement *>> m_elements;
+	State m_actual;
 
 public:
   Model(void);
@@ -47,6 +50,7 @@ public:
   std::vector<AElement *> getElements(void);
   std::vector<AElement *> getButtonElements(void);
   void setState(State menu);
+  Model::State getState(void) const;
 	AElement *getElementByName(const std::string &name);
 };
 

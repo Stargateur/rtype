@@ -5,27 +5,21 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Tue Dec 22 10:14:54 2015 Alaric Degand
-// Last update Tue Dec 22 12:03:36 2015 Alaric Degand
+// Last update Wed Dec 23 17:18:16 2015 Antoine Plaskowski
 //
 
 #include	"BasicGame.hpp"
 
 #include	<unistd.h>
 
-BasicGame::BasicGame()
-{
-  _GameEnd = false;
-}
-
-BasicGame::~BasicGame()
+BasicGame::BasicGame(void)
 {
 }
 
-void		BasicGame::loop(void)
+BasicGame::~BasicGame(void)
 {
-  while (_GameEnd == false)
-    {
-      sleep(1);
-      _GameEnd = true;
-    }
+}
+
+void		BasicGame::run(void)
+{
 }

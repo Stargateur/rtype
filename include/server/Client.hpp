@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:53:39 2015 Alaric Degand
-// Last update Wed Dec  9 23:30:06 2015 Antoine Plaskowski
+// Last update Wed Dec 23 17:33:20 2015 Alaric Degand
 //
 
 #ifndef		CLIENT_HPP_
@@ -50,6 +50,7 @@ public:
   void	start(ITCP_protocol &itcp_protocol, uint8_t second, uint16_t port);
   void	end(ITCP_protocol &itcp_protocol, uint64_t score, bool winner);
   void	leave(ITCP_protocol &itcp_protocol);
+  std::string get_login(void) const;
 private:
   Server	&m_server;
   ITCP_client	&m_itcp_client;

@@ -20,7 +20,7 @@ class Controller
 public:
   Controller(void);
   ~Controller(void);
-  void update(sf::Event &event, Model &model);
+  void update(sf::Event &event, Model &model, sf::Vector2i);
 };
 
 #endif		/* !CONTROLLER_HPP_ */

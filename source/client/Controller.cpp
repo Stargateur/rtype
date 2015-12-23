@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:31:05 2015 Kevin Costa
-// Last update Tue Dec 22 16:24:07 2015 Kevin Costa
+// Last update Wed Dec 23 13:53:20 2015 Kevin Costa
 //
 
 #include	"Controller.hpp"
@@ -18,20 +18,29 @@ Controller::~Controller()
 {
 }
 
-void		Controller::update(sf::Event &event, Model &model)
+void		Controller::update(sf::Event &event, Model &model, sf::Vector2i pos)
 {
   std::vector<AElement *> elements;
 
   elements = model.getButtonElements();
+//  std::cout << elements.size() << std::endl;
   for (size_t i = 0; i < elements.size(); i++)
     {
       switch (event.type)
 	{
-	case sf::Event::Closed:
+		case sf::Event::Closed:
     	  break;
+		case sf::Event::MouseButtonPressed:
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			{
+				if (elements[i]->getId() == BUTTON)
+					elements[i]->update(event, model, pos);
+			}
+
     	case sf::Event::TextEntered || sf::Event::MouseButtonPressed:
-	  if (elements[i]->getId() == BUTTON)
-	    elements[i]->update(event, model);
+//			std::cout << "event catch" << std::endl;
+/*	  if (elements[i]->getId() == BUTTON)
+	    elements[i]->update(event, model);*/
     	  break;
     	case sf::Event::KeyPressed:
 	    model.Game(event.key.code);

@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:56:02 2015 Alaric Degand
-// Last update Wed Dec  9 23:29:47 2015 Antoine Plaskowski
+// Last update Wed Dec 23 17:52:30 2015 Alaric Degand
 //
 
 #include	"Client.hpp"
@@ -29,6 +29,10 @@ void	Client::result(ITCP_protocol &itcp_protocol, bool ready)
 
 void	Client::connect(ITCP_protocol &itcp_protocol, std::string const &login, std::string const &password)
 {
+  if (m_server.check_login())
+    {
+      m_login = login;
+    }
 }
 
 void	Client::disconnect(ITCP_protocol &itcp_protocol)
@@ -131,4 +135,9 @@ void	Client::end(ITCP_protocol &itcp_protocol, uint64_t score, bool winner)
 
 void	Client::leave(ITCP_protocol &itcp_protocol)
 {
+}
+
+std::string	Client::get_login() const
+{
+  return (m_login);
 }

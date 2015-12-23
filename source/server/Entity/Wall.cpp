@@ -1,0 +1,95 @@
+//
+// Wall.cpp for Wall in /home/degand_a/Projects/rtype/source/server/Entity
+// 
+// Made by Alaric Degand
+// Login   <alaric.degand@epitech.eu>
+// 
+// Started on  Wed Dec 23 11:41:43 2015 Alaric Degand
+// Last update Wed Dec 23 17:04:13 2015 Alaric Degand
+//
+
+#include	<list>
+#include	"ITime.hpp"
+#include	"Wall.hpp"
+
+Wall::_sprite("Textures/vol.png");
+
+Wall::Wall(std::list<IEntite *> const &ientites, uintmax_t x_max, uintmax_t y_max)
+{
+  _property<0> = x_max;
+  _property<1> = (rand() % 2) * y_max;
+  _property<2> = x_max / 10;
+  _property<3> = y_max / 5;
+  while (this.check_colide(ientites))
+    {
+      y_max--;
+      _property<1> = (rand() % 2) * y_max;
+    }
+}
+
+void		Wall::run(std::list<IEntite *> const &ientites, std::list<IEntite *> &new_ientites,
+			  ITime const &time_elapsed, ITime &time_callback)
+{
+  ITime		calc(_delay.get_second(), _delay.get_nano());
+
+  calc.sub(time_elapsed);
+  if (calc.get_second() == 0 && calc.get_nano() == 0)
+    {
+      _property<0> -= 1;
+      if (check_colide(ientites))
+	colide();
+      time_callback.set_second(_delay.get_second());
+      time_callback.set_nano(_delay.get_nano());
+    }
+  else
+    {
+      time_callback.set_second(calc.get_second());
+      time_callback.set_nano(calc.get_nano());
+    }
+}
+
+void		Wall::domage(uintmax_t value)
+{
+  _life -= value;
+}
+
+void		Wall::colide(void)
+{
+
+}
+
+std::tuple<uintmax_t, uintmax_t, uintmax_t, uintmax_t> const	&Wall::get_property(void) const
+{
+  return (_prop);
+}
+
+uintmax_t	Wall::get_team(void) const
+{
+  return (_team);
+}
+
+File const	&Wall::get_sound(void) const
+{
+  return (_sound);
+}
+
+File const	&Wall::get_sound(void) const
+{
+  return (_sprite);
+}
+
+bool		Wall::check_colide(std::list<IEntite *> const &ientites) const
+{
+  std::tuple<uintmax_t, uintmax_t, uintmax_t, uintmax_t> to_check;
+  
+  for (std::list<IEntite *>::iterator it = ientites.begin(); it != ientites.end(); it++)
+    {
+      to_check = it.get_property();
+      if (_property<0> < to_check<0> + to_check<2> &&
+	  _property<0> + _property<2> > to_check<0> &&
+	  _property<1> < to_check<1> + to_check<3> &&
+	  _property<1> + _property<3> > to_check<1>)
+	return (true);
+    }
+  return (false);
+}

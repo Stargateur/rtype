@@ -1,14 +1,13 @@
 #include "View.hpp"
 #include "Sprite.hpp"
 
-Sprite::Sprite(int pos_x, int pos_y) : AElement(SPRITE, ""), sf::Sprite()
+Sprite::Sprite(int pos_x, int pos_y, const std::string &texture, const std::string &name, int sprite_x, int sprite_y, int spsize_x, int spsize_y, double size_x, double size_y) : AElement(SPRITE, name), sf::Sprite()
 {
-  sf::Texture text;
-  text.loadFromFile("./font/vol.png");
-
+  this->text.loadFromFile(texture);
   this->setTexture(text);
-  this->setTextureRect(sf::IntRect(10, 10, 70, 68));
+  this->setTextureRect(sf::IntRect(sprite_x, sprite_y, spsize_x, spsize_y));
   this->setPosition(pos_x, pos_y);
+  this->scale(sf::Vector2f(size_x, size_y));
 }
 
 
@@ -16,7 +15,7 @@ Sprite::~Sprite()
 {
 }
 
-void Sprite::update(const sf::Event &e, Model &m)
+void Sprite::update(const sf::Event &e, Model &m, sf::Vector2i)
 {
 }
 

@@ -5,7 +5,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Wed Oct 21 20:57:19 2015 Bertrand-Rapello Baptiste
-// Last update Mon Oct 26 06:46:22 2015 Antoine Plaskowski
+// Last update Wed Dec 23 13:10:05 2015 Antoine Plaskowski
 //
 
 #ifndef TIME_HPP_
@@ -14,6 +14,8 @@
 #include <ctime>
 #include <cstdint>
 #include "ITime.hpp"
+
+# define        NANO_BY_SEC     (1000000000)
 
 class Time : public ITime
 {
@@ -27,6 +29,8 @@ public:
   bool	set_nano(intmax_t nano);
   bool	now(void);
   ITime	&clone(void) const;
+  void	add(ITime const &itime);
+  void	sub(ITime const &itime);
 private:
   struct timespec	m_timespec;  
 };

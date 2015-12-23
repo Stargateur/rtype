@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Thu Dec 10 17:33:48 2015 Antoine Plaskowski
-// Last update Tue Dec 22 12:01:57 2015 Alaric Degand
+// Last update Wed Dec 23 17:04:03 2015 Antoine Plaskowski
 //
 
 #ifndef		IGAME_HPP_
@@ -21,7 +21,7 @@ class	IGame
   IGame(/*IGame const &*/);
   virtual ~IGame(void);
   IGame	&operator=(IGame const &igame);
-  virtual void	loop(void) = 0;
+  virtual void	run(void) = 0;
 };
 
 #endif		/* !IGAME_HPP_ */

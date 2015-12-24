@@ -5,7 +5,7 @@
 ## Login   <plasko_a@epitech.eu>
 ## 
 ## Started on  Fri Nov 20 04:13:39 2015 Antoine Plaskowski
-## Last update Thu Dec 24 04:14:05 2015 Antoine Plaskowski
+## Last update Thu Dec 24 04:26:12 2015 Antoine Plaskowski
 ##
 
 CLIENT		=	rtype_client
@@ -37,6 +37,7 @@ LIB_SERVER	=	-l dl -l rt -l pthread
 LIB_CLIENT	=	-l dl $(shell pkg-config --libs sfml-graphics sfml-window sfml-system sfml-network) -l rt -l pthread
 
 INCLUDE		=	-I include -I include/itime -I include/isocket -I include/iprotocol -I include/ithread
+INCLUDE		+=	-I include/ientite
 INCLUDE		+=	$(shell pkg-config --cflags sfml-graphics sfml-window sfml-system sfml-network)
 
 CXXFLAGS	+=	-Wall -Wextra -O$(LEVEL)
@@ -77,11 +78,13 @@ OBJ_IENTITE	=	$(SRC_IENTITE:.cpp=.o)
 DPD_IENTITE	=	$(SRC_IENTITE:.cpp=.dpd)
 LIB_IENTITE	=	$(notdir $(OBJ_IENTITE:.o=.so))
 
-all		:	$(SERVER) $(CLIENT)
+all		:	$(SERVER) $(CLIENT) $(LIB_IENTITE)
 
-$(SERVER)	:	CXXFLAGS += -I include/server -I include/ientite
-$(SERVER)	:	$(OBJ) $(OBJ_SERVER) $(LIB_IENTITE)
+$(SERVER)	:	CXXFLAGS += -I include/server
+$(SERVER)	:	$(OBJ) $(OBJ_SERVER)
 			$(CXX) $(OBJ) $(OBJ_SERVER) -o $(SERVER) $(LDFLAGS) $(LIB_SERVER)
+
+$(LIB_IENTITE)	:	CXXFLAGS += -I include/server -fPIC
 
 $(CLIENT)	:	CXXFLAGS += -I include/client
 $(CLIENT)	:	$(OBJ) $(OBJ_CLIENT)
@@ -94,10 +97,13 @@ clean		:
 			$(RM) -f $(DPD_SERVER)
 			$(RM) -f $(OBJ_CLIENT)
 			$(RM) -f $(DPD_CLIENT)
+			$(RM) -f $(OBJ_IENTITE)
+			$(RM) -f $(DPD_IENTITE)
 
 fclean		:	clean
 			$(RM) -f $(SERVER)
 			$(RM) -f $(CLIENT)
+			$(RM) -f $(LIB_IENTITE)
 
 re		:	fclean
 			$(MAKE) -C .
@@ -110,9 +116,8 @@ re		:	fclean
 
 $(DPD_SERVER)	:	CXXFLAGS += -I include/server
 $(DPD_CLIENT)	:	CXXFLAGS += -I include/client
-$(DPD_IENTITE)	:	CXXFLAGS += -I include/ientite -I include/server
+$(DPD_IENTITE)	:	CXXFLAGS += -I include/server
 
-%.so		:	CXXFLAGS += -fPIC
 %.so		:	$(DIR_IENTITE)%.o
 			$(CXX) -o $(@) $(<) -shared
 

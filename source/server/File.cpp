@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Tue Dec 22 23:15:40 2015 Antoine Plaskowski
-// Last update Wed Dec 23 00:11:34 2015 Antoine Plaskowski
+// Last update Thu Dec 24 11:18:54 2015 Antoine Plaskowski
 //
 
 #include	<exception>
@@ -19,7 +19,7 @@ File::File(std::string const &path) :
   std::ifstream	file(path, std::ios::in | std::ios::binary | std::ios::ate);
 
   if (file.is_open() == false)
-    throw std::exception();
+    throw std::logic_error(path + " : can't open");
   m_size = file.tellg();
   m_data = new uint8_t [m_size];
   file.seekg(0, std::ios::beg);

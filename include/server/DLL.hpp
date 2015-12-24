@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Mon Mar 30 22:26:06 2015 Antoine Plaskowski
-// Last update Thu Dec 24 11:03:03 2015 Antoine Plaskowski
+// Last update Thu Dec 24 11:45:26 2015 Antoine Plaskowski
 //
 
 #ifndef		DLL_HPP_
@@ -23,7 +23,6 @@ public:
   template<typename ptr_fct>
   ptr_fct	get_symbole(std::string const &name) const
   {
-    std::cout << "lol" << std::endl;
     (void)dlerror();
     void	*symbole = dlsym(m_handle, name.c_str());
     char const *str = dlerror();

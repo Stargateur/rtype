@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Wed Dec 23 11:04:40 2015 Alaric Degand
-// Last update Thu Dec 24 03:43:13 2015 Antoine Plaskowski
+// Last update Thu Dec 24 13:17:25 2015 Antoine Plaskowski
 //
 
 #ifndef		WALL_HPP_
@@ -27,8 +27,6 @@ public:
   File const	&get_sprite(void) const;
   bool	check_colide(std::list<IEntite *> const &ientites) const;
 private:
-  static File const	_sprite;
-  static File const	_sound;
   uintmax_t	_team;
   uintmax_t	_hp;
   std::tuple<uintmax_t, uintmax_t, uintmax_t, uintmax_t>	_property;

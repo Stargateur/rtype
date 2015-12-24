@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Thu Dec 24 07:05:53 2015 Antoine Plaskowski
-// Last update Thu Dec 24 11:10:11 2015 Antoine Plaskowski
+// Last update Thu Dec 24 13:49:42 2015 Antoine Plaskowski
 //
 
 #ifndef		USINE_HPP_
@@ -36,18 +36,29 @@ public:
     struct dirent	*entry;
     while ((entry = readdir(dirp)) != NULL)
       {
-	std::cout << entry->d_name << std::endl;
 	try
 	  {
 	    m_dlls.push_back(new DLL(path + "/" + entry->d_name));
+	    try
+	      {
 	    m_fcts.push_back(m_dlls.back()->get_symbole<ptr_fct>(m_fct_name));
+	      }
+	    catch (...)
+	      {
+		delete m_dlls.back();
+		m_dlls.pop_back();
+	      }
 	  }
-	catch (std::exception const &e)
+	catch (...)
 	  {
-	    std::cout << e.what() << std::endl;
 	  }
       }
     closedir(dirp);
+  }
+  ~Usine(void)
+  {
+    for (auto dll : m_dlls)
+      delete dll;
   }
   template<typename T, typename ... Ts>
   T	&get(Ts ... args)

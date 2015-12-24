@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:15:49 2015 Alaric Degand
-// Last update Thu Dec 24 10:54:33 2015 Antoine Plaskowski
+// Last update Thu Dec 24 13:16:33 2015 Antoine Plaskowski
 //
 
 #include	<iostream>
@@ -18,8 +18,6 @@ Server::Server(Option const &option) :
   m_iselect(*new Select()),
   m_usine(option.get_zero().substr(0, option.get_zero().find_last_of("\\/")), NAME_FCT_NEW_IENTITE)
 {
-  std::cout << "lolxd" << std::endl;
-  IEntite	&lol = m_usine.get<IEntite>(std::list<IEntite *>(), 0, 0, 0);
 }
 
 void		Server::run(void)

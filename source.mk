@@ -5,7 +5,7 @@
 ## Login   <bury_a@epitech.eu>
 ## 
 ## Started on  Mon Nov 16 02:02:18 2015 Anthony Bury
-## Last update Thu Dec 24 07:25:05 2015 Antoine Plaskowski
+## Last update Thu Dec 24 13:47:34 2015 Antoine Plaskowski
 ##
 
 DIR		=		source/
@@ -66,7 +66,6 @@ SRC_SERVER	+=		$(DIR_SERVER)main.cpp
 SRC_SERVER	+=		$(DIR_SERVER)Server.cpp
 SRC_SERVER	+=		$(DIR_SERVER)Client.cpp
 SRC_SERVER	+=		$(DIR_SERVER)IEntite.cpp
-SRC_SERVER	+=		$(DIR_SERVER)Usine.cpp
 SRC_SERVER	+=		$(DIR_SERVER)IGame.cpp
 SRC_SERVER	+=		$(DIR_SERVER)Player.cpp
 SRC_SERVER	+=		$(DIR_SERVER)BasicGame.cpp

@@ -16,8 +16,10 @@
 
 ASocket::ASocket(int fd) : m_fd(fd)
 {
+#ifndef			_WIN32
   if (fcntl(m_fd, F_GETFD) == -1)
     throw ASocket_exception(strerror(errno));
+#endif
 }
 
 ASocket::~ASocket(void)

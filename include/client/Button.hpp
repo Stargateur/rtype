@@ -18,43 +18,45 @@
 
 # include	"Text.hpp"
 
+class Button;
+
+typedef void (Button::*ptr)(Model &);
+
 class Button : public AElement, public sf::RectangleShape
 {
-public:
-	typedef void (*ptr)(Model &);
-public:
-	typedef enum e_buttonType
-	{
-		CONNECT,
-		PRINCIP,
-		PARAM,
-		LIST,
-		GAME,
-		UNKNOWN
-	} buttonType;
+//public:
+//	typedef enum e_buttonType
+//	{
+//		CONNECT,
+//		PRINCIP,
+//		PARAM,
+//		LIST,
+//		GAME,
+//		UNKNOWN
+//	} buttonType; WHAT?
 private:
 	Text *m_text;
 	ptr m_ptr;
 
 public:
-	Button(float, float, float, float, std::string const&, void (*ptrs)(Model &));
+	Button(float, float, float, float, std::string const&, ptr);
 	~Button();
 
 public:
-	void update(const sf::Event &, Model &, sf::Vector2i pos);
+	void update(const sf::Event &, Model &, sf::Vector2f &);
 	void aff(View *);
 	void setText(Text *);
 	Text *getText(void) const;
 
 public:
-	static void chargeConnect(Model &);
-	static void chargePrincip(Model &);
-	static void chargeParam(Model &);
-	static void chargeList(Model &);
-	static void chargeGame(Model &);
+	void chargeConnect(Model &);
+	void chargePrincip(Model &);
+	void chargeParam(Model &);
+	void chargeList(Model &);
+	void chargeGame(Model &);
 	
-private:
-	void createPtr(buttonType);
+//private:
+//	void createPtr(buttonType);
 };
 
 #endif /* !BUTTON_HPP_ */

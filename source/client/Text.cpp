@@ -10,7 +10,7 @@ Text::~Text()
 {
 }
 
-void Text::update(const sf::Event &e, Model &m)
+void Text::update(const sf::Event &e, Model &m, sf::Vector2f &)
 {
 }
 

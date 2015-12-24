@@ -18,7 +18,7 @@ Controller::~Controller()
 {
 }
 
-void		Controller::update(sf::Event &event, Model &model, sf::Vector2i pos)
+void		Controller::update(sf::Event &event, Model &model, sf::Vector2f &pos)
 {
   std::vector<AElement *> elements;
 

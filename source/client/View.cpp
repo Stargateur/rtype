@@ -28,7 +28,7 @@ void	View::handleEvent(void)
 			if ((this->event.type == sf::Event::KeyPressed) && (this->event.key.code == sf::Keyboard::Escape))
 				this->close();
 			sf::Vector2i localPosition = sf::Mouse::getPosition(*this);
-			this->m_control.update(this->event, this->m_model, localPosition);
+			this->m_control.update(this->event, this->m_model, sf::Vector2f(localPosition.x, localPosition.y));
 		}
 }
 

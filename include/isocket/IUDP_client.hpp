@@ -12,8 +12,12 @@
 # define	IUDP_CLIENT_HPP_
 
 # include	<string>
-# include	<sys/socket.h>
-# include	<arpa/inet.h>
+# ifdef		_WIN32
+#  include	<WinSock2.h>
+# else
+#  include	<sys/socket.h>
+#  include	<arpa/inet.h>
+# endif
 
 class	IUDP_client;
 

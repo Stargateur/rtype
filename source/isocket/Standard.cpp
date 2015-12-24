@@ -8,7 +8,12 @@
 // Last update Tue Dec  8 15:41:48 2015 Antoine Plaskowski
 //
 
-#include	<unistd.h>
+#ifdef		_WIN32
+# include	<io.h>
+typedef int ssize_t;
+#else
+# include	<unistd.h>
+#endif
 #include	<exception>
 #include	<cstring>
 #include	<cerrno>

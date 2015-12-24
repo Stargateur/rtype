@@ -62,11 +62,20 @@ void    Select::select(ITime const *timeout)
   int   ret;
 
   if (timeout == nullptr)
+#ifdef		_WIN32
+    ret = ::select(m_nfds + 1, &m_readfds, &m_writefds, NULL, NULL);
+#else
     ret = pselect(m_nfds + 1, &m_readfds, &m_writefds, NULL, NULL, NULL);
+#endif
   else
     {
+#ifdef		_WIN32
+      struct timeval   time = { static_cast<long>(timeout->get_second()), static_cast<long>(timeout->get_nano()) * 1000};
+	  ret = ::select(m_nfds + 1, &m_readfds, &m_writefds, NULL, &time);
+#else
       struct timespec   time = {timeout->get_second(), timeout->get_nano()};
       ret = pselect(m_nfds + 1, &m_readfds, &m_writefds, NULL, &time, NULL);
+#endif
     }
   if (ret == -1)
     throw Select_exception(strerror(errno));

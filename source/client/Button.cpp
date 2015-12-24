@@ -12,7 +12,7 @@
 #include	"Button.hpp"
 
 
-Button::Button(float x, float y, float longu, float larg, std::string const& name, void (*ptrs)(Model &)) : AElement(BUTTON, name)
+Button::Button(float x, float y, float longu, float larg, std::string const& name, ptr ptrs) : AElement(BUTTON, name)
 {
 	this->setSize(sf::Vector2f(longu, larg));
 	this->setPosition(x, y);
@@ -26,20 +26,16 @@ Button::~Button()
 {
 }
 
-void Button::update(const sf::Event &e, Model &m, sf::Vector2i pos)
+void Button::update(const sf::Event &e, Model &m, sf::Vector2f &pos)
 {
-	float x, y;
-	x = pos.x;
-	y = pos.y;
-
-	if (this->getGlobalBounds().contains(x, y))
+	if (this->getGlobalBounds().contains(pos.x, pos.y))
 	{
-	if (this->m_ptr != NULL)
-		(this->m_ptr)(m);
+		if (this->m_ptr != NULL)
+			(this->*m_ptr)(m);
 	}
 
 	if (e.type == sf::Event::EventType::TextEntered)
-		this->m_text->update(e, m);
+		this->m_text->update(e, m, pos);
 }
 
 void	Button::aff(View *view)
@@ -88,22 +84,22 @@ void Button::chargeGame(Model &model)
 	model.setState(Model::GAME);
 	std::cerr << "new state = game" << std::endl;
 }
-
-void Button::createPtr(buttonType type)
-{
-	switch (type)
-	{
-	case CONNECT:
-		this->m_ptr = &Button::chargeConnect;
-	case PRINCIP:
-		this->m_ptr = &Button::chargePrincip;
-	case PARAM:
-		this->m_ptr = &Button::chargeParam;
-	case LIST:
-		this->m_ptr = &Button::chargeList;
-	case GAME:
-		this->m_ptr = &Button::chargeGame;
-	default:
-		break;
-	}
-}
+//
+//void Button::createPtr(buttonType type)
+//{
+//	switch (type)
+//	{
+//	case CONNECT:
+//		this->m_ptr = &Button::chargeConnect;
+//	case PRINCIP:
+//		this->m_ptr = &Button::chargePrincip;
+//	case PARAM:
+//		this->m_ptr = &Button::chargeParam;
+//	case LIST:
+//		this->m_ptr = &Button::chargeList;
+//	case GAME:
+//		this->m_ptr = &Button::chargeGame;
+//	default:
+//		break;
+//	}
+//}

@@ -1,7 +1,7 @@
 #include "View.hpp"
 #include "Sprite.hpp"
 
-Sprite::Sprite(int pos_x, int pos_y, const std::string &texture, const std::string &name, int sprite_x, int sprite_y, int spsize_x, int spsize_y, double size_x, double size_y) : AElement(SPRITE, name), sf::Sprite()
+Sprite::Sprite(float pos_x, float pos_y, const std::string &texture, const std::string &name, int sprite_x, int sprite_y, int spsize_x, int spsize_y, double size_x, double size_y) : AElement(SPRITE, name), sf::Sprite()
 {
   this->text.loadFromFile(texture);
   this->setTexture(text);
@@ -15,7 +15,7 @@ Sprite::~Sprite()
 {
 }
 
-void Sprite::update(const sf::Event &e, Model &m, sf::Vector2i)
+void Sprite::update(const sf::Event &e, Model &m, sf::Vector2f &)
 {
 }
 

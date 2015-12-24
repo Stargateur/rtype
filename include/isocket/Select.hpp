@@ -11,7 +11,11 @@
 #ifndef		SELECT_HPP_
 # define	SELECT_HPP_
 
-# include	<sys/select.h>
+# ifdef		_WIN32
+#  include	<Windows.h>
+# else
+#  include	<sys/select.h>
+# endif
 # include	"ISelect.hpp"
 
 class	Select : public ISelect

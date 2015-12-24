@@ -13,7 +13,6 @@
 
 # include	"ISocket.hpp"
 # include	"ITime.hpp"
-# include	"sys/select.h"
 
 class	ASocket : virtual public ISocket
 {

@@ -8,11 +8,19 @@
 // Last update Tue Dec  8 16:09:24 2015 Antoine Plaskowski
 //
 
-#include	<unistd.h>
 #include	<iostream>
 #include	<cstring>
 #include	<utility>
-#include	<arpa/inet.h>
+#ifdef		_WIN32
+# include	<WinSock2.h>
+# include <WS2tcpip.h>
+# include <io.h>
+# pragma comment (lib, "Ws2_32.lib")
+typedef long ssize_t;
+#else
+# include	<unistd.h>
+# include	<arpa/inet.h>
+#endif
 #include	"TCP_client.hpp"
 
 TCP_client::TCP_client(std::string const &host, std::string const &port) :
@@ -27,7 +35,10 @@ TCP_client::TCP_client(ITCP_server const &server) :
 
 TCP_client::~TCP_client(void)
 {
-  close(m_fd);
+#ifdef	_WIN32
+	WSACleanup();
+#endif
+	close(m_fd);
 }
 
 int	TCP_client::accept(ITCP_server const &server)
@@ -72,15 +83,17 @@ int	TCP_client::connect(std::string const &host, std::string const &port)
   int   status = ::getaddrinfo(host.c_str(), port.c_str(), &hints, &result);
   if (status != 0)
     throw TCP_client_exception(gai_strerror(status));
-
+#ifdef	_WIN32
+	WSAStartup(MAKEWORD(2, 2), NULL);
+#endif
   int fd = aux_connect(result);
   ::freeaddrinfo(result);
-  return (fd);
+	return (fd);
 }
 
 uintmax_t	TCP_client::recv(uint8_t &data, uintmax_t size) const
 {
-  ssize_t	ret = ::recv(m_fd, &data, size, 0);
+  ssize_t	ret = ::recv(m_fd, reinterpret_cast<char *>(&data), size, 0);
   if (ret == -1)
     throw TCP_client_exception(strerror(errno));
   return (static_cast<uintmax_t>(ret));
@@ -88,7 +101,7 @@ uintmax_t	TCP_client::recv(uint8_t &data, uintmax_t size) const
 
 uintmax_t	TCP_client::send(uint8_t const &data, uintmax_t size) const
 {
-  ssize_t	ret = ::send(m_fd, &data, size, 0);
+  ssize_t	ret = ::send(m_fd, reinterpret_cast<const char *>(&data), size, 0);
   if (ret == -1)
     throw TCP_client_exception(strerror(errno));
   return (static_cast<uintmax_t>(ret));

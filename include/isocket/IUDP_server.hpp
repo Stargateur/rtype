@@ -13,6 +13,10 @@
 
 # include	<cstdint>
 # include	<string>
+# ifdef		_WIN32
+#  include <ws2ipdef.h>
+#  include <WS2tcpip.h>
+# endif
 # include	"ASocket.hpp"
 
 class	IUDP_server;

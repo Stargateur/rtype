@@ -15,16 +15,16 @@ Model::Model()
 	std::vector<AElement *> tmp;
 
 	this->m_actual = CONNEXION;
-	tmp.push_back(new Button(50, 50, 200, 100, "b1", Button::chargeConnect));
-	tmp.push_back(new Button(400, 50, 200, 100, "b2", Button::chargeGame));
-	tmp.push_back(new Button(50, 400, 200, 100, "b3", Button::chargeList));
-	tmp.push_back(new Sprite(300, 50, "./sprites/r-typesheet42.gif", "billette", 68, 0, 32, 17, 1, 1));
-	tmp.push_back(new Sprite(300, 150, "./sprites/r-typesheet42.gif", "billy", 68, 17, 32, 17, 1, 1));
-	tmp.push_back(new Sprite(300, 250, "./sprites/r-typesheet42.gif", "bill", 68, 34, 32, 17, 2, 2));
-	tmp.push_back(new Sprite(300, 350, "./sprites/r-typesheet42.gif", "billou", 68, 51, 32, 17, 1, 1));
-	tmp.push_back(new Sprite(300, 450, "./sprites/r-typesheet42.gif", "pwet", 68, 68, 32, 17, 1, 1));
+	tmp.push_back(new Button(50, 50, 200, 100, "b1", &Button::chargeConnect));
+	tmp.push_back(new Button(400, 50, 200, 100, "b2", &Button::chargeGame));
+	tmp.push_back(new Button(50, 400, 200, 100, "b3", &Button::chargeList));
+	tmp.push_back(new Sprite(300, 50, "sprites/r-typesheet42.gif", "billette", 68, 0, 32, 17, 1, 1));
+	tmp.push_back(new Sprite(300, 150, "sprites/r-typesheet42.gif", "billy", 68, 17, 32, 17, 1, 1));
+	tmp.push_back(new Sprite(300, 250, "sprites/r-typesheet42.gif", "bill", 68, 34, 32, 17, 2, 2));
+	tmp.push_back(new Sprite(300, 350, "sprites/r-typesheet42.gif", "billou", 68, 51, 32, 17, 1, 1));
+	tmp.push_back(new Sprite(300, 450, "sprites/r-typesheet42.gif", "pwet", 68, 68, 32, 17, 1, 1));
 	this->m_elements[CONNEXION] = tmp;
-//	tmp.clear();
+	tmp.clear();
 	this->m_elements[PRINCIPAL] = tmp;
 	this->m_elements[PARAMS] = tmp;
 	this->m_elements[LIST] = tmp;

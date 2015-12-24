@@ -10,7 +10,7 @@ public:
 	~Text();
 
 public:
-	void update(const sf::Event &, Model &);
+	void update(const sf::Event &, Model &, sf::Vector2f &);
 	void aff(View *);
 };
 

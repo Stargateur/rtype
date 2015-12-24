@@ -11,8 +11,10 @@
 #ifndef		UDP_CLIENT_HPP_
 # define	UDP_CLIENT_HPP_
 
-# include	<arpa/inet.h>
-# include	<sys/socket.h>
+# ifndef	_WIN32
+#  include	<arpa/inet.h>
+#  include	<sys/socket.h>
+# endif
 # include	<tuple>
 # include	"IUDP_client.hpp"
 # include	"ASocket.hpp"
@@ -21,6 +23,7 @@ class	UDP_client : public IUDP_client, public ASocket
 {
 public:
   UDP_client(std::string const &host, std::string const &port);
+	~UDP_client(void);
   uintmax_t	send(uint8_t const &data, uintmax_t size) const;
   uintmax_t	recv(uint8_t &data, uintmax_t size) const;
 private:

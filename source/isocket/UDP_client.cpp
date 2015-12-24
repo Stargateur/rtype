@@ -8,10 +8,17 @@
 // Last update Tue Dec  8 16:07:48 2015 Antoine Plaskowski
 //
 
-#include	<sys/socket.h>
-#include	<netdb.h>
+#ifdef		_WIN32
+# include <io.h>
+# include <WinSock2.h>
+# pragma comment (lib, "Ws2_32.lib")
+typedef long ssize_t;
+#else
+# include	<sys/socket.h>
+# include	<netdb.h>
+# include	<unistd.h>
+#endif
 #include	<cstring>
-#include	<unistd.h>
 #include	<iostream>
 #include	"UDP_client.hpp"
 
@@ -20,9 +27,16 @@ UDP_client::UDP_client(std::string const &host, std::string const &port) :
 {
 }
 
+UDP_client::~UDP_client(void)
+{
+#ifdef	_WIN32
+	WSACleanup();
+#endif
+}
+
 uintmax_t	UDP_client::send(uint8_t const &data, uintmax_t size) const
 {
-  ssize_t	ret = ::send(m_fd, &data, size, 0);
+  ssize_t	ret = ::send(m_fd, reinterpret_cast<const char *>(&data), size, 0);
   if (ret == -1)
     throw UDP_client_exception(strerror(errno));
   return (static_cast<uintmax_t>(ret));
@@ -30,7 +44,7 @@ uintmax_t	UDP_client::send(uint8_t const &data, uintmax_t size) const
 
 uintmax_t	UDP_client::recv(uint8_t &data, uintmax_t size) const
 {
-  ssize_t	ret = ::recv(m_fd, &data, size, 0);
+  ssize_t	ret = ::recv(m_fd, reinterpret_cast<char *>(&data), size, 0);
   if (ret == -1)
     throw UDP_client_exception(strerror(errno));
   return (static_cast<uintmax_t>(ret));
@@ -68,7 +82,9 @@ int     UDP_client::connect(std::string const &host, std::string const &port)
   int   status = ::getaddrinfo(host.c_str(), port.c_str(), &hints, &result);
   if (status != 0)
     throw UDP_client_exception(gai_strerror(status));
-
+#ifdef	_WIN32
+	WSAStartup(MAKEWORD(2, 2), NULL);
+#endif
   int fd = aux_connect(result);
   ::freeaddrinfo(result);
   return (fd);

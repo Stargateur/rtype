@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:15:49 2015 Alaric Degand
-// Last update Thu Dec 24 13:16:33 2015 Antoine Plaskowski
+// Last update Thu Dec 24 23:29:37 2015 Antoine Plaskowski
 //
 
 #include	<iostream>
@@ -28,7 +28,7 @@ void		Server::run(void)
     m_clients.push_back(new Client(*this, m_itcp_server.accept()));
 }
 
-bool		Server::check_login(std::string const &login, std::string const &passwd)
+bool		Server::check_login(std::string const &login, std::string const &passwd) const
 {
   if (login != passwd)
     return (false);
@@ -36,4 +36,12 @@ bool		Server::check_login(std::string const &login, std::string const &passwd)
     if (login == client->get_login())
       return (false);
   return (true);
+}
+
+Client		*Server::get_client(std::string const &login) const
+{
+  for (auto client : m_clients)
+    if (login == client->get_login())
+      return (client);
+  return (NULL);
 }

@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:56:02 2015 Alaric Degand
-// Last update Thu Dec 24 12:05:54 2015 Alaric Degand
+// Last update Thu Dec 24 14:22:02 2015 Alaric Degand
 //
 
 #include	"Client.hpp"
@@ -41,10 +41,13 @@ void	Client::connect(ITCP_protocol &itcp_protocol, std::string const &login, std
 
 void	Client::disconnect(ITCP_protocol &itcp_protocol)
 {
+  m_login.clear();
+  m_password.clear();
 }
 
 void	Client::ping(ITCP_protocol &itcp_protocol)
 {
+  m_itcp_protocol.send_pong();
 }
 
 void	Client::pong(ITCP_protocol &itcp_protocol)
@@ -53,6 +56,10 @@ void	Client::pong(ITCP_protocol &itcp_protocol)
 
 void	Client::list_meta_games(ITCP_protocol &itcp_protocol)
 {
+  if (m_login == "")
+      m_itcp_protocol.send_result(ITCP_protocol::IGNORED);
+  else
+    m_itcp_protocol.send_list_meta_games();
 }
 
 void	Client::meta_games(ITCP_protocol &itcp_protocol, std::list<ITCP_protocol::Game *> const &games)
@@ -61,6 +68,7 @@ void	Client::meta_games(ITCP_protocol &itcp_protocol, std::list<ITCP_protocol::G
 
 void	Client::create_game(ITCP_protocol &itcp_protocol, ITCP_protocol::Game const &game)
 {
+  
 }
 
 void	Client::join_game(ITCP_protocol &itcp_protocol, ITCP_protocol::Game const &game)
@@ -69,6 +77,18 @@ void	Client::join_game(ITCP_protocol &itcp_protocol, ITCP_protocol::Game const &
 
 void	Client::message(ITCP_protocol &itcp_protocol, std::string const &login, std::string const &message)
 {
+  Client	*target_client;
+  
+  if (m_login == "")
+    m_itcp_protocol.send_result(ITCP_protocol::IGNORED);
+  else
+    {
+      target_client = m_server.get_client(login);
+      if (target_client != NULL)
+	target_client->m_itcp_protocol.send_message(login, message);
+      else
+	m_itcp_protocol.send_result(ITCP_protocol::WRONGLOGIN);
+    }
 }
 
 // void	Client::list_modes(ITCP_protocol &itcp_protocol)

@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:05:56 2015 Alaric Degand
-// Last update Wed Dec 23 18:43:23 2015 Antoine Plaskowski
+// Last update Thu Dec 24 09:06:35 2015 Antoine Plaskowski
 //
 
 #ifndef		SERVER_HPP_
@@ -17,22 +17,24 @@
 class		Server;
 
 #include	"Client.hpp"
+#include	"Option.hpp"
 #include	"TCP_server.hpp"
-//#include	"Game.hpp"
+#include	"BasicGame.hpp"
+#include	"Usine.hpp"
 #include	"Select.hpp"
 
-class		Server
+class	Server
 {
+public:
+  Server(Option const &option);
+  void	run(void);
+  bool	check_login(std::string const &login, std::string const &password);
 private:
   ITCP_server const	&m_itcp_server;
   std::list<Client *>	m_clients;
-  //  std::list<Game *>	m_games;
-  
+  std::list<IGame *>	m_games;
   ISelect	&m_iselect;
-public:
-  Server(std::string const &port);
-  void		run(void);
-  bool		check_login(std::string const &login, std::string const &password);
+  Usine<fct_new_ientite>	m_usine;
 };
 
 #endif		/* !SERVER_HPP_ */

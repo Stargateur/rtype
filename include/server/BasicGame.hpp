@@ -5,13 +5,13 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Tue Dec 22 10:12:30 2015 Alaric Degand
-// Last update Wed Dec 23 17:16:46 2015 Antoine Plaskowski
+// Last update Thu Dec 24 06:57:47 2015 Antoine Plaskowski
 //
 
 #ifndef		BASICGAME_HPP_
 # define	BASICGAME_HPP_
 
-#include	"IGame.hpp"
+# include	"IGame.hpp"
 
 class		BasicGame: public IGame
 {

@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sat Oct 24 15:43:06 2015 Antoine Plaskowski
-// Last update Wed Dec 23 18:39:06 2015 Antoine Plaskowski
+// Last update Thu Dec 24 07:24:27 2015 Antoine Plaskowski
 //
 
 #ifndef		OPTION_HPP_
@@ -24,7 +24,7 @@ public:
   std::list<std::string> const	&get_pos_opt(void) const;
   void	add_opt(std::string const &name, std::string const &description = "", std::string const &value = "");
   void	sup_opt(std::string const &name);
-  void	parse_opt(char **argv, int argc);
+  void	parse_opt(int argc, char **argv);
   std::string const	&get_zero(void) const;
 private:
   using m_opt = std::tuple<std::string, std::string, std::string>;

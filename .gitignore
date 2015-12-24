@@ -1,5 +1,6 @@
 *.o
 *~
+*.so
 \#*#
 rtype_client
 rtype_server

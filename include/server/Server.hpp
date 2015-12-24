@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:05:56 2015 Alaric Degand
-// Last update Wed Dec 23 17:25:29 2015 Alaric Degand
+// Last update Wed Dec 23 18:43:23 2015 Antoine Plaskowski
 //
 
 #ifndef		SERVER_HPP_
@@ -27,6 +27,7 @@ private:
   ITCP_server const	&m_itcp_server;
   std::list<Client *>	m_clients;
   //  std::list<Game *>	m_games;
+  
   ISelect	&m_iselect;
 public:
   Server(std::string const &port);

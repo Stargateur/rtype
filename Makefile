@@ -5,7 +5,7 @@
 ## Login   <plasko_a@epitech.eu>
 ## 
 ## Started on  Fri Nov 20 04:13:39 2015 Antoine Plaskowski
-## Last update Wed Dec 23 00:02:58 2015 Antoine Plaskowski
+## Last update Thu Dec 24 04:14:05 2015 Antoine Plaskowski
 ##
 
 CLIENT		=	rtype_client
@@ -65,21 +65,22 @@ endif
 include			source.mk
 
 DPD		=	$(SRC:.cpp=.dpd)
-
 OBJ		=	$(SRC:.cpp=.o)
 
 DPD_SERVER	=	$(SRC_SERVER:.cpp=.dpd)
-
 OBJ_SERVER	=	$(SRC_SERVER:.cpp=.o)
 
 DPD_CLIENT	=	$(SRC_CLIENT:.cpp=.dpd)
-
 OBJ_CLIENT	=	$(SRC_CLIENT:.cpp=.o)
+
+OBJ_IENTITE	=	$(SRC_IENTITE:.cpp=.o)
+DPD_IENTITE	=	$(SRC_IENTITE:.cpp=.dpd)
+LIB_IENTITE	=	$(notdir $(OBJ_IENTITE:.o=.so))
 
 all		:	$(SERVER) $(CLIENT)
 
-$(SERVER)	:	CXXFLAGS += -I include/server
-$(SERVER)	:	$(OBJ) $(OBJ_SERVER)
+$(SERVER)	:	CXXFLAGS += -I include/server -I include/ientite
+$(SERVER)	:	$(OBJ) $(OBJ_SERVER) $(LIB_IENTITE)
 			$(CXX) $(OBJ) $(OBJ_SERVER) -o $(SERVER) $(LDFLAGS) $(LIB_SERVER)
 
 $(CLIENT)	:	CXXFLAGS += -I include/client
@@ -109,6 +110,11 @@ re		:	fclean
 
 $(DPD_SERVER)	:	CXXFLAGS += -I include/server
 $(DPD_CLIENT)	:	CXXFLAGS += -I include/client
+$(DPD_IENTITE)	:	CXXFLAGS += -I include/ientite -I include/server
+
+%.so		:	CXXFLAGS += -fPIC
+%.so		:	$(DIR_IENTITE)%.o
+			$(CXX) -o $(@) $(<) -shared
 
 %.dpd		:	%.cpp
 			$(CXX) -MM $(<) -o $(@) $(CXXFLAGS) -MT $(<:.cpp=.o)
@@ -120,4 +126,4 @@ $(DPD_CLIENT)	:	CXXFLAGS += -I include/client
 
 .SUFFIXES	:	.o.c .dpd.c .o.cpp .dpd.cpp
 
-include			$(DPD) $(DPD_SERVER) $(DPD_CLIENT)
+include			$(DPD) $(DPD_SERVER) $(DPD_CLIENT) $(DPD_IENTITE)

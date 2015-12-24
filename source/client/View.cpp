@@ -5,7 +5,7 @@
 // Login   <anthony.bury@epitech.eu>
 // 
 // Started on  Tue Nov 17 12:26:59 2015 Anthony Bury
-// Last update Wed Dec  9 16:56:31 2015 Kevin Costa
+// Last update Thu Dec 24 03:18:34 2015 Antoine Plaskowski
 //
 
 #include "View.hpp"
@@ -21,15 +21,15 @@ View::~View(void)
 
 void	View::handleEvent(void)
 {
-	while (this->pollEvent(this->event))
-		{
-			if (this->event.type == sf::Event::Closed)
-				this->close();
-			if ((this->event.type == sf::Event::KeyPressed) && (this->event.key.code == sf::Keyboard::Escape))
-				this->close();
-			sf::Vector2i localPosition = sf::Mouse::getPosition(*this);
-			this->m_control.update(this->event, this->m_model, sf::Vector2f(localPosition.x, localPosition.y));
-		}
+	// while (this->pollEvent(this->event))
+	// 	{
+	// 		if (this->event.type == sf::Event::Closed)
+	// 			this->close();
+	// 		if ((this->event.type == sf::Event::KeyPressed) && (this->event.key.code == sf::Keyboard::Escape))
+	// 			this->close();
+	// 		sf::Vector2i localPosition = sf::Mouse::getPosition(*this);
+	// 		this->m_control.update(this->event, this->m_model, sf::Vector2f(localPosition.x, localPosition.y));
+	// 	}
 }
 
 bool View::init(void)

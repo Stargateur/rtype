@@ -5,7 +5,7 @@
 ## Login   <bury_a@epitech.eu>
 ## 
 ## Started on  Mon Nov 16 02:02:18 2015 Anthony Bury
-## Last update Wed Dec 23 17:24:59 2015 Antoine Plaskowski
+## Last update Thu Dec 24 04:13:41 2015 Antoine Plaskowski
 ##
 
 DIR		=		source/
@@ -21,6 +21,8 @@ DIR_ISOCKET	=		$(DIR)isocket/
 DIR_IPROTOCOL	=		$(DIR)iprotocol/
 
 DIR_ITHREAD	=		$(DIR)ithread/
+
+DIR_IENTITE	=		$(DIR)ientite/
 
 DIR_THREADPOOL	=		$(DIR_SERVER)threadPool/
 
@@ -69,6 +71,7 @@ SRC_SERVER	+=		$(DIR_SERVER)Player.cpp
 SRC_SERVER	+=		$(DIR_SERVER)BasicGame.cpp
 SRC_SERVER	+=		$(DIR_SERVER)PortGenerator.cpp
 SRC_SERVER	+=		$(DIR_SERVER)File.cpp
+SRC_SERVER	+=		$(DIR_SERVER)DLL.cpp
 
 SRC_SERVER	+=		$(DIR_THREADPOOL)Task.cpp
 SRC_SERVER	+=		$(DIR_THREADPOOL)ThreadPool.cpp
@@ -81,3 +84,5 @@ SRC_CLIENT	+=		$(DIR_CLIENT)Button.cpp
 SRC_CLIENT	+=		$(DIR_CLIENT)Text.cpp
 SRC_CLIENT	+=		$(DIR_CLIENT)Sprite.cpp
 SRC_CLIENT	+=		$(DIR_CLIENT)AElement.cpp
+
+SRC_IENTITE	+=		$(DIR_IENTITE)Wall.cpp

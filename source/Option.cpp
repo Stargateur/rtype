@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sat Oct 24 15:42:58 2015 Antoine Plaskowski
-// Last update Wed Dec 23 16:14:56 2015 Antoine Plaskowski
+// Last update Wed Dec 23 18:40:00 2015 Antoine Plaskowski
 //
 
 #include	<unistd.h>
@@ -52,7 +52,9 @@ void	Option::sup_opt(std::string const &name)
 
 void	Option::parse_opt(char **argv, int argc)
 {
-  for (int i = 0; i < argc; i++)
+  if (argc > 0)
+    m_zero = argv[0];
+  for (int i = 1; i < argc; i++)
     {
       std::string	arg(argv[i]);
 
@@ -80,4 +82,9 @@ void	Option::parse_opt(char **argv, int argc)
 	    break;
 	  }
     }
+}
+
+std::string const	&Option::get_zero(void) const
+{
+  return (m_zero);
 }

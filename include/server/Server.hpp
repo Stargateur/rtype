@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:05:56 2015 Alaric Degand
-// Last update Thu Dec 24 09:06:35 2015 Antoine Plaskowski
+// Last update Thu Dec 24 14:23:34 2015 Alaric Degand
 //
 
 #ifndef		SERVER_HPP_
@@ -28,7 +28,8 @@ class	Server
 public:
   Server(Option const &option);
   void	run(void);
-  bool	check_login(std::string const &login, std::string const &password);
+  bool	check_login(std::string const &login, std::string const &password) const;
+  Client	*get_client(std::string const &login) const;
 private:
   ITCP_server const	&m_itcp_server;
   std::list<Client *>	m_clients;

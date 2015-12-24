@@ -150,6 +150,7 @@ Table of Contents
     | 0          | No error                |
     | 1          | Ignored                 |
     | 2          | Unknown error           |
+    | 3          | wrong login             |
     | 10         | Wrong protocol version  |
     | 12         | Connect fail            |
     | 13         | Disconnect fail         |

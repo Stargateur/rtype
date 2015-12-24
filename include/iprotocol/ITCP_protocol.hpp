@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:35:29 2015 Antoine Plaskowski
-// Last update Thu Dec 10 15:44:30 2015 Antoine Plaskowski
+// Last update Thu Dec 24 12:04:32 2015 Alaric Degand
 //
 
 #ifndef		ITCP_PROTOCOL_HPP_
@@ -85,8 +85,12 @@ public:
   };
   enum  Error : uint8_t
   {
-    VERSION,
-    NONE
+    NONE,
+      IGNORED,
+      UNKNOW,
+      VERSION = 10,
+      CONNECT = 12,
+      DISCONNECT
   };
 public:
   virtual ~ITCP_protocol(void);

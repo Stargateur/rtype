@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:56:02 2015 Alaric Degand
-// Last update Wed Dec 23 18:46:59 2015 Antoine Plaskowski
+// Last update Thu Dec 24 12:05:54 2015 Alaric Degand
 //
 
 #include	"Client.hpp"
@@ -29,10 +29,14 @@ void	Client::result(ITCP_protocol &itcp_protocol, bool ready)
 
 void	Client::connect(ITCP_protocol &itcp_protocol, std::string const &login, std::string const &password)
 {
-  // if (m_server.check_login())
-  //   {
-  //     m_login = login;
-  //   }
+  if (m_server.check_login(login, password))
+    {
+      m_login = login;
+      m_password = password;
+      m_itcp_protocol.send_result(ITCP_protocol::NONE);
+    }
+  else
+    m_itcp_protocol.send_result(ITCP_protocol::CONNECT);
 }
 
 void	Client::disconnect(ITCP_protocol &itcp_protocol)

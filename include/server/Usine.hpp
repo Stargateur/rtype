@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Thu Dec 24 07:05:53 2015 Antoine Plaskowski
-// Last update Thu Dec 24 09:43:28 2015 Antoine Plaskowski
+// Last update Thu Dec 24 11:10:11 2015 Antoine Plaskowski
 //
 
 #ifndef		USINE_HPP_
@@ -14,7 +14,9 @@
 # include	<string>
 # include	<list>
 # include	<vector>
+# include	<exception>
 # include	<random>
+# include	<cstring>
 # include	<dirent.h>
 # include	"DLL.hpp"
 
@@ -30,24 +32,28 @@ public:
     DIR	*dirp = opendir(path.c_str());
 
     if (dirp == NULL)
-      throw std::exception();
+      throw std::logic_error(path + strerror(errno));
     struct dirent	*entry;
     while ((entry = readdir(dirp)) != NULL)
       {
+	std::cout << entry->d_name << std::endl;
 	try
 	  {
-	    m_dlls.push_back(new DLL(entry->d_name));
+	    m_dlls.push_back(new DLL(path + "/" + entry->d_name));
 	    m_fcts.push_back(m_dlls.back()->get_symbole<ptr_fct>(m_fct_name));
 	  }
-	catch (...)
+	catch (std::exception const &e)
 	  {
+	    std::cout << e.what() << std::endl;
 	  }
       }
     closedir(dirp);
   }
   template<typename T, typename ... Ts>
-  T	&get(Ts ... args) const
+  T	&get(Ts ... args)
   {
+    if (m_fcts.size() == 0)
+      throw std::logic_error("There are nothing !");
     uintmax_t	i = m_distribution(m_generator) % m_fcts.size();
     return (*m_fcts[i](args...));
   }

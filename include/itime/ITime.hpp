@@ -5,13 +5,13 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Wed Oct 21 20:44:16 2015 Bertrand-Rapello Baptiste
-// Last update Wed Dec 23 13:09:47 2015 Antoine Plaskowski
+// Last update Thu Dec 24 11:08:45 2015 Antoine Plaskowski
 //
 
-#ifndef ITIME_HPP_
-# define ITIME_HPP_
+#ifndef	ITIME_HPP_
+# define	ITIME_HPP_
 
-#include <cstdint>
+# include	<cstdint>
 
 class	ITime
 {

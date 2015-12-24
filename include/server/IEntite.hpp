@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Thu Dec 10 16:18:33 2015 Antoine Plaskowski
-// Last update Wed Dec 23 17:52:21 2015 Antoine Plaskowski
+// Last update Thu Dec 24 11:08:08 2015 Antoine Plaskowski
 //
 
 #ifndef		IENTITE_HPP_
@@ -15,6 +15,7 @@ class	IEntite;
 
 # include	<tuple>
 # include	<list>
+# include	<cstdint>
 # include	"IGame.hpp"
 # include	"ITime.hpp"
 # include	"File.hpp"
@@ -45,8 +46,8 @@ extern "C"
 # else
   __declspec(dllexport) IEntite	*new_ientite(std::list<IEntite *> const &ientites, uintmax_t team, uintmax_t x_max, uintmax_t y_max);
 # endif
-  typedef IEntite	&(*fct_new_ientite)(std::list<IEntite *> const &ientites, uintmax_t team, uintmax_t x_max, uintmax_t y_max);
-  typedef IEntite	&(&ref_new_ientite)(std::list<IEntite *> const &ientites, uintmax_t team, uintmax_t x_max, uintmax_t y_max);
+  typedef IEntite	*(*fct_new_ientite)(std::list<IEntite *> const &ientites, uintmax_t team, uintmax_t x_max, uintmax_t y_max);
+  typedef IEntite	*(&ref_new_ientite)(std::list<IEntite *> const &ientites, uintmax_t team, uintmax_t x_max, uintmax_t y_max);
 }
 
 

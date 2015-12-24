@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sat Oct 24 15:42:58 2015 Antoine Plaskowski
-// Last update Thu Dec 24 07:24:42 2015 Antoine Plaskowski
+// Last update Thu Dec 24 09:55:06 2015 Antoine Plaskowski
 //
 
 #include	<unistd.h>
@@ -26,7 +26,7 @@ std::string const	&Option::get_opt(std::string const &name) const
   for (auto &opt : m_opts)
     if (std::get<0>(opt) == name)
       return (std::get<2>(opt));
-  throw std::exception();
+  throw std::invalid_argument(name + "doesn't exist");
 }
 
 std::list<std::string> const	&Option::get_pos_opt(void) const
@@ -47,6 +47,7 @@ void	Option::sup_opt(std::string const &name)
 	m_opts.erase(it);
 	return;
       }
+  throw std::invalid_argument(name + "doesn't exist");
   throw std::exception();  
 }
 
@@ -73,7 +74,7 @@ void	Option::parse_opt(int argc, char **argv)
 	{
 	  for (auto &opt : m_opts)
 	    std::cerr << std::get<0>(opt) << " : " << std::get<1>(opt) << " = " << std::get<2>(opt);
-	  throw std::exception();
+	  throw std::logic_error("you ask for help");
 	}
       for (auto &opt : m_opts)
 	if (std::get<0>(opt) == arg)

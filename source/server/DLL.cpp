@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Mon Mar 30 22:28:36 2015 Antoine Plaskowski
-// Last update Wed Dec 23 18:52:39 2015 Antoine Plaskowski
+// Last update Thu Dec 24 11:04:22 2015 Antoine Plaskowski
 //
 
 #include	<dlfcn.h>
@@ -18,25 +18,23 @@ DLL::DLL(std::string const &name) :
   m_handle(dlopen(name.c_str(), RTLD_LAZY)),
   m_name(name)
 {
+  std::cout << name << std::endl;
   if (m_handle == NULL)
     {
       char *str = dlerror();
 
       if (str != NULL)
-	std::cerr << str << std::endl;
-      throw std::exception();
+	throw std::logic_error(str);
+      else
+	throw std::logic_error("Unknow");
     }
+  std::cout << "lolpd" << std::endl;
 }
 
 DLL::~DLL(void)
 {
   if (dlclose(m_handle) != 0)
-    {
-      char *str = dlerror();
-
-      if (str != NULL)
-	std::cerr << str << std::endl;
-    }
+    (void)dlerror();
 }
 
 std::string const	&DLL::get_name(void) const

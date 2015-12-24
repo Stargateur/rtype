@@ -5,20 +5,23 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Wed Dec 23 11:41:43 2015 Alaric Degand
-// Last update Thu Dec 24 03:45:25 2015 Antoine Plaskowski
+// Last update Thu Dec 24 10:50:59 2015 Antoine Plaskowski
 //
 
 #include	<list>
+#include	<iostream>
 #include	"ITime.hpp"
 #include	"Wall.hpp"
 
 File const	Wall::_sprite("Textures/vol.png");
+File const	Wall::_sound("Textures/vol.png");
 
 Wall::Wall(std::list<IEntite *> const &ientites, uintmax_t team, uintmax_t x_max, uintmax_t y_max) :
   _team(team),
   _hp(5000),
   _property(std::make_tuple(x_max, rand() % 2 * y_max, x_max / 10, y_max / 5))
 {
+  std::cout << "lol" << std::endl;
   // while (this.check_colide(ientites))
   //   {
   //     y_max--;
@@ -91,4 +94,9 @@ bool		Wall::check_colide(std::list<IEntite *> const &ientites) const
   // 	return (true);
   //   }
   return (false);
+}
+
+IEntite       *new_ientite(std::list<IEntite *> const &ientites, uintmax_t team, uintmax_t x_max, uintmax_t y_max)
+{
+  return (new Wall(ientites, team, x_max, y_max));
 }

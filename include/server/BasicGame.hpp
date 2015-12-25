@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Tue Dec 22 10:12:30 2015 Alaric Degand
-// Last update Fri Dec 25 11:37:10 2015 Antoine Plaskowski
+// Last update Fri Dec 25 17:50:12 2015 Antoine Plaskowski
 //
 
 #ifndef		BASICGAME_HPP_
@@ -14,11 +14,13 @@
 # include	<list>
 # include	<map>
 # include	"IGame.hpp"
+# include	"ISelect.hpp"
 # include	"Usine.hpp"
 # include	"PortGenerator.hpp"
 # include	"UDP_server.hpp"
+# include	"IUDP_protocol.hpp"
 
-class		BasicGame: public IGame
+class		BasicGame: public IGame, public IUDP_protocol::Callback
 {
 public:
   BasicGame(std::string const &owner, Usine<fct_new_ientite> &usine, std::string const &name, PortGenerator &port_generator);
@@ -32,10 +34,14 @@ public:
 private:
   std::string const	m_owner;
   std::string	m_name;
+  uintmax_t const	m_player_max;
+  uintmax_t const	m_x;
+  uintmax_t const	m_y;
   std::list<std::string>	m_player;
   std::map<std::string, std::string>	m_params;
   Usine<fct_new_ientite>	&m_usine;
   Port	m_port;
+  ISelect	&m_iselect;
   IUDP_server	&m_iudp_server;
 };
 

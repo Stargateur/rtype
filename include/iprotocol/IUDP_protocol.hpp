@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:35:29 2015 Antoine Plaskowski
-// Last update Tue Dec 22 22:13:21 2015 Antoine Plaskowski
+// Last update Fri Dec 25 18:48:45 2015 Antoine Plaskowski
 //
 
 #ifndef		IUDP_PROTOCOL_HPP_
@@ -46,9 +46,9 @@ public:
   {
   public:
     virtual ~Callback(void);
-    virtual void	sprites(IUDP_protocol &iudp_protocol, std::list<Sprite *> const &sprites) = 0;
-    virtual void	sounds(IUDP_protocol &iudp_protocol, std::list<Sound *> const &sounds) = 0;
-    virtual void	input(IUDP_protocol &iudp_protocol, Input const &input) = 0;
+    virtual void	sprites(IUDP_protocol &iudp_protocol, std::string const &login, std::list<Sprite *> const &sprites) = 0;
+    virtual void	sounds(IUDP_protocol &iudp_protocol, std::string const &login, std::list<Sound *> const &sounds) = 0;
+    virtual void	input(IUDP_protocol &iudp_protocol, std::string const &login, Input const &input) = 0;
   };
   enum  Error : uint8_t
   {
@@ -61,9 +61,9 @@ public:
   virtual bool	want_recv(void) const = 0;
   virtual void	send(IUDP_client const &socket) = 0;
   virtual void	recv(IUDP_client const &socket) = 0;
-  virtual void	send_sprites(std::list<Sprite *> const &sprites) = 0;
-  virtual void	send_sounds(std::list<Sound *> const &sounds) = 0;
-  virtual void	send_input(Input const &input) = 0;
+  virtual void	send_sprites(std::string const &login, std::list<Sprite *> const &sprites) = 0;
+  virtual void	send_sounds(std::string const &login, std::list<Sound *> const &sounds) = 0;
+  virtual void	send_input(std::string const &login, Input const &input) = 0;
 };
 
 #endif		/* !IUDP_PROTOCOL_HPP_ */

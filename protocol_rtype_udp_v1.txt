@@ -110,6 +110,7 @@ Table of Contents
     +--------+----------+--------------+
     | opcode | uint8_t  | Opcode       |
     | size   | uint16_t | Size of data |
+    | login  | string   | the login of client |
     +--------+----------+--------------+
 
       Table 3: Packet header structure
@@ -126,6 +127,7 @@ Table of Contents
     +--------+-------+
     | Opcode | 0     |
     | size   | ?     |
+    | login  | string   | the login of client |
     +--------+-------+
 
     +---------+-----------+----------------------------+
@@ -150,6 +152,7 @@ Table of Contents
     +--------+-------+
     | Opcode | 1     |
     | size   | ?     |
+    | login  | string   | the login of client |
     +--------+-------+
 
     +---------+-----------+----------------------------+
@@ -171,6 +174,7 @@ Table of Contents
     +--------+-------+
     | Opcode | 2     |
     | size   | ?     |
+    | login  | string   | the login of client |
     +--------+-------+
 
     +---------+-----------+----------------------------+

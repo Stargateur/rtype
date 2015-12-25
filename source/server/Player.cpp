@@ -5,15 +5,16 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Wed Dec 23 17:18:36 2015 Antoine Plaskowski
-// Last update Wed Dec 23 17:51:45 2015 Antoine Plaskowski
+// Last update Fri Dec 25 15:48:48 2015 Antoine Plaskowski
 //
 
 #include	"Player.hpp"
 
-Player::Player(File const &sprite, File const &sound, uintmax_t team, uintmax_t x, uintmax_t y, uintmax_t size_x, uintmax_t size_y) :
+Player::Player(File const &sprite, File const &sound, std::string const &login, uintmax_t team, uintmax_t x, uintmax_t y, uintmax_t size_x, uintmax_t size_y) :
   IEntite(),
   m_sprite(sprite),
   m_sound(sound),
+  m_login(login),
   m_team(team),
   m_property(std::make_tuple(x, y, size_x, size_y)),
   m_hp(3),

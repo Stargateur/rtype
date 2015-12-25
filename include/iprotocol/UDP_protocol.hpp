@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:35:29 2015 Antoine Plaskowski
-// Last update Tue Dec 22 22:13:10 2015 Antoine Plaskowski
+// Last update Fri Dec 25 18:48:06 2015 Antoine Plaskowski
 //
 
 #ifndef		UDP_PROTOCOL_HPP_
@@ -31,9 +31,9 @@ public:
   bool	want_recv(void) const;
   void	send(IUDP_client const &socket);
   void	recv(IUDP_client const &socket);
-  void	send_sprites(std::list<IUDP_protocol::Sprite *> const &sprites);
-  void	send_sounds(std::list<IUDP_protocol::Sound *> const &sounds);
-  void	send_input(IUDP_protocol::Input const &inputs);
+  void	send_sprites(std::string const &login, std::list<IUDP_protocol::Sprite *> const &sprites);
+  void	send_sounds(std::string const &login, std::list<IUDP_protocol::Sound *> const &sounds);
+  void	send_input(std::string const &login, IUDP_protocol::Input const &inputs);
 private:
   void	recv_sprites(void);
   void	recv_sounds(void);

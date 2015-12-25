@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Thu Dec 24 07:05:53 2015 Antoine Plaskowski
-// Last update Fri Dec 25 10:08:10 2015 Antoine Plaskowski
+// Last update Fri Dec 25 15:08:00 2015 Antoine Plaskowski
 //
 
 #ifndef		USINE_HPP_
@@ -41,7 +41,7 @@ public:
 	    m_dlls.push_back(new DLL(path + "/" + entry->d_name));
 	    try
 	      {
-		m_fcts.push_back(m_dlls.back()->get_symbole<ptr_fct>(m_fct_name));
+		m_fcts.push_back(m_dlls.back()->template get_symbole<ptr_fct>(m_fct_name));
 	      }
 	    catch (...)
 	      {

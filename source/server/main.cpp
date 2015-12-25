@@ -5,7 +5,7 @@
 // Login   <anthony.bury@epitech.eu>
 // 
 // Started on  Mon Nov 16 02:08:18 2015 Anthony Bury
-// Last update Thu Dec 24 13:32:34 2015 Antoine Plaskowski
+// Last update Fri Dec 25 12:05:00 2015 Antoine Plaskowski
 //
 
 #include <unistd.h>
@@ -25,5 +25,6 @@ int	main(int argc, char **argv)
   option.add_opt("port", "this is the port of tcp server", "4242");
   option.parse_opt(argc, argv);
   Server	server(option);
+  server.run();
   return (0);
 }

@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:15:49 2015 Alaric Degand
-// Last update Thu Dec 24 23:29:37 2015 Antoine Plaskowski
+// Last update Fri Dec 25 12:35:25 2015 Antoine Plaskowski
 //
 
 #include	<iostream>
@@ -15,17 +15,36 @@
 
 Server::Server(Option const &option) :
   m_itcp_server(*new TCP_server(option.get_opt("port"))),
+  m_istandard(*new Standard(IStandard::In)),
   m_iselect(*new Select()),
   m_usine(option.get_zero().substr(0, option.get_zero().find_last_of("\\/")), NAME_FCT_NEW_IENTITE)
 {
 }
 
+Server::~Server(void)
+{
+  delete &m_iselect;
+  delete &m_istandard;
+  delete &m_itcp_server;
+}
+
 void		Server::run(void)
 {
-  m_iselect.want_read(m_itcp_server);
-  m_iselect.select();
-  if (m_iselect.can_read(m_itcp_server))
-    m_clients.push_back(new Client(*this, m_itcp_server.accept()));
+  bool	g_keep_running = true;
+
+  while (g_keep_running == true)
+    {
+      uint8_t	buffer[42];
+
+      m_iselect.want_read(m_istandard);
+      m_iselect.want_read(m_itcp_server);
+      m_iselect.select();
+      if (m_iselect.can_read(m_itcp_server))
+	m_clients.push_back(new Client(*this, m_itcp_server.accept()));
+      if (m_iselect.can_read(m_istandard))
+	if (m_istandard.read(buffer[0], 42) == 0)
+	  g_keep_running = false;
+    }
 }
 
 bool		Server::check_login(std::string const &login, std::string const &passwd) const

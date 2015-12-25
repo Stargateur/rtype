@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Tue Dec 22 13:17:09 2015 Alaric Degand
-// Last update Tue Dec 22 15:16:28 2015 Alaric Degand
+// Last update Fri Dec 25 11:44:50 2015 Antoine Plaskowski
 //
 
 #ifndef		PORTGENERATOR_HPP_
@@ -22,6 +22,19 @@ public:
   PortGenerator(int16_t p_start, int16_t p_last);
   ~PortGenerator();
   int16_t	SeekPort(void);
+  void	FreePort(int16_t port);
+};
+
+class	Port
+{
+public:
+  Port(PortGenerator &port_generator);
+  ~Port(void);
+  std::string const	&get_port(void) const;
+private:
+  PortGenerator	&m_port_generator;
+  int16_t const	m_port;
+  std::string const	m_port_str;
 };
 
 #endif		/* !PORTGENERATOR_HPP_ */

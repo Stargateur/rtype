@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Tue Dec 22 13:19:44 2015 Alaric Degand
-// Last update Tue Dec 22 17:30:48 2015 Antoine Plaskowski
+// Last update Fri Dec 25 11:44:32 2015 Antoine Plaskowski
 //
 
 #include	<algorithm>
@@ -17,10 +17,7 @@ PortGenerator::PortGenerator(int16_t p_start, int16_t p_last)
 {
   if (p_start > p_last)
     std::swap(p_start, p_last);
-  for (int16_t i = p_start; i < p_last; i++)
-    {
-      _TabOfDisp.push_back(false);
-    }
+  _TabOfDisp.resize(p_last - p_start, false);
   _AddValue = p_start;
 }
 
@@ -28,9 +25,9 @@ PortGenerator::~PortGenerator()
 {
 }
 
-int16_t		PortGenerator::SeekPort(void)
+int16_t	PortGenerator::SeekPort(void)
 {
-  for (uint i = 0; i < _TabOfDisp.size(); i++)
+  for (uintmax_t i = 0; i < _TabOfDisp.size(); i++)
     {
       if (_TabOfDisp[i] == false)
 	{
@@ -39,4 +36,26 @@ int16_t		PortGenerator::SeekPort(void)
 	}
     }
   throw std::logic_error("No Port available");
+}
+
+void	PortGenerator::FreePort(int16_t port)
+{
+  _TabOfDisp[port - _AddValue] = false;
+}
+
+Port::Port(PortGenerator &port_generator) :
+  m_port_generator(port_generator),
+  m_port(m_port_generator.SeekPort()),
+  m_port_str(std::to_string(m_port))
+{
+}
+
+Port::~Port(void)
+{
+  m_port_generator.FreePort(m_port);
+}
+
+std::string const	&Port::get_port(void) const
+{
+  return (m_port_str);
 }

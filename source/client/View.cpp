@@ -5,7 +5,7 @@
 // Login   <anthony.bury@epitech.eu>
 // 
 // Started on  Tue Nov 17 12:26:59 2015 Anthony Bury
-// Last update Thu Dec 24 03:18:34 2015 Antoine Plaskowski
+// Last update Fri Dec 25 02:21:45 2015 Anthony Bury
 //
 
 #include "View.hpp"
@@ -43,7 +43,6 @@ bool View::init(void)
 	net->setThread(thread);
 	if (!thread->create(&threadNetwork, reinterpret_cast<void *>(net)))
 	{
-		delete (thread);
 		delete (net);
 		this->close();
 		return (false);

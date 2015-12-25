@@ -1,7 +1,7 @@
 #include "Network.hpp"
 
 Network::Network(Model &model) :
-	m_model(model), m_end(false), m_thread(NULL), m_mutex(NULL)
+  m_model(model), m_thread(NULL), m_mutex(NULL), m_end(false)
 {
 }
 

@@ -14,7 +14,7 @@ public:
 public:
 	bool create(void *(*ptr)(void *), void *);
 	void wait(void);
-	void end(unsigned int code = 0);
+	void exit(unsigned int code = 0);
 	void terminate(void);
 };
 

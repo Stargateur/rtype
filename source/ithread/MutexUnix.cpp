@@ -2,12 +2,14 @@
 
 Mutex::Mutex()
 {
-	pthread_mutex_init(reinterpret_cast<pthread_mutex_t *>(this->mutex), NULL);
+  this->mutex = new pthread_mutex_t;
+  pthread_mutex_init(reinterpret_cast<pthread_mutex_t *>(this->mutex), NULL);
 }
 
 Mutex::~Mutex()
 {
-	pthread_mutex_destroy(reinterpret_cast<pthread_mutex_t *>(this->mutex));
+  pthread_mutex_destroy(reinterpret_cast<pthread_mutex_t *>(this->mutex));
+  delete (reinterpret_cast<pthread_mutex_t *>(this->mutex));
 }
 
 void Mutex::lock(void)

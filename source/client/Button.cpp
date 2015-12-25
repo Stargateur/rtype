@@ -5,20 +5,19 @@
 ** Login   <tacite_d@Akagouan>
 ** 
 ** Started on  Thu Dec 10 17:35:58 2015 tacite_d
-// Last update Fri Dec 25 15:51:10 2015 Alaric Degand
+// Last update Fri Dec 25 18:41:56 2015 Alaric Degand
 */
 
 #include	"View.hpp"
 #include	"Button.hpp"
 
-
 Button::Button(float x, float y, float longu, float larg, std::string const& name, ptr ptrs) : AElement(BUTTON, name)
 {
-	this->setSize(sf::Vector2f(longu, larg));
-	this->setPosition(x, y);
-	this->m_text = NULL;
-	this->m_ptr = ptrs;
-//	createPtr(type);
+  this->setSize(sf::Vector2f(longu, larg));
+  this->setPosition(x, y);
+  this->m_text = NULL;
+  this->m_ptr = ptrs;
+  //	createPtr(type);
 }
 
 
@@ -28,61 +27,61 @@ Button::~Button()
 
 void Button::update(const sf::Event &e, Model &m, sf::Vector2f &pos)
 {
-	if (this->getGlobalBounds().contains(pos.x, pos.y))
-	{
-		if (this->m_ptr != NULL)
-			(this->*m_ptr)(m);
-	}
+  if (this->getGlobalBounds().contains(pos.x, pos.y))
+    {
+      if (this->m_ptr != NULL)
+	(this->*m_ptr)(m);
+    }
 
-	if (e.type == sf::Event::EventType::TextEntered)
-		this->m_text->update(e, m, pos);
+  if (e.type == sf::Event::EventType::TextEntered)
+    this->m_text->update(e, m, pos);
 }
 
 void	Button::aff(View *view)
 {
-	view->draw(*this);
-	if (this->m_text != NULL)
-		this->m_text->aff(view);
+  view->draw(*this);
+  if (this->m_text != NULL)
+    this->m_text->aff(view);
 }
 
 void Button::setText(Text *text)
 {
-	this->m_text = text;
+  this->m_text = text;
 }
 
 Text *Button::getText(void) const
 {
-	return (this->m_text);
+  return (this->m_text);
 }
 
 void Button::chargeConnect(Model &model)
 {
-	model.setState(Model::CONNEXION);
-	std::cout << "new state = connexion" << std::endl;
+  model.setState(Model::CONNEXION);
+  std::cout << "new state = connexion" << std::endl;
 }
 
 void Button::chargePrincip(Model &model)
 {
-	model.setState(Model::PRINCIPAL);
-	std::cout << "new state = principal" << std::endl;
+  model.setState(Model::PRINCIPAL);
+  std::cout << "new state = principal" << std::endl;
 }
 
 void Button::chargeParam(Model &model)
 {
-	model.setState(Model::PARAMS);
-	std::cout << "new state = param" << std::endl;
+  model.setState(Model::PARAMS);
+  std::cout << "new state = param" << std::endl;
 }
 
 void Button::chargeList(Model &model)
 {
-	model.setState(Model::LIST);
-	std::cout << "new state = list" << std::endl;
+  model.setState(Model::LIST);
+  std::cout << "new state = list" << std::endl;
 }
 
 void Button::chargeGame(Model &model)
 {
-	model.setState(Model::GAME);
-	std::cerr << "new state = game" << std::endl;
+  model.setState(Model::GAME);
+  std::cerr << "new state = game" << std::endl;
 }
 //
 //void Button::createPtr(buttonType type)

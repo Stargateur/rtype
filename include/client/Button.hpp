@@ -5,7 +5,7 @@
 ** Login   <tacite_d@Akagouan>
 ** 
 ** Started on  Thu Dec 10 17:36:16 2015 tacite_d
-** Last update Thu Dec 10 17:36:16 2015 tacite_d
+// Last update Fri Dec 25 18:38:39 2015 Alaric Degand
 */
 
 #ifndef		BUTTON_HPP_
@@ -35,25 +35,25 @@ class Button : public AElement, public sf::RectangleShape
 //		UNKNOWN
 //	} buttonType; WHAT?
 private:
-	Text *m_text;
-	ptr m_ptr;
+  Text *m_text;
+  ptr m_ptr;
+  
+public:
+  Button(float, float, float, float, std::string const&, ptr);
+  ~Button();
 
 public:
-	Button(float, float, float, float, std::string const&, ptr);
-	~Button();
+  void update(const sf::Event &, Model &, sf::Vector2f &);
+  void aff(View *);
+  void setText(Text *);
+  Text *getText(void) const;
 
 public:
-	void update(const sf::Event &, Model &, sf::Vector2f &);
-	void aff(View *);
-	void setText(Text *);
-	Text *getText(void) const;
-
-public:
-	void chargeConnect(Model &);
-	void chargePrincip(Model &);
-	void chargeParam(Model &);
-	void chargeList(Model &);
-	void chargeGame(Model &);
+  void chargeConnect(Model &);
+  void chargePrincip(Model &);
+  void chargeParam(Model &);
+  void chargeList(Model &);
+  void chargeGame(Model &);
 	
 //private:
 //	void createPtr(buttonType);

@@ -5,13 +5,14 @@
 // Login   <degand_a@epitech.eu>
 // 
 // Started on  Fri Dec 25 16:35:18 2015 Alaric Degand
-// Last update Fri Dec 25 16:38:19 2015 Alaric Degand
+// Last update Fri Dec 25 17:16:59 2015 Alaric Degand
 //
 
 #include "View.hpp"
 #include "Sprite.hpp"
 
-Sprite::Sprite(float pos_x, float pos_y, const std::string &texture, const std::string &name, double size_x, double size_y, int sprite_x, int sprite_y, int spsize_x, int spsize_y) : AElement(SPRITE, name), sf::Sprite()
+Sprite::Sprite(float pos_x, float pos_y, const std::string &texture, const std::string &name,
+	       int spsize_x, int spsize_y, double size_x, double size_y, int sprite_x, int sprite_y) : AElement(SPRITE, name), sf::Sprite()
 {
   this->text.loadFromFile(texture);
   this->setTexture(text);

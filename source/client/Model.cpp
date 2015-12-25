@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:29:32 2015 Kevin Costa
-// Last update Fri Dec 25 16:49:24 2015 Alaric Degand
+// Last update Fri Dec 25 18:31:58 2015 Alaric Degand
 //
 
 #include "Model.hpp"
@@ -16,13 +16,15 @@ Model::Model()
 
 	this->m_endExec = false;
 	this->m_actual = CONNEXION;
-	tmp.push_back(new Sprite(0, 0, "sprites/stars.jpg", "background", 1, 1, 0, 0, 1256, 836));
+	tmp.push_back(new Sprite(0, 0, "sprites/stars.jpg", "background", 1256, 836));
+	tmp.push_back(new Sprite(0, 0, "sprites/vol.png", "ship", 60, 68));
 	tmp.push_back(new Button(50, 50, 200, 100, "b1", &Button::chargeConnect));
 	tmp.push_back(new Button(400, 50, 200, 100, "b2", &Button::chargeGame));
 	tmp.push_back(new Button(50, 400, 200, 100, "b3", &Button::chargeList));
-	tmp.push_back(new Sprite(300, 450, "sprites/r-typesheet42.gif", "pwet", 2, 2, 68, 68, 32, 17));
+
 	this->m_elements[CONNEXION] = tmp;
 	tmp.clear();
+	tmp.push_back(new Sprite(0, 0, "sprites/stars.jpg", "background", 1256, 836));
 	this->m_elements[PRINCIPAL] = tmp;
 	this->m_elements[PARAMS] = tmp;
 	this->m_elements[LIST] = tmp;

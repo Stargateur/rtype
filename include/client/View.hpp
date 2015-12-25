@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:43:00 2015 Kevin Costa
-// Last update Wed Dec  9 16:57:19 2015 Kevin Costa
+// Last update Fri Dec 25 16:21:34 2015 Alaric Degand
 //
 
 #ifndef		VIEW_HPP_
@@ -29,7 +29,7 @@ class View : public sf::RenderWindow
 	Controller m_control;
 
 public:
-  View(void);
+  View(double, double);
   ~View(void);
 
 public:

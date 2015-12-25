@@ -14,6 +14,7 @@ Model::Model()
 {
 	std::vector<AElement *> tmp;
 
+	this->m_endExec = false;
 	this->m_actual = CONNEXION;
 	tmp.push_back(new Button(50, 50, 200, 100, "b1", &Button::chargeConnect));
 	tmp.push_back(new Button(400, 50, 200, 100, "b2", &Button::chargeGame));
@@ -69,9 +70,24 @@ void Model::Game(sf::Keyboard::Key &code)
     }
 }
 
+void Model::updateData(void)
+{
+
+}
+
+void Model::setEnd(const bool &e)
+{
+	this->m_endExec = e;
+}
+
 void Model::setState(State menu)
 {
 	this->m_actual = menu;
+}
+
+bool Model::getEnd(void) const
+{
+	return (this->m_endExec);
 }
 
 Model::State Model::getState(void) const

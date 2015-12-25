@@ -15,12 +15,16 @@
 # include	<SFML/Window.hpp>
 
 # include "Controller.hpp"
+# include "Network.hpp"
+
+void *threadNetwork(void *);
 
 class View : public sf::RenderWindow
 {
  private:
 	sf::VideoMode video;
 	sf::Event event;
+	AMutex *m_mutex;
 	Model m_model;
 	Controller m_control;
 

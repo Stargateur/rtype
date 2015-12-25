@@ -9,9 +9,6 @@
 //
 
 #if				defined _WIN32 || defined _WIN64
-# ifndef		WIN32
-#  define		WIN32
-# endif
 # include <io.h>
 # include <Windows.h>
 #else
@@ -21,7 +18,7 @@
 #include <cstring>
 #include "View.hpp"
 
-#ifdef WIN32
+#ifdef _WIN32
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 #else
 int	main(void)

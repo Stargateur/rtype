@@ -2,6 +2,7 @@
 
 Mutex::Mutex()
 {
+	this->mutex = new LPCRITICAL_SECTION;
 	InitializeCriticalSection(reinterpret_cast<LPCRITICAL_SECTION>(this->mutex));
 }
 
@@ -9,6 +10,7 @@ Mutex::Mutex()
 Mutex::~Mutex()
 {
 	DeleteCriticalSection(reinterpret_cast<LPCRITICAL_SECTION>(this->mutex));
+	delete (this->mutex);
 }
 
 void Mutex::lock(void)

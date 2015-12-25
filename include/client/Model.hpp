@@ -41,17 +41,22 @@ public:
 private:
 	std::map<State, std::vector<AElement *>> m_elements;
 	State m_actual;
+	bool m_endExec;
 
 public:
   Model(void);
   ~Model(void);
-  void  Game(sf::Keyboard::Key &code);
+
 public:
   std::vector<AElement *> getElements(void);
   std::vector<AElement *> getButtonElements(void);
-  void setState(State menu);
-  Model::State getState(void) const;
+	void setEnd(const bool &);
+	void setState(State menu);
+	bool getEnd(void) const;
+	Model::State getState(void) const;
 	AElement *getElementByName(const std::string &name);
+	void Game(sf::Keyboard::Key &code); // Change le nom
+	void updateData(void);
 };
 
 #endif		/* !MODEL_HPP_ */

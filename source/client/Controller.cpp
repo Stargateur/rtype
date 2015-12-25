@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:31:05 2015 Kevin Costa
-// Last update Fri Dec 25 18:37:18 2015 Alaric Degand
+// Last update Fri Dec 25 20:17:18 2015 Alaric Degand
 //
 
 #include	"Controller.hpp"
@@ -36,7 +36,6 @@ void		Controller::update(sf::Event &event, Model &model, sf::Vector2f &pos)
 	      if (elements[i]->getId() == BUTTON)
 		elements[i]->update(event, model, pos);
 	    }
-
     	case sf::Event::TextEntered || sf::Event::MouseButtonPressed:
 	  //			std::cout << "event catch" << std::endl;
 	  /*	  if (elements[i]->getId() == BUTTON)

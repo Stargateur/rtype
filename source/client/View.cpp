@@ -5,13 +5,13 @@
 // Login   <anthony.bury@epitech.eu>
 // 
 // Started on  Tue Nov 17 12:26:59 2015 Anthony Bury
-// Last update Fri Dec 25 02:21:45 2015 Anthony Bury
+// Last update Fri Dec 25 16:20:48 2015 Alaric Degand
 //
 
 #include "View.hpp"
 
-View::View(void) :
-  video(800, 600)
+View::View(double size_x, double size_y) :
+  video(size_x, size_y)
 {
 	this->m_mutex = new Mutex;
 }
@@ -28,8 +28,9 @@ void	View::handleEvent(void)
 	 			this->close();
 	 		if ((this->event.type == sf::Event::KeyPressed) && (this->event.key.code == sf::Keyboard::Escape))
 	 			this->close();
-	 		//sf::Vector2i localPosition = sf::Mouse::getPosition(*this);
-	 		//this->m_control.update(this->event, this->m_model, sf::Vector2f(localPosition.x, localPosition.y));
+	 		sf::Vector2i localPosition = sf::Mouse::getPosition(*this);
+			sf::Vector2f arg = sf::Vector2f(localPosition.x, localPosition.y);
+	 		this->m_control.update(this->event, this->m_model, arg);
 	 	}
 }
 

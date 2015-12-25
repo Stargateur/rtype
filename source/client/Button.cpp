@@ -5,7 +5,7 @@
 ** Login   <tacite_d@Akagouan>
 ** 
 ** Started on  Thu Dec 10 17:35:58 2015 tacite_d
-** Last update Thu Dec 10 17:35:59 2015 tacite_d
+// Last update Fri Dec 25 15:51:10 2015 Alaric Degand
 */
 
 #include	"View.hpp"

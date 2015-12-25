@@ -2,11 +2,13 @@
 
 Thread::Thread()
 {
+	this->thread = new HANDLE;
 }
 
 
 Thread::~Thread()
 {
+	delete (reinterpret_cast<HANDLE>(this->thread));
 }
 
 bool Thread::create(void *(*ptr)(void *), void *data)

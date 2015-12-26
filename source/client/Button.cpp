@@ -54,6 +54,11 @@ Text *Button::getText(void) const
   return (this->m_text);
 }
 
+const std::string &Button::getContent(void) const
+{
+	return (this->m_text->getString());
+}
+
 void Button::chargeConnect(Model &model)
 {
   model.setState(Model::CONNEXION);

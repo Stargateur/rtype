@@ -33,3 +33,8 @@ void Sprite::aff(View *view)
 {
 	view->draw(*this);
 }
+
+const std::string & Sprite::getContent(void) const
+{
+	return ("");
+}

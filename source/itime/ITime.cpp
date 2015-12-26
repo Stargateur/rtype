@@ -18,4 +18,5 @@ ITime	&ITime::operator=(ITime const &itime)
 {
   set_second(itime.get_second());
   set_nano(itime.get_nano());
+	return (*this);
 }

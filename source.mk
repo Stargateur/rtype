@@ -86,5 +86,7 @@ SRC_CLIENT	+=		$(DIR_CLIENT)Text.cpp
 SRC_CLIENT	+=		$(DIR_CLIENT)Sprite.cpp
 SRC_CLIENT	+=		$(DIR_CLIENT)AElement.cpp
 SRC_CLIENT	+=		$(DIR_CLIENT)Network.cpp
+SRC_CLIENT	+=		$(DIR_CLIENT)Client.cpp
+SRC_CLIENT	+=		$(DIR_CLIENT)Player.cpp
 
 SRC_IENTITE	+=		$(DIR_IENTITE)Wall.cpp

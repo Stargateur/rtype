@@ -12,8 +12,10 @@
 # define	UDP_SERVER_HPP_
 
 # include	<string>
-# include	<sys/socket.h>
-# include	<netdb.h>
+# ifndef	_WIN32
+#  include	<sys/socket.h>
+#  include	<netdb.h>
+# endif
 # include	"IUDP_server.hpp"
 
 class	UDP_server : public IUDP_server, public ASocket

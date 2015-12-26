@@ -5,7 +5,7 @@
 // Login   <degand_a@epitech.eu>
 // 
 // Started on  Sat Dec 26 23:33:11 2015 Alaric Degand
-// Last update Sun Dec 27 00:44:22 2015 Alaric Degand
+// Last update Sun Dec 27 00:52:33 2015 Alaric Degand
 //
 
 #include "View.hpp"
@@ -32,4 +32,9 @@ void Text::update(const sf::Event &e, Model &m, sf::Vector2f &)
 void Text::aff(View *view)
 {
 	view->draw(*this);
+}
+
+const std::string & Text::getContent(void) const
+{
+	return (this->getString());
 }

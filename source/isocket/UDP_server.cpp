@@ -8,10 +8,16 @@
 // Last update Tue Dec  8 15:38:03 2015 Antoine Plaskowski
 //
 
-#include	<unistd.h>
+#ifdef		_WIN32
+# include <io.h>
+# define	SHUT_RDWR SD_BOTH
+typedef long ssize_t;
+#else
+# include	<unistd.h>
+# include	<arpa/inet.h>
+#endif
 #include	<iostream>
 #include	<cstring>
-#include	<arpa/inet.h>
 #include	"UDP_server.hpp"
 #include	"UDP_client.hpp"
 
@@ -24,6 +30,9 @@ UDP_server::UDP_server(std::string const &port) :
 UDP_server::~UDP_server(void)
 {
   ::shutdown(m_fd, SHUT_RDWR);
+#ifdef	_WIN32
+	WSACleanup();
+#endif
 }
 
 int	UDP_server::aux_socket(struct addrinfo const *rp)
@@ -59,7 +68,9 @@ int	UDP_server::socket(std::string const &port)
   int   status = ::getaddrinfo(NULL, port.c_str(), &hints, &result);
   if (status != 0)
     throw UDP_server_exception(gai_strerror(status));
-
+#ifdef	_WIN32
+	WSAStartup(MAKEWORD(2, 2), NULL);
+#endif
   int	fd = aux_socket(result);
   ::freeaddrinfo(result);
   return (fd);
@@ -69,7 +80,7 @@ uintmax_t	UDP_server::recvfrom(uint8_t &data, uintmax_t size, IUDP_server::u_soc
 {
   len = sizeof(sockaddr);
   std::memset(&sockaddr.base, 0, len);
-  ssize_t   ret(::recvfrom(m_fd, &data, size, 0, &sockaddr.base, &len));
+  ssize_t   ret(::recvfrom(m_fd, reinterpret_cast<char *>(&data), size, 0, &sockaddr.base, &len));
   if (ret == -1)
     throw UDP_server_exception(strerror(errno));
   return (static_cast<size_t>(ret));
@@ -77,7 +88,7 @@ uintmax_t	UDP_server::recvfrom(uint8_t &data, uintmax_t size, IUDP_server::u_soc
 
 uintmax_t	UDP_server::sendto(uint8_t const &data, uintmax_t size, IUDP_server::u_sockaddr const &sockaddr, socklen_t len) const
 {
-  ssize_t   ret(::sendto(m_fd, &data, size, 0, &sockaddr.base, len));
+  ssize_t   ret(::sendto(m_fd, reinterpret_cast<const char *>(&data), size, 0, &sockaddr.base, len));
   if (ret == -1)
     throw UDP_server_exception(strerror(errno));
   return (static_cast<size_t>(ret));

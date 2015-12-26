@@ -25,6 +25,7 @@ public:
 public:
   void update(const sf::Event &, Model &, sf::Vector2f &);
   void aff(View *);
+	const std::string &getContent(void) const;
 };
 
 #endif

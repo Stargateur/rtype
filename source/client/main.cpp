@@ -8,15 +8,15 @@
 // Last update Fri Dec 25 19:54:21 2015 Alaric Degand
 //
 
+#include <cstring>
+#include "View.hpp"
+
 #if				defined _WIN32 || defined _WIN64
 # include <io.h>
 # include <Windows.h>
 #else
 # include <unistd.h>
 #endif
-
-#include <cstring>
-#include "View.hpp"
 
 #ifdef _WIN32
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)

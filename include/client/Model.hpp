@@ -39,9 +39,10 @@ public:
     } State;
 
 private:
-  std::map<State, std::vector<AElement *>> m_elements;
   State m_actual;
+	bool m_canConnect;
   bool m_endExec;
+	std::map<State, std::vector<AElement *>> m_elements;
 
 public:
   Model(void);
@@ -52,8 +53,10 @@ public:
   std::vector<AElement *> getButtonElements(void);
   void setEnd(const bool &);
   void setState(State menu);
+	void setConnect(const bool &);
   bool getEnd(void) const;
-  Model::State getState(void) const;
+	bool canConnect(void) const;
+	Model::State getState(void) const;
   AElement *getElementByName(const std::string &name);
   void Game(sf::Keyboard::Key &code); // Change le nom
   void updateData(void);

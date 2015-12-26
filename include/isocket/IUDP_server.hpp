@@ -14,8 +14,10 @@
 # include	<cstdint>
 # include	<string>
 # ifdef		_WIN32
-#  include <ws2ipdef.h>
+#  include <WinSock2.h>
 #  include <WS2tcpip.h>
+#  define _WINSOCK2API_
+#  define _WINSOCKAPI_
 # endif
 # include	"ASocket.hpp"
 

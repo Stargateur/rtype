@@ -14,8 +14,8 @@
 # include	<SFML/Graphics.hpp>
 # include	<SFML/Window.hpp>
 
-# include "Controller.hpp"
 # include "Network.hpp"
+# include "Controller.hpp"
 
 void *threadNetwork(void *);
 

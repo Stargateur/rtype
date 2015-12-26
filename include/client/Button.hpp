@@ -47,6 +47,7 @@ public:
   void aff(View *);
   void setText(Text *);
   Text *getText(void) const;
+	const std::string &getContent(void) const;
 
 public:
   void chargeConnect(Model &);

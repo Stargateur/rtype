@@ -12,8 +12,10 @@
 # define	TCP_SERVER_HPP_
 
 # include	<string>
-# include	<sys/socket.h>
-# include	<netdb.h>
+# ifndef	_WIN32
+#  include	<sys/socket.h>
+#  include	<netdb.h>
+# endif
 # include	"ITCP_server.hpp"
 
 class TCP_server : public ASocket, public ITCP_server

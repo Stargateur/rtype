@@ -14,6 +14,8 @@
 # include	<string>
 # ifdef		_WIN32
 #  include	<WinSock2.h>
+#  define _WINSOCK2API_
+#  define _WINSOCKAPI_
 # else
 #  include	<sys/socket.h>
 #  include	<arpa/inet.h>

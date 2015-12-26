@@ -18,3 +18,8 @@ void Text::aff(View *view)
 {
 	view->draw(*this);
 }
+
+const std::string & Text::getContent(void) const
+{
+	return (this->getString());
+}

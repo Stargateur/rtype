@@ -10,15 +10,14 @@
 
 #include "Model.hpp"
 
-Model::Model()
+Model::Model() :
+	m_actual(CONNEXION), m_canConnect(false), m_endExec(false)
 {
   std::vector<AElement *> connexion;
   std::vector<AElement *> principal;
   std::vector<AElement *> params;
   std::vector<AElement *> list;
 
-  this->m_endExec = false;
-  this->m_actual = CONNEXION;
   connexion.push_back(new Sprite(0, 0, "sprites/stars.jpg", "background", 1256, 836));
   connexion.push_back(new Sprite(0, 0, "sprites/vol.png", "ship", 60, 68));
   connexion.push_back(new Button(50, 50, 200, 100, "b1", &Button::chargeConnect));
@@ -83,9 +82,9 @@ void Model::updateData(void)
 
 }
 
-void Model::setEnd(const bool &e)
+void Model::setEnd(const bool &end)
 {
-  this->m_endExec = e;
+  this->m_endExec = end;
 }
 
 void Model::setState(State menu)
@@ -93,9 +92,19 @@ void Model::setState(State menu)
   this->m_actual = menu;
 }
 
+void Model::setConnect(const bool &connect)
+{
+	this->m_canConnect = connect;
+}
+
 bool Model::getEnd(void) const
 {
   return (this->m_endExec);
+}
+
+bool Model::canConnect(void) const
+{
+	return (this->m_canConnect);
 }
 
 Model::State Model::getState(void) const
@@ -105,8 +114,9 @@ Model::State Model::getState(void) const
 
 AElement *Model::getElementByName(const std::string &name)
 {
-  for (size_t i = 0; i < this->m_elements[this->m_actual].size(); i++)
-    if (this->m_elements[this->m_actual][i]->getName() == name)
-      return (this->m_elements[this->m_actual][i]);
+	for (std::map<State, std::vector<AElement *>>::iterator it = this->m_elements.begin(); it != this->m_elements.end(); ++it)
+		for (size_t i = 0; i < it->second.size(); i++)
+			if (it->second[i]->getName() == name)
+				return (it->second[i]);
   return (NULL);
 }

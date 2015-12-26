@@ -5,7 +5,7 @@
 // Login   <degand_a@epitech.eu>
 // 
 // Started on  Fri Dec 25 16:35:18 2015 Alaric Degand
-// Last update Sat Dec 26 22:38:11 2015 Alaric Degand
+// Last update Sun Dec 27 00:22:06 2015 Alaric Degand
 //
 
 #include "View.hpp"
@@ -20,7 +20,6 @@ Sprite::Sprite(float pos_x, float pos_y, const std::string &texture, const std::
   this->setPosition(pos_x, pos_y);
   this->scale(sf::Vector2f(size_x, size_y));
 }
-
 
 Sprite::~Sprite()
 {

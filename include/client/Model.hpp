@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:35:48 2015 Kevin Costa
-// Last update Sat Dec 26 22:55:15 2015 Alaric Degand
+// Last update Sun Dec 27 00:25:57 2015 Alaric Degand
 //
 
 #ifndef		MODEL_HPP_
@@ -43,6 +43,7 @@ private:
   State m_actual;
   bool m_endExec;
   bool connexionbox;
+  sf::Font	m_font;
 public: //FOR THE COSTA SWAG
   bool	costabouche;
 

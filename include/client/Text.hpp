@@ -5,7 +5,7 @@
 // Login   <degand_a@epitech.eu>
 // 
 // Started on  Sat Dec 26 23:32:44 2015 Alaric Degand
-// Last update Sat Dec 26 23:54:04 2015 Alaric Degand
+// Last update Sun Dec 27 00:32:46 2015 Alaric Degand
 //
 
 #ifndef		TEXT_HPP_
@@ -16,7 +16,7 @@
 class Text : public AElement, public sf::Text
 {
 public:
-  Text(std::string const &, sf::Font const &);
+  Text(float, float, std::string const &, sf::Font const &);
   ~Text();
 
 public:

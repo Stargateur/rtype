@@ -5,11 +5,12 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Tue Dec 22 10:14:54 2015 Alaric Degand
-// Last update Fri Dec 25 17:38:56 2015 Antoine Plaskowski
+// Last update Fri Dec 25 19:32:00 2015 Antoine Plaskowski
 //
 
 #include	<array>
 #include	"BasicGame.hpp"
+#include	"UDP_protocol.hpp"
 #include	"Time.hpp"
 #include	"Player.hpp"
 #include	"Select.hpp"
@@ -40,42 +41,45 @@ void	BasicGame::run(void)
   ITime	&now = *new Time();
   ITime	&wait = *new Time();
   ITime	&want_wait = *new Time();
-  std::list<Player *>	players;
-  std::list<IEntite *>	ientites;
+  IUDP_protocol &iudp_protocol = *new UDP_protocol(*this);
 
-  players.push_back(new Player(sprite, sprite, m_owner, 1, 0, 0, 10, 10));
-  for (auto it = m_player.begin(); it != m_player.end(); it++)
+  m_players.push_back(new Player(sprite, sprite, m_owner, 1, 0, 0, 10, 10));
+  for (auto it = m_login.begin(); it != m_login.end(); it++)
     {
-      players.push_back(new Player(sprite, sprite, *it, 1, 0, 0, 10, 10));
-      ientites.push_back(players.back());
+      m_players.push_back(new Player(sprite, sprite, *it, 1, 0, 0, 10, 10));
+      m_ientites.push_back(m_players.back());
     }
   itime.now();
-  while (players.size() != 0)
+  while (m_players.size() != 0)
     {
       now.now();
       itime.sub(now);
       wait.set_second(1);
       std::list<IEntite *>	to_add;
-      for (auto it = ientites.begin(); it != ientites.end();)
+      for (auto it = m_ientites.begin(); it != m_ientites.end();)
 	{
 	  try
 	    {
-	      (*it)->run(ientites, to_add, itime, want_wait);
+	      (*it)->run(m_ientites, to_add, itime, want_wait);
 	      // compare wait et want_wait
 	      it++;
 	    }
 	  catch (...)
 	    {
-	      players.remove(static_cast<Player *>(*it));
+	      m_players.remove(static_cast<Player *>(*it));
 	      delete *it;
-	      it = ientites.erase(it);
+	      it = m_ientites.erase(it);
 	    }
 	}
-      ientites.splice(ientites.end(), to_add);
-      m_iselect.want_read(m_iudp_server);
+      m_ientites.splice(m_ientites.end(), to_add);
+      if (iudp_protocol.want_send() == true)
+	m_iselect.want_read(m_iudp_server);
+      if (iudp_protocol.want_recv() == true)
+	m_iselect.want_write(m_iudp_server);
       m_iselect.select(&wait);
+      //      if (m_iselect.can_read(
     }
-  for (auto ientite : ientites)
+  for (auto ientite : m_ientites)
     delete ientite;
   delete &itime;
   delete &now;
@@ -96,6 +100,21 @@ void	BasicGame::set_name(std::string const &name)
 std::string const	&BasicGame::get_name(void) const
 {
   return (m_name);
+}
+
+void	BasicGame::add_player(std::string const &login)
+{
+  m_login.push_back(login);
+}
+
+void	BasicGame::sup_player(std::string const &login)
+{
+  m_login.remove(login);
+}
+
+std::list<std::string> const  &BasicGame::get_player(void) const
+{
+  return (m_login);
 }
 
 std::map<std::string, std::string> const	&BasicGame::get_meta_params(void) const

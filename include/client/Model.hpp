@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:35:48 2015 Kevin Costa
-// Last update Sun Dec 27 00:25:57 2015 Alaric Degand
+// Last update Sun Dec 27 00:39:58 2015 Alaric Degand
 //
 
 #ifndef		MODEL_HPP_
@@ -44,7 +44,6 @@ private:
   bool m_endExec;
   bool connexionbox;
   sf::Font	m_font;
-public: //FOR THE COSTA SWAG
   bool	costabouche;
 
 public:
@@ -57,6 +56,7 @@ public:
   void setEnd(const bool &);
   void setState(State menu);
   bool getEnd(void) const;
+  bool	getCosta(void) const;
   Model::State getState(void) const;
   AElement *getElementByName(const std::string &name);
   void Game(sf::Keyboard::Key &code); // Change le nom

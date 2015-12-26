@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:29:32 2015 Kevin Costa
-// Last update Sun Dec 27 00:36:30 2015 Alaric Degand
+// Last update Sun Dec 27 00:50:24 2015 Alaric Degand
 //
 
 #include "Model.hpp"
@@ -118,4 +118,9 @@ AElement *Model::getElementByName(const std::string &name)
     if (this->m_elements[this->m_actual][i]->getName() == name)
       return (this->m_elements[this->m_actual][i]);
   return (NULL);
+}
+
+bool	Model::getCosta() const
+{
+  return (costabouche);
 }

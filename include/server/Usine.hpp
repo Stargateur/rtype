@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Thu Dec 24 07:05:53 2015 Antoine Plaskowski
-// Last update Fri Dec 25 15:08:00 2015 Antoine Plaskowski
+// Last update Sat Dec 26 14:31:29 2015 Antoine Plaskowski
 //
 
 #ifndef		USINE_HPP_
@@ -61,12 +61,22 @@ public:
       delete dll;
   }
   template<typename T, typename ... Ts>
-  T	&get(uintmax_t &i, Ts ... args)
+  T	&get(Ts ... args)
   {
+    uintmax_t	i;
     if (m_fcts.size() == 0)
       throw std::logic_error("There are nothing !");
     i = m_distribution(m_generator) % m_fcts.size();
     return (*m_fcts[i](args...));
+  }
+  template<typename ... Ts>
+  std::list<IEntite *>	*get_all(Ts ... args)
+  {
+    std::list<IEntite *>	*ientites = new std::list<IEntite *>;
+
+    for (auto fct : m_fcts)
+      ientites->push_back(fct(args...));
+    return (ientites);
   }
 private:
   std::string const	m_path;

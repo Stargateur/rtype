@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Wed Dec 23 11:41:43 2015 Alaric Degand
-// Last update Thu Dec 24 13:16:54 2015 Antoine Plaskowski
+// Last update Sat Dec 26 14:51:00 2015 Antoine Plaskowski
 //
 
 #include	<list>

@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Tue Dec 22 10:12:30 2015 Alaric Degand
-// Last update Sat Dec 26 14:09:49 2015 Antoine Plaskowski
+// Last update Sat Dec 26 15:01:18 2015 Antoine Plaskowski
 //
 
 #ifndef		BASICGAME_HPP_
@@ -17,6 +17,7 @@
 # include	"ISelect.hpp"
 # include	"Usine.hpp"
 # include	"Player.hpp"
+# include	"Background.hpp"
 # include	"IEntite.hpp"
 # include	"PortGenerator.hpp"
 # include	"UDP_server.hpp"
@@ -52,7 +53,8 @@ private:
   std::map<std::string, std::string>	m_params;
   std::list<Player *>	m_players;
   std::list<IEntite *>	m_ientites;
-  Usine<fct_new_ientite>	&m_usine;
+  std::list<IEntite *>	*m_all;
+  Background	m_background;
   Port	m_port;
   ISelect	&m_iselect;
   IUDP_server	&m_iudp_server;

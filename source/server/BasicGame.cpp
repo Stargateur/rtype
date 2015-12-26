@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Tue Dec 22 10:14:54 2015 Alaric Degand
-// Last update Sat Dec 26 14:08:45 2015 Antoine Plaskowski
+// Last update Sat Dec 26 15:23:06 2015 Antoine Plaskowski
 //
 
 #include	<array>
@@ -21,7 +21,8 @@ BasicGame::BasicGame(std::string const &owner, Usine<fct_new_ientite> &usine, st
   m_player_max(4),
   m_x(1920),
   m_y(1080),
-  m_usine(usine),
+  m_all(usine.get_all(std::list<IEntite *>(), static_cast<uintmax_t>(2), m_x, m_y)),
+  m_background(0, m_x, m_y),
   m_port(port_generator),
   m_iselect(*new Select()),
   m_iudp_server(*new UDP_server(m_port.get_port()))
@@ -150,5 +151,12 @@ void	BasicGame::sounds(IUDP_protocol &, std::string const &, std::list<IUDP_prot
 
 void	BasicGame::input(IUDP_protocol &iudp_protocol, std::string const &login, IUDP_protocol::Input const &input, IUDP_server::u_sockaddr const &sockaddr, socklen_t len)
 {
-  
+  for (auto player : m_players)
+    {
+      if (player->get_login() == login)
+	{
+	  player->set_input(input);
+	  
+	}
+    }
 }

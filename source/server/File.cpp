@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Tue Dec 22 23:15:40 2015 Antoine Plaskowski
-// Last update Thu Dec 24 11:18:54 2015 Antoine Plaskowski
+// Last update Sat Dec 26 14:49:11 2015 Antoine Plaskowski
 //
 
 #include	<exception>
@@ -13,8 +13,12 @@
 #include	<iostream>
 #include	"File.hpp"
 
+uintmax_t	File::m_id_max = 0;
+std::list<File *>	File::m_files;
+
 File::File(std::string const &path) :
-  m_name(path.substr(path.find_last_of("\\/")))
+  m_name(path.substr(path.find_last_of("\\/"))),
+  m_id(m_id_max++)
 {
   std::ifstream	file(path, std::ios::in | std::ios::binary | std::ios::ate);
 
@@ -24,10 +28,13 @@ File::File(std::string const &path) :
   m_data = new uint8_t [m_size];
   file.seekg(0, std::ios::beg);
   file.read(reinterpret_cast<char *>(m_data), m_size);
+  m_files.push_back(this);
+  std::cout << "coucou" << std::endl;
 }
 
 File::~File(void)
 {
+  m_files.remove(this);
   delete m_data;
 }
 
@@ -44,4 +51,14 @@ uint8_t const	*File::get_data(void) const
 uintmax_t	File::get_size(void) const
 {
   return (m_size);
+}
+
+uintmax_t	File::get_id(void) const
+{
+  return (m_size);
+}
+
+std::list<File *> const	&File::get_files(void) const
+{
+  return (m_files);
 }

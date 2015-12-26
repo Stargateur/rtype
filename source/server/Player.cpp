@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Wed Dec 23 17:18:36 2015 Antoine Plaskowski
-// Last update Fri Dec 25 15:48:48 2015 Antoine Plaskowski
+// Last update Sat Dec 26 15:17:12 2015 Antoine Plaskowski
 //
 
 #include	"Player.hpp"
@@ -16,7 +16,9 @@ Player::Player(File const &sprite, File const &sound, std::string const &login, 
   m_sound(sound),
   m_login(login),
   m_team(team),
-  m_property(std::make_tuple(x, y, size_x, size_y)),
+  m_property(std::make_tuple(x, y, 10, 10)),
+  m_size_x(size_x),
+  m_size_y(size_y),
   m_hp(3),
   m_vitesse(5)
 {
@@ -47,6 +49,11 @@ std::tuple<uintmax_t, uintmax_t, uintmax_t, uintmax_t> const	&Player::get_proper
 uintmax_t	Player::get_team(void) const
 {
   return (m_team);
+}
+
+std::string const	&Player::get_login(void) const
+{
+  return (m_login);
 }
 
 File const	&Player::get_sound(void) const

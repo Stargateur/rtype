@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Thu Dec 10 16:18:33 2015 Antoine Plaskowski
-// Last update Fri Dec 25 18:50:06 2015 Antoine Plaskowski
+// Last update Sat Dec 26 14:40:32 2015 Antoine Plaskowski
 //
 
 #ifndef		IENTITE_HPP_
@@ -35,6 +35,7 @@ public:
   virtual uintmax_t	get_team(void) const = 0;
   virtual File const	&get_sound(void) const = 0;
   virtual File const	&get_sprite(void) const = 0;
+  //  virtual IEntite	*clone(void) const = 0;
 };
 
 extern "C"
@@ -48,6 +49,5 @@ extern "C"
   typedef IEntite	*(*fct_new_ientite)(std::list<IEntite *> const &ientites, uintmax_t team, uintmax_t x_max, uintmax_t y_max);
   typedef IEntite	*(&ref_new_ientite)(std::list<IEntite *> const &ientites, uintmax_t team, uintmax_t x_max, uintmax_t y_max);
 }
-
 
 #endif		/* !IENTITE_HPP_ */

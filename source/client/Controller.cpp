@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:31:05 2015 Kevin Costa
-// Last update Fri Dec 25 20:17:18 2015 Alaric Degand
+// Last update Sat Dec 26 14:02:16 2015 Alaric Degand
 //
 
 #include	"Controller.hpp"
@@ -41,13 +41,18 @@ void		Controller::update(sf::Event &event, Model &model, sf::Vector2f &pos)
 	  /*	  if (elements[i]->getId() == BUTTON)
 		  elements[i]->update(event, model);*/
     	  break;
-    	case sf::Event::KeyPressed:
-	  model.Game(event.key.code);
-	  break;
-    	case sf::Event::KeyReleased:
-	  break;
 	default:
 	  break;
 	}
+    }
+  switch (event.type)
+    {
+    case sf::Event::KeyPressed:
+      model.Game(event.key.code);
+      break;
+    case sf::Event::KeyReleased:
+      break;
+    default:
+      break;
     }
 }

@@ -5,17 +5,17 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:29:32 2015 Kevin Costa
-// Last update Fri Dec 25 19:21:21 2015 Alaric Degand
+// Last update Sat Dec 26 15:25:37 2015 Alaric Degand
 //
 
 #include "Model.hpp"
 
 Model::Model()
 {
-	std::vector<AElement *> connexion;
-	std::vector<AElement *> principal;
-	std::vector<AElement *> params;
-	std::vector<AElement *> list;
+  std::vector<AElement *> connexion;
+  std::vector<AElement *> principal;
+  std::vector<AElement *> params;
+  std::vector<AElement *> list;
 
   this->m_endExec = false;
   this->m_actual = CONNEXION;
@@ -24,20 +24,23 @@ Model::Model()
   connexion.push_back(new Button(50, 50, 200, 100, "b1", &Button::chargeConnect));
   connexion.push_back(new Sprite(50, 50, "sprites/Connexion.png", "background", 200, 100));
   connexion.push_back(new Button(400, 50, 200, 100, "b2", &Button::chargeGame));
+  connexion.push_back(new Sprite(400, 50, "sprites/Game.png", "background", 200, 100));
   connexion.push_back(new Button(50, 400, 200, 100, "b3", &Button::chargeList));
   this->m_elements[CONNEXION] = connexion;
   principal.push_back(new Sprite(0, 0, "sprites/stars.jpg", "background", 1256, 836));
   this->m_elements[PRINCIPAL] = principal;
-	this->m_elements[PARAMS] = params;
+  params.push_back(new Sprite(0, 0, "sprites/stars.jpg", "background", 1256, 836));
+  this->m_elements[PARAMS] = params;
+  list.push_back(new Sprite(0, 0, "sprites/stars.jpg", "background", 1256, 836));
   this->m_elements[LIST] = list;
   this->m_elements[GAME] = std::vector<AElement *>();
 }
 
 Model::~Model()
 {
-	for (std::map<State, std::vector<AElement *>>::iterator it = this->m_elements.begin(); it != this->m_elements.end(); ++it)
-		for (size_t i = 0; i < it->second.size(); i++)
-			delete (it->second[i]);
+  for (std::map<State, std::vector<AElement *>>::iterator it = this->m_elements.begin(); it != this->m_elements.end(); ++it)
+    for (size_t i = 0; i < it->second.size(); i++)
+      delete (it->second[i]);
 }
 
 std::vector<AElement *> Model::getElements(void)

@@ -31,11 +31,11 @@ class Model
 public:
   typedef enum e_state
     {
-      CONNEXION,
-      PRINCIPAL,
-      PARAMS,
-      LIST,
-      GAME
+      CONNEXION = 0,
+      PRINCIPAL = 1,
+      PARAMS = 2,
+      LIST = 3,
+      GAME = 4
     } State;
 
 private:

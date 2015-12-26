@@ -5,9 +5,10 @@
 // Login   <anthony.bury@epitech.eu>
 // 
 // Started on  Tue Nov 17 12:26:59 2015 Anthony Bury
-// Last update Fri Dec 25 18:36:11 2015 Alaric Degand
+// Last update Sat Dec 26 23:20:01 2015 Alaric Degand
 //
 
+#include	<unistd.h>
 #include "View.hpp"
 
 View::View(double size_x, double size_y) :
@@ -56,11 +57,17 @@ void View::aff(void)
   std::vector<AElement *> tmp = this->m_model.getElements();
 
   for (size_t i = 0; i < tmp.size(); i++)
-    tmp[i]->aff(this);
+    {
+      if (m_model.costabouche == true && i == 3)
+	tmp[i]->aff(this);
+      else if (i != 3)
+	tmp[i]->aff(this);
+    }
 }
 
 void View::loop(void)
 {
+  int it = 0;
   while (this->isOpen())
     {
       this->clear();
@@ -70,6 +77,17 @@ void View::loop(void)
       this->m_mutex->lock();
       if (this->m_model.getEnd())
 	this->close();
+      if (m_model.costabouche == false && it == 500)
+	{
+	  m_model.costabouche = true;
+	  it = 0;
+	}
+      else if (m_model.costabouche == true && it == 500)
+	{
+	  m_model.costabouche = false;
+	  it = 0;
+	}
+      it++;
       this->m_mutex->unlock();
     }
   this->m_model.setEnd(true);

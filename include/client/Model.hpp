@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:35:48 2015 Kevin Costa
-// Last update Fri Dec 25 18:36:58 2015 Alaric Degand
+// Last update Sat Dec 26 22:55:15 2015 Alaric Degand
 //
 
 #ifndef		MODEL_HPP_
@@ -42,6 +42,9 @@ private:
   std::map<State, std::vector<AElement *>> m_elements;
   State m_actual;
   bool m_endExec;
+  bool connexionbox;
+public: //FOR THE COSTA SWAG
+  bool	costabouche;
 
 public:
   Model(void);

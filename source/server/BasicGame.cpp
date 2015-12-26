@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Tue Dec 22 10:14:54 2015 Alaric Degand
-// Last update Fri Dec 25 19:32:00 2015 Antoine Plaskowski
+// Last update Sat Dec 26 14:08:45 2015 Antoine Plaskowski
 //
 
 #include	<array>
@@ -125,4 +125,30 @@ std::map<std::string, std::string> const	&BasicGame::get_meta_params(void) const
 void	BasicGame::set_param(std::string const &name, std::string const &value)
 {
   m_params.at(name) = value;
+}
+
+void	BasicGame::sprites(IUDP_protocol &, std::string const &, std::list<IUDP_protocol::Sprite *> const &)
+{
+  
+}
+
+void	BasicGame::sounds(IUDP_protocol &, std::string const &, std::list<IUDP_protocol::Sound *> const &)
+{
+}
+
+void	BasicGame::input(IUDP_protocol &, std::string const &, IUDP_protocol::Input const &)
+{
+}
+
+void	BasicGame::sprites(IUDP_protocol &, std::string const &, std::list<IUDP_protocol::Sprite *> const &, IUDP_server::u_sockaddr const &, socklen_t)
+{
+}
+
+void	BasicGame::sounds(IUDP_protocol &, std::string const &, std::list<IUDP_protocol::Sound *> const &, IUDP_server::u_sockaddr const &, socklen_t)
+{
+}
+
+void	BasicGame::input(IUDP_protocol &iudp_protocol, std::string const &login, IUDP_protocol::Input const &input, IUDP_server::u_sockaddr const &sockaddr, socklen_t len)
+{
+  
 }

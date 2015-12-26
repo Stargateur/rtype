@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:29:32 2015 Kevin Costa
-// Last update Sat Dec 26 15:25:37 2015 Alaric Degand
+// Last update Sun Dec 27 00:36:30 2015 Alaric Degand
 //
 
 #include "Model.hpp"
@@ -18,13 +18,22 @@ Model::Model() :
   std::vector<AElement *> params;
   std::vector<AElement *> list;
 
+  if (!m_font.loadFromFile("font/HighVoltage.ttf"))
+    std::cout << "Font not loaded" << std::endl;
+  
+  connexionbox = true;
   connexion.push_back(new Sprite(0, 0, "sprites/stars.jpg", "background", 1256, 836));
-  connexion.push_back(new Sprite(0, 0, "sprites/vol.png", "ship", 60, 68));
+  connexion.push_back(new Button(150, 150, 500, 100, "TextBox", NULL));
+  connexion.push_back(new Sprite(50, 350, "sprites/costa_b.jpg", "costa", 200, 100));
+  connexion.push_back(new Sprite(50, 350, "sprites/costa_b2.png", "costa2", 200, 100));
   connexion.push_back(new Button(50, 50, 200, 100, "b1", &Button::chargeConnect));
   connexion.push_back(new Sprite(50, 50, "sprites/Connexion.png", "background", 200, 100));
-  connexion.push_back(new Button(400, 50, 200, 100, "b2", &Button::chargeGame));
-  connexion.push_back(new Sprite(400, 50, "sprites/Game.png", "background", 200, 100));
-  connexion.push_back(new Button(50, 400, 200, 100, "b3", &Button::chargeList));
+  connexion.push_back(new Text(251, 370, "Veuillez entrer votre port puis votre ip dans le\nterminal, puis appuyez sur connexion", m_font));
+  
+  // connexion.push_back(new Sprite(0, 0, "sprites/vol.png", "ship", 60, 68));
+  // connexion.push_back(new Button(400, 50, 200, 100, "b2", &Button::chargeGame));
+  // connexion.push_back(new Sprite(400, 50, "sprites/Game.png", "background", 200, 100));
+  // connexion.push_back(new Button(50, 400, 200, 100, "b3", &Button::chargeList));
   this->m_elements[CONNEXION] = connexion;
   principal.push_back(new Sprite(0, 0, "sprites/stars.jpg", "background", 1256, 836));
   this->m_elements[PRINCIPAL] = principal;

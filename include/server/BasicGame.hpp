@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Tue Dec 22 10:12:30 2015 Alaric Degand
-// Last update Sat Dec 26 15:43:44 2015 Antoine Plaskowski
+// Last update Sat Dec 26 17:21:49 2015 Antoine Plaskowski
 //
 
 #ifndef		BASICGAME_HPP_
@@ -26,7 +26,7 @@
 class		BasicGame: public IGame, public IUDP_protocol::Callback
 {
 public:
-  BasicGame(std::string const &owner, Usine<fct_new_ientite> &usine, std::string const &name, PortGenerator &port_generator);
+  BasicGame(std::string const &owner, Usine<fct_new_ientite> const &usine, std::string const &name, PortGenerator &port_generator);
   ~BasicGame(void);
   void	run(void);
   std::string const	&get_owner(void) const;

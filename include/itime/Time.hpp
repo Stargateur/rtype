@@ -5,7 +5,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Wed Oct 21 20:57:19 2015 Bertrand-Rapello Baptiste
-// Last update Wed Dec 23 13:10:05 2015 Antoine Plaskowski
+// Last update Sat Dec 26 17:11:27 2015 Antoine Plaskowski
 //
 
 #ifndef TIME_HPP_
@@ -31,6 +31,7 @@ public:
   ITime	&clone(void) const;
   void	add(ITime const &itime);
   void	sub(ITime const &itime);
+  intmax_t	cmp(ITime const &itime) const;
 private:
   struct timespec	m_timespec;  
 };

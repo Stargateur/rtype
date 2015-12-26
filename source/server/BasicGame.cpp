@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Tue Dec 22 10:14:54 2015 Alaric Degand
-// Last update Sat Dec 26 15:43:12 2015 Antoine Plaskowski
+// Last update Sat Dec 26 17:22:03 2015 Antoine Plaskowski
 //
 
 #include	<array>
@@ -15,7 +15,7 @@
 #include	"Player.hpp"
 #include	"Select.hpp"
 
-BasicGame::BasicGame(std::string const &owner, Usine<fct_new_ientite> &usine, std::string const &name, PortGenerator &port_generator) :
+BasicGame::BasicGame(std::string const &owner, Usine<fct_new_ientite> const &usine, std::string const &name, PortGenerator &port_generator) :
   m_owner(owner),
   m_name(name),
   m_player_max(4),
@@ -62,7 +62,8 @@ void	BasicGame::run(void)
 	  try
 	    {
 	      (*it)->run(m_ientites, to_add, itime, want_wait);
-	      // compare wait et want_wait
+	      if (wait.cmp(want_wait) == 1)
+		wait = want_wait;
 	      it++;
 	    }
 	  catch (...)
@@ -78,7 +79,10 @@ void	BasicGame::run(void)
       if (iudp_protocol.want_recv() == true)
 	m_iselect.want_write(m_iudp_server);
       m_iselect.select(&wait);
-      //      if (m_iselect.can_read(
+      if (m_iselect.can_read(m_iudp_server) == true)
+	iudp_protocol.recvfrom(m_iudp_server);
+      if (m_iselect.can_write(m_iudp_server) == true)
+	iudp_protocol.sendto(m_iudp_server);
     }
   for (auto ientite : m_ientites)
     delete ientite;

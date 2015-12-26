@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Thu Dec 24 07:05:53 2015 Antoine Plaskowski
-// Last update Sat Dec 26 14:31:29 2015 Antoine Plaskowski
+// Last update Sat Dec 26 17:22:25 2015 Antoine Plaskowski
 //
 
 #ifndef		USINE_HPP_
@@ -70,7 +70,7 @@ public:
     return (*m_fcts[i](args...));
   }
   template<typename ... Ts>
-  std::list<IEntite *>	*get_all(Ts ... args)
+  std::list<IEntite *>	*get_all(Ts ... args) const
   {
     std::list<IEntite *>	*ientites = new std::list<IEntite *>;
 

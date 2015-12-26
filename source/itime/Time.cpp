@@ -5,7 +5,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Wed Oct 21 21:04:15 2015 Bertrand-Rapello Baptiste
-// Last update Wed Dec 23 13:11:24 2015 Antoine Plaskowski
+// Last update Sat Dec 26 17:13:45 2015 Antoine Plaskowski
 //
 
 #include	<stdio.h>
@@ -96,4 +96,17 @@ void	Time::sub(ITime const &itime)
       set_nano(swap.get_nano());
       set_second(swap.get_second() * -1);
     }
+}
+
+intmax_t	Time::cmp(ITime const &itime) const
+{
+  if (get_second() < itime.get_second())
+    return (-1);
+  if (get_second() > itime.get_second())
+    return (1);
+  if (get_nano() < itime.get_nano())
+    return (-1);
+  if (get_nano() > itime.get_nano())
+    return (1);
+  return (0);
 }

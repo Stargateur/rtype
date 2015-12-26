@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:56:02 2015 Alaric Degand
-// Last update Thu Dec 24 14:22:02 2015 Alaric Degand
+// Last update Sat Dec 26 15:29:15 2015 Antoine Plaskowski
 //
 
 #include	"Client.hpp"
@@ -23,7 +23,7 @@ Client::~Client(void)
   delete &m_itcp_protocol;
 }
 
-void	Client::result(ITCP_protocol &itcp_protocol, bool ready)
+void	Client::result(ITCP_protocol &itcp_protocol, ITCP_protocol::Error error)
 {
 }
 

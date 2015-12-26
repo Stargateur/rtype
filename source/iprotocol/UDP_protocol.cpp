@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:40:34 2015 Antoine Plaskowski
-// Last update Sat Dec 26 13:35:57 2015 Antoine Plaskowski
+// Last update Sat Dec 26 15:48:00 2015 Antoine Plaskowski
 //
 
 #include	<algorithm>
@@ -119,11 +119,10 @@ void	UDP_protocol::recvfrom(IUDP_server const &socket)
   throw std::exception();
 }
 
-void	UDP_protocol::send_sprites(std::string const &login, std::list<IUDP_protocol::Sprite *> const &sprites)
+void	UDP_protocol::send_sprites(std::list<IUDP_protocol::Sprite *> const &sprites)
 {
   UDP_packet_send	*to_send = new UDP_packet_send();
 
-  to_send->put(login);
   to_send->put(static_cast<uint8_t>(sprites.size()));
   for (auto sprite : sprites)
     {
@@ -139,9 +138,7 @@ void	UDP_protocol::recv_sprites(void)
 {
   std::list<IUDP_protocol::Sprite *>      sprites;
   uint8_t       size;
-  std::string	login;
 
-  m_to_recv.get(login);
   m_to_recv.get(size);
   for (uintmax_t i = 0; i < size; i++)
     {
@@ -153,18 +150,17 @@ void	UDP_protocol::recv_sprites(void)
       m_to_recv.get(sprite->rotation);
       sprites.push_back(sprite);
     }
-  m_callback.sprites(*this, login, sprites);
+  m_callback.sprites(*this, sprites);
   for (auto sprite : sprites)
     {
       delete sprite;
     }
 }
 
-void	UDP_protocol::send_sounds(std::string const &login, std::list<IUDP_protocol::Sound *> const &sounds)
+void	UDP_protocol::send_sounds(std::list<IUDP_protocol::Sound *> const &sounds)
 {
   UDP_packet_send	*to_send = new UDP_packet_send();
 
-  to_send->put(login);
   to_send->put(static_cast<uint8_t>(sounds.size()));
   for (auto sound : sounds)
     {
@@ -177,9 +173,7 @@ void	UDP_protocol::recv_sounds(void)
 {
   std::list<IUDP_protocol::Sound *>      sounds;
   uint8_t       size;
-  std::string	login;
 
-  m_to_recv.get(login);
   m_to_recv.get(size);
   for (uintmax_t i = 0; i < size; i++)
     {
@@ -188,7 +182,7 @@ void	UDP_protocol::recv_sounds(void)
       m_to_recv.get(sound->id);
       sounds.push_back(sound);
     }
-  m_callback.sounds(*this, login, sounds);
+  m_callback.sounds(*this, sounds);
   for (auto sound : sounds)
     {
       delete sound;
@@ -224,11 +218,10 @@ void	UDP_protocol::recv_input(void)
   m_callback.input(*this, login, input);
 }
 
-void	UDP_protocol::send_sprites(std::string const &login, std::list<IUDP_protocol::Sprite *> const &sprites, IUDP_server::u_sockaddr const &sockaddr, socklen_t len)
+void	UDP_protocol::send_sprites(std::list<IUDP_protocol::Sprite *> const &sprites, IUDP_server::u_sockaddr const &sockaddr, socklen_t len)
 {
   m_sendto	*to_send = new m_sendto();
 
-  std::get<0>(*to_send).put(login);
   std::get<0>(*to_send).put(static_cast<uint8_t>(sprites.size()));
   for (auto sprite : sprites)
     {
@@ -244,9 +237,7 @@ void	UDP_protocol::recv_sprites(IUDP_server::u_sockaddr const &sockaddr, socklen
 {
   std::list<IUDP_protocol::Sprite *>      sprites;
   uint8_t       size;
-  std::string	login;
 
-  m_to_recv.get(login);
   m_to_recv.get(size);
   for (uintmax_t i = 0; i < size; i++)
     {
@@ -258,18 +249,17 @@ void	UDP_protocol::recv_sprites(IUDP_server::u_sockaddr const &sockaddr, socklen
       m_to_recv.get(sprite->rotation);
       sprites.push_back(sprite);
     }
-  m_callback.sprites(*this, login, sprites, sockaddr, len);
+  m_callback.sprites(*this, sprites, sockaddr, len);
   for (auto sprite : sprites)
     {
       delete sprite;
     }
 }
 
-void	UDP_protocol::send_sounds(std::string const &login, std::list<IUDP_protocol::Sound *> const &sounds, IUDP_server::u_sockaddr const &sockaddr, socklen_t len)
+void	UDP_protocol::send_sounds(std::list<IUDP_protocol::Sound *> const &sounds, IUDP_server::u_sockaddr const &sockaddr, socklen_t len)
 {
   m_sendto	*to_send = new m_sendto();
 
-  std::get<0>(*to_send).put(login);
   std::get<0>(*to_send).put(static_cast<uint8_t>(sounds.size()));
   for (auto sound : sounds)
     {
@@ -282,9 +272,7 @@ void	UDP_protocol::recv_sounds(IUDP_server::u_sockaddr const &sockaddr, socklen_
 {
   std::list<IUDP_protocol::Sound *>      sounds;
   uint8_t       size;
-  std::string	login;
 
-  m_to_recv.get(login);
   m_to_recv.get(size);
   for (uintmax_t i = 0; i < size; i++)
     {
@@ -293,7 +281,7 @@ void	UDP_protocol::recv_sounds(IUDP_server::u_sockaddr const &sockaddr, socklen_
       m_to_recv.get(sound->id);
       sounds.push_back(sound);
     }
-  m_callback.sounds(*this, login, sounds, sockaddr, len);
+  m_callback.sounds(*this, sounds, sockaddr, len);
   for (auto sound : sounds)
     {
       delete sound;

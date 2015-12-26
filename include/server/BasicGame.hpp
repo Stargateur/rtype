@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Tue Dec 22 10:12:30 2015 Alaric Degand
-// Last update Sat Dec 26 15:01:18 2015 Antoine Plaskowski
+// Last update Sat Dec 26 15:43:44 2015 Antoine Plaskowski
 //
 
 #ifndef		BASICGAME_HPP_
@@ -37,11 +37,11 @@ public:
   std::list<std::string> const	&get_player(void) const;
   std::map<std::string, std::string> const	&get_meta_params(void) const;
   void	set_param(std::string const &name, std::string const &value);
-  void	sprites(IUDP_protocol &, std::string const &, std::list<IUDP_protocol::Sprite *> const &);
-  void	sounds(IUDP_protocol &, std::string const &, std::list<IUDP_protocol::Sound *> const &);
+  void	sprites(IUDP_protocol &, std::list<IUDP_protocol::Sprite *> const &);
+  void	sounds(IUDP_protocol &, std::list<IUDP_protocol::Sound *> const &);
   void	input(IUDP_protocol &, std::string const &, IUDP_protocol::Input const &);
-  void	sprites(IUDP_protocol &, std::string const &, std::list<IUDP_protocol::Sprite *> const &, IUDP_server::u_sockaddr const &, socklen_t);
-  void	sounds(IUDP_protocol &, std::string const &, std::list<IUDP_protocol::Sound *> const &, IUDP_server::u_sockaddr const &, socklen_t);
+  void	sprites(IUDP_protocol &, std::list<IUDP_protocol::Sprite *> const &, IUDP_server::u_sockaddr const &, socklen_t);
+  void	sounds(IUDP_protocol &, std::list<IUDP_protocol::Sound *> const &, IUDP_server::u_sockaddr const &, socklen_t);
   void	input(IUDP_protocol &iudp_protocol, std::string const &login, IUDP_protocol::Input const &input, IUDP_server::u_sockaddr const &sockaddr, socklen_t len);
 private:
   std::string const	m_owner;

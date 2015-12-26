@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Thu Dec 10 16:18:33 2015 Antoine Plaskowski
-// Last update Sat Dec 26 14:40:32 2015 Antoine Plaskowski
+// Last update Sat Dec 26 15:39:24 2015 Antoine Plaskowski
 //
 
 #ifndef		IENTITE_HPP_
@@ -31,7 +31,7 @@ public:
 		    ITime const &time_elapsed, ITime &time_callback) = 0;
   virtual void	domage(uintmax_t value) = 0;
   virtual void	colide(void) = 0;
-  virtual std::tuple<uintmax_t, uintmax_t, uintmax_t, uintmax_t> const	&get_property(void) const = 0;
+  virtual std::tuple<intmax_t, intmax_t, uintmax_t, uintmax_t> const	&get_property(void) const = 0;
   virtual uintmax_t	get_team(void) const = 0;
   virtual File const	&get_sound(void) const = 0;
   virtual File const	&get_sprite(void) const = 0;

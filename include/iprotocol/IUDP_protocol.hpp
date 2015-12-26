@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:35:29 2015 Antoine Plaskowski
-// Last update Sat Dec 26 14:03:25 2015 Antoine Plaskowski
+// Last update Sat Dec 26 15:45:07 2015 Antoine Plaskowski
 //
 
 #ifndef		IUDP_PROTOCOL_HPP_
@@ -47,11 +47,11 @@ public:
   {
   public:
     virtual ~Callback(void);
-    virtual void	sprites(IUDP_protocol &iudp_protocol, std::string const &login, std::list<Sprite *> const &sprites) = 0;
-    virtual void	sounds(IUDP_protocol &iudp_protocol, std::string const &login, std::list<Sound *> const &sounds) = 0;
+    virtual void	sprites(IUDP_protocol &iudp_protocol, std::list<Sprite *> const &sprites) = 0;
+    virtual void	sounds(IUDP_protocol &iudp_protocol, std::list<Sound *> const &sounds) = 0;
     virtual void	input(IUDP_protocol &iudp_protocol, std::string const &login, Input const &input) = 0;
-    virtual void	sprites(IUDP_protocol &iudp_protocol, std::string const &login, std::list<Sprite *> const &sprites, IUDP_server::u_sockaddr const &sockaddr, socklen_t len) = 0;
-    virtual void	sounds(IUDP_protocol &iudp_protocol, std::string const &login, std::list<Sound *> const &sounds, IUDP_server::u_sockaddr const &sockaddr, socklen_t len) = 0;
+    virtual void	sprites(IUDP_protocol &iudp_protocol, std::list<Sprite *> const &sprites, IUDP_server::u_sockaddr const &sockaddr, socklen_t len) = 0;
+    virtual void	sounds(IUDP_protocol &iudp_protocol, std::list<Sound *> const &sounds, IUDP_server::u_sockaddr const &sockaddr, socklen_t len) = 0;
     virtual void	input(IUDP_protocol &iudp_protocol, std::string const &login, Input const &input, IUDP_server::u_sockaddr const &sockaddr, socklen_t len) = 0;
   };
   enum  Error : uint8_t
@@ -69,11 +69,11 @@ public:
   virtual void	recv(IUDP_client const &socket) = 0;
   virtual void	sendto(IUDP_server const &socket) = 0;
   virtual void	recvfrom(IUDP_server const &socket) = 0;
-  virtual void	send_sprites(std::string const &login, std::list<Sprite *> const &sprites) = 0;
-  virtual void	send_sounds(std::string const &login, std::list<Sound *> const &sounds) = 0;
+  virtual void	send_sprites(std::list<Sprite *> const &sprites) = 0;
+  virtual void	send_sounds(std::list<Sound *> const &sounds) = 0;
   virtual void	send_input(std::string const &login, Input const &input) = 0;
-  virtual void	send_sprites(std::string const &login, std::list<Sprite *> const &sprites, IUDP_server::u_sockaddr const &sockaddr, socklen_t len) = 0;
-  virtual void	send_sounds(std::string const &login, std::list<Sound *> const &sounds, IUDP_server::u_sockaddr const &sockaddr, socklen_t len) = 0;
+  virtual void	send_sprites(std::list<Sprite *> const &sprites, IUDP_server::u_sockaddr const &sockaddr, socklen_t len) = 0;
+  virtual void	send_sounds(std::list<Sound *> const &sounds, IUDP_server::u_sockaddr const &sockaddr, socklen_t len) = 0;
   virtual void	send_input(std::string const &login, Input const &input, IUDP_server::u_sockaddr const &sockaddr, socklen_t len) = 0;
 };
 

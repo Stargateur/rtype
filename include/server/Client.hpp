@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:53:39 2015 Alaric Degand
-// Last update Wed Dec 23 17:33:20 2015 Alaric Degand
+// Last update Sat Dec 26 15:28:29 2015 Antoine Plaskowski
 //
 
 #ifndef		CLIENT_HPP_
@@ -22,7 +22,7 @@ class		Client : public ITCP_protocol::Callback
 public:
   Client(Server &server, ITCP_client &itcp_client);
   ~Client(void);
-  void	result(ITCP_protocol &itcp_protocol, bool ready);
+  void	result(ITCP_protocol &itcp_protocol, ITCP_protocol::Error error);
   void	connect(ITCP_protocol &itcp_protocol, std::string const &login, std::string const &password);
   void	disconnect(ITCP_protocol &itcp_protocol);
   void	ping(ITCP_protocol &itcp_protocol);

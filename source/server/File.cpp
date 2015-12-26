@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Tue Dec 22 23:15:40 2015 Antoine Plaskowski
-// Last update Sat Dec 26 14:49:11 2015 Antoine Plaskowski
+// Last update Sat Dec 26 15:37:17 2015 Antoine Plaskowski
 //
 
 #include	<exception>
@@ -13,7 +13,7 @@
 #include	<iostream>
 #include	"File.hpp"
 
-uintmax_t	File::m_id_max = 0;
+uint8_t	File::m_id_max = 0;
 std::list<File *>	File::m_files;
 
 File::File(std::string const &path) :
@@ -53,7 +53,7 @@ uintmax_t	File::get_size(void) const
   return (m_size);
 }
 
-uintmax_t	File::get_id(void) const
+uint8_t	File::get_id(void) const
 {
   return (m_size);
 }

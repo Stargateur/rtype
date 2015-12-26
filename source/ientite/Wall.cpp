@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Wed Dec 23 11:41:43 2015 Alaric Degand
-// Last update Sat Dec 26 14:51:00 2015 Antoine Plaskowski
+// Last update Sat Dec 26 15:40:39 2015 Antoine Plaskowski
 //
 
 #include	<list>
@@ -56,7 +56,7 @@ void		Wall::colide(void)
 
 }
 
-std::tuple<uintmax_t, uintmax_t, uintmax_t, uintmax_t> const	&Wall::get_property(void) const
+std::tuple<intmax_t, intmax_t, uintmax_t, uintmax_t> const	&Wall::get_property(void) const
 {
   return (_property);
 }

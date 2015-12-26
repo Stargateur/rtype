@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:35:29 2015 Antoine Plaskowski
-// Last update Thu Dec 24 14:12:10 2015 Alaric Degand
+// Last update Sat Dec 26 15:26:12 2015 Antoine Plaskowski
 //
 
 #ifndef		ITCP_PROTOCOL_HPP_
@@ -22,6 +22,16 @@
 class	ITCP_protocol
 {
 public:
+  enum  Error : uint8_t
+  {
+    NONE,
+      IGNORED,
+      UNKNOW,
+      WRONGLOGIN,
+      VERSION = 10,
+      CONNECT = 12,
+      DISCONNECT
+  };
   struct	Game
   {
     std::string	&name;
@@ -54,7 +64,7 @@ public:
   {
   public:
     virtual ~Callback(void);
-    virtual void	result(ITCP_protocol &itcp_protocol, bool ready) = 0;
+    virtual void	result(ITCP_protocol &itcp_protocol, Error error) = 0;
     virtual void	connect(ITCP_protocol &itcp_protocol, std::string const &login, std::string const &password) = 0;
     virtual void	disconnect(ITCP_protocol &itcp_protocol) = 0;
     virtual void	ping(ITCP_protocol &itcp_protocol) = 0;
@@ -82,16 +92,6 @@ public:
     virtual void	start(ITCP_protocol &itcp_protocol, uint8_t second, uint16_t port) = 0;
     virtual void	end(ITCP_protocol &itcp_protocol, uint64_t score, bool winner) = 0;
     virtual void	leave(ITCP_protocol &itcp_protocol) = 0;  
-  };
-  enum  Error : uint8_t
-  {
-    NONE,
-      IGNORED,
-      UNKNOW,
-      WRONGLOGIN,
-      VERSION = 10,
-      CONNECT = 12,
-      DISCONNECT
   };
 public:
   virtual ~ITCP_protocol(void);

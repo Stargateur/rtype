@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Wed Dec 23 17:18:36 2015 Antoine Plaskowski
-// Last update Sat Dec 26 15:17:12 2015 Antoine Plaskowski
+// Last update Sat Dec 26 15:40:52 2015 Antoine Plaskowski
 //
 
 #include	"Player.hpp"
@@ -41,7 +41,7 @@ void	Player::colide(void)
   m_hp = 0;
 }
 
-std::tuple<uintmax_t, uintmax_t, uintmax_t, uintmax_t> const	&Player::get_property(void) const
+std::tuple<intmax_t, intmax_t, uintmax_t, uintmax_t> const	&Player::get_property(void) const
 {
   return (m_property);
 }

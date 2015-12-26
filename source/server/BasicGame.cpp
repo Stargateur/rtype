@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Tue Dec 22 10:14:54 2015 Alaric Degand
-// Last update Sat Dec 26 15:23:06 2015 Antoine Plaskowski
+// Last update Sat Dec 26 15:43:12 2015 Antoine Plaskowski
 //
 
 #include	<array>
@@ -128,12 +128,12 @@ void	BasicGame::set_param(std::string const &name, std::string const &value)
   m_params.at(name) = value;
 }
 
-void	BasicGame::sprites(IUDP_protocol &, std::string const &, std::list<IUDP_protocol::Sprite *> const &)
+void	BasicGame::sprites(IUDP_protocol &, std::list<IUDP_protocol::Sprite *> const &)
 {
   
 }
 
-void	BasicGame::sounds(IUDP_protocol &, std::string const &, std::list<IUDP_protocol::Sound *> const &)
+void	BasicGame::sounds(IUDP_protocol &, std::list<IUDP_protocol::Sound *> const &)
 {
 }
 
@@ -141,11 +141,11 @@ void	BasicGame::input(IUDP_protocol &, std::string const &, IUDP_protocol::Input
 {
 }
 
-void	BasicGame::sprites(IUDP_protocol &, std::string const &, std::list<IUDP_protocol::Sprite *> const &, IUDP_server::u_sockaddr const &, socklen_t)
+void	BasicGame::sprites(IUDP_protocol &, std::list<IUDP_protocol::Sprite *> const &, IUDP_server::u_sockaddr const &, socklen_t)
 {
 }
 
-void	BasicGame::sounds(IUDP_protocol &, std::string const &, std::list<IUDP_protocol::Sound *> const &, IUDP_server::u_sockaddr const &, socklen_t)
+void	BasicGame::sounds(IUDP_protocol &, std::list<IUDP_protocol::Sound *> const &, IUDP_server::u_sockaddr const &, socklen_t)
 {
 }
 
@@ -156,7 +156,13 @@ void	BasicGame::input(IUDP_protocol &iudp_protocol, std::string const &login, IU
       if (player->get_login() == login)
 	{
 	  player->set_input(input);
-	  
+	  std::list<IUDP_protocol::Sprite *>	sprites;
+	  sprites.push_back(new IUDP_protocol::Sprite({m_background.get_sprite().get_id(), std::get<0>(m_background.get_property()), std::get<1>(m_background.get_property()), 0}));
+	  for (auto entite : m_ientites)
+	    sprites.push_back(new IUDP_protocol::Sprite({entite->get_sprite().get_id(), std::get<0>(entite->get_property()), std::get<1>(entite->get_property()), 0}));
+	  iudp_protocol.send_sprites(sprites);
+	  for (auto sprite : sprites)
+	    delete sprite;
 	}
     }
 }

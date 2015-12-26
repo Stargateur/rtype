@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Wed Dec 23 11:04:40 2015 Alaric Degand
-// Last update Thu Dec 24 13:17:25 2015 Antoine Plaskowski
+// Last update Sat Dec 26 15:40:13 2015 Antoine Plaskowski
 //
 
 #ifndef		WALL_HPP_
@@ -21,7 +21,7 @@ public:
 	    ITime const &time_elapsed, ITime &time_callback);
   void	domage(uintmax_t value);
   void	colide(void);
-  std::tuple<uintmax_t, uintmax_t, uintmax_t, uintmax_t> const	&get_property(void) const;
+  std::tuple<intmax_t, intmax_t, uintmax_t, uintmax_t> const	&get_property(void) const;
   uintmax_t	get_team(void) const;
   File const	&get_sound(void) const;
   File const	&get_sprite(void) const;
@@ -29,7 +29,7 @@ public:
 private:
   uintmax_t	_team;
   uintmax_t	_hp;
-  std::tuple<uintmax_t, uintmax_t, uintmax_t, uintmax_t>	_property;
+  std::tuple<intmax_t, intmax_t, uintmax_t, uintmax_t>	_property;
   ITime		*_delay;
 };
 

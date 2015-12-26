@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sat Dec 26 15:02:29 2015 Antoine Plaskowski
-// Last update Sat Dec 26 15:20:56 2015 Antoine Plaskowski
+// Last update Sat Dec 26 15:41:04 2015 Antoine Plaskowski
 //
 
 #include	"Background.hpp"
@@ -33,7 +33,7 @@ void	Background::colide(void)
 {
 }
 
-std::tuple<uintmax_t, uintmax_t, uintmax_t, uintmax_t> const	&Background::get_property(void) const
+std::tuple<intmax_t, intmax_t, uintmax_t, uintmax_t> const	&Background::get_property(void) const
 {
   return (m_property);
 }

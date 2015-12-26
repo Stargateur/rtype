@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:35:29 2015 Antoine Plaskowski
-// Last update Sat Dec 26 13:26:31 2015 Antoine Plaskowski
+// Last update Sat Dec 26 15:45:32 2015 Antoine Plaskowski
 //
 
 #ifndef		UDP_PROTOCOL_HPP_
@@ -34,11 +34,11 @@ public:
   void	recv(IUDP_client const &socket);
   void	sendto(IUDP_server const &socket);
   void	recvfrom(IUDP_server const &socket);
-  void	send_sprites(std::string const &login, std::list<IUDP_protocol::Sprite *> const &sprites);
-  void	send_sounds(std::string const &login, std::list<IUDP_protocol::Sound *> const &sounds);
+  void	send_sprites(std::list<IUDP_protocol::Sprite *> const &sprites);
+  void	send_sounds(std::list<IUDP_protocol::Sound *> const &sounds);
   void	send_input(std::string const &login, IUDP_protocol::Input const &inputs);
-  void	send_sprites(std::string const &login, std::list<IUDP_protocol::Sprite *> const &sprites, IUDP_server::u_sockaddr const &sockaddr, socklen_t len);
-  void	send_sounds(std::string const &login, std::list<IUDP_protocol::Sound *> const &sounds, IUDP_server::u_sockaddr const &sockaddr, socklen_t len);
+  void	send_sprites(std::list<IUDP_protocol::Sprite *> const &sprites, IUDP_server::u_sockaddr const &sockaddr, socklen_t len);
+  void	send_sounds(std::list<IUDP_protocol::Sound *> const &sounds, IUDP_server::u_sockaddr const &sockaddr, socklen_t len);
   void	send_input(std::string const &login, IUDP_protocol::Input const &inputs, IUDP_server::u_sockaddr const &sockaddr, socklen_t len);
 private:
   void	recv_sprites(void);

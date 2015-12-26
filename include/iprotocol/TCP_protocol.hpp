@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:35:29 2015 Antoine Plaskowski
-// Last update Thu Dec 10 01:55:09 2015 Antoine Plaskowski
+// Last update Sat Dec 26 13:48:36 2015 Antoine Plaskowski
 //
 
 #ifndef		TCP_PROTOCOL_HPP_
@@ -23,8 +23,7 @@ public:
   TCP_protocol(ITCP_protocol::Callback &callback);
   ~TCP_protocol(void);
 private:
-  TCP_packet_send	&get_to_send(void);
-  void	set_to_send(TCP_packet_send &to_send, ATCP_packet::Opcode opcode);
+  void	set_to_send(TCP_packet_send *to_send, ATCP_packet::Opcode opcode);
   //  void	set_callback(ITCP_protocol::Callback &callback);
 public:
   bool	want_send(void) const;
@@ -60,22 +59,18 @@ public:
   void	send_end(uint64_t score, bool winner);
   void	send_leave(void);
   template<typename... Ts>
-  void	test(ATCP_packet::Opcode opcode, Ts... args)
+  void	test(TCP_packet_send *to_send, ATCP_packet::Opcode opcode, Ts... args)
   {
     if (sizeof...(args) > 0)
-      test(opcode, args...);
+      test(to_send, opcode, args...);
     else
-      {
-	TCP_packet_send	&to_send = get_to_send();
-	set_to_send(to_send, opcode);
-      }
+      set_to_send(to_send, opcode);
   }
   template<typename T, typename... Ts>
-  void	test(ATCP_packet::Opcode opcode, T first, Ts... args)
+  void	test(TCP_packet_send *to_send, ATCP_packet::Opcode opcode, T first, Ts... args)
   {
-    TCP_packet_send	&to_send = get_to_send();
-    to_send.put(first);
-    test(opcode, first, args...);
+    to_send->put(first);
+    test(to_send, opcode, first, args...);
   }
 private:
   void	recv_result(void);
@@ -109,9 +104,7 @@ private:
 private:
   ITCP_protocol::Callback	&m_callback;
   TCP_packet_recv	m_to_recv;
-  std::array<TCP_packet_send, UINT8_MAX + 1>	m_to_send;
-  uint8_t	m_idx_to_send;
-  uint8_t	m_idx_to_stock;
+  std::list<TCP_packet_send *>	m_to_send;
 };
 
 #endif		/* !TCP_PROTOCOL_HPP_ */

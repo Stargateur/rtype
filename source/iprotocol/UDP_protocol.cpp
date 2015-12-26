@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:40:34 2015 Antoine Plaskowski
-// Last update Sat Dec 26 13:30:39 2015 Antoine Plaskowski
+// Last update Sat Dec 26 13:35:57 2015 Antoine Plaskowski
 //
 
 #include	<algorithm>
@@ -18,6 +18,10 @@ UDP_protocol::UDP_protocol(IUDP_protocol::Callback &callback) :
 
 UDP_protocol::~UDP_protocol(void)
 {
+  for (auto elem : m_to_send)
+    delete elem;
+  for (auto elem : m_to_sendto)
+    delete elem;
 }
 
 // void	UDP_protocol::set_callback(IUDP_protocol::Callback &callback)

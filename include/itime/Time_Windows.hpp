@@ -5,7 +5,7 @@
 // Login   <plasko_a@epitech.eu>
 // 
 // Started on  Sun Dec 27 01:01:39 2015 Antoine Plaskowski
-// Last update Sun Dec 27 02:04:02 2015 Antoine Plaskowski
+// Last update Sun Dec 27 02:07:25 2015 Antoine Plaskowski
 //
 
 #ifndef	TIME_WINDOWS_HPP_
@@ -28,8 +28,8 @@ public:
   ITime	&clone(void) const;
   ~TimeWindows(void);
 private:
-  time_t m_second;
-  WORD m_milli;
+  time_t	m_second;
+  WORD	m_milli;
 };
 
 #endif	/* !TIME_WINDOWS_HPP */

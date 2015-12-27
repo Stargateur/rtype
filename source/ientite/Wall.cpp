@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Wed Dec 23 11:41:43 2015 Alaric Degand
-// Last update Sat Dec 26 15:40:39 2015 Antoine Plaskowski
+// Last update Sun Dec 27 09:23:23 2015 Antoine Plaskowski
 //
 
 #include	<list>
@@ -13,7 +13,8 @@
 #include	"ITime.hpp"
 #include	"Wall.hpp"
 
-Wall::Wall(std::list<IEntite *> const &ientites, uintmax_t team, uintmax_t x_max, uintmax_t y_max) :
+Wall::Wall(std::list<IEntite *> const &ientites, uintmax_t id, uintmax_t team, uintmax_t x_max, uintmax_t y_max) :
+  _id(id),
   _team(team),
   _hp(5000),
   _property(std::make_tuple(x_max, rand() % 2 * y_max, x_max / 10, y_max / 5))
@@ -94,7 +95,12 @@ bool		Wall::check_colide(std::list<IEntite *> const &ientites) const
   return (false);
 }
 
-IEntite       *new_ientite(std::list<IEntite *> const &ientites, uintmax_t team, uintmax_t x_max, uintmax_t y_max)
+uintmax_t	Wall::get_id(void) const
 {
-  return (new Wall(ientites, team, x_max, y_max));
+  return (_id);
+}
+
+IEntite       *new_ientite(std::list<IEntite *> const &ientites, uintmax_t id, uintmax_t team, uintmax_t x_max, uintmax_t y_max)
+{
+  return (new Wall(ientites, id, team, x_max, y_max));
 }

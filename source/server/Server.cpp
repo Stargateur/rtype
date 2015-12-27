@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:15:49 2015 Alaric Degand
-// Last update Sun Dec 27 02:48:56 2015 Antoine Plaskowski
+// Last update Sun Dec 27 06:44:40 2015 Antoine Plaskowski
 //
 
 #include	<iostream>
@@ -17,8 +17,11 @@ Server::Server(Option const &option) :
   m_itcp_server(*new TCP_server(option.get_opt("port"))),
   m_istandard(*new Standard(IStandard::In)),
   m_iselect(*new Select()),
-  m_usine(option.get_zero().substr(0, option.get_zero().find_last_of("\\/")), NAME_FCT_NEW_IENTITE)
+  m_usine(option.get_zero().substr(0, option.get_zero().find_last_of("\\/")), NAME_FCT_NEW_IENTITE),
+  m_timeout(*new Time())
 {
+  m_timeout.set_second(5);
+  m_timeout.set_nano(0);
 }
 
 Server::~Server(void)
@@ -26,6 +29,7 @@ Server::~Server(void)
   delete &m_iselect;
   delete &m_istandard;
   delete &m_itcp_server;
+  delete &m_timeout;
 }
 
 void		Server::run(void)
@@ -52,7 +56,7 @@ void		Server::run(void)
 	{
 	  try
 	    {
-	      (*it)->run(m_iselect);
+	      (*it)->run(m_iselect, m_timeout);
 	      it++;
 	    }
 	  catch (...)
@@ -71,12 +75,4 @@ bool		Server::check_login(std::string const &login, std::string const &passwd) c
     if (login == client->get_login())
       return (false);
   return (true);
-}
-
-Client		*Server::get_client(std::string const &login) const
-{
-  for (auto client : m_clients)
-    if (login == client->get_login())
-      return (client);
-  return (NULL);
 }

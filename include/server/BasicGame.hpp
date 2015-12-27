@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Tue Dec 22 10:12:30 2015 Alaric Degand
-// Last update Sat Dec 26 17:21:49 2015 Antoine Plaskowski
+// Last update Sun Dec 27 09:47:44 2015 Antoine Plaskowski
 //
 
 #ifndef		BASICGAME_HPP_
@@ -13,6 +13,7 @@
 
 # include	<list>
 # include	<map>
+# include	<vector>
 # include	"IGame.hpp"
 # include	"ISelect.hpp"
 # include	"Usine.hpp"
@@ -30,11 +31,14 @@ public:
   ~BasicGame(void);
   void	run(void);
   std::string const	&get_owner(void) const;
+  std::list<std::string> const	&get_logins(void) const;
   void	set_name(std::string const &name);
   std::string const	&get_name(void) const;
-  void	add_player(std::string const &login);
-  void	sup_player(std::string const &login);
-  std::list<std::string> const	&get_player(void) const;
+  void	add_login(std::string const &login);
+  void	sup_login(std::string const &login);
+  std::vector<Player *> const	&get_players(void) const;
+  std::vector<IEntite *> const	&get_ientites(void) const;
+  Background const	&get_background(void) const;
   std::map<std::string, std::string> const	&get_meta_params(void) const;
   void	set_param(std::string const &name, std::string const &value);
   void	sprites(IUDP_protocol &, std::list<IUDP_protocol::Sprite *> const &);
@@ -44,16 +48,13 @@ public:
   void	sounds(IUDP_protocol &, std::list<IUDP_protocol::Sound *> const &, IUDP_server::u_sockaddr const &, socklen_t);
   void	input(IUDP_protocol &iudp_protocol, std::string const &login, IUDP_protocol::Input const &input, IUDP_server::u_sockaddr const &sockaddr, socklen_t len);
 private:
-  std::string const	m_owner;
   std::string	m_name;
-  uintmax_t const	m_player_max;
-  uintmax_t const	m_x;
-  uintmax_t const	m_y;
-  std::list<std::string>	m_login;
+  std::list<std::string>	m_logins;
   std::map<std::string, std::string>	m_params;
   std::list<Player *>	m_players;
   std::list<IEntite *>	m_ientites;
-  std::list<IEntite *>	*m_all;
+  std::vector<IEntite *>	&m_all_ientites;
+  std::vector<Player *>	m_all_players;
   Background	m_background;
   Port	m_port;
   ISelect	&m_iselect;

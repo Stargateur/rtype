@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:05:56 2015 Alaric Degand
-// Last update Fri Dec 25 12:28:42 2015 Antoine Plaskowski
+// Last update Sun Dec 27 07:03:30 2015 Antoine Plaskowski
 //
 
 #ifndef		SERVER_HPP_
@@ -31,7 +31,12 @@ public:
   ~Server(void);
   void	run(void);
   bool	check_login(std::string const &login, std::string const &password) const;
-  Client	*get_client(std::string const &login) const;
+  void	send_message(std::string const &login, std::string const &message) const;
+  void	create_game(std::string const &login);
+  void	join_game(std::string const &login, std::string const &owner);
+  std::list<IGame *> const	&get_games(void) const;
+  IGame const	&get_game(void) const;
+  IGame	&get_game(void);
 private:
   ITCP_server const	&m_itcp_server;
   IStandard	&m_istandard;
@@ -39,6 +44,7 @@ private:
   std::list<IGame *>	m_games;
   ISelect	&m_iselect;
   Usine<fct_new_ientite>	m_usine;
+  ITime	&m_timeout;
 };
 
 #endif		/* !SERVER_HPP_ */

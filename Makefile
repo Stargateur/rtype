@@ -5,7 +5,7 @@
 ## Login   <plasko_a@epitech.eu>
 ## 
 ## Started on  Fri Nov 20 04:13:39 2015 Antoine Plaskowski
-## Last update Thu Dec 24 11:10:56 2015 Antoine Plaskowski
+## Last update Sun Dec 27 06:47:59 2015 Antoine Plaskowski
 ##
 
 CLIENT		=	rtype_client
@@ -43,7 +43,6 @@ INCLUDE		+=	$(shell pkg-config --cflags sfml-graphics sfml-window sfml-system sf
 CXXFLAGS	+=	-Wall -Wextra
 CXXFLAGS	+=	-ansi -pedantic -std=c++11
 CXXFLAGS	+=	$(INCLUDE)
-CXXFLAGS	+=	-Wno-unused-parameter
 
 ifeq ($(CXX), clang++)
 CXXFLAGS	+=	-Weverything -Wno-c++98-compat -Wno-padded

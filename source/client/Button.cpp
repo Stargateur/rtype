@@ -5,7 +5,7 @@
 ** Login   <tacite_d@Akagouan>
 ** 
 ** Started on  Thu Dec 10 17:35:58 2015 tacite_d
-// Last update Sun Dec 27 17:52:44 2015 Alaric Degand
+// Last update Sun Dec 27 18:06:19 2015 Alaric Degand
 */
 
 #include	"View.hpp"
@@ -75,12 +75,6 @@ void		Button::eraseLast(void)
     }
 }
 
-void		Button::refresh(Model &model)
-{
-  //List serv
-  model.setRefresh(true);
-}
-
 void Button::chargeConnect(Model &model)
 {
   model.setState(Model::CONNEXION);
@@ -121,14 +115,20 @@ void	Button::focused(Model &model)
   setFocus(true);
 }
 
+void		Button::refresh(Model &model)
+{
+  //List serv
+  model.setRefresh(true);
+}
+
 void	Button::join(Model &model)
 {
-
+  model.setJoin(true);
 }
 
 void	Button::create(Model &model)
 {
-
+  model.setCreate(true);
 }
 
 //

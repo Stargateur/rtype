@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:35:48 2015 Kevin Costa
-// Last update Sun Dec 27 16:51:47 2015 Alaric Degand
+// Last update Sun Dec 27 18:09:21 2015 Alaric Degand
 //
 
 #ifndef		MODEL_HPP_
@@ -48,6 +48,8 @@ private:
   bool	costabouche;
   std::string	m_swap;
   bool	m_refresh;
+  bool	m_join;
+  bool	m_create;
   
 public:
   Model(void);
@@ -56,22 +58,26 @@ public:
 public:
   std::vector<AElement *> getElements(void);
   std::vector<AElement *> getButtonElements(void);
-	AElement *getElementByName(const std::string &name) const;
-	AElement *getElementFocused(void);
-	bool	getCosta(void) const;
-	Model::State getState(void) const;
-	bool elementIsFocus(void);
-	bool canConnect(void) const;
-	bool getEnd(void) const;
-	void setEnd(const bool &);
+  AElement *getElementByName(const std::string &name) const;
+  AElement *getElementFocused(void);
+  bool	getCosta(void) const;
+  Model::State getState(void) const;
+  bool elementIsFocus(void);
+  bool canConnect(void) const;
+  bool getEnd(void) const;
+  void setEnd(const bool &);
   void setState(State menu);
-	void setConnect(const bool &);
+  void setConnect(const bool &);
   void	setCosta(bool);
-  void Game(sf::Keyboard::Key &code); // Change le nom
+  void Game(sf::Keyboard::Key &code);
   void getPressed(sf::Keyboard::Key &code);
   void updateData(void);
   bool getRefresh(void) const;
   void setRefresh(bool);
+  bool getJoin(void) const;
+  void setJoin(bool);
+  bool getCreate(void) const;
+  void setCreate(bool);
 };
 
 #endif		/* !MODEL_HPP_ */

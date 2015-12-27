@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Tue Dec 22 10:14:54 2015 Alaric Degand
-// Last update Sun Dec 27 19:24:42 2015 Antoine Plaskowski
+// Last update Sun Dec 27 19:46:38 2015 Antoine Plaskowski
 //
 
 #include	<array>
@@ -114,7 +114,7 @@ void	BasicGame::run(void)
 
 std::string const	&BasicGame::get_owner(void) const
 {
-  return (m_logins.front());
+  return (m_name);
 }
 
 std::list<std::string> const	&BasicGame::get_logins(void) const

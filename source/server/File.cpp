@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Tue Dec 22 23:15:40 2015 Antoine Plaskowski
-// Last update Sun Dec 27 10:39:43 2015 Antoine Plaskowski
+// Last update Sun Dec 27 20:01:47 2015 Antoine Plaskowski
 //
 
 #include	<exception>
@@ -24,12 +24,11 @@ File::File(std::string const &path) :
   m_data = new uint8_t [m_size];
   file.seekg(0, std::ios::beg);
   file.read(reinterpret_cast<char *>(m_data), m_size);
-  std::cout << "coucou" << std::endl;
 }
 
 File::~File(void)
 {
-  delete m_data;
+  delete[] m_data;
 }
 
 std::string const	&File::get_name(void) const

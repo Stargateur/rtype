@@ -69,7 +69,7 @@ Time::~Time(void)
 }
 
 extern "C" __declspec(dllexport)
-ITime	&new_itime(void)
+ITime	*new_itime(void)
 {
-  return (*new Time());
+  return (new Time());
 }

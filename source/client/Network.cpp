@@ -3,8 +3,8 @@
 Network::Network(Model &model) :
 	m_model(model), m_select(*new Select), m_time(new Time), m_thread(NULL), m_mutex(NULL), m_tcpClient(NULL), m_udpClient(NULL), m_client(NULL), m_tcpProto(NULL), m_player(NULL), m_udpProto(NULL), m_end(false)
 {
-	this->m_time.set_second(0);
-	this->m_time.set_nano(500000);
+	this->m_time->set_second(0);
+	this->m_time->set_nano(500000);
 }
 
 

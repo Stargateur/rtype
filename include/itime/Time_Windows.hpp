@@ -14,19 +14,19 @@
 # include	<windows.h>
 # include	"ITime.hpp"
 
-class	TimeWindows : public ITime
+class	Time : public ITime
 {
 public:
   uintmax_t const	milli_by_nano = 1000000;
 public:
-  TimeWindows(void);
+  Time(void);
   intmax_t	get_second(void) const;
   void	set_second(intmax_t);
   intmax_t	get_nano(void) const;
   void	set_nano(intmax_t);
   bool	now(void);
   ITime	&clone(void) const;
-  ~TimeWindows(void);
+  ~Time(void);
 private:
   time_t	m_second;
   WORD	m_milli;

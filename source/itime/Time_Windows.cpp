@@ -11,26 +11,26 @@
 #include <ctime>
 #include "Time_Windows.hpp"
 
-TimeWindows::TimeWindows(void)
+Time::Time(void)
 {
 }
 
-intmax_t	TimeWindows::get_second(void) const
+intmax_t	Time::get_second(void) const
 {
   return (m_second);
 }
 
-void	TimeWindows::set_second(intmax_t second)
+void	Time::set_second(intmax_t second)
 {
   m_second = second;
 }
 
-intmax_t	TimeWindows::get_nano(void) const
+intmax_t	Time::get_nano(void) const
 {
   return (m_milli * milli_by_nano);
 }
 
-void	TimeWindows::set_nano(intmax_t nano)
+void	Time::set_nano(intmax_t nano)
 {
   m_milli = nano / milli_by_nano;
   if (get_nano() >= ITime::nano_by_second)
@@ -50,7 +50,7 @@ void	TimeWindows::set_nano(intmax_t nano)
     }
 }
 
-bool	TimeWindows::now(void)
+bool	Time::now(void)
 {
   SYSTEMTIME SystemTime;
   m_second = time(NULL);
@@ -59,17 +59,17 @@ bool	TimeWindows::now(void)
   return (false);
 }
 
-ITime	&TimeWindows::clone(void) const
+ITime	&Time::clone(void) const
 {
-  return (*new TimeWindows());
+  return (*new Time());
 }
 
-TimeWindows::~TimeWindows(void)
+Time::~Time(void)
 {
 }
 
 extern "C" __declspec(dllexport)
 ITime	&new_itime(void)
 {
-  return (*new TimeWindows());
+  return (*new Time());
 }

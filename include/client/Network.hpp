@@ -9,11 +9,17 @@
 # include "UDP_client.hpp"
 # include "Model.hpp"
 # include "Select.hpp"
+# ifdef		_WIN32
+#  include "Time_Windows.hpp"
+# else
+#  include "Time.hpp"
+# endif
 
 class Network
 {
 	Model &m_model;
 	ISelect &m_select;
+	ITime *m_time;
 	AThread *m_thread;
 	AMutex *m_mutex;
 	ITCP_client *m_tcpClient;

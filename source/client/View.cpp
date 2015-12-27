@@ -8,7 +8,11 @@
 // Last update Sun Dec 27 01:01:38 2015 Alaric Degand
 //
 
-#include	<unistd.h>
+#ifdef		_WIN32
+# include <io.h>
+#else
+# include	<unistd.h>
+#endif
 #include "View.hpp"
 
 View::View(double size_x, double size_y) :
@@ -41,6 +45,7 @@ bool View::init(void)
   Network *net = new Network(this->m_model);
 
   this->create(this->video, "R-Type", sf::Style::Titlebar | sf::Style::Close);
+	this->setFramerateLimit(57);
   net->setMutex(this->m_mutex);
   net->setThread(thread);
   if (!thread->create(&threadNetwork, reinterpret_cast<void *>(net)))

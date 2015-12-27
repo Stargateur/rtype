@@ -5,7 +5,7 @@
 // Login   <degand_a@epitech.eu>
 // 
 // Started on  Fri Dec 25 16:35:18 2015 Alaric Degand
-// Last update Sun Dec 27 01:06:31 2015 Alaric Degand
+// Last update Sun Dec 27 13:46:46 2015 Alaric Degand
 //
 
 #include "View.hpp"
@@ -38,4 +38,13 @@ void Sprite::aff(View *view)
 std::string Sprite::getContent(void) const
 {
   return ("");
+}
+
+void		Sprite::setContent(std::string const &value)
+{
+}
+
+void            Sprite::eraseLast(void)
+{
+
 }

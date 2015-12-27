@@ -5,7 +5,7 @@
 ** Login   <tacite_d@Akagouan>
 ** 
 ** Started on  Thu Dec 10 17:36:16 2015 tacite_d
-// Last update Fri Dec 25 18:38:39 2015 Alaric Degand
+// Last update Sun Dec 27 13:46:08 2015 Alaric Degand
 */
 
 #ifndef		BUTTON_HPP_
@@ -37,9 +37,10 @@ class Button : public AElement, public sf::RectangleShape
 private:
   Text *m_text;
   ptr m_ptr;
+  std::string m_line;
   
 public:
-  Button(float, float, float, float, std::string const&, const bool &, ptr);
+  Button(float, float, float, float, std::string const&, const bool &, ptr, sf::Font const &thefont);
   ~Button();
 
 public:
@@ -47,7 +48,9 @@ public:
   void aff(View *);
   void setText(Text *);
   Text *getText(void) const;
-	std::string getContent(void) const;
+  std::string getContent(void) const;
+  void setContent(std::string const &);
+  void	eraseLast(void);
 
 public:
   void chargeConnect(Model &);
@@ -55,6 +58,7 @@ public:
   void chargeParam(Model &);
   void chargeList(Model &);
   void chargeGame(Model &);
+  void focused(Model &);
 	
 //private:
 //	void createPtr(buttonType);

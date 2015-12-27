@@ -5,7 +5,7 @@
 // Login   <degand_a@epitech.eu>
 // 
 // Started on  Sat Dec 26 23:33:11 2015 Alaric Degand
-// Last update Sun Dec 27 00:52:33 2015 Alaric Degand
+// Last update Sun Dec 27 13:47:04 2015 Alaric Degand
 //
 
 #include "View.hpp"
@@ -36,5 +36,15 @@ void Text::aff(View *view)
 
 std::string Text::getContent(void) const
 {
-	return (this->getString());
+  return (this->getString());
+}
+
+void		Text::setContent(std::string const &value)
+{
+  setString(value);
+}
+
+void            Text::eraseLast(void)
+{
+
 }

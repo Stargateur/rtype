@@ -33,10 +33,12 @@ public:
 	virtual void update(const sf::Event &, Model &, sf::Vector2f &) = 0;
 	virtual void aff(View *) = 0;
 	virtual std::string getContent(void) const = 0;
+  virtual void setContent(std::string const &) = 0;
+  virtual void eraseLast(void) = 0;
+  void setFocus(const bool &);
 
 protected:
 	void setId(int);
-	void setFocus(const bool &);
 };
 
 #endif

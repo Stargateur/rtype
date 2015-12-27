@@ -5,18 +5,18 @@
 ** Login   <tacite_d@Akagouan>
 ** 
 ** Started on  Thu Dec 10 17:35:58 2015 tacite_d
-// Last update Fri Dec 25 18:41:56 2015 Alaric Degand
+// Last update Sun Dec 27 14:04:53 2015 Alaric Degand
 */
 
 #include	"View.hpp"
 #include	"Button.hpp"
 
-Button::Button(float x, float y, float longu, float larg, std::string const& name, const bool &canFocus, ptr ptrs) :
+Button::Button(float x, float y, float longu, float larg, std::string const& name, const bool &canFocus, ptr ptrs, sf::Font const &thefont) :
 	AElement(BUTTON, name, canFocus)
 {
   this->setSize(sf::Vector2f(longu, larg));
   this->setPosition(x, y);
-  this->m_text = NULL;
+  this->m_text = new Text(x, y + larg / 6, "Value", "", thefont);
   this->m_ptr = ptrs;
   //	createPtr(type);
 }
@@ -34,8 +34,8 @@ void Button::update(const sf::Event &e, Model &m, sf::Vector2f &pos)
 	(this->*m_ptr)(m);
     }
 
-  if (e.type == sf::Event::EventType::TextEntered)
-    this->m_text->update(e, m, pos);
+  //  if (e.type == sf::Event::EventType::TextEntered)
+  //this->m_text->update(e, m, pos);
 }
 
 void	Button::aff(View *view)
@@ -57,7 +57,22 @@ Text *Button::getText(void) const
 
 std::string Button::getContent(void) const
 {
-	return (this->m_text->getString());
+  return (this->m_text->getString());
+}
+
+void		Button::setContent(std::string const &value)
+{
+  m_line += value;
+  m_text->setString(m_line);
+}
+
+void		Button::eraseLast(void)
+{
+  if (m_line.size() != 0)
+    {
+      m_line.pop_back();
+      m_text->setString(m_line);
+    }
 }
 
 void Button::chargeConnect(Model &model)
@@ -88,6 +103,15 @@ void Button::chargeGame(Model &model)
 {
   model.setState(Model::GAME);
   std::cerr << "new state = game" << std::endl;
+}
+
+void	Button::focused(Model &model)
+{
+  //if (m_isFocus == true)
+  AElement  *tmp = model.getElementFocused();
+  if (tmp != NULL)
+    tmp->setFocus(false);
+  setFocus(true);
 }
 //
 //void Button::createPtr(buttonType type)

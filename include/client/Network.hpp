@@ -29,6 +29,7 @@ class Network
 	Player *m_player;
 	UDP_protocol *m_udpProto;
 	bool m_end;
+  std::string m_login;
 
 public:
 	Network(Model &);

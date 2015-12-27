@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:35:48 2015 Kevin Costa
-// Last update Sun Dec 27 18:09:21 2015 Alaric Degand
+// Last update Sun Dec 27 19:24:05 2015 Alaric Degand
 //
 
 #ifndef		MODEL_HPP_
@@ -43,7 +43,6 @@ private:
   bool m_canConnect;
   bool m_endExec;
   std::map<State, std::vector<AElement *> *> m_elements;
-  bool connexionbox;
   sf::Font	m_font;
   bool	costabouche;
   std::string	m_swap;

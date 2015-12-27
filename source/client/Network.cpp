@@ -44,6 +44,7 @@ void Network::tryConnect(void)
   host = this->m_model.getElementByName("TEXT_HOST")->getContent();
   port = this->m_model.getElementByName("TEXT_PORT")->getContent();
   login = this->m_model.getElementByName("TEXT_LOGIN")->getContent();
+  m_login = pass;
   pass = this->m_model.getElementByName("TEXT_PASSWORD")->getContent();
 	try
 	{
@@ -89,6 +90,8 @@ void Network::update(void)
 
 void Network::loop(void)
 {
+  ITCP_protocol::Game	target;
+  
   while (!this->m_end)
     {
       if (this->m_tcpClient == NULL)
@@ -98,19 +101,23 @@ void Network::loop(void)
       this->m_mutex->lock();
       if (m_model.getRefresh() == true && m_tcpClient != NULL)
 	{
-	  this->m_tcpProto->send_list_meta_games();
+	  m_tcpProto->send_list_meta_games();
 	  m_model.setRefresh(false);
 	  std::cout << "Refresh game asked" << std::endl;
 	}
       if (m_model.getJoin() == true && m_tcpClient != NULL)
 	{
-	  //
+	  target.name = m_model.getElementByName("SERVER_TOJOIN")->getContent();
+	  target.owner = m_login;
+	  m_tcpProto->send_join_game(target);
 	  m_model.setJoin(false);
 	  std::cout << "Join game asked" << std::endl;
 	}
       if (m_model.getCreate() == true && m_tcpClient != NULL)
 	{
-	  //
+	  target.name = m_model.getElementByName("SERVER_TOJOIN")->getContent();
+	  target.owner = m_login;
+	  m_tcpProto->send_create_game(target);
 	  m_model.setCreate(false);
 	  std::cout << "Create game asked" << std::endl;
 	}

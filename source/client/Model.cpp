@@ -5,13 +5,13 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:29:32 2015 Kevin Costa
-// Last update Sun Dec 27 18:07:45 2015 Alaric Degand
+// Last update Sun Dec 27 19:24:31 2015 Alaric Degand
 //
 
 #include "Model.hpp"
 
 Model::Model() :
-	m_actual(CONNEXION), m_canConnect(false), m_endExec(false)
+  m_actual(CONNEXION), m_canConnect(false), m_endExec(false), m_refresh(false), m_join(false), m_create(false)
 {
   std::vector<AElement *> connexion;
   std::vector<AElement *> principal;
@@ -20,8 +20,7 @@ Model::Model() :
 
   if (!m_font.loadFromFile("font/HighVoltage.ttf"))
     std::cout << "Font not loaded" << std::endl;
-  
-  connexionbox = true;
+
   connexion.push_back(new Sprite(0, 0, "sprites/stars.jpg", "background", 1256, 836));
   connexion.push_back(new Button(150, 150, 500, 50, "TEXT_LOGIN", true, &Button::focused, m_font, "Test"));
   connexion.push_back(new Button(150, 210, 500, 50, "TEXT_PASSWORD", true, &Button::focused, m_font, "Test"));

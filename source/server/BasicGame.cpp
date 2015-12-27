@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Tue Dec 22 10:14:54 2015 Alaric Degand
-// Last update Sat Dec 26 17:22:03 2015 Antoine Plaskowski
+// Last update Sun Dec 27 01:43:40 2015 Antoine Plaskowski
 //
 
 #include	<array>
@@ -54,7 +54,7 @@ void	BasicGame::run(void)
   while (m_players.size() != 0)
     {
       now.now();
-      itime.sub(now);
+      itime -= now;
       wait.set_second(1);
       std::list<IEntite *>	to_add;
       for (auto it = m_ientites.begin(); it != m_ientites.end();)
@@ -62,7 +62,7 @@ void	BasicGame::run(void)
 	  try
 	    {
 	      (*it)->run(m_ientites, to_add, itime, want_wait);
-	      if (wait.cmp(want_wait) == 1)
+	      if (want_wait < wait)
 		wait = want_wait;
 	      it++;
 	    }

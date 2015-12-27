@@ -5,7 +5,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Wed Oct 21 20:44:16 2015 Bertrand-Rapello Baptiste
-// Last update Sat Dec 26 17:16:12 2015 Antoine Plaskowski
+// Last update Sun Dec 27 01:42:22 2015 Antoine Plaskowski
 //
 
 #ifndef	ITIME_HPP_
@@ -16,18 +16,28 @@
 class	ITime
 {
 public:
+  intmax_t const	nano_by_second = 1000000000;
+public:
+  ITime(void);
+  ITime(ITime const &itime);
+  virtual ~ITime(void);
   ITime	&operator=(ITime const &itime);
+  ITime	&operator+=(ITime const &itime);
+  ITime	&operator-=(ITime const &itime);
   virtual intmax_t	get_second(void) const = 0;
-  virtual bool	set_second(intmax_t) = 0;
+  virtual void	set_second(intmax_t) = 0;
   virtual intmax_t	get_nano(void) const = 0;
-  virtual bool	set_nano(intmax_t) = 0;
+  virtual void	set_nano(intmax_t) = 0;
   virtual bool	now(void) = 0;
   virtual ITime	&clone(void) const = 0;
-  virtual void	add(ITime const &itime) = 0;
-  virtual void	sub(ITime const &itime) = 0;
-  virtual intmax_t	cmp(ITime const &itime) const = 0;
-  virtual ~ITime(void);
 };
+
+bool	operator!=(ITime const &lhs, ITime const &rhs);
+bool	operator==(ITime const &lhs, ITime const &rhs);
+bool	operator<(ITime const &lhs, ITime const &rhs);
+bool	operator>(ITime const &lhs, ITime const &rhs);
+bool	operator<=(ITime const &lhs, ITime const &rhs);
+bool	operator>=(ITime const &lhs, ITime const &rhs);
 
 class	ITimeException
 {
@@ -48,4 +58,4 @@ extern "C"
   typedef	ITime *(&ref_new_itime)(void);
 }
 
-#endif 
+#endif /* !ITIME_HPP_ */

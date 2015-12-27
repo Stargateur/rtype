@@ -5,7 +5,7 @@
 // Login   <plasko_a@epitech.eu>
 // 
 // Started on  Sun Dec 27 01:00:23 2015 Antoine Plaskowski
-// Last update Sun Dec 27 01:05:05 2015 Antoine Plaskowski
+// Last update Sun Dec 27 01:34:56 2015 Antoine Plaskowski
 //
 
 #include <ctime>
@@ -20,7 +20,7 @@ intmax_t	TimeWindows::get_second(void) const
   return (m_second);
 }
 
-bool	TimeWindows::set_second(intmax_t second)
+void	TimeWindows::set_second(intmax_t second)
 {
   m_second = second;
   return (false);
@@ -31,7 +31,7 @@ intmax_t	TimeWindows::get_nano(void) const
   return (m_mili * 1000000);
 }
 
-bool	TimeWindows::set_nano(intmax_t nano)
+void	TimeWindows::set_nano(intmax_t nano)
 {
   m_mili = nano / 1000000;
   return (false);

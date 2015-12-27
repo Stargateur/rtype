@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Tue Dec 22 10:14:54 2015 Alaric Degand
-// Last update Sun Dec 27 14:03:21 2015 Antoine Plaskowski
+// Last update Sun Dec 27 18:52:28 2015 Antoine Plaskowski
 //
 
 #include	<array>
@@ -61,7 +61,7 @@ void	BasicGame::run(void)
   last_spawn.set_nano(0);
   itime.now();
   while (m_players.size() != 0)
-    {      
+    {
       now.now();
       itime -= now;
       wait.set_second(1);
@@ -90,6 +90,7 @@ void	BasicGame::run(void)
 	  m_ientites.push_back(&m_usine.get<IEntite>(i, m_ientites, i, static_cast<uintmax_t>(2), static_cast<uintmax_t>(1920), static_cast<uintmax_t>(1080)));
 	  last_spawn -= spawn;
 	}
+      m_iselect.reset();
       if (iudp_protocol.want_send() == true)
 	m_iselect.want_read(m_iudp_server);
       if (iudp_protocol.want_recv() == true)

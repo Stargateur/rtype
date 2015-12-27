@@ -74,11 +74,13 @@ void Network::update(void)
       this->m_select.want_write(*this->m_udpClient);
     }
   this->m_select.select(this->m_time);
+	this->m_mutex->lock();
   if (this->m_select.can_read(*this->m_tcpClient))
     this->m_tcpProto->recv(*this->m_tcpClient);
   if (this->m_udpClient != NULL)
     if (this->m_select.can_read(*this->m_udpClient))
       this->m_udpProto->recv(*this->m_udpClient);
+	this->m_mutex->unlock();
 }
 
 void Network::loop(void)

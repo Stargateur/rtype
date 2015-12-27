@@ -37,38 +37,37 @@ Model::Model() :
   // connexion.push_back(new Button(400, 50, 200, 100, "b2", &Button::chargeGame));
   // connexion.push_back(new Sprite(400, 50, "sprites/Game.png", "background", 200, 100));
   // connexion.push_back(new Button(50, 400, 200, 100, "b3", &Button::chargeList));
-  this->m_elements[CONNEXION] = connexion;
+  this->m_elements[CONNEXION] = new std::vector<AElement *>(connexion);
   principal.push_back(new Sprite(0, 0, "sprites/stars.jpg", "background", 1256, 836));
-  this->m_elements[PRINCIPAL] = principal;
+  this->m_elements[PRINCIPAL] = new std::vector<AElement*>(principal);
   params.push_back(new Sprite(0, 0, "sprites/stars.jpg", "background", 1256, 836));
-  this->m_elements[PARAMS] = params;
+  this->m_elements[PARAMS] = new std::vector<AElement *>(params);
   list.push_back(new Sprite(0, 0, "sprites/stars.jpg", "background", 1256, 836));
-  this->m_elements[LIST] = list;
-  this->m_elements[GAME] = std::vector<AElement *>();
+  this->m_elements[LIST] = new std::vector<AElement *>(list);
+  this->m_elements[GAME] = new std::vector<AElement *>();
 }
 
 Model::~Model()
 {
-	for (std::map<State, std::vector<AElement *>>::iterator it = this->m_elements.begin(); it != this->m_elements.end(); it = this->m_elements.erase(it))
+	for (std::map<State, std::vector<AElement *> *>::iterator it = this->m_elements.begin(); it != this->m_elements.end(); it = this->m_elements.erase(it))
 	{
-		for (size_t i = 0; i < it->second.size(); i++)
-			delete (it->second[i]);
-		it->second.clear();
+		for (size_t i = 0; i < it->second->size(); i++)
+			delete ((*it->second)[i]);
 	}
 }
 
 std::vector<AElement *> Model::getElements(void)
 {
-  return (this->m_elements[this->m_actual]);
+  return (*this->m_elements[this->m_actual]);
 }
 
 std::vector<AElement*> Model::getButtonElements(void)
 {
   std::vector<AElement *> tmp;
 
-  for (size_t i = 0; i < this->m_elements[this->m_actual].size(); i++)
-    if (this->m_elements[this->m_actual][i]->getId() == BUTTON)
-      tmp.push_back(this->m_elements[this->m_actual][i]);
+  for (size_t i = 0; i < this->m_elements[this->m_actual]->size(); i++)
+    if ((*this->m_elements[this->m_actual])[i]->getId() == BUTTON)
+      tmp.push_back((*this->m_elements[this->m_actual])[i]);
   return (tmp);
 }
 
@@ -146,26 +145,26 @@ Model::State Model::getState(void) const
 
 bool Model::elementIsFocus(void)
 {
-  for (size_t i = 0; i < this->m_elements[this->m_actual].size(); i++)
-    if (this->m_elements[this->m_actual][i]->isFocus())
+  for (size_t i = 0; i < this->m_elements[this->m_actual]->size(); i++)
+    if ((*this->m_elements[this->m_actual])[i]->isFocus())
       return (true);
   return (false);
 }
 
 AElement *Model::getElementByName(const std::string &name) const
 {
-  for (std::map<State, std::vector<AElement *>>::const_iterator it = this->m_elements.begin(); it != this->m_elements.end(); ++it)
-    for (size_t i = 0; i < it->second.size(); i++)
-      if (it->second[i]->getName() == name)
-				return (it->second[i]);
+  for (std::map<State, std::vector<AElement *> *>::const_iterator it = this->m_elements.begin(); it != this->m_elements.end(); ++it)
+    for (size_t i = 0; i < it->second->size(); i++)
+      if ((*it->second)[i]->getName() == name)
+				return ((*it->second)[i]);
   return (NULL);
 }
 
 AElement *Model::getElementFocused(void)
 {
-  for (size_t i = 0; i < this->m_elements[this->m_actual].size(); i++)
-    if (this->m_elements[this->m_actual][i]->isFocus())
-      return (this->m_elements[this->m_actual][i]);
+  for (size_t i = 0; i < this->m_elements[this->m_actual]->size(); i++)
+    if ((*this->m_elements[this->m_actual])[i]->isFocus())
+      return ((*this->m_elements[this->m_actual])[i]);
   return (NULL);
 }
 

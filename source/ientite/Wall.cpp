@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Wed Dec 23 11:41:43 2015 Alaric Degand
-// Last update Sun Dec 27 09:23:23 2015 Antoine Plaskowski
+// Last update Sun Dec 27 13:43:20 2015 Antoine Plaskowski
 //
 
 #include	<list>
@@ -14,10 +14,13 @@
 #include	"Wall.hpp"
 
 Wall::Wall(std::list<IEntite *> const &ientites, uintmax_t id, uintmax_t team, uintmax_t x_max, uintmax_t y_max) :
-  _id(id),
-  _team(team),
-  _hp(5000),
-  _property(std::make_tuple(x_max, rand() % 2 * y_max, x_max / 10, y_max / 5))
+  m_id(id),
+  m_team(team),
+  m_hp(5000),
+  m_x(0),
+  m_y(0),
+  m_max_x(x_max),
+  m_max_y(y_max)
 {
   // while (this.check_colide(ientites))
   //   {
@@ -49,7 +52,7 @@ void		Wall::run(std::list<IEntite *> const &ientites, std::list<IEntite *> &new_
 
 void		Wall::domage(uintmax_t value)
 {
-  _hp -= value;
+  m_hp -= value;
 }
 
 void		Wall::colide(void)
@@ -57,14 +60,29 @@ void		Wall::colide(void)
 
 }
 
-std::tuple<intmax_t, intmax_t, uintmax_t, uintmax_t> const	&Wall::get_property(void) const
+intmax_t	Wall::get_x(void) const
 {
-  return (_property);
+  return (m_x);
+}
+
+intmax_t	Wall::get_y(void) const
+{
+  return (m_y);
+}
+
+uintmax_t	Wall::get_size_x(void) const
+{
+  return (10);
+}
+
+uintmax_t	Wall::get_size_y(void) const
+{
+  return (10);
 }
 
 uintmax_t	Wall::get_team(void) const
 {
-  return (_team);
+  return (m_team);
 }
 
 File const	&Wall::get_sound(void) const
@@ -79,28 +97,12 @@ File const	&Wall::get_sprite(void) const
   return (sprite);
 }
 
-bool		Wall::check_colide(std::list<IEntite *> const &ientites) const
-{
-  std::tuple<uintmax_t, uintmax_t, uintmax_t, uintmax_t> to_check;
-  
-  // for (std::list<IEntite *>::iterator it = ientites.begin(); it != ientites.end(); it++)
-  //   {
-  //     to_check = it.get_property();
-  //     if (_property<0> < to_check<0> + to_check<2> &&
-  // 	  _property<0> + _property<2> > to_check<0> &&
-  // 	  _property<1> < to_check<1> + to_check<3> &&
-  // 	  _property<1> + _property<3> > to_check<1>)
-  // 	return (true);
-  //   }
-  return (false);
-}
-
 uintmax_t	Wall::get_id(void) const
 {
-  return (_id);
+  return (m_id);
 }
 
-IEntite       *new_ientite(std::list<IEntite *> const &ientites, uintmax_t id, uintmax_t team, uintmax_t x_max, uintmax_t y_max)
+IEntite	*new_ientite(std::list<IEntite *> const &ientites, uintmax_t id, uintmax_t team, uintmax_t x_max, uintmax_t y_max)
 {
   return (new Wall(ientites, id, team, x_max, y_max));
 }

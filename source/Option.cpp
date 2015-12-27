@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sat Oct 24 15:42:58 2015 Antoine Plaskowski
-// Last update Thu Dec 24 09:55:06 2015 Antoine Plaskowski
+// Last update Sun Dec 27 12:28:36 2015 Antoine Plaskowski
 //
 
 #include	<unistd.h>
@@ -26,7 +26,7 @@ std::string const	&Option::get_opt(std::string const &name) const
   for (auto &opt : m_opts)
     if (std::get<0>(opt) == name)
       return (std::get<2>(opt));
-  throw std::invalid_argument(name + "doesn't exist");
+  throw std::invalid_argument(name + " doesn't exist");
 }
 
 std::list<std::string> const	&Option::get_pos_opt(void) const

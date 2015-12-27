@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Tue Dec 22 23:15:40 2015 Antoine Plaskowski
-// Last update Sun Dec 27 07:08:57 2015 Antoine Plaskowski
+// Last update Sun Dec 27 10:39:43 2015 Antoine Plaskowski
 //
 
 #include	<exception>
@@ -35,6 +35,11 @@ File::~File(void)
 std::string const	&File::get_name(void) const
 {
   return (m_name);
+}
+
+std::string const	&File::get_checksome(void) const
+{
+  return (m_checksome);
 }
 
 uint8_t const	*File::get_data(void) const

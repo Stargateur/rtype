@@ -12,7 +12,8 @@
 #include "Sprite.hpp"
 
 Sprite::Sprite(float pos_x, float pos_y, const std::string &texture, const std::string &name,
-	       int spsize_x, int spsize_y, double size_x, double size_y, int sprite_x, int sprite_y) : AElement(SPRITE, name), sf::Sprite()
+	       int spsize_x, int spsize_y, double size_x, double size_y, int sprite_x, int sprite_y) :
+	AElement(SPRITE, name, false), sf::Sprite()
 {
   this->text.loadFromFile(texture);
   this->setTexture(text);
@@ -34,7 +35,7 @@ void Sprite::aff(View *view)
 	view->draw(*this);
 }
 
-const std::string & Sprite::getContent(void) const
+std::string Sprite::getContent(void) const
 {
 	return ("");
 }

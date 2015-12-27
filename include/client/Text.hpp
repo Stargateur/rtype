@@ -16,13 +16,13 @@
 class Text : public AElement, public sf::Text
 {
 public:
-  Text(float, float, std::string const &, sf::Font const &);
+  Text(float, float, const std::string &, std::string const &, sf::Font const &);
   ~Text();
 
 public:
 	void update(const sf::Event &, Model &, sf::Vector2f &);
 	void aff(View *);
-	const std::string &getContent(void) const;
+	std::string getContent(void) const;
 };
 
 #endif

@@ -54,15 +54,17 @@ public:
 public:
   std::vector<AElement *> getElements(void);
   std::vector<AElement *> getButtonElements(void);
-  void setEnd(const bool &);
+	AElement *getElementByName(const std::string &name) const;
+	AElement *getElementFocused(void);
+	bool	getCosta(void) const;
+	Model::State getState(void) const;
+	bool elementIsFocus(void);
+	bool canConnect(void) const;
+	bool getEnd(void) const;
+	void setEnd(const bool &);
   void setState(State menu);
 	void setConnect(const bool &);
-  bool getEnd(void) const;
-  bool	getCosta(void) const;
   void	setCosta(bool);
-  Model::State getState(void) const;
-  bool canConnect(void) const;
-  AElement *getElementByName(const std::string &name);
   void Game(sf::Keyboard::Key &code); // Change le nom
   void updateData(void);
 };

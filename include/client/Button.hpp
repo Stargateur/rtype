@@ -39,7 +39,7 @@ private:
   ptr m_ptr;
   
 public:
-  Button(float, float, float, float, std::string const&, ptr);
+  Button(float, float, float, float, std::string const&, const bool &, ptr);
   ~Button();
 
 public:
@@ -47,7 +47,7 @@ public:
   void aff(View *);
   void setText(Text *);
   Text *getText(void) const;
-	const std::string &getContent(void) const;
+	std::string getContent(void) const;
 
 public:
   void chargeConnect(Model &);

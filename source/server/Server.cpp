@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:15:49 2015 Alaric Degand
-// Last update Fri Dec 25 12:35:25 2015 Antoine Plaskowski
+// Last update Sun Dec 27 02:48:56 2015 Antoine Plaskowski
 //
 
 #include	<iostream>
@@ -34,16 +34,32 @@ void		Server::run(void)
 
   while (g_keep_running == true)
     {
-      uint8_t	buffer[42];
-
       m_iselect.want_read(m_istandard);
       m_iselect.want_read(m_itcp_server);
+      for (auto client : m_clients)
+	client->pre_run(m_iselect);
       m_iselect.select();
       if (m_iselect.can_read(m_itcp_server))
 	m_clients.push_back(new Client(*this, m_itcp_server.accept()));
       if (m_iselect.can_read(m_istandard))
-	if (m_istandard.read(buffer[0], 42) == 0)
-	  g_keep_running = false;
+	{
+	  uint8_t	buffer[42];
+
+	  if (m_istandard.read(buffer[0], 42) == 0)
+	    g_keep_running = false;
+	}
+      for (auto it = m_clients.begin(); it != m_clients.end();)
+	{
+	  try
+	    {
+	      (*it)->run(m_iselect);
+	      it++;
+	    }
+	  catch (...)
+	    {
+	      it = m_clients.erase(it);
+	    }
+	}
     }
 }
 

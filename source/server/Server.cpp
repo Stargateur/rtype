@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:15:49 2015 Alaric Degand
-// Last update Sun Dec 27 10:24:02 2015 Antoine Plaskowski
+// Last update Sun Dec 27 12:28:49 2015 Antoine Plaskowski
 //
 
 #include	<iostream>
@@ -19,7 +19,8 @@ Server::Server(Option const &option) :
   m_iselect(*new Select()),
   m_usine(option.get_zero().substr(0, option.get_zero().find_last_of("\\/")), NAME_FCT_NEW_IENTITE),
   m_timeout(*new Time()),
-  m_port_generator(std::stoll(option.get_opt("udp_min")), std::stoll(option.get_opt("udp_max")))
+  m_port_generator(std::stoll(option.get_opt("udp_min")), std::stoll(option.get_opt("udp_max"))),
+  m_pool(5)
 {
   m_timeout.set_second(5);
   m_timeout.set_nano(0);
@@ -60,8 +61,10 @@ void		Server::run(void)
 	      (*it)->run(m_iselect, m_timeout);
 	      it++;
 	    }
-	  catch (...)
+	  catch (std::exception const &e)
 	    {
+	      leave_game((*it)->get_login());
+	      std::cerr << e.what() << std::endl;
 	      it = m_clients.erase(it);
 	    }
 	}
@@ -78,11 +81,12 @@ bool		Server::check_login(std::string const &login, std::string const &passwd) c
   return (true);
 }
 
-IGame const	&Server::get_game(std::string const &owner) const
+IGame const	&Server::get_game(std::string const &login) const
 {
   for (auto game : m_games)
-    if (game->get_owner() == owner)
-      return (*game);
+    for (auto login2 : game->get_logins())
+      if (login2 == login)
+	return (*game);
   throw std::logic_error("no game");
 }
 
@@ -107,8 +111,20 @@ void	Server::join_game(std::string const &login, std::string const &owner)
 void	Server::leave_game(std::string const &login)
 {
   for (auto game : m_games)
-    for (auto login : game->get_logins())
-      if (login == login)
+    for (auto login2 : game->get_logins())
+      if (login2 == login)
 	game->sup_login(login);
   throw std::logic_error("no game");
+}
+
+void	Server::start_game(std::string const &login)
+{
+  for (auto game : m_games)
+    for (auto login2 : game->get_logins())
+      if (login2 == login)
+	{
+	  m_games.remove(game);
+	  m_games_run.push_back(game);
+	  //	  m_pool.start(bind(game->run(), _1);
+	}
 }

@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:05:56 2015 Alaric Degand
-// Last update Sun Dec 27 10:24:20 2015 Antoine Plaskowski
+// Last update Sun Dec 27 12:16:52 2015 Antoine Plaskowski
 //
 
 #ifndef		SERVER_HPP_
@@ -23,6 +23,7 @@ class		Server;
 #include	"BasicGame.hpp"
 #include	"Usine.hpp"
 #include	"Select.hpp"
+#include	"ThreadPool.hpp"
 
 class	Server
 {
@@ -37,15 +38,18 @@ public:
   void	leave_game(std::string const &login);
   std::list<IGame *> const	&get_games(void) const;
   IGame const	&get_game(std::string const &login) const;
+  void	start_game(std::string const &login);
 private:
   ITCP_server const	&m_itcp_server;
   IStandard	&m_istandard;
   std::list<Client *>	m_clients;
   std::list<IGame *>	m_games;
+  std::list<IGame *>	m_games_run;
   ISelect	&m_iselect;
   Usine<fct_new_ientite>	m_usine;
   ITime	&m_timeout;
   PortGenerator	m_port_generator;
+  ThreadPool	m_pool;
 };
 
 #endif		/* !SERVER_HPP_ */

@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:56:02 2015 Alaric Degand
-// Last update Sun Dec 27 11:31:57 2015 Antoine Plaskowski
+// Last update Sun Dec 27 11:48:20 2015 Antoine Plaskowski
 //
 
 #include	"Client.hpp"
@@ -343,4 +343,14 @@ std::string const	&Client::get_login(void) const
 bool	Client::get_ready(void) const
 {
   return (m_ready);
+}
+
+void	Client::start(uint8_t second, uint16_t port)
+{
+  m_itcp_protocol.send_start(second, port);
+}
+
+void	Client::end(uint64_t score, bool winner)
+{
+  m_itcp_protocol.send_end(score, winner);
 }

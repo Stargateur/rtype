@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:40:34 2015 Antoine Plaskowski
-// Last update Sun Dec 27 11:41:45 2015 Antoine Plaskowski
+// Last update Sun Dec 27 15:32:00 2015 Antoine Plaskowski
 //
 
 #include	<algorithm>
@@ -278,8 +278,6 @@ void	TCP_protocol::recv_create_game(void)
   m_to_recv.get(game.owner);
   m_to_recv.get(game.number_player_max);
   m_callback.create_game(*this, game);
-  delete &game.name;
-  delete &game.owner;
 }
 
 void	TCP_protocol::send_join_game(ITCP_protocol::Game const &game)
@@ -297,8 +295,6 @@ void	TCP_protocol::recv_join_game(void)
   m_to_recv.get(game.name);
   m_to_recv.get(game.owner);
   m_callback.join_game(*this, game);
-  delete &game.name;
-  delete &game.owner;
 }
 
 void	TCP_protocol::send_message(std::string const &login, std::string const &message)
@@ -358,8 +354,6 @@ void	TCP_protocol::recv_meta_params(void)
   m_callback.meta_params(*this, params);
   for (auto param : params)
     {
-      delete &param->name;
-      delete &param->value;
       delete param;
     }
 }
@@ -374,12 +368,10 @@ void	TCP_protocol::send_change_param(ITCP_protocol::Param const &param)
 
 void	TCP_protocol::recv_change_param(void)
 {
-  ITCP_protocol::Param	param({*new std::string, *new std::string});
+  ITCP_protocol::Param	param({"", ""});
   m_to_recv.get(param.name);
   m_to_recv.get(param.value);
   m_callback.change_param(*this, param);
-  delete &param.name;
-  delete &param.value;
 }
 
 void	TCP_protocol::send_list_meta_sprites(void)
@@ -426,8 +418,6 @@ void	TCP_protocol::recv_meta_sprites(void)
   m_callback.meta_sprites(*this, sprites);
   for (auto sprite : sprites)
     {
-      delete &sprite->name;
-      delete &sprite->checksome;
       delete sprite;
     }
 }
@@ -518,8 +508,6 @@ void	TCP_protocol::recv_meta_sounds(void)
   m_callback.meta_sounds(*this, sounds);
   for (auto sound : sounds)
     {
-      delete &sound->name;
-      delete &sound->checksome;
       delete sound;
     }
 }
@@ -538,8 +526,6 @@ void	TCP_protocol::recv_take_sound(void)
   m_to_recv.get(sound.name);
   m_to_recv.get(sound.id);
   m_callback.take_sound(*this, sound);
-  delete &sound.name;
-  delete &sound.checksome;
 }
 
 void	TCP_protocol::send_give_sound(ITCP_protocol::Sound const &sound)
@@ -565,8 +551,6 @@ void	TCP_protocol::recv_give_sound(void)
     m_to_recv.get(data[i]);
   sound.data = data;
   m_callback.give_sound(*this, sound);
-  delete &sound.name;
-  delete &sound.checksome;
   delete[] sound.data;
 }
 

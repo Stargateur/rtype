@@ -57,6 +57,8 @@ void Network::tryConnect(void)
 		return;
 	}
   this->m_client = new Client(*this, this->m_model);
+  std::cout << "Connected" << std::endl;
+  m_model.setState(Model::PRINCIPAL);
   this->m_tcpProto = new TCP_protocol(*(this->m_client));
   this->m_tcpProto->send_connect(login, pass);
   this->m_mutex->unlock();

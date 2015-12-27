@@ -1,6 +1,6 @@
 #include	<unistd.h>
 #include	<iostream>
-#include	"bind/bind.hpp"
+#include	"bind.hpp"
 #include	"ThreadPool.hpp"
 
 int		print(int arg, std::string str)

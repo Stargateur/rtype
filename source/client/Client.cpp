@@ -38,6 +38,11 @@ void	Client::list_meta_games(ITCP_protocol &itcp_protocol)
 
 void	Client::meta_games(ITCP_protocol &itcp_protocol, std::list<ITCP_protocol::Game *> const &games)
 {
+  std::cout << "meta_games" << std::endl;
+  for (auto game : games)
+    {
+      std::cout << "ICI" << std::endl;
+    }
 }
 
 void	Client::create_game(ITCP_protocol &itcp_protocol, ITCP_protocol::Game const &game)

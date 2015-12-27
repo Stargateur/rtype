@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:29:32 2015 Kevin Costa
-// Last update Sun Dec 27 15:53:31 2015 Alaric Degand
+// Last update Sun Dec 27 16:51:44 2015 Alaric Degand
 //
 
 #include "Model.hpp"
@@ -175,4 +175,14 @@ bool	Model::getCosta() const
 void	Model::setCosta(bool value)
 {
   costabouche = value;
+}
+
+bool    Model::getRefresh(void) const
+{
+  return (m_refresh);
+}
+
+void    Model::setRefresh(bool value)
+{
+  m_refresh = value;
 }

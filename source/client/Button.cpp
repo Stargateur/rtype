@@ -5,7 +5,7 @@
 ** Login   <tacite_d@Akagouan>
 ** 
 ** Started on  Thu Dec 10 17:35:58 2015 tacite_d
-// Last update Sun Dec 27 16:10:12 2015 Alaric Degand
+// Last update Sun Dec 27 16:50:38 2015 Alaric Degand
 */
 
 #include	"View.hpp"
@@ -77,7 +77,8 @@ void		Button::eraseLast(void)
 
 void		Button::refresh(Model &model)
 {
-  //List serv 
+  //List serv
+  model.setRefresh(true);
 }
 
 void Button::chargeConnect(Model &model)

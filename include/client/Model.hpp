@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:35:48 2015 Kevin Costa
-// Last update Sun Dec 27 13:25:43 2015 Alaric Degand
+// Last update Sun Dec 27 16:51:47 2015 Alaric Degand
 //
 
 #ifndef		MODEL_HPP_
@@ -47,6 +47,7 @@ private:
   sf::Font	m_font;
   bool	costabouche;
   std::string	m_swap;
+  bool	m_refresh;
   
 public:
   Model(void);
@@ -69,6 +70,8 @@ public:
   void Game(sf::Keyboard::Key &code); // Change le nom
   void getPressed(sf::Keyboard::Key &code);
   void updateData(void);
+  bool getRefresh(void) const;
+  void setRefresh(bool);
 };
 
 #endif		/* !MODEL_HPP_ */

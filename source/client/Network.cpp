@@ -45,6 +45,8 @@ void Network::tryConnect(void)
   port = this->m_model.getElementByName("TEXT_PORT")->getContent();
   login = this->m_model.getElementByName("TEXT_LOGIN")->getContent();
   pass = this->m_model.getElementByName("TEXT_PASSWORD")->getContent();
+  std::cout << "Connected" << std::endl;
+  m_model.setState(Model::PRINCIPAL);
   this->m_tcpClient = new TCP_client(host, port);
   this->m_client = new Client(*(this->m_tcpClient));
   this->m_tcpProto = new TCP_protocol(*(this->m_client));

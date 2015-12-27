@@ -5,10 +5,11 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Tue Dec 22 23:15:40 2015 Antoine Plaskowski
-// Last update Sun Dec 27 20:01:47 2015 Antoine Plaskowski
+// Last update Sun Dec 27 20:02:21 2015 Antoine Plaskowski
 //
 
 #include	<exception>
+#include	<stdexcept>
 #include	<fstream>
 #include	<iostream>
 #include	"File.hpp"

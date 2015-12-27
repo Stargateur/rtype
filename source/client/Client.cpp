@@ -41,7 +41,7 @@ void	Client::meta_games(ITCP_protocol &itcp_protocol, std::list<ITCP_protocol::G
   std::cout << "meta_games" << std::endl;
   for (auto game : games)
     {
-      std::cout << "ICI" << std::endl;
+      std::cout << "Game Name[" << game->name << "] : owner[" << game->owner << "]" << std::endl;
     }
 }
 

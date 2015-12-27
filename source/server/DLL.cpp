@@ -5,12 +5,13 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Mon Mar 30 22:28:36 2015 Antoine Plaskowski
-// Last update Thu Dec 24 11:54:38 2015 Antoine Plaskowski
+// Last update Sun Dec 27 19:55:21 2015 Kevin Costa
 //
 
 #include	<dlfcn.h>
 #include	<iostream>
 #include	<string>
+#include	<stdexcept>
 #include	<exception>
 #include	"DLL.hpp"
 

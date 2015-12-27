@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Tue Dec 22 10:14:54 2015 Alaric Degand
-// Last update Sun Dec 27 18:52:28 2015 Antoine Plaskowski
+// Last update Sun Dec 27 19:24:42 2015 Antoine Plaskowski
 //
 
 #include	<array>
@@ -21,7 +21,7 @@ BasicGame::BasicGame(std::string const &owner, Usine<fct_new_ientite> const &usi
   m_background(m_all_ientites.size(), 0, 1920, 1080),
   m_port(port_generator),
   m_iselect(*new Select()),
-  m_iudp_server(*new UDP_server(m_port.get_port())),
+  m_iudp_server(*new UDP_server(m_port.get_str_port())),
   m_generator(reinterpret_cast<uintptr_t>(&m_iselect)),
   m_usine(usine)
 {
@@ -205,4 +205,9 @@ void	BasicGame::input(IUDP_protocol &iudp_protocol, std::string const &login, IU
 	  return;
 	}
     }
+}
+
+int16_t	BasicGame::get_port(void) const
+{
+  return (m_port.get_port());
 }

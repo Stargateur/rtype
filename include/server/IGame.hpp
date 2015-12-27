@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Thu Dec 10 17:33:48 2015 Antoine Plaskowski
-// Last update Sun Dec 27 10:32:53 2015 Antoine Plaskowski
+// Last update Sun Dec 27 19:21:24 2015 Antoine Plaskowski
 //
 
 #ifndef		IGAME_HPP_
@@ -34,6 +34,7 @@ class	IGame
   virtual std::vector<Player *> const	&get_players(void) const = 0;
   virtual std::vector<IEntite *> const	&get_ientites(void) const = 0;
   virtual Background const	&get_background(void) const = 0;
+  virtual int16_t	get_port(void) const = 0;
 };
 
 #endif		/* !IGAME_HPP_ */

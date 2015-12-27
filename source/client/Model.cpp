@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:29:32 2015 Kevin Costa
-// Last update Sun Dec 27 17:57:07 2015 Alaric Degand
+// Last update Sun Dec 27 18:07:45 2015 Alaric Degand
 //
 
 #include "Model.hpp"
@@ -185,4 +185,24 @@ bool    Model::getRefresh(void) const
 void    Model::setRefresh(bool value)
 {
   m_refresh = value;
+}
+
+bool    Model::getJoin(void) const
+{
+  return (m_join);
+}
+
+void    Model::setJoin(bool value)
+{
+  m_join = value;
+}
+
+bool    Model::getCreate(void) const
+{
+  return (m_create);
+}
+
+void    Model::setCreate(bool value)
+{
+  m_create = value;
 }

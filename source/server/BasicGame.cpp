@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Tue Dec 22 10:14:54 2015 Alaric Degand
-// Last update Sun Dec 27 09:55:14 2015 Antoine Plaskowski
+// Last update Sun Dec 27 14:03:21 2015 Antoine Plaskowski
 //
 
 #include	<array>
@@ -21,15 +21,16 @@ BasicGame::BasicGame(std::string const &owner, Usine<fct_new_ientite> const &usi
   m_background(m_all_ientites.size(), 0, 1920, 1080),
   m_port(port_generator),
   m_iselect(*new Select()),
-  m_iudp_server(*new UDP_server(m_port.get_port()))
+  m_iudp_server(*new UDP_server(m_port.get_port())),
+  m_generator(reinterpret_cast<uintptr_t>(&m_iselect)),
+  m_usine(usine)
 {
   static const File	sprite("sprites/r-typesheet42.gif");
   m_params["size_x"] = "1920";
   m_params["size_y"] = "1080";
   m_params["max player"] = "4";
-  m_params["max ientite"] = "20";
   m_logins.push_back(owner);
-  m_all_players.push_back(new Player(sprite, sprite, "", m_all_ientites.size() + 1, 1, 0, 0, 10, 10));
+  m_all_players.push_back(new Player(sprite, sprite, "", m_all_ientites.size() + 1, 1, 0, 0, 10, 10, 1920, 1080));
 }
 
 BasicGame::~BasicGame(void)
@@ -40,6 +41,8 @@ BasicGame::~BasicGame(void)
 
 void	BasicGame::run(void)
 {
+  ITime	&last_spawn = *new Time();
+  ITime	&spawn = *new Time();
   ITime	&itime = *new Time();
   ITime	&now = *new Time();
   ITime	&wait = *new Time();
@@ -52,13 +55,18 @@ void	BasicGame::run(void)
       m_players.push_back(m_all_players[i++ % m_all_players.size()]);
       m_ientites.push_back(m_players.back());
     }
+  spawn.set_second(1);
+  spawn.set_nano(0);
+  last_spawn.set_second(0);
+  last_spawn.set_nano(0);
   itime.now();
   while (m_players.size() != 0)
-    {
+    {      
       now.now();
       itime -= now;
       wait.set_second(1);
       std::list<IEntite *>	to_add;
+      last_spawn += itime;
       for (auto it = m_ientites.begin(); it != m_ientites.end();)
 	{
 	  try
@@ -76,6 +84,12 @@ void	BasicGame::run(void)
 	    }
 	}
       m_ientites.splice(m_ientites.end(), to_add);
+      while (last_spawn >= spawn)
+	{
+	  i = m_distribution(m_generator) % m_all_ientites.size();
+	  m_ientites.push_back(&m_usine.get<IEntite>(i, m_ientites, i, static_cast<uintmax_t>(2), static_cast<uintmax_t>(1920), static_cast<uintmax_t>(1080)));
+	  last_spawn -= spawn;
+	}
       if (iudp_protocol.want_send() == true)
 	m_iselect.want_read(m_iudp_server);
       if (iudp_protocol.want_recv() == true)
@@ -85,10 +99,13 @@ void	BasicGame::run(void)
 	iudp_protocol.recvfrom(m_iudp_server);
       if (m_iselect.can_write(m_iudp_server) == true)
 	iudp_protocol.sendto(m_iudp_server);
+      itime.now();
     }
   for (auto ientite : m_ientites)
     delete ientite;
   delete &itime;
+  delete &spawn;
+  delete &last_spawn;
   delete &now;
   delete &wait;
   delete &want_wait;
@@ -178,9 +195,9 @@ void	BasicGame::input(IUDP_protocol &iudp_protocol, std::string const &login, IU
 	{
 	  player->set_input(input);
 	  std::list<IUDP_protocol::Sprite *>	sprites;
-	  sprites.push_back(new IUDP_protocol::Sprite({m_background.get_id(), std::get<0>(m_background.get_property()), std::get<1>(m_background.get_property()), 0}));
+	  sprites.push_back(new IUDP_protocol::Sprite({m_background.get_id(), m_background.get_x(), m_background.get_y(), 0}));
 	  for (auto entite : m_ientites)
-	    sprites.push_back(new IUDP_protocol::Sprite({entite->get_id(), std::get<0>(entite->get_property()), std::get<1>(entite->get_property()), 0}));
+	    sprites.push_back(new IUDP_protocol::Sprite({entite->get_id(), entite->get_x(), entite->get_y(), 0}));
 	  iudp_protocol.send_sprites(sprites, sockaddr, len);
 	  for (auto sprite : sprites)
 	    delete sprite;

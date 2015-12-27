@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Thu Dec 24 07:05:53 2015 Antoine Plaskowski
-// Last update Sun Dec 27 09:46:04 2015 Antoine Plaskowski
+// Last update Sun Dec 27 14:02:46 2015 Antoine Plaskowski
 //
 
 #ifndef		USINE_HPP_
@@ -68,6 +68,13 @@ public:
       throw std::logic_error("There are nothing !");
     i = m_distribution(m_generator) % m_fcts.size();
     return (*m_fcts[i](std::list<IEntite *>(), i, args...));
+  }
+  template<typename T, typename ... Ts>
+  T	&get(uintmax_t i, Ts ... args) const
+  {
+    if (m_fcts.size() == 0)
+      throw std::logic_error("There are nothing !");
+    return (*m_fcts[i](args...));
   }
   template<typename ... Ts>
   std::vector<IEntite *>	&get_all(Ts ... args) const

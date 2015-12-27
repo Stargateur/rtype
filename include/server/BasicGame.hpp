@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Tue Dec 22 10:12:30 2015 Alaric Degand
-// Last update Sun Dec 27 10:02:26 2015 Antoine Plaskowski
+// Last update Sun Dec 27 14:00:08 2015 Antoine Plaskowski
 //
 
 #ifndef		BASICGAME_HPP_
@@ -60,6 +60,9 @@ private:
   Port	m_port;
   ISelect	&m_iselect;
   IUDP_server	&m_iudp_server;
+  std::default_random_engine	m_generator;
+  std::uniform_int_distribution<uintmax_t>	m_distribution;
+  Usine<fct_new_ientite> const	&m_usine;
 };
 
 #endif		/* !BASICGAME_HPP_ */

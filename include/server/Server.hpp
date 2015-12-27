@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:05:56 2015 Alaric Degand
-// Last update Sun Dec 27 12:16:52 2015 Antoine Plaskowski
+// Last update Sun Dec 27 12:33:36 2015 Antoine Plaskowski
 //
 
 #ifndef		SERVER_HPP_
@@ -16,14 +16,14 @@
 
 class		Server;
 
-#include	"Client.hpp"
-#include	"Option.hpp"
-#include	"TCP_server.hpp"
-#include	"Standard.hpp"
-#include	"BasicGame.hpp"
-#include	"Usine.hpp"
-#include	"Select.hpp"
-#include	"ThreadPool.hpp"
+# include	"Client.hpp"
+# include	"Option.hpp"
+# include	"TCP_server.hpp"
+# include	"Standard.hpp"
+# include	"BasicGame.hpp"
+# include	"Usine.hpp"
+# include	"Select.hpp"
+# include	"ThreadPool.hpp"
 
 class	Server
 {

@@ -5,15 +5,18 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sat Dec 26 15:02:29 2015 Antoine Plaskowski
-// Last update Sun Dec 27 09:23:47 2015 Antoine Plaskowski
+// Last update Sun Dec 27 13:51:51 2015 Antoine Plaskowski
 //
 
 #include	"Background.hpp"
 
-Background::Background(uintmax_t id, uintmax_t team, uintmax_t size_x, uintmax_t size_y) :
+Background::Background(uintmax_t id, uintmax_t team, uintmax_t max_x, uintmax_t max_y) :
   m_id(id),
   m_team(team),
-  m_property(std::make_tuple(0, 0, size_x, size_y))
+  m_x(0),
+  m_y(0),
+  m_max_x(max_x),
+  m_max_y(max_y)
 {
 }
 
@@ -34,9 +37,24 @@ void	Background::colide(void)
 {
 }
 
-std::tuple<intmax_t, intmax_t, uintmax_t, uintmax_t> const	&Background::get_property(void) const
+intmax_t	Background::get_x(void) const
 {
-  return (m_property);
+  return (m_x);
+}
+
+intmax_t	Background::get_y(void) const
+{
+  return (m_y);
+}
+
+uintmax_t	Background::get_size_x(void) const
+{
+  return (1920);
+}
+
+uintmax_t	Background::get_size_y(void) const
+{
+  return (1080);
 }
 
 uintmax_t	Background::get_team(void) const
@@ -60,4 +78,3 @@ File const	&Background::get_sprite(void) const
   static File	sprite("sprites/stars.jpg");
   return (sprite);
 }
-

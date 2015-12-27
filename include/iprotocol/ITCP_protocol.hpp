@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:35:29 2015 Antoine Plaskowski
-// Last update Sun Dec 27 10:48:13 2015 Antoine Plaskowski
+// Last update Sun Dec 27 11:34:58 2015 Antoine Plaskowski
 //
 
 #ifndef		ITCP_PROTOCOL_HPP_
@@ -46,16 +46,16 @@ public:
     std::string name;
     std::string checksome;
     uint64_t	id;
-    uint8_t	*data;
-    uint16_t	size;
+    uint8_t const	*data;
+    uint64_t	size;
   };
   struct	Sound
   {
     std::string	name;
     std::string	checksome;
     uint64_t	id;
-    uint8_t	*data;
-    uint16_t	size;
+    uint8_t const	*data;
+    uint64_t	size;
   };
   class	Callback
   {
@@ -71,9 +71,6 @@ public:
     virtual void	create_game(ITCP_protocol &itcp_protocol, Game const &game) = 0;
     virtual void	join_game(ITCP_protocol &itcp_protocol, Game const &game) = 0;
     virtual void	message(ITCP_protocol &itcp_protocol, std::string const &login, std::string const &message) = 0;
-    //    virtual void	list_modes(ITCP_protocol &itcp_protocol) = 0;
-    //    virtual void	meta_modes(ITCP_protocol &itcp_protocol, std::list<Mode *> const &modes) = 0;
-    //    virtual void	change_mode(ITCP_protocol &itcp_protocol, std::string const &mode) = 0;
     virtual void	list_meta_params(ITCP_protocol &itcp_protocol) = 0;
     virtual void	meta_params(ITCP_protocol &itcp_protocol, std::list<Param *> const &params) = 0;
     virtual void	change_param(ITCP_protocol &itcp_protocol, Param const &param) = 0;

@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:40:34 2015 Antoine Plaskowski
-// Last update Sun Dec 27 10:50:37 2015 Antoine Plaskowski
+// Last update Sun Dec 27 11:26:38 2015 Antoine Plaskowski
 //
 
 #include	<algorithm>
@@ -446,8 +446,6 @@ void	TCP_protocol::recv_take_sprite(void)
   m_to_recv.get(sprite.name);
   m_to_recv.get(sprite.id);
   m_callback.take_sprite(*this, sprite);
-  delete &sprite.name;
-  delete &sprite.checksome;
 }
 
 void	TCP_protocol::send_give_sprite(ITCP_protocol::Sprite const &sprite)
@@ -463,16 +461,16 @@ void	TCP_protocol::send_give_sprite(ITCP_protocol::Sprite const &sprite)
 
 void	TCP_protocol::recv_give_sprite(void)
 {
-  ITCP_protocol::Sprite	sprite({*new std::string, *new std::string, 0, nullptr, 0});
+  ITCP_protocol::Sprite	sprite({"", "", 0, nullptr, 0});
+  uint8_t	*data;
   m_to_recv.get(sprite.name);
   m_to_recv.get(sprite.id);
   m_to_recv.get(sprite.size);
-  sprite.data = new uint8_t[sprite.size];
+  data = new uint8_t[sprite.size];
+  sprite.data = data;
   for (uintmax_t i = 0; i < sprite.size; i++)
-    m_to_recv.get(sprite.data[i]);
+    m_to_recv.get(data[i]);
   m_callback.give_sprite(*this, sprite);
-  delete &sprite.name;
-  delete &sprite.checksome;
   delete[] sprite.data;
 }
 
@@ -558,12 +556,14 @@ void	TCP_protocol::send_give_sound(ITCP_protocol::Sound const &sound)
 void	TCP_protocol::recv_give_sound(void)
 {
   ITCP_protocol::Sound	sound({"", "", 0, nullptr, 0});
+  uint8_t	*data;
   m_to_recv.get(sound.name);
   m_to_recv.get(sound.id);
   m_to_recv.get(sound.size);
-  sound.data = new uint8_t[sound.size];
+  data = new uint8_t[sound.size];
   for (uintmax_t i = 0; i < sound.size; i++)
-    m_to_recv.get(sound.data[i]);
+    m_to_recv.get(data[i]);
+  sound.data = data;
   m_callback.give_sound(*this, sound);
   delete &sound.name;
   delete &sound.checksome;

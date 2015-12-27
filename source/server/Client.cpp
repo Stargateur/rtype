@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:56:02 2015 Alaric Degand
-// Last update Sat Dec 26 15:29:15 2015 Antoine Plaskowski
+// Last update Sat Dec 26 17:35:38 2015 Antoine Plaskowski
 //
 
 #include	"Client.hpp"
@@ -43,6 +43,7 @@ void	Client::disconnect(ITCP_protocol &itcp_protocol)
 {
   m_login.clear();
   m_password.clear();
+  throw std::logic_error("disconnect");
 }
 
 void	Client::ping(ITCP_protocol &itcp_protocol)
@@ -57,7 +58,7 @@ void	Client::pong(ITCP_protocol &itcp_protocol)
 void	Client::list_meta_games(ITCP_protocol &itcp_protocol)
 {
   if (m_login == "")
-      m_itcp_protocol.send_result(ITCP_protocol::IGNORED);
+    m_itcp_protocol.send_result(ITCP_protocol::IGNORED);
   else
     m_itcp_protocol.send_list_meta_games();
 }

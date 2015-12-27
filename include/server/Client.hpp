@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:53:39 2015 Alaric Degand
-// Last update Sat Dec 26 15:28:29 2015 Antoine Plaskowski
+// Last update Sat Dec 26 17:37:25 2015 Antoine Plaskowski
 //
 
 #ifndef		CLIENT_HPP_

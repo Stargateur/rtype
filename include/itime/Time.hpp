@@ -1,19 +1,19 @@
 //
-// Time.hh for $ in /home/bbr2394/renduTek3/cpp_spider/include
+// Time.hpp for Time.hpp in /home/plasko_a/projet/cplusplus/rtype
 // 
-// Made by Bertrand-Rapello Baptiste
-// Login   <bertra_l@epitech.net>
+// Made by Antoine Plaskowski
+// Login   <plasko_a@epitech.eu>
 // 
-// Started on  Wed Oct 21 20:57:19 2015 Bertrand-Rapello Baptiste
-// Last update Sat Dec 26 17:11:27 2015 Antoine Plaskowski
+// Started on  Sun Dec 27 01:06:19 2015 Antoine Plaskowski
+// Last update Sun Dec 27 01:06:20 2015 Antoine Plaskowski
 //
 
 #ifndef TIME_HPP_
 # define TIME_HPP_
 
-#include <ctime>
-#include <cstdint>
-#include "ITime.hpp"
+# include	<ctime>
+# include	<cstdint>
+# include	"ITime.hpp"
 
 # define        NANO_BY_SEC     (1000000000)
 
@@ -36,4 +36,4 @@ private:
   struct timespec	m_timespec;  
 };
 
-#endif
+#endif	/* !TIME_HPP_ */

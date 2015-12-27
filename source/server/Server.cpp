@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:15:49 2015 Alaric Degand
-// Last update Sun Dec 27 13:15:42 2015 Antoine Plaskowski
+// Last update Sun Dec 27 15:07:00 2015 Antoine Plaskowski
 //
 
 #include	<iostream>
@@ -114,7 +114,6 @@ void	Server::leave_game(std::string const &login)
     for (auto login2 : game->get_logins())
       if (login2 == login)
 	game->sup_login(login);
-  throw std::logic_error("no game");
 }
 
 void	Server::start_game(std::string const &login)

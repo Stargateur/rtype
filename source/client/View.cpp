@@ -5,7 +5,7 @@
 // Login   <anthony.bury@epitech.eu>
 // 
 // Started on  Tue Nov 17 12:26:59 2015 Anthony Bury
-// Last update Sun Dec 27 14:15:25 2015 Alaric Degand
+// Last update Sun Dec 27 15:51:13 2015 Alaric Degand
 //
 
 #ifdef		_WIN32
@@ -63,9 +63,9 @@ void View::aff(void)
 
   for (size_t i = 0; i < tmp.size(); i++)
     {
-      if (m_model.getCosta() == true && tmp[i]->getName() == "costa2")
+      if (m_model.getCosta() == true && tmp[i]->getName() == "anim")
 	tmp[i]->aff(this);
-      else if (tmp[i]->getName() != "costa2")
+      else if (tmp[i]->getName() != "anim")
 	tmp[i]->aff(this);
     }
 }

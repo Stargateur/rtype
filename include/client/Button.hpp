@@ -5,7 +5,7 @@
 ** Login   <tacite_d@Akagouan>
 ** 
 ** Started on  Thu Dec 10 17:36:16 2015 tacite_d
-// Last update Sun Dec 27 13:46:08 2015 Alaric Degand
+// Last update Sun Dec 27 15:43:24 2015 Alaric Degand
 */
 
 #ifndef		BUTTON_HPP_
@@ -40,7 +40,7 @@ private:
   std::string m_line;
   
 public:
-  Button(float, float, float, float, std::string const&, const bool &, ptr, sf::Font const &thefont);
+  Button(float, float, float, float, std::string const&, const bool &, ptr, sf::Font const &thefont, std::string const & = "");
   ~Button();
 
 public:

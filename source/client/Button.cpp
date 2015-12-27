@@ -5,18 +5,18 @@
 ** Login   <tacite_d@Akagouan>
 ** 
 ** Started on  Thu Dec 10 17:35:58 2015 tacite_d
-// Last update Sun Dec 27 14:20:43 2015 Alaric Degand
+// Last update Sun Dec 27 16:50:38 2015 Alaric Degand
 */
 
 #include	"View.hpp"
 #include	"Button.hpp"
 
-Button::Button(float x, float y, float longu, float larg, std::string const& name, const bool &canFocus, ptr ptrs, sf::Font const &thefont) :
+Button::Button(float x, float y, float longu, float larg, std::string const& name, const bool &canFocus, ptr ptrs, sf::Font const &thefont, std::string const &show) :
 	AElement(BUTTON, name, canFocus)
 {
   this->setSize(sf::Vector2f(longu, larg));
   this->setPosition(x, y);
-  this->m_text = new Text(x, y + larg / 6, "Value", "", thefont);
+  this->m_text = new Text(x, y + larg / 6, "Value", show, thefont);
   this->m_ptr = ptrs;
   //	createPtr(type);
 }
@@ -73,6 +73,12 @@ void		Button::eraseLast(void)
       m_line.pop_back();
       m_text->setString(m_line);
     }
+}
+
+void		Button::refresh(Model &model)
+{
+  //List serv
+  model.setRefresh(true);
 }
 
 void Button::chargeConnect(Model &model)

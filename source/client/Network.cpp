@@ -92,6 +92,12 @@ void Network::loop(void)
       else
 	this->update();
       this->m_mutex->lock();
+      if (m_model.getRefresh() == true && m_tcpClient != NULL)
+	{
+	  this->m_tcpProto->send_list_meta_games();
+	  m_model.setRefresh(false);
+	  std::cout << "Refresh game asked" << std::endl;
+	}
       this->m_end = this->m_model.getEnd();
       this->m_mutex->unlock();
     }

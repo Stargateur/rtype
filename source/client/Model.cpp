@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:29:32 2015 Kevin Costa
-// Last update Sun Dec 27 14:12:40 2015 Alaric Degand
+// Last update Sun Dec 27 17:07:13 2015 Alaric Degand
 //
 
 #include "Model.hpp"
@@ -23,23 +23,21 @@ Model::Model() :
   
   connexionbox = true;
   connexion.push_back(new Sprite(0, 0, "sprites/stars.jpg", "background", 1256, 836));
-  connexion.push_back(new Button(150, 150, 500, 50, "TEXT_LOGIN", true, &Button::focused, m_font));
-  connexion.push_back(new Button(150, 210, 500, 50, "TEXT_PASSWORD", true, &Button::focused, m_font));
-  connexion.push_back(new Button(150, 270, 500, 50, "TEXT_HOST", true, &Button::focused, m_font));
-  connexion.push_back(new Button(150, 330, 500, 50, "TEXT_PORT", true, &Button::focused, m_font));
-  connexion.push_back(new Sprite(50, 420, "sprites/costa_b.jpg", "costa", 200, 100));
-  connexion.push_back(new Sprite(50, 420, "sprites/costa_b2.png", "costa2", 200, 100));
+  connexion.push_back(new Button(150, 150, 500, 50, "TEXT_LOGIN", true, &Button::focused, m_font, "Test"));
+  connexion.push_back(new Button(150, 210, 500, 50, "TEXT_PASSWORD", true, &Button::focused, m_font, "Test"));
+  connexion.push_back(new Button(150, 270, 500, 50, "TEXT_HOST", true, &Button::focused, m_font, "127.0.0.1"));
+  connexion.push_back(new Button(150, 330, 500, 50, "TEXT_PORT", true, &Button::focused, m_font, "4242"));
+  connexion.push_back(new Sprite(50, 420, "sprites/costa_b.jpg", "anim_base", 200, 100));
+  connexion.push_back(new Sprite(50, 420, "sprites/costa_b2.png", "anim", 200, 100));
   connexion.push_back(new Button(50, 50, 200, 100, "b1", false, &Button::chargePrincip, m_font));
   connexion.push_back(new Sprite(50, 50, "sprites/Connexion.png", "background", 200, 100));
   connexion.push_back(new Text(251, 450, "Instruct", "Veuillez entrer votre\npseudo/passord/ip/port, puis appuyez sur \nconnexion", m_font));
-  
-  // connexion.push_back(new Sprite(0, 0, "sprites/vol.png", "ship", 60, 68));
-  // connexion.push_back(new Button(400, 50, 200, 100, "b2", &Button::chargeGame));
-  // connexion.push_back(new Sprite(400, 50, "sprites/Game.png", "background", 200, 100));
-  // connexion.push_back(new Button(50, 400, 200, 100, "b3", &Button::chargeList));
   this->m_elements[CONNEXION] = new std::vector<AElement *>(connexion);
   principal.push_back(new Sprite(0, 0, "sprites/stars.jpg", "background", 1256, 836));
-  this->m_elements[PRINCIPAL] = new std::vector<AElement*>(principal);
+  principal.push_back(new Button(150, 330, 500, 50, "SERVER_TOJOIN", true, &Button::focused, m_font));
+  principal.push_back(new Button(150, 200, 100, 50, "REFRESH", true, &Button::refresh, m_font, "Refresh"));
+  principal.push_back(new Button(150, 330, 500, 50, "SERVER_TOJOIN", true, &Button::focused, m_font));
+  this->m_elements[PRINCIPAL] = new std::vector<AElement *>(principal);
   params.push_back(new Sprite(0, 0, "sprites/stars.jpg", "background", 1256, 836));
   this->m_elements[PARAMS] = new std::vector<AElement *>(params);
   list.push_back(new Sprite(0, 0, "sprites/stars.jpg", "background", 1256, 836));
@@ -92,7 +90,7 @@ void Model::Game(sf::Keyboard::Key &code)
 
 void	Model::getPressed(sf::Keyboard::Key &code)
 {
-  if (m_actual == CONNEXION)
+  if (m_actual == CONNEXION || m_actual == PRINCIPAL)
     {
       AElement	*tmp = getElementFocused();
       m_swap = char(code);
@@ -176,4 +174,14 @@ bool	Model::getCosta() const
 void	Model::setCosta(bool value)
 {
   costabouche = value;
+}
+
+bool    Model::getRefresh(void) const
+{
+  return (m_refresh);
+}
+
+void    Model::setRefresh(bool value)
+{
+  m_refresh = value;
 }

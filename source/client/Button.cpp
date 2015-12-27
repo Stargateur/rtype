@@ -5,7 +5,7 @@
 ** Login   <tacite_d@Akagouan>
 ** 
 ** Started on  Thu Dec 10 17:35:58 2015 tacite_d
-// Last update Sun Dec 27 15:43:18 2015 Alaric Degand
+// Last update Sun Dec 27 16:10:12 2015 Alaric Degand
 */
 
 #include	"View.hpp"
@@ -73,6 +73,11 @@ void		Button::eraseLast(void)
       m_line.pop_back();
       m_text->setString(m_line);
     }
+}
+
+void		Button::refresh(Model &model)
+{
+  //List serv 
 }
 
 void Button::chargeConnect(Model &model)

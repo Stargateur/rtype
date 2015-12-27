@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:40:34 2015 Antoine Plaskowski
-// Last update Sun Dec 27 19:01:53 2015 Antoine Plaskowski
+// Last update Sun Dec 27 20:53:06 2015 Alaric Degand
 //
 
 #include	<algorithm>
@@ -383,7 +383,7 @@ void	TCP_protocol::recv_change_param(void)
 void	TCP_protocol::send_list_meta_sprites(void)
 {
   TCP_packet_send	*to_send = new TCP_packet_send();
-  set_to_send(to_send, ATCP_packet::List_meta_sounds);
+  set_to_send(to_send, ATCP_packet::List_meta_sprites);
 }
 
 void	TCP_protocol::recv_list_meta_sprites(void)

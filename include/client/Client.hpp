@@ -1,3 +1,13 @@
+//
+// Client.hpp for  in /home/degand_a/Projects/rtype/include/client
+// 
+// Made by Alaric Degand
+// Login   <degand_a@epitech.eu>
+// 
+// Started on  Sun Dec 27 20:59:05 2015 Alaric Degand
+// Last update Sun Dec 27 20:59:07 2015 Alaric Degand
+//
+
 #ifndef		CLIENT_HPP_
 # define	CLIENT_HPP_
 

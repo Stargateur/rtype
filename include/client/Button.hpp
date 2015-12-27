@@ -5,7 +5,7 @@
 ** Login   <tacite_d@Akagouan>
 ** 
 ** Started on  Thu Dec 10 17:36:16 2015 tacite_d
-// Last update Sun Dec 27 17:52:06 2015 Alaric Degand
+// Last update Sun Dec 27 20:18:49 2015 Alaric Degand
 */
 
 #ifndef		BUTTON_HPP_
@@ -62,6 +62,7 @@ public:
   void refresh(Model &);
   void join(Model &);
   void create(Model &);
+  void ready(Model &);
 	
 //private:
 //	void createPtr(buttonType);

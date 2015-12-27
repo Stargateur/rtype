@@ -117,6 +117,7 @@ void Network::loop(void)
 	  target.name = m_model.getElementByName("SERVER_TOJOIN")->getContent();
 	  target.owner = m_login;
 	  m_tcpProto->send_join_game(target);
+	  m_model.setState(Model::LIST);
 	  m_model.setJoin(false);
 	  std::cout << "Join game asked" << std::endl;
 	}
@@ -125,8 +126,16 @@ void Network::loop(void)
 	  target.name = m_model.getElementByName("SERVER_TOJOIN")->getContent();
 	  target.owner = m_login;
 	  m_tcpProto->send_create_game(target);
+	  m_model.setState(Model::LIST);
 	  m_model.setCreate(false);
 	  std::cout << "Create game asked" << target.name << std::endl;
+	}
+      if (m_model.getReady() == true && m_tcpClient != NULL)
+	{
+	  m_tcpProto->send_list_meta_sprites();
+	  m_tcpProto->send_ready(true);
+	  std::cout << "Ready sent" << target.name << std::endl;
+	  m_model.setReady(false);
 	}
       this->m_end = this->m_model.getEnd();
       this->m_mutex->unlock();

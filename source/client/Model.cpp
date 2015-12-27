@@ -5,13 +5,13 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:29:32 2015 Kevin Costa
-// Last update Sun Dec 27 19:24:31 2015 Alaric Degand
+// Last update Sun Dec 27 20:34:50 2015 Alaric Degand
 //
 
 #include "Model.hpp"
 
 Model::Model() :
-  m_actual(CONNEXION), m_canConnect(false), m_endExec(false), m_refresh(false), m_join(false), m_create(false)
+  m_actual(CONNEXION), m_canConnect(false), m_endExec(false), m_refresh(false), m_join(false), m_create(false), m_ready(false)
 {
   std::vector<AElement *> connexion;
   std::vector<AElement *> principal;
@@ -41,6 +41,7 @@ Model::Model() :
   params.push_back(new Sprite(0, 0, "sprites/stars.jpg", "background", 1256, 836));
   this->m_elements[PARAMS] = new std::vector<AElement *>(params);
   list.push_back(new Sprite(0, 0, "sprites/stars.jpg", "background", 1256, 836));
+  list.push_back(new Button(390, 200, 100, 50, "READY", false, &Button::ready, m_font, "Ready"));
   this->m_elements[LIST] = new std::vector<AElement *>(list);
   this->m_elements[GAME] = new std::vector<AElement *>();
 }
@@ -204,4 +205,14 @@ bool    Model::getCreate(void) const
 void    Model::setCreate(bool value)
 {
   m_create = value;
+}
+
+bool    Model::getReady(void) const
+{
+  return (m_ready);
+}
+
+void    Model::setReady(bool value)
+{
+  m_ready = value;
 }

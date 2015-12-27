@@ -86,6 +86,11 @@ void	Client::list_meta_sprites(ITCP_protocol &itcp_protocol)
 
 void	Client::meta_sprites(ITCP_protocol &itcp_protocol, std::list<ITCP_protocol::Sprite *> const &sprites)
 {
+  std::cout << "meta_sprites -> load the following sprites" << std::endl;
+  for (auto sprite : sprites)
+    {
+      std::cout << "Sprite Name[" << sprite->name << "]" << std::endl;
+    }
 }
 
 void	Client::take_sprite(ITCP_protocol &itcp_protocol, ITCP_protocol::Sprite const &sprite)

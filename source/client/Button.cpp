@@ -5,7 +5,7 @@
 ** Login   <tacite_d@Akagouan>
 ** 
 ** Started on  Thu Dec 10 17:35:58 2015 tacite_d
-// Last update Sun Dec 27 18:06:19 2015 Alaric Degand
+// Last update Sun Dec 27 20:18:39 2015 Alaric Degand
 */
 
 #include	"View.hpp"
@@ -129,6 +129,11 @@ void	Button::join(Model &model)
 void	Button::create(Model &model)
 {
   model.setCreate(true);
+}
+
+void	Button::ready(Model &model)
+{
+  model.setReady(true);
 }
 
 //

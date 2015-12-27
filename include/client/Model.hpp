@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:35:48 2015 Kevin Costa
-// Last update Sun Dec 27 19:24:05 2015 Alaric Degand
+// Last update Sun Dec 27 20:30:44 2015 Alaric Degand
 //
 
 #ifndef		MODEL_HPP_
@@ -49,6 +49,7 @@ private:
   bool	m_refresh;
   bool	m_join;
   bool	m_create;
+  bool	m_ready;
   
 public:
   Model(void);
@@ -77,6 +78,8 @@ public:
   void setJoin(bool);
   bool getCreate(void) const;
   void setCreate(bool);
+  bool getReady(void) const;
+  void setReady(bool);
 };
 
 #endif		/* !MODEL_HPP_ */

@@ -8,7 +8,11 @@
 // Last update Sat Dec 12 19:15:13 2015 Roussel Rodolphe
 //
 
-#include	<unistd.h>
+#ifdef		_WIN32
+# include <io.h>
+#else
+# include	<unistd.h>
+#endif
 #include	"ThreadPool.hpp"
 
 static void	waitingTask(Task &t)

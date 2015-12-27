@@ -8,7 +8,11 @@
 // Last update Sun Dec 27 12:28:36 2015 Antoine Plaskowski
 //
 
-#include	<unistd.h>
+#ifdef		_WIN32
+# include <io.h>
+#else
+# include	<unistd.h>
+#endif
 #include	<string>
 #include	<iostream>
 #include	"Option.hpp"

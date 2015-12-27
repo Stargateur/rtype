@@ -17,7 +17,11 @@
 # include	<exception>
 # include	<random>
 # include	<cstring>
-# include	<dirent.h>
+# ifdef		_WIN32
+#  include	<io.h>
+# else
+#  include	<dirent.h>
+# endif
 # include	"DLL.hpp"
 
 template<typename ptr_fct>

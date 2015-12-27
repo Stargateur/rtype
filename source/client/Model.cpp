@@ -23,12 +23,12 @@ Model::Model() :
   
   connexionbox = true;
   connexion.push_back(new Sprite(0, 0, "sprites/stars.jpg", "background", 1256, 836));
-  connexion.push_back(new Button(150, 150, 500, 100, "TextBox", NULL));
+  connexion.push_back(new Button(150, 150, 500, 100, "TextBox", true, NULL));
   connexion.push_back(new Sprite(50, 350, "sprites/costa_b.jpg", "costa", 200, 100));
   connexion.push_back(new Sprite(50, 350, "sprites/costa_b2.png", "costa2", 200, 100));
-  connexion.push_back(new Button(50, 50, 200, 100, "b1", &Button::chargeConnect));
+  connexion.push_back(new Button(50, 50, 200, 100, "b1", false, &Button::chargeConnect));
   connexion.push_back(new Sprite(50, 50, "sprites/Connexion.png", "background", 200, 100));
-  connexion.push_back(new Text(251, 370, "Veuillez entrer votre port puis votre ip dans le\nterminal, puis appuyez sur connexion", m_font));
+  connexion.push_back(new Text(251, 370, "LOGIN", "Veuillez entrer votre port puis votre ip dans le\nterminal, puis appuyez sur connexion", m_font));
   
   // connexion.push_back(new Sprite(0, 0, "sprites/vol.png", "ship", 60, 68));
   // connexion.push_back(new Button(400, 50, 200, 100, "b2", &Button::chargeGame));
@@ -128,13 +128,29 @@ Model::State Model::getState(void) const
   return (this->m_actual);
 }
 
-AElement *Model::getElementByName(const std::string &name)
+bool Model::elementIsFocus(void)
 {
-	for (std::map<State, std::vector<AElement *>>::iterator it = this->m_elements.begin(); it != this->m_elements.end(); ++it)
+	for (size_t i = 0; i < this->m_elements[this->m_actual].size(); i++)
+		if (this->m_elements[this->m_actual][i]->isFocus())
+			return (true);
+	return (false);
+}
+
+AElement *Model::getElementByName(const std::string &name) const
+{
+	for (std::map<State, std::vector<AElement *>>::const_iterator it = this->m_elements.begin(); it != this->m_elements.end(); ++it)
 		for (size_t i = 0; i < it->second.size(); i++)
 			if (it->second[i]->getName() == name)
 				return (it->second[i]);
   return (NULL);
+}
+
+AElement *Model::getElementFocused(void)
+{
+	for (size_t i = 0; i < this->m_elements[this->m_actual].size(); i++)
+		if (this->m_elements[this->m_actual][i]->isFocus())
+			return (this->m_elements[this->m_actual][i]);
+	return (NULL);
 }
 
 bool	Model::getCosta() const

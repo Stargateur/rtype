@@ -11,7 +11,8 @@
 #include	"View.hpp"
 #include	"Button.hpp"
 
-Button::Button(float x, float y, float longu, float larg, std::string const& name, ptr ptrs) : AElement(BUTTON, name)
+Button::Button(float x, float y, float longu, float larg, std::string const& name, const bool &canFocus, ptr ptrs) :
+	AElement(BUTTON, name, canFocus)
 {
   this->setSize(sf::Vector2f(longu, larg));
   this->setPosition(x, y);
@@ -54,7 +55,7 @@ Text *Button::getText(void) const
   return (this->m_text);
 }
 
-const std::string &Button::getContent(void) const
+std::string Button::getContent(void) const
 {
 	return (this->m_text->getString());
 }

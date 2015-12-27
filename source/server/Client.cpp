@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:56:02 2015 Alaric Degand
-// Last update Sun Dec 27 02:24:52 2015 Antoine Plaskowski
+// Last update Sun Dec 27 02:30:40 2015 Antoine Plaskowski
 //
 
 #include	"Client.hpp"
@@ -23,7 +23,21 @@ Client::~Client(void)
   delete &m_itcp_protocol;
 }
 
+void	Client::pre_run(ISelect &iselect)
+{
+  if (m_itcp_protocol.want_recv() == true)
+    iselect.want_read(m_itcp_client);
+  if (m_itcp_protocol.want_send() == true)
+    iselect.want_read(m_itcp_client);
+}
 
+void	Client::run(ISelect const &iselect)
+{
+  if (iselect.can_read(m_itcp_client) == true)
+    m_itcp_protocol.recv(m_itcp_client);
+  if (iselect.can_write(m_itcp_client) == true)
+    m_itcp_protocol.send(m_itcp_client);
+}
 
 void	Client::result(ITCP_protocol &itcp_protocol, ITCP_protocol::Error error)
 {

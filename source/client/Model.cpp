@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:29:32 2015 Kevin Costa
-// Last update Sun Dec 27 17:07:13 2015 Alaric Degand
+// Last update Sun Dec 27 17:21:08 2015 Alaric Degand
 //
 
 #include "Model.hpp"
@@ -36,7 +36,6 @@ Model::Model() :
   principal.push_back(new Sprite(0, 0, "sprites/stars.jpg", "background", 1256, 836));
   principal.push_back(new Button(150, 330, 500, 50, "SERVER_TOJOIN", true, &Button::focused, m_font));
   principal.push_back(new Button(150, 200, 100, 50, "REFRESH", true, &Button::refresh, m_font, "Refresh"));
-  principal.push_back(new Button(150, 330, 500, 50, "SERVER_TOJOIN", true, &Button::focused, m_font));
   this->m_elements[PRINCIPAL] = principal;
   params.push_back(new Sprite(0, 0, "sprites/stars.jpg", "background", 1256, 836));
   this->m_elements[PARAMS] = params;

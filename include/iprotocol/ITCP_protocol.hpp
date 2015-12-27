@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:35:29 2015 Antoine Plaskowski
-// Last update Sat Dec 26 15:26:12 2015 Antoine Plaskowski
+// Last update Sun Dec 27 06:38:16 2015 Antoine Plaskowski
 //
 
 #ifndef		ITCP_PROTOCOL_HPP_
@@ -24,13 +24,10 @@ class	ITCP_protocol
 public:
   enum  Error : uint8_t
   {
-    NONE,
+    NONE = 0,
       IGNORED,
       UNKNOW,
-      WRONGLOGIN,
-      VERSION = 10,
-      CONNECT = 12,
-      DISCONNECT
+      WRONGLOGIN
   };
   struct	Game
   {

@@ -5,12 +5,13 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sat Dec 26 15:02:29 2015 Antoine Plaskowski
-// Last update Sat Dec 26 15:41:04 2015 Antoine Plaskowski
+// Last update Sun Dec 27 09:23:47 2015 Antoine Plaskowski
 //
 
 #include	"Background.hpp"
 
-Background::Background(uintmax_t team, uintmax_t size_x, uintmax_t size_y) :
+Background::Background(uintmax_t id, uintmax_t team, uintmax_t size_x, uintmax_t size_y) :
+  m_id(id),
   m_team(team),
   m_property(std::make_tuple(0, 0, size_x, size_y))
 {
@@ -41,6 +42,11 @@ std::tuple<intmax_t, intmax_t, uintmax_t, uintmax_t> const	&Background::get_prop
 uintmax_t	Background::get_team(void) const
 {
   return (m_team);
+}
+
+uintmax_t	Background::get_id(void) const
+{
+  return (m_id);
 }
 
 File const	&Background::get_sound(void) const

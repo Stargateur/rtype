@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Thu Dec 10 16:18:33 2015 Antoine Plaskowski
-// Last update Sat Dec 26 15:39:24 2015 Antoine Plaskowski
+// Last update Sun Dec 27 07:17:45 2015 Antoine Plaskowski
 //
 
 #ifndef		IENTITE_HPP_
@@ -33,6 +33,7 @@ public:
   virtual void	colide(void) = 0;
   virtual std::tuple<intmax_t, intmax_t, uintmax_t, uintmax_t> const	&get_property(void) const = 0;
   virtual uintmax_t	get_team(void) const = 0;
+  virtual uintmax_t	get_id(void) const = 0;
   virtual File const	&get_sound(void) const = 0;
   virtual File const	&get_sprite(void) const = 0;
   //  virtual IEntite	*clone(void) const = 0;
@@ -42,12 +43,12 @@ extern "C"
 {
 # define	NAME_FCT_NEW_IENTITE	"new_ientite"
 # ifdef	__linux__
-  IEntite	*new_ientite(std::list<IEntite *> const &ientites, uintmax_t team, uintmax_t x_max, uintmax_t y_max);
+  IEntite	*new_ientite(std::list<IEntite *> const &ientites, uintmax_t id, uintmax_t team, uintmax_t x_max, uintmax_t y_max);
 # else
-  __declspec(dllexport) IEntite	*new_ientite(std::list<IEntite *> const &ientites, uintmax_t team, uintmax_t x_max, uintmax_t y_max);
+  __declspec(dllexport) IEntite	*new_ientite(std::list<IEntite *> const &ientites, uintmax_t id, uintmax_t team, uintmax_t x_max, uintmax_t y_max);
 # endif
-  typedef IEntite	*(*fct_new_ientite)(std::list<IEntite *> const &ientites, uintmax_t team, uintmax_t x_max, uintmax_t y_max);
-  typedef IEntite	*(&ref_new_ientite)(std::list<IEntite *> const &ientites, uintmax_t team, uintmax_t x_max, uintmax_t y_max);
+  typedef IEntite	*(*fct_new_ientite)(std::list<IEntite *> const &ientites, uintmax_t id, uintmax_t team, uintmax_t x_max, uintmax_t y_max);
+  typedef IEntite	*(&ref_new_ientite)(std::list<IEntite *> const &ientites, uintmax_t id, uintmax_t team, uintmax_t x_max, uintmax_t y_max);
 }
 
 #endif		/* !IENTITE_HPP_ */

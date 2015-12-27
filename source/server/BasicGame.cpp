@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Tue Dec 22 10:14:54 2015 Alaric Degand
-// Last update Sun Dec 27 01:43:40 2015 Antoine Plaskowski
+// Last update Sun Dec 27 09:50:25 2015 Antoine Plaskowski
 //
 
 #include	<array>
@@ -16,17 +16,20 @@
 #include	"Select.hpp"
 
 BasicGame::BasicGame(std::string const &owner, Usine<fct_new_ientite> const &usine, std::string const &name, PortGenerator &port_generator) :
-  m_owner(owner),
   m_name(name),
-  m_player_max(4),
-  m_x(1920),
-  m_y(1080),
-  m_all(usine.get_all(std::list<IEntite *>(), static_cast<uintmax_t>(2), m_x, m_y)),
-  m_background(0, m_x, m_y),
+  m_all_ientites(usine.get_all(static_cast<uintmax_t>(2), static_cast<uintmax_t>(1920), static_cast<uintmax_t>(1080))),
+  m_background(m_all_ientites.size(), 0, 1920, 1080),
   m_port(port_generator),
   m_iselect(*new Select()),
   m_iudp_server(*new UDP_server(m_port.get_port()))
 {
+  static const File	sprite("sprites/r-typesheet42.gif");
+  m_params["size_x"] = "1920";
+  m_params["size_y"] = "1080";
+  m_params["max player"] = "4";
+  m_params["max ientite"] = "20";
+  m_logins.push_back(owner);
+  m_all_players.push_back(new Player(sprite, sprite, "", m_all_ientites.size() + 1, 1, 0, 0, 10, 10));
 }
 
 BasicGame::~BasicGame(void)
@@ -37,17 +40,16 @@ BasicGame::~BasicGame(void)
 
 void	BasicGame::run(void)
 {
-  static const File	sprite("sprites/r-typesheet42.gif");
   ITime	&itime = *new Time();
   ITime	&now = *new Time();
   ITime	&wait = *new Time();
   ITime	&want_wait = *new Time();
   IUDP_protocol &iudp_protocol = *new UDP_protocol(*this);
+  uintmax_t	i = 0;
 
-  m_players.push_back(new Player(sprite, sprite, m_owner, 1, 0, 0, 10, 10));
-  for (auto it = m_login.begin(); it != m_login.end(); it++)
+  for (auto it = m_logins.begin(); it != m_logins.end(); it++)
     {
-      m_players.push_back(new Player(sprite, sprite, *it, 1, 0, 0, 10, 10));
+      m_players.push_back(m_all_players[i++ % m_all_players.size()]);
       m_ientites.push_back(m_players.back());
     }
   itime.now();
@@ -94,7 +96,26 @@ void	BasicGame::run(void)
 
 std::string const	&BasicGame::get_owner(void) const
 {
-  return (m_owner);
+  return (m_logins.front());
+}
+
+std::list<std::string> const	&BasicGame::get_logins(void) const
+{
+  return (m_logins);
+}
+
+std::vector<Player *> const	&BasicGame::get_players(void) const
+{
+  return (m_all_players);
+}
+std::vector<IEntite *> const	&BasicGame::get_ientites(void) const
+{
+  return (m_all_ientites);
+}
+
+Background const	&BasicGame::get_background(void) const
+{
+  return (m_background);
 }
 
 void	BasicGame::set_name(std::string const &name)
@@ -107,19 +128,15 @@ std::string const	&BasicGame::get_name(void) const
   return (m_name);
 }
 
-void	BasicGame::add_player(std::string const &login)
+void	BasicGame::add_login(std::string const &login)
 {
-  m_login.push_back(login);
+  if (m_logins.size() < std::stoull(m_params["max player"]))
+    m_logins.push_back(login);
 }
 
-void	BasicGame::sup_player(std::string const &login)
+void	BasicGame::sup_login(std::string const &login)
 {
-  m_login.remove(login);
-}
-
-std::list<std::string> const  &BasicGame::get_player(void) const
-{
-  return (m_login);
+  m_logins.remove(login);
 }
 
 std::map<std::string, std::string> const	&BasicGame::get_meta_params(void) const
@@ -161,12 +178,13 @@ void	BasicGame::input(IUDP_protocol &iudp_protocol, std::string const &login, IU
 	{
 	  player->set_input(input);
 	  std::list<IUDP_protocol::Sprite *>	sprites;
-	  sprites.push_back(new IUDP_protocol::Sprite({m_background.get_sprite().get_id(), std::get<0>(m_background.get_property()), std::get<1>(m_background.get_property()), 0}));
+	  sprites.push_back(new IUDP_protocol::Sprite({static_cast<uint8_t>(m_background.get_id()), std::get<0>(m_background.get_property()), std::get<1>(m_background.get_property()), 0}));
 	  for (auto entite : m_ientites)
-	    sprites.push_back(new IUDP_protocol::Sprite({entite->get_sprite().get_id(), std::get<0>(entite->get_property()), std::get<1>(entite->get_property()), 0}));
-	  iudp_protocol.send_sprites(sprites);
+	    sprites.push_back(new IUDP_protocol::Sprite({static_cast<uint8_t>(entite->get_id()), std::get<0>(entite->get_property()), std::get<1>(entite->get_property()), 0}));
+	  iudp_protocol.send_sprites(sprites, sockaddr, len);
 	  for (auto sprite : sprites)
 	    delete sprite;
+	  return;
 	}
     }
 }

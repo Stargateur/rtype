@@ -67,6 +67,7 @@ void Network::tryConnect(void)
 
 void Network::update(void)
 {
+  m_select.reset();
   if (m_tcpProto->want_recv() == true)
     this->m_select.want_read(*this->m_tcpClient);
   if (m_tcpProto->want_send() == true)

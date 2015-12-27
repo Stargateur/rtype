@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:15:49 2015 Alaric Degand
-// Last update Sun Dec 27 18:08:40 2015 Antoine Plaskowski
+// Last update Sun Dec 27 19:22:56 2015 Antoine Plaskowski
 //
 
 #include	<iostream>
@@ -41,6 +41,7 @@ void		Server::run(void)
 
   while (g_keep_running == true)
     {
+      m_iselect.reset();
       m_iselect.want_read(m_istandard);
       m_iselect.want_read(m_itcp_server);
       for (auto client : m_clients)
@@ -131,6 +132,15 @@ void	Server::start_game(std::string const &login)
       if (login2 == login)
 	{
 	  m_games.remove(game);
+	  for (auto client : m_clients)
+	    {
+	      for (auto login3 : game->get_logins())
+		if (client->get_login() == login3)
+		  {
+		    client->start(0, game->get_port());
+		    break;
+		  }
+	    }
 	  m_pool.start(bind(&lol, _1, game));
 	}
 }

@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:40:34 2015 Antoine Plaskowski
-// Last update Sun Dec 27 18:34:48 2015 Antoine Plaskowski
+// Last update Sun Dec 27 19:01:53 2015 Antoine Plaskowski
 //
 
 #include	<algorithm>
@@ -48,7 +48,7 @@ bool	TCP_protocol::want_recv(void) const
 void	TCP_protocol::send(ITCP_client const &socket)
 {
   if (m_to_send.size() == 0)
-    return;
+    throw std::logic_error("il n'y a rien a envoyé");
   TCP_packet_send	*to_send = m_to_send.front();
 #ifdef	DEBUG
   std::cerr << "j'envoie sur une socket client tcp " << to_send->get_opcode() << to_send << std::endl;

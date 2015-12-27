@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Tue Dec 22 13:19:44 2015 Alaric Degand
-// Last update Fri Dec 25 11:44:32 2015 Antoine Plaskowski
+// Last update Sun Dec 27 19:23:49 2015 Antoine Plaskowski
 //
 
 #include	<algorithm>
@@ -56,7 +56,12 @@ Port::~Port(void)
   m_port_generator.FreePort(m_port);
 }
 
-std::string const	&Port::get_port(void) const
+std::string const	&Port::get_str_port(void) const
 {
   return (m_port_str);
+}
+
+int16_t	Port::get_port(void) const
+{
+  return (m_port);
 }

@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:15:49 2015 Alaric Degand
-// Last update Sun Dec 27 19:58:49 2015 Antoine Plaskowski
+// Last update Sun Dec 27 20:05:22 2015 Antoine Plaskowski
 //
 
 #include	<iostream>
@@ -113,20 +113,16 @@ void	Server::join_game(std::string const &login, std::string const &owner)
 void	Server::leave_game(std::string const &login)
 {
   for (auto game : m_games)
-    for (std::string const &login2 : game->get_logins())
-      if (login2 == login)
-	{
-	  game->sup_login(login2);
-	  break;
-	}
+    game->sup_login(login);
+
 }
 
-  static int	lol(int id, IGame *game)
-  {
-    game->run();
-    delete game;
-    return (id);
-  }
+static int	lol(int id, IGame *game)
+{
+  game->run();
+  delete game;
+  return (id);
+}
 
 void	Server::start_game(std::string const &login)
 {
@@ -145,6 +141,6 @@ void	Server::start_game(std::string const &login)
 		  }
 	    }
 	  m_pool.start(bind(&lol, _1, game));
-	  break;
+	  return;
 	}
 }

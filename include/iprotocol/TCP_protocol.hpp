@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:35:29 2015 Antoine Plaskowski
-// Last update Sat Dec 26 13:48:36 2015 Antoine Plaskowski
+// Last update Sun Dec 27 02:24:27 2015 Antoine Plaskowski
 //
 
 #ifndef		TCP_PROTOCOL_HPP_
@@ -70,7 +70,7 @@ public:
   void	test(TCP_packet_send *to_send, ATCP_packet::Opcode opcode, T first, Ts... args)
   {
     to_send->put(first);
-    test(to_send, opcode, first, args...);
+    test(to_send, opcode, args...);
   }
 private:
   void	recv_result(void);

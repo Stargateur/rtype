@@ -2,6 +2,7 @@
 *~
 *.so
 \#*#
+.#*
 rtype_client
 rtype_server
 *.dpd

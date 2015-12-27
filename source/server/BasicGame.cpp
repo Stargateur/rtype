@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Tue Dec 22 10:14:54 2015 Alaric Degand
-// Last update Sun Dec 27 19:46:38 2015 Antoine Plaskowski
+// Last update Sun Dec 27 20:13:36 2015 Antoine Plaskowski
 //
 
 #include	<array>
@@ -91,9 +91,9 @@ void	BasicGame::run(void)
 	  last_spawn -= spawn;
 	}
       m_iselect.reset();
-      if (iudp_protocol.want_send() == true)
+      if (iudp_protocol.want_recvfrom() == true)
 	m_iselect.want_read(m_iudp_server);
-      if (iudp_protocol.want_recv() == true)
+      if (iudp_protocol.want_sendto() == true)
 	m_iselect.want_write(m_iudp_server);
       m_iselect.select(&wait);
       if (m_iselect.can_read(m_iudp_server) == true)

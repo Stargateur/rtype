@@ -5,13 +5,14 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:57:06 2015 Antoine Plaskowski
-// Last update Tue Dec 22 17:33:47 2015 Antoine Plaskowski
+// Last update Sun Dec 27 18:02:15 2015 Antoine Plaskowski
 //
 
 #ifndef		ATCP_PACKET_HPP_
 # define	ATCP_PACKET_HPP_
 
 # include	<cstdint>
+# include	<ostream>
 # include	"ITCP_client.hpp"
 
 class	ATCP_packet
@@ -29,9 +30,6 @@ public:
     Create_game,
     Join_game,
     Message,
-    List_meta_modes,
-    Meta_modes,
-    Change_mode,
     List_meta_params,
     Meta_params,
     Change_param,
@@ -52,6 +50,7 @@ public:
   virtual ~ATCP_packet(void);
   Opcode	get_opcode(void) const;
   uint8_t	operator[](uint16_t idx) const;
+  static char const	*get_str_opcode(Opcode opcode);
 protected:
   void	set_size(uint16_t size);
   uintmax_t	get_size(void) const;
@@ -73,5 +72,6 @@ public:
   static const	uintmax_t	m_size_header = sizeof(s_packet) - (sizeof(uint8_t) * (UINT16_MAX + 1));
 };
 
+std::ostream    &operator<<(std::ostream &os, ATCP_packet::Opcode opcode);
 
 #endif		/* !ATCP_PACKET_HPP_ */

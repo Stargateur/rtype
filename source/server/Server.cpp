@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:15:49 2015 Alaric Degand
-// Last update Sun Dec 27 15:29:18 2015 Antoine Plaskowski
+// Last update Sun Dec 27 18:08:40 2015 Antoine Plaskowski
 //
 
 #include	<iostream>
@@ -64,8 +64,8 @@ void		Server::run(void)
 	    }
 	  catch (std::exception const &e)
 	    {
-	      leave_game((*it)->get_login());
 	      std::cerr << e.what() << std::endl;
+	      leave_game((*it)->get_login());
 	      it = m_clients.erase(it);
 	    }
 	}

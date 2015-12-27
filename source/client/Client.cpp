@@ -1,6 +1,8 @@
+#include "Network.hpp"
 #include "Client.hpp"
 
-Client::Client(ITCP_client &client)
+Client::Client(Network &network, Model &model) :
+	m_net(network), m_model(model)
 {
 }
 

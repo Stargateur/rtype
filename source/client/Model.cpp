@@ -47,9 +47,12 @@ Model::Model() :
 
 Model::~Model()
 {
-  for (std::map<State, std::vector<AElement *>>::iterator it = this->m_elements.begin(); it != this->m_elements.end(); ++it)
-    for (size_t i = 0; i < it->second.size(); i++)
-      delete (it->second[i]);
+	for (std::map<State, std::vector<AElement *>>::iterator it = this->m_elements.begin(); it != this->m_elements.end(); it = this->m_elements.erase(it))
+	{
+		for (size_t i = 0; i < it->second.size(); i++)
+			delete (it->second[i]);
+		it->second.clear();
+	}
 }
 
 std::vector<AElement *> Model::getElements(void)
@@ -152,7 +155,7 @@ AElement *Model::getElementByName(const std::string &name) const
   for (std::map<State, std::vector<AElement *>>::const_iterator it = this->m_elements.begin(); it != this->m_elements.end(); ++it)
     for (size_t i = 0; i < it->second.size(); i++)
       if (it->second[i]->getName() == name)
-	return (it->second[i]);
+				return (it->second[i]);
   return (NULL);
 }
 

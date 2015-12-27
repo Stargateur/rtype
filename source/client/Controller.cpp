@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:31:05 2015 Kevin Costa
-// Last update Sat Dec 26 14:02:16 2015 Alaric Degand
+// Last update Sun Dec 27 01:30:42 2015 Alaric Degand
 //
 
 #include	"Controller.hpp"
@@ -47,8 +47,8 @@ void		Controller::update(sf::Event &event, Model &model, sf::Vector2f &pos)
     }
   switch (event.type)
     {
-    case sf::Event::KeyPressed:
-      model.Game(event.key.code);
+    case sf::Event::TextEntered:
+      model.getPressed(event.key.code);
       break;
     case sf::Event::KeyReleased:
       break;

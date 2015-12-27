@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:29:32 2015 Kevin Costa
-// Last update Sun Dec 27 01:01:26 2015 Alaric Degand
+// Last update Sun Dec 27 01:28:22 2015 Alaric Degand
 //
 
 #include "Model.hpp"
@@ -68,7 +68,6 @@ std::vector<AElement*> Model::getButtonElements(void)
 
 void Model::Game(sf::Keyboard::Key &code)
 {
-  std::cout << "NIQUEZ VOS MORTS" << std::endl;
   if (this->m_actual == GAME)
     {
       if (code == sf::Keyboard::Escape)
@@ -83,6 +82,14 @@ void Model::Game(sf::Keyboard::Key &code)
 	std::cout << "left" << std::endl;
       else if (code == sf::Keyboard::Right)
 	std::cout << "right" << std::endl;
+    }
+}
+
+void	Model::getPressed(sf::Keyboard::Key &code)
+{
+  if (m_actual == CONNEXION)
+    {
+      std::cout << char(code) << std::endl;
     }
 }
 

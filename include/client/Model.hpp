@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:35:48 2015 Kevin Costa
-// Last update Sun Dec 27 00:56:42 2015 Alaric Degand
+// Last update Sun Dec 27 01:28:53 2015 Alaric Degand
 //
 
 #ifndef		MODEL_HPP_
@@ -64,6 +64,7 @@ public:
   bool canConnect(void) const;
   AElement *getElementByName(const std::string &name);
   void Game(sf::Keyboard::Key &code); // Change le nom
+  void getPressed(sf::Keyboard::Key &code);
   void updateData(void);
 };
 

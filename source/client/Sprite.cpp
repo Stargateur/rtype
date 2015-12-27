@@ -48,3 +48,8 @@ void            Sprite::eraseLast(void)
 {
 
 }
+
+void Sprite::setPos(float x, float y)
+{
+	this->setPosition(x, y);
+}

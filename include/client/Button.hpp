@@ -51,6 +51,7 @@ public:
   std::string getContent(void) const;
   void setContent(std::string const &);
   void	eraseLast(void);
+	void setPos(float, float);
 
 public:
   void chargeConnect(Model &);

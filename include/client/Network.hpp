@@ -30,6 +30,7 @@ class Network
 	UDP_protocol *m_udpProto;
 	bool m_end;
   std::string m_login;
+	std::string m_ip;
 
 public:
 	Network(Model &);
@@ -37,9 +38,11 @@ public:
 
 public:
 	AThread *getThread(void) const;
+	const std::string &getIP(void) const;
 	void setThread(AThread *);
 	void setMutex(AMutex *);
-	void tryConnect(void);
+	void tryConnectTCP(void);
+	void tryConnectUDP(const std::string &port);
 	void update(void);
 	void loop(void);
 };

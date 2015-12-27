@@ -17,6 +17,11 @@ AThread * Network::getThread(void) const
   return (this->m_thread);
 }
 
+const std::string &Network::getIP(void) const
+{
+	return (this->m_ip);
+}
+
 void Network::setThread(AThread *th)
 {
   this->m_thread = th;
@@ -27,7 +32,7 @@ void Network::setMutex(AMutex *mutex)
   this->m_mutex = mutex;
 }
 
-void Network::tryConnect(void)
+void Network::tryConnectTCP(void)
 {
   bool canConnect;
   std::string host;
@@ -41,14 +46,14 @@ void Network::tryConnect(void)
   if (!canConnect)
     return;
   this->m_mutex->lock();
-  host = this->m_model.getElementByName("TEXT_HOST")->getContent();
+  this->m_ip = this->m_model.getElementByName("TEXT_HOST")->getContent();
   port = this->m_model.getElementByName("TEXT_PORT")->getContent();
   login = this->m_model.getElementByName("TEXT_LOGIN")->getContent();
   m_login = pass;
   pass = this->m_model.getElementByName("TEXT_PASSWORD")->getContent();
 	try
 	{
-		this->m_tcpClient = new TCP_client(host, port);
+		this->m_tcpClient = new TCP_client(this->m_ip, port);
 	}
 	catch (const TCP_client_exception &e)
 	{
@@ -63,6 +68,29 @@ void Network::tryConnect(void)
   this->m_tcpProto = new TCP_protocol(*(this->m_client));
   this->m_tcpProto->send_connect(login, pass);
   this->m_mutex->unlock();
+}
+
+void Network::tryConnectUDP(const std::string &port)
+{
+	try
+	{
+		this->m_udpClient = new UDP_client(this->m_ip, port);
+	}
+	catch (const UDP_client_exception &error)
+	{
+		this->m_udpClient = NULL;
+		this->m_model.setConnect(false);
+		this->m_model.setState(Model::CONNEXION);
+		delete (this->m_tcpClient);
+		delete (this->m_tcpProto);
+		delete (this->m_client);
+		this->m_tcpProto = NULL;
+		this->m_tcpClient = NULL;
+		this->m_client = NULL;
+	}
+	this->m_player = new Player(this->m_model, *this);
+	this->m_udpProto = new UDP_protocol(*this->m_player);
+	this->m_model.setState(Model::GAME);
 }
 
 void Network::update(void)
@@ -102,7 +130,7 @@ void Network::loop(void)
   while (!this->m_end)
     {
       if (this->m_tcpClient == NULL)
-	this->tryConnect();
+	this->tryConnectTCP();
       else
 	this->update();
       this->m_mutex->lock();

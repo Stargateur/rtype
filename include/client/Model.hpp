@@ -59,7 +59,10 @@ public:
   std::vector<AElement *> getElements(void);
   std::vector<AElement *> getButtonElements(void);
   AElement *getElementByName(const std::string &name) const;
+	AElement *getElementByUniqueID(uint64_t) const;
   AElement *getElementFocused(void);
+	bool isElementInState(AElement *, const State &);
+	void addElement(AElement *);
   bool	getCosta(void) const;
   Model::State getState(void) const;
   bool elementIsFocus(void);

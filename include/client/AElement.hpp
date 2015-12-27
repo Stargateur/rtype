@@ -18,6 +18,7 @@ typedef enum e_id
 class AElement
 {
   int m_id;
+	uint64_t m_unique;
   std::string m_name;
   bool m_canFocus;
   bool m_isFocus;
@@ -28,6 +29,7 @@ public:
 
 public:
 	int getId(void) const;
+	uint64_t getUnique(void) const;
 	bool isFocus(void) const;
 	const std::string &getName(void) const;
 	virtual void update(const sf::Event &, Model &, sf::Vector2f &) = 0;
@@ -36,6 +38,8 @@ public:
   virtual void setContent(std::string const &) = 0;
   virtual void eraseLast(void) = 0;
   void setFocus(const bool &);
+	void setUnique(const uint64_t &);
+	virtual void setPos(float, float) = 0;
 protected:
 	void setId(int);
 };

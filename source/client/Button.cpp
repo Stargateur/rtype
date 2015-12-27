@@ -75,6 +75,11 @@ void		Button::eraseLast(void)
     }
 }
 
+void Button::setPos(float x, float y)
+{
+	this->setPosition(x, y);
+}
+
 void Button::chargeConnect(Model &model)
 {
   model.setState(Model::CONNEXION);

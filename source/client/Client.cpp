@@ -1,3 +1,4 @@
+#include <sstream>
 #include "Network.hpp"
 #include "Client.hpp"
 
@@ -123,6 +124,7 @@ void	Client::ready(ITCP_protocol &itcp_protocol, bool ready)
 
 void	Client::start(ITCP_protocol &itcp_protocol, uint8_t second, uint16_t port)
 {
+	this->m_net.tryConnectUDP(std::ostringstream(port).str());
 }
 
 void	Client::end(ITCP_protocol &itcp_protocol, uint64_t score, bool winner)

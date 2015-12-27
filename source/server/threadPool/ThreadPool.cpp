@@ -10,6 +10,7 @@
 
 #ifdef		_WIN32
 # include <io.h>
+# include <Windows.h>
 #else
 # include	<unistd.h>
 #endif
@@ -19,13 +20,17 @@ static void	waitingTask(Task &t)
 {
   while (t.getEnd() != true)
     {
-      if (t.haveTask() == true)
-	{
-	  int		ret = t.getTask()(t.getId());
-	  t.setReturn(ret);
-	}
-      else
+			if (t.haveTask() == true)
+			{
+				int		ret = t.getTask()(t.getId());
+				t.setReturn(ret);
+			}
+			else
+#ifdef	_WIN32
+				Sleep(100);
+#else
 	usleep(100);
+#endif
     }
 }
 

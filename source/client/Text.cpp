@@ -48,3 +48,8 @@ void            Text::eraseLast(void)
 {
 
 }
+
+void Text::setPos(float x, float y)
+{
+	this->setPosition(x, y);
+}

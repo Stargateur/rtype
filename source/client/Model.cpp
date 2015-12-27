@@ -159,12 +159,34 @@ AElement *Model::getElementByName(const std::string &name) const
   return (NULL);
 }
 
+AElement *Model::getElementByUniqueID(uint64_t id) const
+{
+	for (std::map<State, std::vector<AElement *> *>::const_iterator it = this->m_elements.begin(); it != this->m_elements.end(); ++it)
+		for (size_t i = 0; i < it->second->size(); i++)
+			if ((*it->second)[i]->getUnique() == id)
+				return ((*it->second)[i]);
+	return (NULL);
+}
+
 AElement *Model::getElementFocused(void)
 {
   for (size_t i = 0; i < this->m_elements[this->m_actual]->size(); i++)
     if ((*this->m_elements[this->m_actual])[i]->isFocus())
       return ((*this->m_elements[this->m_actual])[i]);
   return (NULL);
+}
+
+bool Model::isElementInState(AElement *elem, const State &state)
+{
+	for (size_t i = 0; i < this->m_elements[state]->size(); i++)
+		if ((*this->m_elements[state])[i]->getName() == elem->getName())
+			return (true);
+	return (false);
+}
+
+void Model::addElement(AElement *elem)
+{
+	this->m_elements[this->m_actual]->push_back(elem);
 }
 
 bool	Model::getCosta() const

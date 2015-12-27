@@ -98,6 +98,18 @@ void Network::loop(void)
 	  m_model.setRefresh(false);
 	  std::cout << "Refresh game asked" << std::endl;
 	}
+      if (m_model.getJoin() == true && m_tcpClient != NULL)
+	{
+	  //
+	  m_model.setJoin(false);
+	  std::cout << "Join game asked" << std::endl;
+	}
+      if (m_model.getCreate() == true && m_tcpClient != NULL)
+	{
+	  //
+	  m_model.setCreate(false);
+	  std::cout << "Create game asked" << std::endl;
+	}
       this->m_end = this->m_model.getEnd();
       this->m_mutex->unlock();
     }

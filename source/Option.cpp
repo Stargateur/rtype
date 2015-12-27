@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sat Oct 24 15:42:58 2015 Antoine Plaskowski
-// Last update Sun Dec 27 12:28:36 2015 Antoine Plaskowski
+// Last update Sun Dec 27 18:13:10 2015 Antoine Plaskowski
 //
 
 #ifdef		_WIN32
@@ -83,7 +83,8 @@ void	Option::parse_opt(int argc, char **argv)
       for (auto &opt : m_opts)
 	if (std::get<0>(opt) == arg)
 	  {
-	    std::get<2>(opt) = arg;
+	    if (++i < argc)
+	      std::get<2>(opt) = argv[i];
 	    break;
 	  }
     }

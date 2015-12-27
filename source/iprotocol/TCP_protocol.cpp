@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:40:34 2015 Antoine Plaskowski
-// Last update Sun Dec 27 17:46:59 2015 Antoine Plaskowski
+// Last update Sun Dec 27 18:34:48 2015 Antoine Plaskowski
 //
 
 #include	<algorithm>
@@ -28,10 +28,10 @@ TCP_protocol::~TCP_protocol(void)
 
 void	TCP_protocol::set_to_send(TCP_packet_send *to_send, ATCP_packet::Opcode opcode)
 {
-#ifdef	DEBUG
-  std::cerr << "je prépare un packet " << opcode << std::endl;
-#endif	/* !DEBUG */
   to_send->set_opcode(opcode);
+#ifdef	DEBUG
+  std::cerr << "je prépare un packet " << to_send->get_opcode() << to_send << std::endl;
+#endif	/* !DEBUG */
   m_to_send.push_back(to_send);
 }
 
@@ -47,14 +47,16 @@ bool	TCP_protocol::want_recv(void) const
 
 void	TCP_protocol::send(ITCP_client const &socket)
 {
+  if (m_to_send.size() == 0)
+    return;
   TCP_packet_send	*to_send = m_to_send.front();
-  m_to_send.pop_front();
 #ifdef	DEBUG
-  std::cerr << "j'envoie sur une socket client tcp" << to_send->get_opcode() << std::endl;
+  std::cerr << "j'envoie sur une socket client tcp " << to_send->get_opcode() << to_send << std::endl;
 #endif	/* !DEBUG */
 
   to_send->send(socket);
-  delete to_send;
+  m_to_send.pop_front();
+  //  delete to_send;
 }
 
 void	TCP_protocol::recv(ITCP_client const &socket)

@@ -1,12 +1,15 @@
 #ifndef		CLIENT_HPP_
 # define	CLIENT_HPP_
 
-#include "ITCP_protocol.hpp"
+# include "ITCP_protocol.hpp"
+
+class Network;
+class Model;
 
 class Client : public ITCP_protocol::Callback
 {
 public:
-	Client(ITCP_client &itcp_client);
+	Client(Network &, Model &);
 	~Client(void);
 
 public:
@@ -38,6 +41,10 @@ public:
 	void	start(ITCP_protocol &itcp_protocol, uint8_t second, uint16_t port);
 	void	end(ITCP_protocol &itcp_protocol, uint64_t score, bool winner);
 	void	leave(ITCP_protocol &itcp_protocol);
+	
+private:
+	Network &m_net;
+	Model &m_model;
 };
 
 #endif

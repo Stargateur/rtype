@@ -45,8 +45,18 @@ void Network::tryConnect(void)
   port = this->m_model.getElementByName("TEXT_PORT")->getContent();
   login = this->m_model.getElementByName("TEXT_LOGIN")->getContent();
   pass = this->m_model.getElementByName("TEXT_PASSWORD")->getContent();
-  this->m_tcpClient = new TCP_client(host, port);
-  this->m_client = new Client(*(this->m_tcpClient));
+	try
+	{
+		this->m_tcpClient = new TCP_client(host, port);
+	}
+	catch (const TCP_client_exception &e)
+	{
+		this->m_tcpClient = NULL;
+		this->m_model.setConnect(false);
+		this->m_mutex->unlock();
+		return;
+	}
+  this->m_client = new Client(*this, this->m_model);
   this->m_tcpProto = new TCP_protocol(*(this->m_client));
   this->m_tcpProto->send_connect(login, pass);
   this->m_mutex->unlock();

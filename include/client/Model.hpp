@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:35:48 2015 Kevin Costa
-// Last update Sun Dec 27 20:30:44 2015 Alaric Degand
+// Last update Sun Dec 27 21:23:49 2015 Alaric Degand
 //
 
 #ifndef		MODEL_HPP_
@@ -22,6 +22,7 @@
 # include	<vector>
 # include	<map>
 
+#include	"ITCP_protocol.hpp"
 # include	"Sprite.hpp"
 # include "Button.hpp"
 
@@ -43,6 +44,7 @@ private:
   bool m_canConnect;
   bool m_endExec;
   std::map<State, std::vector<AElement *> *> m_elements;
+  std::map<std::string, ITCP_protocol::Sprite *> m_sprites;
   sf::Font	m_font;
   bool	costabouche;
   std::string	m_swap;
@@ -83,6 +85,7 @@ public:
   void setCreate(bool);
   bool getReady(void) const;
   void setReady(bool);
+  void	addSprite(ITCP_protocol::Sprite *);
 };
 
 #endif		/* !MODEL_HPP_ */

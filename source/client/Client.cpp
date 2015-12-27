@@ -91,6 +91,7 @@ void	Client::meta_sprites(ITCP_protocol &itcp_protocol, std::list<ITCP_protocol:
   for (auto sprite : sprites)
     {
       std::cout << "Sprite Name[" << sprite->name << "]" << std::endl;
+      m_model.addSprite(sprite);
     }
 }
 

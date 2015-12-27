@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:29:32 2015 Kevin Costa
-// Last update Sun Dec 27 20:34:50 2015 Alaric Degand
+// Last update Sun Dec 27 22:22:32 2015 Alaric Degand
 //
 
 #include "Model.hpp"
@@ -237,4 +237,15 @@ bool    Model::getReady(void) const
 void    Model::setReady(bool value)
 {
   m_ready = value;
+}
+
+void	Model::addSprite(ITCP_protocol::Sprite *toAdd)
+{
+  //sf::Texture	loader;
+  //loader.loadFromMemory((void*)toAdd->data, sizeof(toAdd->data));
+  //Sprite	*img(0, 0, "sprites/stars.jpg", "background", 1256, 836);
+  
+  m_sprites[toAdd->name] = toAdd;
+  //m_elements[m_actual].push_back(img);
+  
 }

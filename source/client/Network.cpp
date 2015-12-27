@@ -120,7 +120,7 @@ void Network::loop(void)
 	  target.owner = m_login;
 	  m_tcpProto->send_create_game(target);
 	  m_model.setCreate(false);
-	  std::cout << "Create game asked" << std::endl;
+	  std::cout << "Create game asked" << target.name << std::endl;
 	}
       this->m_end = this->m_model.getEnd();
       this->m_mutex->unlock();

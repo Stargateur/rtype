@@ -5,7 +5,7 @@
 // Login   <plasko_a@epitech.eu>
 // 
 // Started on  Sun Dec 27 01:00:23 2015 Antoine Plaskowski
-// Last update Sun Dec 27 01:34:56 2015 Antoine Plaskowski
+// Last update Sun Dec 27 02:05:24 2015 Antoine Plaskowski
 //
 
 #include <ctime>
@@ -23,18 +23,31 @@ intmax_t	TimeWindows::get_second(void) const
 void	TimeWindows::set_second(intmax_t second)
 {
   m_second = second;
-  return (false);
 }
 
 intmax_t	TimeWindows::get_nano(void) const
 {
-  return (m_mili * 1000000);
+  return (m_milli * milli_by_nano);
 }
 
 void	TimeWindows::set_nano(intmax_t nano)
 {
-  m_mili = nano / 1000000;
-  return (false);
+  m_milli = nano / milli_by_nano;
+  if (get_nano() >= ITime::nano_by_second)
+    {
+      if (get_second() >= 0)
+	set_second(get_second() + 1);
+      else
+	set_second(get_second() - 1);
+      set_nano(get_nano() - ITime::nano_by_second);
+    }
+  else if (get_nano() < 0)
+    {
+      if (get_second() >= 0)
+	set_second(get_second() - 1);
+      else        set_second(get_second() + 1);
+      set_nano(get_nano() + ITime::nano_by_second);
+    }
 }
 
 bool	TimeWindows::now(void)
@@ -42,7 +55,7 @@ bool	TimeWindows::now(void)
   SYSTEMTIME SystemTime;
   m_second = time(NULL);
   GetSystemTime(&SystemTime);
-  m_mili = SystemTime.wMilliseconds;
+  m_milli = SystemTime.wMilliseconds;
   return (false);
 }
 

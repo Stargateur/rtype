@@ -5,7 +5,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Wed Oct 21 20:44:16 2015 Bertrand-Rapello Baptiste
-// Last update Sun Dec 27 01:42:22 2015 Antoine Plaskowski
+// Last update Sun Dec 27 01:58:00 2015 Antoine Plaskowski
 //
 
 #ifndef	ITIME_HPP_
@@ -19,7 +19,7 @@ public:
   intmax_t const	nano_by_second = 1000000000;
 public:
   ITime(void);
-  ITime(ITime const &itime);
+  ITime(ITime const &);
   virtual ~ITime(void);
   ITime	&operator=(ITime const &itime);
   ITime	&operator+=(ITime const &itime);

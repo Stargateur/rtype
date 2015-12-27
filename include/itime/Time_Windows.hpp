@@ -5,7 +5,7 @@
 // Login   <plasko_a@epitech.eu>
 // 
 // Started on  Sun Dec 27 01:01:39 2015 Antoine Plaskowski
-// Last update Sun Dec 27 01:36:01 2015 Antoine Plaskowski
+// Last update Sun Dec 27 02:04:02 2015 Antoine Plaskowski
 //
 
 #ifndef	TIME_WINDOWS_HPP_
@@ -17,6 +17,8 @@
 class	TimeWindows : public ITime
 {
 public:
+  uintmax_t const	milli_by_nano = 1000000;
+public:
   TimeWindows(void);
   intmax_t	get_second(void) const;
   void	set_second(intmax_t);
@@ -27,7 +29,7 @@ public:
   ~TimeWindows(void);
 private:
   time_t m_second;
-  WORD m_mili;
+  WORD m_milli;
 };
 
 #endif	/* !TIME_WINDOWS_HPP */

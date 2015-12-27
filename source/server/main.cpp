@@ -8,7 +8,11 @@
 // Last update Sun Dec 27 12:30:42 2015 Antoine Plaskowski
 //
 
-#include <unistd.h>
+#ifdef		_WIN32
+# include <io.h>
+#else
+# include <unistd.h>
+#endif
 #include <iostream>
 #include <cstring>
 #include "Server.hpp"

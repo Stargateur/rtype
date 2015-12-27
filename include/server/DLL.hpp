@@ -13,7 +13,9 @@
 
 # include	<iostream>
 # include	<string>
-# include	<dlfcn.h>
+# ifndef	_WIN32
+#  include	<dlfcn.h>
+# endif
 
 class		DLL
 {

@@ -11,6 +11,7 @@
 #include	<algorithm>
 #include	<exception>
 #include	<stdexcept>
+#include	<string>
 #include	"PortGenerator.hpp"
 
 PortGenerator::PortGenerator(int16_t p_start, int16_t p_last)

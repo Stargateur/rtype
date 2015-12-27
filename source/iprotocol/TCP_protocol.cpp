@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:40:34 2015 Antoine Plaskowski
-// Last update Sun Dec 27 17:27:41 2015 Antoine Plaskowski
+// Last update Sun Dec 27 17:46:59 2015 Antoine Plaskowski
 //
 
 #include	<algorithm>
@@ -58,12 +58,15 @@ void	TCP_protocol::send(ITCP_client const &socket)
 }
 
 void	TCP_protocol::recv(ITCP_client const &socket)
-{
+{  
 #ifdef	DEBUG
-  std::cerr << "je lis une socket client tcp " << m_to_recv.get_opcode() << std::endl;
+  std::cerr << "je lis une socket tcp " << std::endl;
 #endif	/* !DEBUG */
   if (m_to_recv.recv(socket) == false)
     return;
+#ifdef	DEBUG
+  std::cerr << "j'ai lu un paquet tcp " << m_to_recv.get_opcode() << std::endl;
+#endif	/* !DEBUG */
   switch (m_to_recv.get_opcode())
     {
     case ATCP_packet::Result:
@@ -95,15 +98,6 @@ void	TCP_protocol::recv(ITCP_client const &socket)
       return;
     case ATCP_packet::Message:
       recv_message();
-      return;
-    case ATCP_packet::List_meta_modes:
-      //recv_list_modes();
-      return;
-    case ATCP_packet::Meta_modes:
-      //recv_meta_modes();
-      return;
-    case ATCP_packet::Change_mode:
-      //recv_change_mode();
       return;
     case ATCP_packet::List_meta_params:
       recv_list_meta_params();

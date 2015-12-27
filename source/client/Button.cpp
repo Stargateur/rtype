@@ -5,7 +5,7 @@
 ** Login   <tacite_d@Akagouan>
 ** 
 ** Started on  Thu Dec 10 17:35:58 2015 tacite_d
-// Last update Sun Dec 27 20:18:39 2015 Alaric Degand
+// Last update Sun Dec 27 22:23:39 2015 Alaric Degand
 */
 
 #include	"View.hpp"
@@ -18,7 +18,6 @@ Button::Button(float x, float y, float longu, float larg, std::string const& nam
   this->setPosition(x, y);
   this->m_text = new Text(x, y + larg / 6, "Value", show, thefont);
   this->m_ptr = ptrs;
-  //	createPtr(type);
 }
 
 
@@ -33,9 +32,6 @@ void Button::update(const sf::Event &e, Model &m, sf::Vector2f &pos)
       if (this->m_ptr != NULL)
 	(this->*m_ptr)(m);
     }
-
-  //  if (e.type == sf::Event::EventType::TextEntered)
-  //this->m_text->update(e, m, pos);
 }
 
 void	Button::aff(View *view)
@@ -83,8 +79,6 @@ void Button::chargeConnect(Model &model)
 
 void Button::chargePrincip(Model &model)
 {
-  //model.setState(Model::PRINCIPAL);
-  //std::cout << "new state = principal" << std::endl;
   model.setConnect(true);
 }
 
@@ -108,7 +102,6 @@ void Button::chargeGame(Model &model)
 
 void	Button::focused(Model &model)
 {
-  //if (m_isFocus == true)
   AElement  *tmp = model.getElementFocused();
   if (tmp != NULL)
     tmp->setFocus(false);
@@ -117,7 +110,6 @@ void	Button::focused(Model &model)
 
 void		Button::refresh(Model &model)
 {
-  //List serv
   model.setRefresh(true);
 }
 
@@ -135,23 +127,3 @@ void	Button::ready(Model &model)
 {
   model.setReady(true);
 }
-
-//
-//void Button::createPtr(buttonType type)
-//{
-//	switch (type)
-//	{
-//	case CONNECT:
-//		this->m_ptr = &Button::chargeConnect;
-//	case PRINCIP:
-//		this->m_ptr = &Button::chargePrincip;
-//	case PARAM:
-//		this->m_ptr = &Button::chargeParam;
-//	case LIST:
-//		this->m_ptr = &Button::chargeList;
-//	case GAME:
-//		this->m_ptr = &Button::chargeGame;
-//	default:
-//		break;
-//	}
-//}

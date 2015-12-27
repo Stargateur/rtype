@@ -5,7 +5,7 @@
 ** Login   <tacite_d@Akagouan>
 ** 
 ** Started on  Thu Dec 10 17:36:16 2015 tacite_d
-// Last update Sun Dec 27 20:18:49 2015 Alaric Degand
+// Last update Sun Dec 27 22:23:52 2015 Alaric Degand
 */
 
 #ifndef		BUTTON_HPP_
@@ -24,16 +24,6 @@ typedef void (Button::*ptr)(Model &);
 
 class Button : public AElement, public sf::RectangleShape
 {
-//public:
-//	typedef enum e_buttonType
-//	{
-//		CONNECT,
-//		PRINCIP,
-//		PARAM,
-//		LIST,
-//		GAME,
-//		UNKNOWN
-//	} buttonType; WHAT?
 private:
   Text *m_text;
   ptr m_ptr;
@@ -63,9 +53,6 @@ public:
   void join(Model &);
   void create(Model &);
   void ready(Model &);
-	
-//private:
-//	void createPtr(buttonType);
 };
 
 #endif /* !BUTTON_HPP_ */

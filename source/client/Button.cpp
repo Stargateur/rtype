@@ -5,7 +5,7 @@
 ** Login   <tacite_d@Akagouan>
 ** 
 ** Started on  Thu Dec 10 17:35:58 2015 tacite_d
-// Last update Sun Dec 27 16:50:38 2015 Alaric Degand
+// Last update Sun Dec 27 17:52:44 2015 Alaric Degand
 */
 
 #include	"View.hpp"
@@ -120,6 +120,17 @@ void	Button::focused(Model &model)
     tmp->setFocus(false);
   setFocus(true);
 }
+
+void	Button::join(Model &model)
+{
+
+}
+
+void	Button::create(Model &model)
+{
+
+}
+
 //
 //void Button::createPtr(buttonType type)
 //{

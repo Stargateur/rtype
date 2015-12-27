@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Wed Dec 23 17:18:39 2015 Antoine Plaskowski
-// Last update Sun Dec 27 07:56:16 2015 Antoine Plaskowski
+// Last update Sun Dec 27 10:29:11 2015 Antoine Plaskowski
 //
 
 #ifndef		PLAYER_HPP_
@@ -13,6 +13,7 @@
 
 # include	"IUDP_protocol.hpp"
 # include	"IEntite.hpp"
+# include	"File.hpp"
 
 class	Player : public IEntite
 {

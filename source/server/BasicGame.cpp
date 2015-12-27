@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Tue Dec 22 10:14:54 2015 Alaric Degand
-// Last update Sun Dec 27 09:50:25 2015 Antoine Plaskowski
+// Last update Sun Dec 27 09:55:14 2015 Antoine Plaskowski
 //
 
 #include	<array>
@@ -178,9 +178,9 @@ void	BasicGame::input(IUDP_protocol &iudp_protocol, std::string const &login, IU
 	{
 	  player->set_input(input);
 	  std::list<IUDP_protocol::Sprite *>	sprites;
-	  sprites.push_back(new IUDP_protocol::Sprite({static_cast<uint8_t>(m_background.get_id()), std::get<0>(m_background.get_property()), std::get<1>(m_background.get_property()), 0}));
+	  sprites.push_back(new IUDP_protocol::Sprite({m_background.get_id(), std::get<0>(m_background.get_property()), std::get<1>(m_background.get_property()), 0}));
 	  for (auto entite : m_ientites)
-	    sprites.push_back(new IUDP_protocol::Sprite({static_cast<uint8_t>(entite->get_id()), std::get<0>(entite->get_property()), std::get<1>(entite->get_property()), 0}));
+	    sprites.push_back(new IUDP_protocol::Sprite({entite->get_id(), std::get<0>(entite->get_property()), std::get<1>(entite->get_property()), 0}));
 	  iudp_protocol.send_sprites(sprites, sockaddr, len);
 	  for (auto sprite : sprites)
 	    delete sprite;

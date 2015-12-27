@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:35:29 2015 Antoine Plaskowski
-// Last update Sun Dec 27 06:38:16 2015 Antoine Plaskowski
+// Last update Sun Dec 27 10:48:13 2015 Antoine Plaskowski
 //
 
 #ifndef		ITCP_PROTOCOL_HPP_
@@ -31,29 +31,29 @@ public:
   };
   struct	Game
   {
-    std::string	&name;
-    std::string	&owner;
+    std::string	name;
+    std::string	owner;
     uint8_t	number_player;
     uint8_t	number_player_max;
   };
   struct	Param
   {
-    std::string	&name;
-    std::string	&value;
+    std::string	name;
+    std::string	value;
   };
   struct	Sprite
   {
-    std::string &name;
-    std::string &checksome;
-    uint8_t	id;
+    std::string name;
+    std::string checksome;
+    uint64_t	id;
     uint8_t	*data;
     uint16_t	size;
   };
   struct	Sound
   {
-    std::string	&name;
-    std::string	&checksome;
-    uint8_t	id;
+    std::string	name;
+    std::string	checksome;
+    uint64_t	id;
     uint8_t	*data;
     uint16_t	size;
   };

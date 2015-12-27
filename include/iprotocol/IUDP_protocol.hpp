@@ -5,7 +5,7 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:35:29 2015 Antoine Plaskowski
-// Last update Sat Dec 26 15:45:07 2015 Antoine Plaskowski
+// Last update Sun Dec 27 09:54:26 2015 Antoine Plaskowski
 //
 
 #ifndef		IUDP_PROTOCOL_HPP_
@@ -25,14 +25,14 @@ class	IUDP_protocol
 public:
   struct	Sprite
   {
-    uint8_t	id;
+    uint64_t	id;
     int64_t	x;
     int64_t	y;
     double	rotation;
   };
   struct	Sound
   {
-    uint8_t	id;
+    uint64_t	id;
   };
   struct	Input
   {

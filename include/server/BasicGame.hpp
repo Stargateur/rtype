@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Tue Dec 22 10:12:30 2015 Alaric Degand
-// Last update Sun Dec 27 09:47:44 2015 Antoine Plaskowski
+// Last update Sun Dec 27 10:02:26 2015 Antoine Plaskowski
 //
 
 #ifndef		BASICGAME_HPP_
@@ -47,6 +47,7 @@ public:
   void	sprites(IUDP_protocol &, std::list<IUDP_protocol::Sprite *> const &, IUDP_server::u_sockaddr const &, socklen_t);
   void	sounds(IUDP_protocol &, std::list<IUDP_protocol::Sound *> const &, IUDP_server::u_sockaddr const &, socklen_t);
   void	input(IUDP_protocol &iudp_protocol, std::string const &login, IUDP_protocol::Input const &input, IUDP_server::u_sockaddr const &sockaddr, socklen_t len);
+  Port const	&get_port(void) const;
 private:
   std::string	m_name;
   std::list<std::string>	m_logins;

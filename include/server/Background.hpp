@@ -5,13 +5,14 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Sat Dec 26 15:01:44 2015 Antoine Plaskowski
-// Last update Sun Dec 27 07:56:26 2015 Antoine Plaskowski
+// Last update Sun Dec 27 10:29:50 2015 Antoine Plaskowski
 //
 
 #ifndef		BACKGROUND_HPP_
 # define	BACKGROUND_HPP_
 
 # include	"IEntite.hpp"
+# include	"File.hpp"
 
 class	Background : public IEntite
 {

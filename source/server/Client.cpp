@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:56:02 2015 Alaric Degand
-// Last update Sun Dec 27 06:58:10 2015 Antoine Plaskowski
+// Last update Sun Dec 27 10:59:05 2015 Antoine Plaskowski
 //
 
 #include	"Client.hpp"
@@ -111,20 +111,20 @@ void	Client::meta_games(ITCP_protocol &itcp_protocol, std::list<ITCP_protocol::G
   itcp_protocol.send_result(ITCP_protocol::IGNORED);
 }
 
-void	Client::create_game(ITCP_protocol &itcp_protocol, ITCP_protocol::Game const &game)
+void	Client::create_game(ITCP_protocol &itcp_protocol, ITCP_protocol::Game const &)
 {
   if (m_login.size() == 0)
     itcp_protocol.send_result(ITCP_protocol::IGNORED);
   else
-    {
-      
-    }
+    m_server.create_game(get_login());
 }
 
 void	Client::join_game(ITCP_protocol &itcp_protocol, ITCP_protocol::Game const &game)
 {
   if (m_login.size() == 0)
     itcp_protocol.send_result(ITCP_protocol::IGNORED);
+  else
+    m_server.join_game(get_login(), game.owner);
 }
 
 void	Client::message(ITCP_protocol &itcp_protocol, std::string const &login, std::string const &message)
@@ -154,6 +154,27 @@ void	Client::list_meta_sprites(ITCP_protocol &itcp_protocol)
 {
   if (m_login.size() == 0)
     itcp_protocol.send_result(ITCP_protocol::IGNORED);
+  else
+    {
+      IGame const &game = m_server.get_game(get_login());
+      std::list<ITCP_protocol::Sprite *>	sprites;
+      for (auto player : game.get_players())
+	{
+	  File const &file = player->get_sprite();
+	  sprites.push_back(new ITCP_protocol::Sprite({file.get_name(), file.get_checksome(), player->get_id(), nullptr, static_cast<uint16_t>(file.get_size())}));
+	}
+      for (auto ientite : game.get_ientites())
+	{
+	  File const &file = ientite->get_sprite();
+	  sprites.push_back(new ITCP_protocol::Sprite({file.get_name(), file.get_checksome(), ientite->get_id(), nullptr, static_cast<uint16_t>(file.get_size())}));
+	}
+      Background const   &background = game.get_background();
+      File const &file = background.get_sprite();
+      sprites.push_back(new ITCP_protocol::Sprite({file.get_name(), file.get_checksome(), background.get_id(), nullptr, static_cast<uint16_t>(file.get_size())}));
+      m_itcp_protocol.send_meta_sprites(sprites);
+      for (auto sprite : sprites)
+	delete sprite;
+    }
 }
 
 void	Client::meta_sprites(ITCP_protocol &itcp_protocol, std::list<ITCP_protocol::Sprite *> const &)
@@ -176,6 +197,27 @@ void	Client::list_meta_sounds(ITCP_protocol &itcp_protocol)
 {
   if (m_login.size() == 0)
     itcp_protocol.send_result(ITCP_protocol::IGNORED);
+  else
+    {
+      IGame const &game = m_server.get_game(get_login());
+      std::list<ITCP_protocol::Sound *>	sounds;
+      for (auto player : game.get_players())
+	{
+	  File const &file = player->get_sound();
+	  sounds.push_back(new ITCP_protocol::Sound({file.get_name(), file.get_checksome(), player->get_id(), nullptr, static_cast<uint16_t>(file.get_size())}));
+	}
+      for (auto ientite : game.get_ientites())
+	{
+	  File const &file = ientite->get_sound();
+	  sounds.push_back(new ITCP_protocol::Sound({file.get_name(), file.get_checksome(), ientite->get_id(), nullptr, static_cast<uint16_t>(file.get_size())}));
+	}
+      Background const   &background = game.get_background();
+      File const &file = background.get_sound();
+      sounds.push_back(new ITCP_protocol::Sound({file.get_name(), file.get_checksome(), background.get_id(), nullptr, static_cast<uint16_t>(file.get_size())}));
+      m_itcp_protocol.send_meta_sounds(sounds);
+      for (auto sound : sounds)
+	delete sound;
+    }
 }
 
 void	Client::meta_sounds(ITCP_protocol &itcp_protocol, std::list<ITCP_protocol::Sound *> const &sounds)

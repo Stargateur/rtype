@@ -5,18 +5,15 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Thu Dec 10 16:18:33 2015 Antoine Plaskowski
-// Last update Sun Dec 27 07:17:45 2015 Antoine Plaskowski
+// Last update Sun Dec 27 10:32:58 2015 Antoine Plaskowski
 //
 
 #ifndef		IENTITE_HPP_
 # define	IENTITE_HPP_
 
-class	IEntite;
-
 # include	<tuple>
 # include	<list>
 # include	<cstdint>
-# include	"IGame.hpp"
 # include	"ITime.hpp"
 # include	"File.hpp"
 

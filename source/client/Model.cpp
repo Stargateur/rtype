@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:29:32 2015 Kevin Costa
-// Last update Sun Dec 27 00:50:24 2015 Alaric Degand
+// Last update Sun Dec 27 01:01:26 2015 Alaric Degand
 //
 
 #include "Model.hpp"
@@ -133,4 +133,9 @@ AElement *Model::getElementByName(const std::string &name)
 bool	Model::getCosta() const
 {
   return (costabouche);
+}
+
+void	Model::setCosta(bool value)
+{
+  costabouche = value;
 }

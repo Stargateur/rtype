@@ -5,7 +5,7 @@
 // Login   <costa_b@epitech.net>
 // 
 // Started on  Wed Dec  9 14:35:48 2015 Kevin Costa
-// Last update Sun Dec 27 00:53:54 2015 Alaric Degand
+// Last update Sun Dec 27 00:56:42 2015 Alaric Degand
 //
 
 #ifndef		MODEL_HPP_
@@ -59,6 +59,7 @@ public:
 	void setConnect(const bool &);
   bool getEnd(void) const;
   bool	getCosta(void) const;
+  void	setCosta(bool);
   Model::State getState(void) const;
   bool canConnect(void) const;
   AElement *getElementByName(const std::string &name);

@@ -5,7 +5,7 @@
 // Login   <anthony.bury@epitech.eu>
 // 
 // Started on  Tue Nov 17 12:26:59 2015 Anthony Bury
-// Last update Sat Dec 26 23:20:01 2015 Alaric Degand
+// Last update Sun Dec 27 01:01:38 2015 Alaric Degand
 //
 
 #include	<unistd.h>
@@ -58,7 +58,7 @@ void View::aff(void)
 
   for (size_t i = 0; i < tmp.size(); i++)
     {
-      if (m_model.costabouche == true && i == 3)
+      if (m_model.getCosta() == true && i == 3)
 	tmp[i]->aff(this);
       else if (i != 3)
 	tmp[i]->aff(this);
@@ -77,14 +77,14 @@ void View::loop(void)
       this->m_mutex->lock();
       if (this->m_model.getEnd())
 	this->close();
-      if (m_model.costabouche == false && it == 500)
+      if (m_model.getCosta() == false && it == 500)
 	{
-	  m_model.costabouche = true;
+	  m_model.setCosta(true);
 	  it = 0;
 	}
-      else if (m_model.costabouche == true && it == 500)
+      else if (m_model.getCosta() == true && it == 500)
 	{
-	  m_model.costabouche = false;
+	  m_model.setCosta(false);
 	  it = 0;
 	}
       it++;

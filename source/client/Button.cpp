@@ -5,7 +5,7 @@
 ** Login   <tacite_d@Akagouan>
 ** 
 ** Started on  Thu Dec 10 17:35:58 2015 tacite_d
-// Last update Sun Dec 27 14:04:53 2015 Alaric Degand
+// Last update Sun Dec 27 14:20:43 2015 Alaric Degand
 */
 
 #include	"View.hpp"
@@ -83,8 +83,9 @@ void Button::chargeConnect(Model &model)
 
 void Button::chargePrincip(Model &model)
 {
-  model.setState(Model::PRINCIPAL);
-  std::cout << "new state = principal" << std::endl;
+  //model.setState(Model::PRINCIPAL);
+  //std::cout << "new state = principal" << std::endl;
+  model.setConnect(true);
 }
 
 void Button::chargeParam(Model &model)

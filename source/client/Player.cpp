@@ -18,8 +18,12 @@ void Player::sprites(IUDP_protocol & iudp_protocol, std::list<IUDP_protocol::Spr
 
 	for (auto sprite : sprites)
 	{
-		if ((elem = this->m_model.getElementByUniqueID(sprite->id)) != NULL)
+		if ((elem = this->m_model.getElementByUniqueID(sprite->id)) == NULL)
+		{
+			elem = new Sprite(sprite->x, sprite->y, "", "", 1, 1);
+			elem->setUnique(sprite->id);
 			this->m_model.addElement(new Sprite(sprite->x, sprite->y, "", "", 1, 1));
+		}
 		else
 		{
 			elem->setPos(static_cast<float>(sprite->x), static_cast<float>(sprite->y));

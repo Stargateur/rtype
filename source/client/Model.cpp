@@ -189,6 +189,11 @@ void Model::addElement(AElement *elem)
 	this->m_elements[this->m_actual]->push_back(elem);
 }
 
+void Model::addElement(AElement *elem, const State &state)
+{
+	this->m_elements[state]->push_back(elem);
+}
+
 bool	Model::getCosta() const
 {
   return (costabouche);

@@ -65,7 +65,8 @@ public:
   AElement *getElementFocused(void);
 	bool isElementInState(AElement *, const State &);
 	void addElement(AElement *);
-  bool	getCosta(void) const;
+	void addElement(AElement *, const State &);
+	bool	getCosta(void) const;
   Model::State getState(void) const;
   bool elementIsFocus(void);
   bool canConnect(void) const;

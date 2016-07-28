@@ -5,7 +5,7 @@
 // Login   <alaric.degand@epitech.eu>
 // 
 // Started on  Sun Dec  6 03:56:02 2015 Alaric Degand
-// Last update Sun Dec 27 18:09:04 2015 Antoine Plaskowski
+// Last update Wed Jan 27 18:19:43 2016 Antoine Plaskowski
 //
 
 #include	"Client.hpp"

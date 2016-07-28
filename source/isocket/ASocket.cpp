@@ -5,12 +5,13 @@
 // Login   <antoine.plaskowski@epitech.eu>
 // 
 // Started on  Fri Nov 20 05:43:34 2015 Antoine Plaskowski
-// Last update Thu Dec 10 16:36:04 2015 Antoine Plaskowski
+// Last update Mon May  9 16:55:28 2016 Antoine Plaskowski
 //
 
 #include	<algorithm>
 #include	<exception>
 #include	<cstring>
+#include	<cerrno>
 #include	<fcntl.h>
 #include	"ASocket.hpp"
 
